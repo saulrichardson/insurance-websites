@@ -12,7 +12,7 @@ export type Offering = {
 export const site = {
   brand: {
     name: "San Marino Insurance Agency",
-    shortName: "San Marino Insurance",
+    shortName: "Insurance for San Marino",
     legalLine: "Tracy Zhang: Allstate Insurance",
   },
   agent: {
