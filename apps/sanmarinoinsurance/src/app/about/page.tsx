@@ -121,7 +121,7 @@ export default function AboutPage() {
             </h2>
             <p className="mt-4 text-pretty text-lg leading-8 text-foreground/75">
               A local office runs on details—policy changes, coverage reviews, and quick answers when you need them.
-              Here are the people you’ll most often hear from.
+              Meet Tracy Zhang and the teams you’ll work with most often.
             </p>
           </div>
 
@@ -173,21 +173,21 @@ const teamMembers = [
     focus: ["Life insurance", "Financial products", "Coverage reviews"],
   },
   {
-    name: "Melissa Kim",
-    role: "Office Manager",
-    bio: "Keeps the day‑to‑day running smoothly—helping with billing questions, policy updates, document requests, and making sure every call is answered quickly and thoughtfully.",
-    focus: ["Policy changes", "Billing support", "Service requests"],
+    name: "Client Services",
+    role: "Policy Support",
+    bio: "Handles the day‑to‑day service work—billing questions, policy changes, ID cards, documents, and quick answers so nothing sits in limbo.",
+    focus: ["Policy changes", "Billing support", "Documents"],
   },
   {
-    name: "Daniel Nguyen",
-    role: "Personal Lines Specialist",
-    bio: "Helps clients compare options for auto, home, condo, and renters coverage. Known for proactive check‑ins and making sure your policy stays aligned with how you actually live.",
+    name: "Personal Lines",
+    role: "Auto + Home Coverage",
+    bio: "Helps you compare options for auto, home, condo, and renters coverage, including bundling opportunities and annual policy checkups as life changes.",
     focus: ["Auto & vehicles", "Home & property", "Bundling"],
   },
   {
-    name: "Sofia Rivera",
-    role: "Commercial Accounts",
-    bio: "Supports small business owners with practical coverage options and fast paperwork—especially certificates of insurance, renewals, and the details that keep projects moving.",
+    name: "Commercial Accounts",
+    role: "Small Business Support",
+    bio: "Supports local business owners with practical coverage options and fast paperwork—especially certificates of insurance, renewals, and the details that keep projects moving.",
     focus: ["Business insurance", "Certificates", "Renewals"],
   },
 ] as const;
