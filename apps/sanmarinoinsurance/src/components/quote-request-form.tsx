@@ -11,6 +11,7 @@ const coverageOptions = [
   { value: "condo", label: "Condo" },
   { value: "renters", label: "Renters" },
   { value: "life", label: "Life insurance" },
+  { value: "long-term-care", label: "Long‑term care" },
   { value: "financial", label: "Financial products" },
   { value: "business", label: "Business insurance" },
   { value: "not_sure", label: "Not sure yet" },

@@ -123,6 +123,17 @@ export const site = {
       ],
     },
     {
+      id: "long-term-care",
+      name: "Long‑term care",
+      shortDescription:
+        "Coverage options that can help with the cost of extended care needs—at home, assisted living, or a facility.",
+      highlights: [
+        "Plan for future care costs",
+        "Review eligibility and options clearly",
+        "Coordinate with your overall protection plan",
+      ],
+    },
+    {
       id: "business",
       name: "Business",
       shortDescription:

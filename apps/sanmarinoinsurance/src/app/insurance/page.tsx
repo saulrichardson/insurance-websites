@@ -2,6 +2,7 @@ import {
   BriefcaseBusiness,
   Car,
   Home as HomeIcon,
+  HeartPulse,
   Landmark,
   LifeBuoy,
   Phone,
@@ -73,6 +74,17 @@ const detailsById: Record<string, CoverageDetail> = {
       "How much coverage makes sense (not salesy)",
       "Beneficiaries, riders, and review cadence",
       "How life coverage pairs with overall household planning",
+    ],
+  },
+  "long-term-care": {
+    icon: <HeartPulse className="size-5" aria-hidden />,
+    bestFor:
+      "People who want to plan ahead for extended care costs and reduce the financial burden on family members.",
+    whatWeDiscuss: [
+      "What long‑term care coverage can help with (in broad terms)",
+      "Eligibility, timing, and how options vary by situation",
+      "Budget, benefit periods, and tradeoffs to consider",
+      "How long‑term care fits alongside life and other protection plans",
     ],
   },
   business: {

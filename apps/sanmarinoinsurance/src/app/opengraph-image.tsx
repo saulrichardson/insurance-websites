@@ -58,7 +58,7 @@ export default function OpenGraphImage() {
             Insurance that fits your life—without the runaround.
           </div>
           <div style={{ fontSize: 22, color: "rgba(11,11,11,0.72)", lineHeight: 1.45 }}>
-            Auto • Home • Renters • Condo • Life • Business • Financial products
+            Auto • Home • Renters • Condo • Life • Long‑term care • Business • Financial products
           </div>
         </div>
 
