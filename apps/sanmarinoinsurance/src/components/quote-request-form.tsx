@@ -35,6 +35,7 @@ export function QuoteRequestForm() {
   const [status, setStatus] = useState<QuoteStatus>("idle");
   const [message, setMessage] = useState<string>("");
   const [lastSubmittedAt, setLastSubmittedAt] = useState<string | null>(null);
+  const [startedAt] = useState(() => Date.now().toString());
 
   const statusCopy = useMemo(() => {
     if (status === "success") {
@@ -166,6 +167,18 @@ export function QuoteRequestForm() {
           </FieldHint>
         </div>
 
+        <div className="sr-only" aria-hidden>
+          <label htmlFor="company">Company</label>
+          <input
+            id="company"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground"
+          />
+        </div>
+
+        <input type="hidden" name="startedAt" value={startedAt} />
         <input type="hidden" name="source" value="insurance-page" />
         {lastSubmittedAt ? <input type="hidden" name="submittedAt" value={lastSubmittedAt} /> : null}
 

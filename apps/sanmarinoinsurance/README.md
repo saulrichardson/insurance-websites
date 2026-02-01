@@ -25,6 +25,30 @@ npm run start
 - Header/nav: `src/components/site-header.tsx`
 - Global theme colors + fonts: `src/app/globals.css`
 
+## Quote Requests (Request a Quote)
+
+The **Request a quote** form on `/insurance` submits to `POST /api/quote`.
+
+- Form UI: `src/components/quote-request-form.tsx`
+- API handler: `src/app/api/quote/route.ts`
+
+### Delivery options (configure in Vercel)
+
+The API can deliver leads in two ways (you can enable either or both):
+
+1) **Webhook** (Zapier/Make/CRM)
+- `QUOTE_WEBHOOK_URL` = `https://...` (your automation endpoint)
+
+2) **Email via Resend** (recommended)
+- `RESEND_API_KEY` = `re_...`
+- `QUOTE_TO_EMAIL` = destination inbox (where the office receives leads)
+- `QUOTE_FROM_EMAIL` = verified sender (must be verified in Resend)
+- Optional:
+  - `QUOTE_REPLY_TO_EMAIL` = fallback Reply-To if customer email is missing
+  - `QUOTE_EMAIL_SUBJECT_PREFIX` = subject prefix (default: `Quote request`)
+
+If no delivery is configured (or delivery fails), the server will still keep a fallback record in Vercel logs.
+
 ## Vercel Deployment (Recommended: Git Integration)
 
 This repo is ready to deploy as a standard Next.js project on Vercel.
