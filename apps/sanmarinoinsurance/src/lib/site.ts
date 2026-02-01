@@ -13,10 +13,10 @@ export const site = {
   brand: {
     name: "San Marino Insurance Agency",
     shortName: "San Marino Insurance",
-    legalLine: "Tracy Cuiying Zhang: Allstate Insurance",
+    legalLine: "Tracy Zhang: Allstate Insurance",
   },
   agent: {
-    name: "Tracy Cuiying Zhang",
+    name: "Tracy Zhang",
     location: "San Marino, CA",
     address: {
       street: "1012 Huntington Dr",

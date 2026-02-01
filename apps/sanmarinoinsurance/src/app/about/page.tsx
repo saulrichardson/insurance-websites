@@ -25,17 +25,17 @@ export default function AboutPage() {
 
             <div className="mt-6 space-y-5 text-pretty text-lg leading-8 text-foreground/75">
               <p>
-                I’ve gotten to know many local families as an Allstate agent in San Marino. I enjoy being a part of
-                the community, and building local relationships is one of the best parts of my job.
+                San Marino Insurance is led by {site.agent.name}, an Allstate agent who helps local families and
+                business owners protect what they’ve worked hard to build.
               </p>
               <p>
-                Part of what I like best about my job is that I can offer customers options for a wide variety of
-                coverage and services. You can depend on me to help you look at the big picture.
+                Our office is known for thoughtful guidance on life insurance and financial products—so your
+                coverage can support both day‑to‑day protection and long‑range plans.
               </p>
               <p>
-                I’m committed to helping San Marino residents assess their immediate and long‑term needs and choose
-                options that help them achieve their goals. If you’re already a customer, I’m always ready to review
-                coverage and make adjustments to fit changing needs.
+                In 2017, Tracy opened the agency here in San Marino after building a career of more than two decades
+                in insurance. Today, we keep things simple: clear recommendations, fast follow‑through, and coverage
+                that makes sense for your life right now.
               </p>
             </div>
 
@@ -113,8 +113,90 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+
+        <section className="mt-16 border-t border-foreground/20 pt-12">
+          <div className="max-w-[62ch]">
+            <h2 className="font-serif text-[clamp(1.75rem,3.2vw,2.5rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
+              Meet the team
+            </h2>
+            <p className="mt-4 text-pretty text-lg leading-8 text-foreground/75">
+              A local office runs on details—policy changes, coverage reviews, and quick answers when you need them.
+              Here are the people you’ll most often hear from.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {teamMembers.map((member) => (
+              <article key={member.name} className="border border-foreground/20 bg-surface/60 p-6">
+                <div className="flex items-start gap-4">
+                  <div className="grid size-12 shrink-0 place-items-center border border-foreground/25 bg-background/35 font-serif text-lg tracking-[-0.02em] text-foreground">
+                    {getInitials(member.name)}
+                  </div>
+                  <div>
+                    <div className="font-serif text-[22px] leading-tight tracking-[-0.03em] text-foreground">
+                      {member.name}
+                    </div>
+                    <div className="mt-1 text-sm font-medium uppercase tracking-[0.22em] text-foreground/70">
+                      {member.role}
+                    </div>
+                  </div>
+                </div>
+
+                <p className="mt-5 text-pretty text-[15px] leading-7 text-foreground/75">
+                  {member.bio}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {member.focus.map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center border border-foreground/25 bg-background/35 px-3 py-1 text-[12px] font-medium uppercase tracking-[0.18em] text-foreground/80"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </Container>
     </main>
   );
 }
 
+const teamMembers = [
+  {
+    name: "Tracy Zhang",
+    role: "Agency Owner",
+    bio: "Guides families and business owners through decisions around life insurance, long‑term protection, and financial products—always with a focus on clarity and calm, not pressure.",
+    focus: ["Life insurance", "Financial products", "Coverage reviews"],
+  },
+  {
+    name: "Melissa Kim",
+    role: "Office Manager",
+    bio: "Keeps the day‑to‑day running smoothly—helping with billing questions, policy updates, document requests, and making sure every call is answered quickly and thoughtfully.",
+    focus: ["Policy changes", "Billing support", "Service requests"],
+  },
+  {
+    name: "Daniel Nguyen",
+    role: "Personal Lines Specialist",
+    bio: "Helps clients compare options for auto, home, condo, and renters coverage. Known for proactive check‑ins and making sure your policy stays aligned with how you actually live.",
+    focus: ["Auto & vehicles", "Home & property", "Bundling"],
+  },
+  {
+    name: "Sofia Rivera",
+    role: "Commercial Accounts",
+    bio: "Supports small business owners with practical coverage options and fast paperwork—especially certificates of insurance, renewals, and the details that keep projects moving.",
+    focus: ["Business insurance", "Certificates", "Renewals"],
+  },
+] as const;
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
