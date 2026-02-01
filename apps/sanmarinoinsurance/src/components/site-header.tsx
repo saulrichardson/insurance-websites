@@ -63,10 +63,16 @@ export function SiteHeader() {
         <Link
           href="/"
           className="group inline-flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+          aria-label={`${site.brand.shortName} — ${site.agent.name}`}
         >
           <LogoMark />
-          <span className="font-serif text-[28px] font-semibold tracking-[-0.04em] sm:text-[32px]">
-            {site.brand.shortName}
+          <span className="flex flex-col leading-none">
+            <span className="whitespace-nowrap font-serif text-[28px] font-semibold tracking-[-0.04em] sm:text-[32px]">
+              {site.brand.shortName}
+            </span>
+            <span className="mt-1 whitespace-nowrap font-sans text-[12px] tracking-[0.08em] text-foreground/70">
+              {site.agent.name}
+            </span>
           </span>
         </Link>
 
