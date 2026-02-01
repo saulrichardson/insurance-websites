@@ -125,7 +125,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member) => (
               <article key={member.name} className="border border-foreground/20 bg-surface/60 p-6">
                 <div className="flex items-start gap-4">
@@ -173,22 +173,28 @@ const teamMembers = [
     focus: ["Life insurance", "Financial products", "Coverage reviews"],
   },
   {
-    name: "Client Services",
-    role: "Policy Support",
-    bio: "Handles the day‑to‑day service work—billing questions, policy changes, ID cards, documents, and quick answers so nothing sits in limbo.",
-    focus: ["Policy changes", "Billing support", "Documents"],
-  },
-  {
-    name: "Personal Lines",
+    name: "Ray Zhu",
     role: "Auto + Home Coverage",
-    bio: "Helps you compare options for auto, home, condo, and renters coverage, including bundling opportunities and annual policy checkups as life changes.",
+    bio: "Helps you compare coverage options for auto and home, explain deductibles and limits in plain language, and find smart ways to bundle without overcomplicating the decision.",
     focus: ["Auto & vehicles", "Home & property", "Bundling"],
   },
   {
-    name: "Commercial Accounts",
-    role: "Small Business Support",
-    bio: "Supports local business owners with practical coverage options and fast paperwork—especially certificates of insurance, renewals, and the details that keep projects moving.",
-    focus: ["Business insurance", "Certificates", "Renewals"],
+    name: "Jack Zou",
+    role: "Auto + Home Coverage",
+    bio: "Works with families on auto and home coverage reviews—making sure your policy matches how you actually live, and helping keep things aligned when life (or the house) changes.",
+    focus: ["Auto & vehicles", "Home & property", "Bundling"],
+  },
+  {
+    name: "Jill Hunt",
+    role: "Auto + Home Coverage",
+    bio: "Supports customers with quick quotes, thoughtful comparisons, and follow‑through—so you understand the tradeoffs and feel confident choosing coverage that fits your budget.",
+    focus: ["Auto & vehicles", "Home & property", "Policy reviews"],
+  },
+  {
+    name: "Stanna Wong",
+    role: "Auto + Home Coverage",
+    bio: "Focuses on clean, organized coverage checkups for auto and home—helping you spot gaps early, simplify the details, and keep paperwork and updates moving smoothly.",
+    focus: ["Auto & vehicles", "Home & property", "Coverage checkups"],
   },
 ] as const;
 
