@@ -26,13 +26,14 @@ export default function Home() {
         </Container>
 
         <div className="mt-16">
-          <Container className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <Container className="flex flex-col gap-6 md:flex-row md:items-end md:gap-8">
             <div className="font-serif text-[14px] tracking-[0.1em] uppercase leading-none">
-              <div>Carrier</div>
-              <div className="mt-2 text-foreground/80">partners</div>
+              Insurance
+              <br />
+              Carriers
             </div>
 
-            <div className="relative overflow-hidden md:max-w-[880px]">
+            <div className="relative overflow-hidden md:flex-1 md:min-w-0">
               <div className="flex w-max animate-[ticker_20s_linear_infinite] items-center">
                 <CarrierTickerList />
                 <CarrierTickerList ariaHidden />
@@ -68,7 +69,7 @@ const carriers: Carrier[] = [
 function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
   return (
     <ul
-      className="flex items-center gap-12 md:gap-14"
+      className="flex items-center gap-12 pr-12 md:gap-14 md:pr-14"
       aria-hidden={ariaHidden}
     >
       {carriers.map((carrier) => (
