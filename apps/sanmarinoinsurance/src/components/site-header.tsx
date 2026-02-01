@@ -30,6 +30,7 @@ const navItems: NavLink[] = [
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const headerOffset = (showAnnouncement ? 40 : 0) + 96;
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -41,7 +42,10 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="relative z-50 bg-background text-foreground">
+    <header
+      className="relative z-50 bg-background text-foreground"
+      style={{ ["--header-offset" as never]: `${headerOffset}px` }}
+    >
       {showAnnouncement ? (
         <div
           role="region"
@@ -50,12 +54,12 @@ export function SiteHeader() {
         >
           <Container className="flex h-10 items-center justify-between gap-4 font-sans text-[14px] tracking-[-0.03em] sm:text-[16px] md:text-[20px] lg:text-[25.1px]">
             <Link
-              href="/contact"
+              href="/about"
               className="flex min-w-0 items-center gap-3 truncate leading-none"
             >
               <span aria-hidden>🚀</span>
               <span className="truncate uppercase">
-                {site.brand.shortName} • {site.agent.rating.reviewCount} REVIEWS • MULTI‑LANGUAGE SERVICE
+                Come check out our newly renovated website
               </span>
               <span className="shrink-0 uppercase text-fuchsia-300 hover:text-fuchsia-200">
                 READ MORE
@@ -205,7 +209,7 @@ function HeaderNavDropdown({
   dropdown: { href: string; label: string }[];
 }) {
   return (
-    <div className="group relative flex items-center">
+    <div className="group relative flex h-24 items-center">
       <Link
         href={href}
         className="inline-flex items-center gap-3 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
@@ -216,10 +220,10 @@ function HeaderNavDropdown({
 
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 top-[136px] z-0 bg-black/12 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="pointer-events-none fixed inset-0 top-[var(--header-offset)] z-0 bg-black/20 opacity-0 mix-blend-multiply transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
       />
 
-      <div className="pointer-events-none absolute left-0 top-full z-10 pt-4 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-10 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
         <nav aria-label={label} className="w-[260px] bg-background px-8 py-7">
           <ul className="space-y-4">
             {dropdown.map((item) => (
