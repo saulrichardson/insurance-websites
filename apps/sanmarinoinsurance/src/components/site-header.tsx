@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
 const navItems = [
-  { href: "/insurance", label: "Products", hasChevron: true },
-  { href: "/#office", label: "Office", hasChevron: true },
-  { href: site.agent.links.allstateProfile, label: "Resources", hasChevron: true, external: true },
+  { href: "/insurance", label: "Products" },
+  { href: "/#office", label: "Office" },
 ] as const;
 
 export function SiteHeader() {
@@ -71,8 +70,6 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               label={item.label}
-              hasChevron={item.hasChevron}
-              external={"external" in item ? item.external : false}
             />
           ))}
         </nav>
@@ -106,7 +103,6 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   label={item.label}
-                  external={"external" in item ? item.external : false}
                   onNavigate={() => setIsOpen(false)}
                 />
               ))}
@@ -146,30 +142,16 @@ function LogoMark() {
 function HeaderNavItem({
   href,
   label,
-  hasChevron,
-  external,
 }: {
   href: string;
   label: string;
-  hasChevron?: boolean;
-  external?: boolean;
 }) {
   const classes =
     "inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.22em] text-foreground/80 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
 
-  if (external) {
-    return (
-      <a href={href} target="_blank" rel="noreferrer" className={classes}>
-        {label}
-        {hasChevron ? <ChevronDown className="size-4" aria-hidden /> : null}
-      </a>
-    );
-  }
-
   return (
     <Link href={href} className={classes}>
       {label}
-      {hasChevron ? <ChevronDown className="size-4" aria-hidden /> : null}
     </Link>
   );
 }
@@ -177,24 +159,14 @@ function HeaderNavItem({
 function HeaderNavItemMobile({
   href,
   label,
-  external,
   onNavigate,
 }: {
   href: string;
   label: string;
-  external?: boolean;
   onNavigate: () => void;
 }) {
   const classes =
     "px-3 py-3 text-sm font-medium uppercase tracking-[0.18em] text-foreground hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
-
-  if (external) {
-    return (
-      <a href={href} target="_blank" rel="noreferrer" className={classes} onClick={onNavigate}>
-        {label}
-      </a>
-    );
-  }
 
   return (
     <Link href={href} className={classes} onClick={onNavigate}>

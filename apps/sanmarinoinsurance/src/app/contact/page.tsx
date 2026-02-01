@@ -1,7 +1,6 @@
 import { MapPin, Phone, Star, Timer } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
-import { StarRating } from "@/components/star-rating";
 import { getFullAddressLine, site } from "@/lib/site";
 
 export const metadata = {
@@ -86,15 +85,17 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="border border-foreground/20 bg-background/40 p-4">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                      <Star className="size-4" aria-hidden />
-                      Reviews
-                    </div>
-                    <div className="mt-2 text-sm text-foreground/75">
-                      <div className="flex items-center gap-2">
-                        <StarRating rating={site.agent.rating.score} outOf={site.agent.rating.outOf} />
+                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <Star className="size-4" aria-hidden />
+                    Reviews
+                  </div>
+                  <div className="mt-2 text-sm text-foreground/75">
+                      <div className="flex items-center gap-3">
+                        <span aria-hidden className="font-serif tracking-[0.15em] text-foreground">
+                          ★★★★★
+                        </span>
                         <span className="text-sm text-foreground/75">
-                          ({site.agent.rating.reviewCount})
+                          {site.agent.rating.reviewCount} five‑star reviews
                         </span>
                       </div>
                       <div className="mt-2">
@@ -111,7 +112,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="mt-3 text-xs text-foreground/70">
-                  Rating and review count are shown as listed on the Allstate agent profile.
+                  Review count is shown as listed on the Allstate agent profile.
                 </div>
               </div>
             </div>

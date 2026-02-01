@@ -1,22 +1,17 @@
 import Image from "next/image";
-import {
-  MapPin,
-  Phone,
-} from "lucide-react";
-import { StarRating } from "@/components/star-rating";
+import { MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { getFullAddressLine, site } from "@/lib/site";
 
 export default function Home() {
   const coverages = site.offerings.map((o) => o.name);
-  const tickerItems = [...coverages, ...coverages];
 
   return (
     <main id="main" className="bg-background">
       <section className="relative">
         <Container className="py-12 sm:py-16 lg:py-20">
-          <h1 className="text-balance font-serif text-[clamp(3rem,6.6vw,6.25rem)] leading-[0.8] tracking-[-0.04em] text-foreground">
+          <h1 className="text-balance font-serif text-[clamp(3rem,6.6vw,6.25rem)] leading-[0.92] tracking-[-0.03em] text-foreground">
             Making coverage{" "}
             <span className="italic">frictionless</span> <MarkDoubleArrow />
             <br />
@@ -24,7 +19,7 @@ export default function Home() {
             <br />
             and business owners shaping <MarkDiamond /> our
             <br />
-            San Marino <MarkPhoto /> community.
+            San Marino community.
           </h1>
 
           <div className="mt-8 max-w-3xl text-pretty text-lg leading-8 text-foreground/75">
@@ -47,11 +42,9 @@ export default function Home() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             <div className="border border-foreground/20 bg-surface/60 p-4">
-              <div className="flex items-center gap-2">
-                <StarRating rating={site.agent.rating.score} outOf={site.agent.rating.outOf} />
-              </div>
+              <FiveStarReviews count={site.agent.rating.reviewCount} />
               <div className="mt-2 text-sm text-foreground/70">
-                {site.agent.rating.reviewCount} reviews • {site.agent.rating.sourceLabel}
+                {site.agent.rating.reviewCount} five‑star reviews
               </div>
             </div>
             <div className="border border-foreground/20 bg-surface/60 p-4">
@@ -73,17 +66,11 @@ export default function Home() {
       <section className="border-y border-foreground/20 bg-surface/50">
         <div className="relative overflow-hidden py-4">
           <div
-            className="flex w-max animate-[ticker_34s_linear_infinite] items-center gap-6 pr-6 text-sm text-foreground/70"
+            className="flex w-max animate-[ticker_34s_linear_infinite] items-center gap-6 whitespace-nowrap text-sm text-foreground/70"
             aria-label="Coverage ticker"
           >
-            {tickerItems.map((item, idx) => (
-              <span key={`${item}-${idx}`} className="inline-flex items-center gap-6">
-                <span className="text-foreground">{item}</span>
-                <span className="text-foreground/35" aria-hidden>
-                  •
-                </span>
-              </span>
-            ))}
+            <TickerRow items={coverages} />
+            <TickerRow items={coverages} ariaHidden />
           </div>
         </div>
       </section>
@@ -179,13 +166,12 @@ export default function Home() {
                   <div className="border border-foreground/20 bg-background/40 p-4">
                     <div className="text-sm font-semibold text-foreground">Reviews</div>
                     <div className="mt-2 text-sm text-foreground/70">
-                      Rated {site.agent.rating.score.toFixed(1)} / {site.agent.rating.outOf} from{" "}
-                      {site.agent.rating.reviewCount} reviews
+                      {site.agent.rating.reviewCount} five‑star reviews
                     </div>
                   </div>
                 </div>
                 <div className="mt-3 text-xs text-foreground/65">
-                  Review count and rating are shown as listed on the Allstate agent profile.
+                  Review count is shown as listed on the Allstate agent profile.
                 </div>
               </div>
             </div>
@@ -387,18 +373,42 @@ function MarkDiamond() {
   );
 }
 
-function MarkPhoto() {
+function FiveStarReviews({ count }: { count: number }) {
   return (
-    <span className="inline-block align-[0.08em] px-2" aria-hidden>
-      <span className="inline-block overflow-hidden border border-foreground/25 bg-surface">
-        <Image
-          src={site.agent.images.portrait}
-          alt=""
-          width={140}
-          height={44}
-          className="h-8 w-28 object-cover"
-        />
+    <div className="flex items-center gap-3">
+      <span
+        aria-hidden
+        className="font-serif text-lg tracking-[0.15em] text-foreground"
+      >
+        ★★★★★
       </span>
-    </span>
+      <span className="text-sm font-medium uppercase tracking-[0.18em] text-foreground/80">
+        {count}
+      </span>
+    </div>
+  );
+}
+
+function TickerRow({
+  items,
+  ariaHidden,
+}: {
+  items: string[];
+  ariaHidden?: boolean;
+}) {
+  return (
+    <div
+      className="flex items-center gap-6"
+      aria-hidden={ariaHidden ? true : undefined}
+    >
+      {items.map((item) => (
+        <span key={item} className="inline-flex items-center gap-6">
+          <span className="text-foreground">{item}</span>
+          <span className="text-foreground/35" aria-hidden>
+            •
+          </span>
+        </span>
+      ))}
+    </div>
   );
 }
