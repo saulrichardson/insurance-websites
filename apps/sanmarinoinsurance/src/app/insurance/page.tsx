@@ -2,6 +2,7 @@ import {
   BriefcaseBusiness,
   Car,
   Home as HomeIcon,
+  Landmark,
   LifeBuoy,
   Phone,
   Sailboat,
@@ -238,7 +239,11 @@ export default function InsurancePage() {
             {site.offerings.map((o) => {
               const detail = detailsById[o.id];
               return (
-                <section key={o.id} className="border border-foreground/20 bg-surface/60 p-7">
+                <section
+                  key={o.id}
+                  id={o.id}
+                  className="scroll-mt-40 border border-foreground/20 bg-surface/60 p-7"
+                >
                   <div className="flex items-start justify-between gap-6">
                     <div className="flex items-start gap-3">
                       <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
@@ -298,6 +303,88 @@ export default function InsurancePage() {
                 </section>
               );
             })}
+
+            <section
+              id="financial"
+              className="scroll-mt-40 border border-foreground/20 bg-surface/60 p-7 lg:col-span-2"
+            >
+              <div className="flex items-start justify-between gap-6">
+                <div className="flex items-start gap-3">
+                  <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
+                    <Landmark className="size-5" aria-hidden />
+                  </div>
+                  <div>
+                    <div className="text-xl font-semibold tracking-tight text-foreground">
+                      Financial products
+                    </div>
+                    <div className="mt-2 text-sm text-foreground/75">
+                      A practical conversation about long‑term goals—retirement income, protection planning, and how
+                      life coverage can fit into the bigger picture.
+                    </div>
+                  </div>
+                </div>
+                <div className="hidden text-xs font-medium uppercase tracking-[0.18em] text-foreground/70 sm:block">
+                  {site.agent.location}
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="border border-foreground/20 bg-background/30 p-4">
+                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
+                    Best for
+                  </div>
+                  <div className="mt-2 text-sm text-foreground/75">
+                    Households that want to connect protection and planning—without getting lost in jargon.
+                  </div>
+                </div>
+                <div className="border border-foreground/20 bg-background/30 p-4">
+                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
+                    Quick win
+                  </div>
+                  <div className="mt-2 text-sm text-foreground/75">
+                    We’ll outline a simple next step based on your timeline and what you’re trying to protect.
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <div className="text-sm font-semibold text-foreground">
+                  What we’ll cover in a quick call
+                </div>
+                <ul className="mt-3 space-y-2 text-sm text-foreground/75">
+                  <li className="flex gap-3">
+                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span>Your goals and timeline (retirement, income protection, legacy planning)</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span>How life insurance and financial products can complement each other</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span>Beneficiaries, review cadence, and keeping details up to date</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span>Next steps: what to prepare and what decisions can wait</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-6 text-xs leading-6 text-foreground/70">
+                Financial products may be offered through licensed financial professionals; availability and eligibility
+                vary. We’ll confirm what applies to your situation.
+              </div>
+
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <ButtonLink href="/contact" variant="primary" size="sm">
+                  Request a consultation
+                </ButtonLink>
+                <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="outline" size="sm">
+                  Call the office
+                </ButtonLink>
+              </div>
+            </section>
           </div>
         </Container>
       </section>

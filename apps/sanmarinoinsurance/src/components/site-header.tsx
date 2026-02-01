@@ -13,11 +13,12 @@ type NavLink = {
 };
 
 const productsDropdown: NavLink["dropdown"] = [
-  { href: "/insurance", label: "Overview" },
-  ...site.offerings.map((offering) => ({
-    href: `/insurance#${offering.id}`,
-    label: offering.name.toUpperCase(),
-  })),
+  { href: "/insurance", label: "OVERVIEW" },
+  { href: "/insurance#auto", label: "AUTO & VEHICLES" },
+  { href: "/insurance#home", label: "HOME & PROPERTY" },
+  { href: "/insurance#life", label: "LIFE INSURANCE" },
+  { href: "/insurance#financial", label: "FINANCIAL PRODUCTS" },
+  { href: "/insurance#business", label: "BUSINESS INSURANCE" },
 ];
 
 const navItems: NavLink[] = [
@@ -210,17 +211,22 @@ function HeaderNavDropdown({
         className="inline-flex items-center gap-3 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
       >
         {label}
-        <CaretDown />
+        <CaretDown className="transition-transform duration-150 group-hover:rotate-180 group-focus-within:rotate-180" />
       </Link>
 
-      <div className="pointer-events-none absolute left-0 top-full pt-6 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-        <nav aria-label={label} className="min-w-[280px]">
-          <ul className="space-y-[6px]">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 top-[136px] z-0 bg-black/12 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+      />
+
+      <div className="pointer-events-none absolute left-0 top-full z-10 pt-4 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+        <nav aria-label={label} className="w-[260px] bg-background px-8 py-7">
+          <ul className="space-y-4">
             {dropdown.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block py-2 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+                  className="block font-sans text-[13px] font-semibold uppercase tracking-[0.18em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
                 >
                   {item.label}
                 </Link>
@@ -233,9 +239,9 @@ function HeaderNavDropdown({
   );
 }
 
-function CaretDown() {
+function CaretDown({ className = "" }: { className?: string }) {
   return (
-    <span className="inline-flex size-5 items-center justify-center" aria-hidden>
+    <span className={["inline-flex size-5 items-center justify-center", className].join(" ")} aria-hidden>
       <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1.5L7 7.5L13 1.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="square" />
       </svg>
