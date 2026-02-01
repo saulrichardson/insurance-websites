@@ -50,21 +50,12 @@ export function SiteHeader() {
         <div
           role="region"
           aria-label="Announcement"
-          className="bg-black text-white"
+          className="bg-black text-white/85"
         >
-          <Container className="flex h-10 items-center justify-between gap-4 font-sans text-[14px] tracking-[-0.03em] sm:text-[16px] md:text-[20px] lg:text-[25.1px]">
-            <Link
-              href="/about"
-              className="flex min-w-0 items-center gap-3 truncate leading-none"
-            >
-              <span aria-hidden>🚀</span>
-              <span className="truncate uppercase">
-                Come check out our newly renovated website
-              </span>
-              <span className="shrink-0 uppercase text-fuchsia-300 hover:text-fuchsia-200">
-                READ MORE
-              </span>
-            </Link>
+          <Container className="flex h-10 items-center justify-between gap-4 font-sans text-[12px] tracking-[0.08em] sm:text-[13px]">
+            <div className="min-w-0 truncate uppercase">
+              Come check out our newly renovated website
+            </div>
             <button
               type="button"
               onClick={() => setShowAnnouncement(false)}
