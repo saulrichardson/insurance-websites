@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { QuoteRequestForm } from "@/components/quote-request-form";
 
 export const metadata = {
   title: "Products",
@@ -22,14 +23,12 @@ type CoverageDetail = {
   icon: ReactNode;
   bestFor: string;
   whatWeDiscuss: string[];
-  quickWin: string;
 };
 
 const detailsById: Record<string, CoverageDetail> = {
   auto: {
     icon: <Car className="size-5" aria-hidden />,
     bestFor: "Drivers who want clearer limits, smarter deductibles, and fewer surprises after a claim.",
-    quickWin: "We’ll sanity‑check liability limits and uninsured motorist coverage in 5 minutes.",
     whatWeDiscuss: [
       "Liability limits and what they actually protect",
       "Comprehensive vs. collision and deductible strategy",
@@ -40,7 +39,6 @@ const detailsById: Record<string, CoverageDetail> = {
   home: {
     icon: <HomeIcon className="size-5" aria-hidden />,
     bestFor: "Homeowners who want protection that matches rebuild costs and real‑life risks, not guesswork.",
-    quickWin: "We’ll review dwelling coverage and key exclusions so you know what matters most.",
     whatWeDiscuss: [
       "Dwelling, other structures, and personal property options",
       "Liability, medical payments, and umbrella conversations",
@@ -51,7 +49,6 @@ const detailsById: Record<string, CoverageDetail> = {
   condo: {
     icon: <Shield className="size-5" aria-hidden />,
     bestFor: "Condo owners who want coverage that complements the HOA master policy.",
-    quickWin: "We’ll help you align your interior coverage with the master policy’s gaps.",
     whatWeDiscuss: [
       "Loss assessment and what it can mean for condo owners",
       "Personal property and interior improvements coverage",
@@ -62,7 +59,6 @@ const detailsById: Record<string, CoverageDetail> = {
   renters: {
     icon: <Shield className="size-5" aria-hidden />,
     bestFor: "Renters who want affordable protection for belongings, liability, and peace of mind.",
-    quickWin: "We can quote quickly and explain what “personal property” actually covers.",
     whatWeDiscuss: [
       "Personal property protection and replacement‑cost options",
       "Liability and medical payments coverage",
@@ -73,7 +69,6 @@ const detailsById: Record<string, CoverageDetail> = {
   life: {
     icon: <LifeBuoy className="size-5" aria-hidden />,
     bestFor: "Families who want a simple plan for income protection, mortgages, and long‑term goals.",
-    quickWin: "We’ll map a practical coverage range based on your household needs.",
     whatWeDiscuss: [
       "Term vs. permanent options (pros/cons)",
       "How much coverage makes sense (not salesy)",
@@ -84,7 +79,6 @@ const detailsById: Record<string, CoverageDetail> = {
   business: {
     icon: <BriefcaseBusiness className="size-5" aria-hidden />,
     bestFor: "Local businesses that want clear risk protection without drowning in jargon.",
-    quickWin: "We’ll identify your most important exposures and the coverage that fits them.",
     whatWeDiscuss: [
       "General liability and property considerations",
       "Business interruption and real‑world scenarios",
@@ -95,7 +89,6 @@ const detailsById: Record<string, CoverageDetail> = {
   motorcycle: {
     icon: <Car className="size-5" aria-hidden />,
     bestFor: "Riders who want coverage for the bike, gear, and the real cost of an incident.",
-    quickWin: "We’ll align coverage with how and where you actually ride.",
     whatWeDiscuss: [
       "Liability limits and medical considerations",
       "Comprehensive/collision strategy and deductibles",
@@ -106,7 +99,6 @@ const detailsById: Record<string, CoverageDetail> = {
   boat: {
     icon: <Sailboat className="size-5" aria-hidden />,
     bestFor: "Boat owners who want coverage that fits how often you’re on the water.",
-    quickWin: "We’ll clarify what’s covered on‑water vs. at dock vs. in storage.",
     whatWeDiscuss: [
       "Liability and physical damage options",
       "Trailer and transportation considerations",
@@ -117,7 +109,6 @@ const detailsById: Record<string, CoverageDetail> = {
   atv: {
     icon: <Car className="size-5" aria-hidden />,
     bestFor: "ATV owners who want protection that extends beyond the trailhead.",
-    quickWin: "We’ll confirm where you ride and what liability scenarios matter most.",
     whatWeDiscuss: [
       "Liability and property damage scenarios",
       "Physical damage options and deductibles",
@@ -147,7 +138,7 @@ const testimonials = [
 
 export default function InsurancePage() {
   return (
-    <main id="main" className="bg-background">
+    <main id="main" className="bg-background pb-28 md:pb-0">
       <Container className="py-14 sm:py-18 lg:py-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -230,8 +221,8 @@ export default function InsurancePage() {
                 quick call—so you know what you’ll get before you reach out.
               </p>
             </div>
-            <ButtonLink href="/contact" variant="outline" size="md">
-              Get in touch
+            <ButtonLink href="#quote" variant="outline" size="md">
+              Request a quote
             </ButtonLink>
           </div>
 
@@ -262,18 +253,12 @@ export default function InsurancePage() {
                   </div>
 
                   {detail ? (
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                    <div className="mt-6">
                       <div className="border border-foreground/20 bg-background/30 p-4">
                         <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
                           Best for
                         </div>
                         <div className="mt-2 text-sm text-foreground/75">{detail.bestFor}</div>
-                      </div>
-                      <div className="border border-foreground/20 bg-background/30 p-4">
-                        <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
-                          Quick win
-                        </div>
-                        <div className="mt-2 text-sm text-foreground/75">{detail.quickWin}</div>
                       </div>
                     </div>
                   ) : null}
@@ -290,15 +275,6 @@ export default function InsurancePage() {
                         </li>
                       ))}
                     </ul>
-                  </div>
-
-                  <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <ButtonLink href="/contact" variant="primary" size="sm">
-                      Request a quote
-                    </ButtonLink>
-                    <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="outline" size="sm">
-                      Call the office
-                    </ButtonLink>
                   </div>
                 </section>
               );
@@ -328,21 +304,13 @@ export default function InsurancePage() {
                 </div>
               </div>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="mt-6">
                 <div className="border border-foreground/20 bg-background/30 p-4">
                   <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
                     Best for
                   </div>
                   <div className="mt-2 text-sm text-foreground/75">
                     Households that want to connect protection and planning—without getting lost in jargon.
-                  </div>
-                </div>
-                <div className="border border-foreground/20 bg-background/30 p-4">
-                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
-                    Quick win
-                  </div>
-                  <div className="mt-2 text-sm text-foreground/75">
-                    We’ll outline a simple next step based on your timeline and what you’re trying to protect.
                   </div>
                 </div>
               </div>
@@ -375,17 +343,52 @@ export default function InsurancePage() {
                 Financial products may be offered through licensed financial professionals; availability and eligibility
                 vary. We’ll confirm what applies to your situation.
               </div>
-
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <ButtonLink href="/contact" variant="primary" size="sm">
-                  Request a consultation
-                </ButtonLink>
-                <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="outline" size="sm">
-                  Call the office
-                </ButtonLink>
-              </div>
             </section>
           </div>
+
+          <section
+            id="quote"
+            className="mt-12 scroll-mt-40 border border-foreground/20 bg-surface/60 p-7"
+          >
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-[62ch]">
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                  Request a quote
+                </h3>
+                <p className="mt-3 text-pretty text-foreground/75">
+                  Tell us what you’re shopping for and the best way to reach you. If you prefer, you can also call and
+                  we’ll cover the essentials in a quick conversation.
+                </p>
+                <div className="mt-5">
+                  <div className="text-sm font-semibold text-foreground">
+                    What we’ll cover in a quick call
+                  </div>
+                  <ul className="mt-3 space-y-2 text-sm text-foreground/75">
+                    <li className="flex gap-3">
+                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span>What you’re trying to protect and what “good coverage” means to you</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span>Key limits, deductibles, and tradeoffs (plain language)</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span>Bundling opportunities and smart ways to save</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span>Next steps: what to send now and what can wait</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="w-full max-w-[520px]">
+                <QuoteRequestForm />
+              </div>
+            </div>
+          </section>
         </Container>
       </section>
 
@@ -434,31 +437,7 @@ export default function InsurancePage() {
           </div>
         </Container>
       </section>
-
-      <section className="bg-background">
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 border border-foreground/20 bg-surface/55 p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Ready for a quote or coverage review?
-              </h2>
-              <p className="mt-3 text-pretty text-foreground/75">
-                Call during office hours, or reach out anytime. We’ll help you choose coverage that fits now—and keep
-                it aligned when life changes.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="primary" size="md" className="gap-2">
-                <Phone className="size-4" aria-hidden />
-                Call {site.agent.phone.display}
-              </ButtonLink>
-              <ButtonLink href="/contact" variant="outline" size="md">
-                Contact details
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <StickyCoverageCta />
     </main>
   );
 }
@@ -469,6 +448,30 @@ function ProcessCard({ number, title, body }: { number: string; title: string; b
       <div className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/70">{number}</div>
       <div className="mt-3 text-lg font-semibold tracking-tight text-foreground">{title}</div>
       <p className="mt-3 text-sm leading-7 text-foreground/75">{body}</p>
+    </div>
+  );
+}
+
+function StickyCoverageCta() {
+  return (
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 pb-[max(env(safe-area-inset-bottom),12px)] md:inset-x-auto md:bottom-6 md:right-6 md:pb-0">
+      <div className="pointer-events-auto mx-auto w-full max-w-[760px] px-4 md:mx-0 md:w-[360px] md:px-0">
+        <div className="flex items-stretch gap-2 border border-foreground/20 bg-background/80 p-2 backdrop-blur-sm md:flex-col md:p-3">
+          <a
+            href={`tel:${site.agent.phone.e164}`}
+            className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-5 text-xs font-medium uppercase tracking-[0.18em] text-white shadow-sm shadow-black/15 transition-colors hover:bg-foreground/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+          >
+            <Phone className="size-4" aria-hidden />
+            Call {site.agent.phone.display}
+          </a>
+          <a
+            href="#quote"
+            className="inline-flex h-12 flex-1 items-center justify-center rounded-none border border-foreground/60 bg-transparent px-5 text-xs font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+          >
+            Request a quote
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
