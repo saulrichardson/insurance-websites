@@ -11,6 +11,7 @@ This repository contains multiple insurance agency websites.
 Run the San Marino site:
 
 ```bash
+npm --prefix apps/sanmarinoinsurance install
 npm run dev
 ```
 
@@ -29,4 +30,3 @@ Recommended setup:
 - **One Vercel project per app** (each points to the same Git repo)
 - Configure the Vercel project **Root Directory** to the app folder (example: `apps/sanmarinoinsurance`)
 - Attach the custom domain for that site in the Vercel project settings
-
