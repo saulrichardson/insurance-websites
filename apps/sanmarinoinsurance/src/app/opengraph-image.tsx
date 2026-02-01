@@ -76,7 +76,7 @@ export default function OpenGraphImage() {
             {getFullAddressLine()}
           </div>
           <div style={{ fontSize: 18, color: "rgba(11,11,11,0.7)" }}>
-            {`${site.agent.rating.reviewCount} five‑star reviews`}
+            {`${site.agent.rating.reviewCount} reviews`}
           </div>
         </div>
       </div>

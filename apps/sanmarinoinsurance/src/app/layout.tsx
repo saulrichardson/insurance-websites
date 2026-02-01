@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getFullAddressLine, site } from "@/lib/site";
 
-const bodoni = Bodoni_Moda({
+const bodoni = Cormorant_Garamond({
   variable: "--font-bodoni",
   subsets: ["latin"],
   style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
 });
 
 const geistSans = Geist({

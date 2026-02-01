@@ -1,323 +1,50 @@
-import Image from "next/image";
-import { MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
-import { getFullAddressLine, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export default function Home() {
-  const coverages = site.offerings.map((o) => o.name);
-
   return (
     <main id="main" className="bg-background">
-      <section className="relative">
-        <Container className="py-12 sm:py-16 lg:py-20">
-          <h1 className="text-balance font-serif text-[clamp(3rem,6.6vw,6.25rem)] leading-[0.92] tracking-[-0.03em] text-foreground">
-            Making coverage{" "}
-            <span className="italic">frictionless</span> <MarkDoubleArrow />
+      <section className="pb-12 pt-12 sm:pb-14 sm:pt-14 lg:pb-16 lg:pt-16">
+        <Container>
+          <h1 className="font-serif text-[clamp(52px,6.4vw,92.5px)] font-medium leading-none tracking-[-0.05em] text-foreground">
+            Making coverage <span className="italic">frictionless</span>{" "}
+            <MarkDoubleArrow />
             <br />
-            Insurance <MarkTriangle /> for the families
+            Insurance <MarkTriangle /> for
             <br />
-            and business owners shaping <MarkDiamond /> our
+            the families and business owners shaping <MarkDiamond /> our
             <br />
-            San Marino community.
+            San Marino <MarkPhotoTile /> community.
           </h1>
 
-          <div className="mt-8 max-w-3xl text-pretty text-lg leading-8 text-foreground/75">
-            Based in {site.agent.location}, we help you compare options for auto, home, renters, condo,
-            life, and small business coverage—and keep your policies aligned as life changes.
-          </div>
-
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ButtonLink href="/contact" variant="primary" size="md">
-              Contact
-            </ButtonLink>
-            <ButtonLink href="/insurance" variant="outline" size="md">
-              View products
-            </ButtonLink>
-            <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="ghost" size="md" className="gap-2">
-              <Phone className="size-4" aria-hidden />
-              Call {site.agent.phone.display}
-            </ButtonLink>
-          </div>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <div className="border border-foreground/20 bg-surface/60 p-4">
-              <FiveStarReviews count={site.agent.rating.reviewCount} />
-              <div className="mt-2 text-sm text-foreground/70">
-                {site.agent.rating.reviewCount} five‑star reviews
-              </div>
-            </div>
-            <div className="border border-foreground/20 bg-surface/60 p-4">
-              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                Languages
-              </div>
-              <div className="mt-2 text-sm text-foreground/70">{site.agent.languages.join(", ")}</div>
-            </div>
-            <div className="border border-foreground/20 bg-surface/60 p-4">
-              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                Office
-              </div>
-              <div className="mt-2 text-sm text-foreground/70">{getFullAddressLine()}</div>
-            </div>
+          <div className="mt-12">
+            <Link
+              href="/contact"
+              className="inline-flex h-[50px] items-center justify-center bg-foreground px-10 font-serif text-[25.1px] tracking-[-0.03em] text-white hover:bg-foreground/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+            >
+              Contact us
+            </Link>
           </div>
         </Container>
-      </section>
 
-      <section className="border-y border-foreground/20 bg-surface/50">
-        <div className="relative overflow-hidden py-4">
-          <div
-            className="flex w-max animate-[ticker_34s_linear_infinite] items-center gap-6 whitespace-nowrap text-sm text-foreground/70"
-            aria-label="Coverage ticker"
-          >
-            <TickerRow items={coverages} />
-            <TickerRow items={coverages} ariaHidden />
-          </div>
+        <div className="mt-16">
+          <Container className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="font-serif text-[14px] tracking-[0.1em] uppercase leading-none">
+              <div>Trusted by</div>
+              <div className="mt-2 text-foreground/80">
+                {site.agent.rating.reviewCount} local reviews
+              </div>
+            </div>
+
+            <div className="relative overflow-hidden md:max-w-[880px]">
+              <div className="flex w-max animate-[ticker_20s_linear_infinite] items-center text-foreground/30">
+                <TickerList />
+                <TickerList ariaHidden />
+              </div>
+            </div>
+          </Container>
         </div>
-      </section>
-
-      <section className="bg-background">
-        <Container className="py-16 sm:py-20">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Insurance options, explained clearly
-              </h2>
-              <p className="mt-3 max-w-2xl text-pretty text-muted">
-                Whether you’re buying your first policy or reviewing coverage you’ve had
-                for years, we’ll help you understand tradeoffs and choose what fits.
-              </p>
-            </div>
-            <ButtonLink href="/insurance" variant="outline" size="md">
-              Browse insurance
-            </ButtonLink>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {site.offerings.map((o) => (
-              <div key={o.id} className="border border-foreground/20 bg-surface/60 p-6">
-                <div className="flex items-baseline justify-between gap-6">
-                  <div className="text-xl font-semibold text-foreground">{o.name}</div>
-                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
-                    {site.agent.location}
-                  </div>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-foreground/75">{o.shortDescription}</p>
-                <ul className="mt-5 space-y-2 text-sm text-foreground/75">
-                  {o.highlights.map((h) => (
-                    <li key={h} className="flex gap-2">
-                      <span className="mt-1 size-1.5 shrink-0 bg-foreground" aria-hidden />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section id="about" className="bg-background">
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Meet {site.agent.name}
-              </h2>
-
-              <p className="mt-4 text-pretty leading-8 text-muted">
-                I’m an Allstate agent based in San Marino, and I’ve had the chance to work with
-                many local families and small business owners. My goal is simple: help you feel
-                confident in your coverage—without confusing jargon or pressure.
-              </p>
-              <p className="mt-4 text-pretty leading-8 text-muted">
-                If you’re new to insurance, we’ll start from the basics. If you’re already covered,
-                we can review your policy for changes like a new car, a move, home updates, or a growing
-                business—and adjust so it still fits your life.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact" variant="primary" size="md">
-                  Talk with the office
-                </ButtonLink>
-                <ButtonLink
-                  href={site.agent.links.allstateProfile}
-                  variant="outline"
-                  size="md"
-                >
-                  See profile & reviews
-                </ButtonLink>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative overflow-hidden border border-foreground/20 bg-surface/60 p-6">
-                <Image
-                  src={site.agent.images.portrait}
-                  alt={`Photo of ${site.agent.name}`}
-                  width={700}
-                  height={720}
-                  className="w-full object-cover"
-                />
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <div className="border border-foreground/20 bg-background/40 p-4">
-                    <div className="text-sm font-semibold text-foreground">Languages</div>
-                    <div className="mt-2 text-sm text-foreground/70">{site.agent.languages.join(", ")}</div>
-                  </div>
-                  <div className="border border-foreground/20 bg-background/40 p-4">
-                    <div className="text-sm font-semibold text-foreground">Reviews</div>
-                    <div className="mt-2 text-sm text-foreground/70">
-                      {site.agent.rating.reviewCount} five‑star reviews
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3 text-xs text-foreground/65">
-                  Review count is shown as listed on the Allstate agent profile.
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section id="office" className="bg-background">
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Visit or call the office
-              </h2>
-              <p className="mt-3 text-pretty text-foreground/75">
-                Located at {getFullAddressLine()}. Walk-ins are welcome during office hours—after-hours
-                appointments are also available.
-              </p>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div className="border border-foreground/20 bg-surface/60 p-5">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <Phone className="size-4" aria-hidden />
-                    Call
-                  </div>
-                  <div className="mt-2 text-sm text-foreground/75">
-                    <a className="hover:text-foreground" href={`tel:${site.agent.phone.e164}`}>
-                      {site.agent.phone.display}
-                    </a>
-                  </div>
-                  <div className="mt-2 text-sm text-foreground/75">{site.agent.notes.join(" ")}</div>
-                </div>
-
-                <div className="border border-foreground/20 bg-surface/60 p-5">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <MapPin className="size-4" aria-hidden />
-                    Directions
-                  </div>
-                  <div className="mt-2 text-sm text-foreground/75">{getFullAddressLine()}</div>
-                  <div className="mt-3">
-                    <ButtonLink href={site.agent.links.mapCid} variant="outline" size="sm">
-                      Open in Google Maps
-                    </ButtonLink>
-                  </div>
-                </div>
-
-                <div className="border border-foreground/20 bg-surface/60 p-5 sm:col-span-2">
-                  <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                    Hours
-                  </div>
-                  <div className="mt-3 grid gap-2 text-sm text-foreground/75 sm:grid-cols-2">
-                    {site.agent.hours.map((h) => (
-                      <div key={h.day} className="flex items-center justify-between gap-4">
-                        <span className="text-foreground">{h.day}</span>
-                        {"note" in h ? <span>{h.note}</span> : <span>{h.open} – {h.close}</span>}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="text-sm text-foreground/75">
-                      Fax: <span className="text-foreground">{site.agent.fax.display}</span>
-                    </div>
-                    <ButtonLink href="/contact" variant="primary" size="sm">
-                      Contact the office
-                    </ButtonLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="overflow-hidden border border-foreground/20 bg-surface/60">
-              <div className="aspect-[4/3] w-full">
-                <iframe
-                  title={`Map to ${site.brand.shortName} in ${site.agent.location}`}
-                  src={site.agent.links.mapEmbed}
-                  className="h-full w-full"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-              <div className="border-t border-foreground/20 p-6">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <div className="text-sm font-semibold text-foreground">Office address</div>
-                    <div className="mt-1 text-sm text-foreground/75">{getFullAddressLine()}</div>
-                  </div>
-                  <ButtonLink href={site.agent.links.mapCid} variant="outline" size="sm">
-                    Directions
-                  </ButtonLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-surface/40">
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 border border-foreground/20 bg-background/35 p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Ready for a quote or coverage review?
-              </h2>
-              <p className="mt-3 text-pretty text-foreground/75">
-                Call during office hours, or reach out anytime. We can help you compare options for new
-                coverage or review what you already have.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="primary" size="md" className="gap-2">
-                  <Phone className="size-4" aria-hidden />
-                  Call {site.agent.phone.display}
-                </ButtonLink>
-                <ButtonLink href="/contact" variant="outline" size="md">
-                  Contact details
-                </ButtonLink>
-              </div>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="border border-foreground/20 bg-surface/60 p-5">
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                  What we focus on
-                </div>
-                <div className="mt-3 text-sm text-foreground/75">
-                  Clear coverage explanations, responsive service, and long-term policy reviews.
-                </div>
-              </div>
-              <div className="border border-foreground/20 bg-surface/60 p-5">
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                  Languages
-                </div>
-                <div className="mt-3 text-sm text-foreground/75">
-                  {site.agent.languages.join(", ")}
-                </div>
-              </div>
-              <div className="border border-foreground/20 bg-surface/60 p-5 sm:col-span-2">
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                  Local office
-                </div>
-                <div className="mt-3 text-sm text-foreground/75">
-                  {getFullAddressLine()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
       </section>
     </main>
   );
@@ -325,10 +52,10 @@ export default function Home() {
 
 function MarkDoubleArrow() {
   return (
-    <span className="inline-block align-[0.05em]" aria-hidden>
+    <span className="inline-block align-[0.06em]" aria-hidden>
       <svg
-        width="46"
-        height="26"
+        width="54"
+        height="30"
         viewBox="0 0 46 26"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -342,10 +69,10 @@ function MarkDoubleArrow() {
 
 function MarkTriangle() {
   return (
-    <span className="inline-block align-[0.05em]" aria-hidden>
+    <span className="inline-block align-[0.06em]" aria-hidden>
       <svg
-        width="34"
-        height="26"
+        width="40"
+        height="30"
         viewBox="0 0 34 26"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -359,10 +86,10 @@ function MarkTriangle() {
 
 function MarkDiamond() {
   return (
-    <span className="inline-block align-[0.05em]" aria-hidden>
+    <span className="inline-block align-[0.06em]" aria-hidden>
       <svg
-        width="26"
-        height="26"
+        width="30"
+        height="30"
         viewBox="0 0 26 26"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -373,42 +100,65 @@ function MarkDiamond() {
   );
 }
 
-function FiveStarReviews({ count }: { count: number }) {
+function MarkPhotoTile() {
   return (
-    <div className="flex items-center gap-3">
-      <span
-        aria-hidden
-        className="font-serif text-lg tracking-[0.15em] text-foreground"
+    <span
+      className="mx-[0.14em] inline-block h-[0.62em] w-[1.55em] overflow-hidden align-[-0.06em]"
+      aria-hidden
+    >
+      <svg
+        viewBox="0 0 200 120"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full"
+        preserveAspectRatio="xMidYMid slice"
       >
-        ★★★★★
-      </span>
-      <span className="text-sm font-medium uppercase tracking-[0.18em] text-foreground/80">
-        {count}
-      </span>
-    </div>
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#6aa9ff" />
+            <stop offset="1" stopColor="#b9d7ff" />
+          </linearGradient>
+          <linearGradient id="hills" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#2a2a2a" />
+            <stop offset="1" stopColor="#0b0b0b" />
+          </linearGradient>
+        </defs>
+        <rect width="200" height="120" fill="url(#sky)" />
+        <circle cx="160" cy="30" r="16" fill="#ffe08a" opacity="0.9" />
+        <path
+          d="M0,92 C40,70 70,80 110,66 C140,57 162,62 200,48 L200,120 L0,120 Z"
+          fill="url(#hills)"
+          opacity="0.92"
+        />
+        <path
+          d="M0,98 C36,84 78,90 118,82 C150,76 175,78 200,70 L200,120 L0,120 Z"
+          fill="#000000"
+          opacity="0.38"
+        />
+      </svg>
+    </span>
   );
 }
 
-function TickerRow({
-  items,
-  ariaHidden,
-}: {
-  items: string[];
-  ariaHidden?: boolean;
-}) {
+function TickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
+  const items = [
+    "Auto",
+    "Home",
+    "Condo",
+    "Renters",
+    "Life",
+    "Business",
+    "Motorcycle",
+    "Boat",
+    "ATV",
+  ] as const;
+
   return (
-    <div
-      className="flex items-center gap-6"
-      aria-hidden={ariaHidden ? true : undefined}
-    >
-      {items.map((item) => (
-        <span key={item} className="inline-flex items-center gap-6">
-          <span className="text-foreground">{item}</span>
-          <span className="text-foreground/35" aria-hidden>
-            •
-          </span>
-        </span>
+    <ul className="flex items-center gap-10" aria-hidden={ariaHidden}>
+      {items.map((label) => (
+        <li key={label} className="font-serif text-[25.1px] tracking-[-0.03em]">
+          {label}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

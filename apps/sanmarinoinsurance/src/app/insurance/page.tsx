@@ -322,7 +322,7 @@ export default function InsurancePage() {
                   </span>
                 </div>
                 <div className="mt-2 text-sm text-foreground/75">
-                  {site.agent.rating.reviewCount} five‑star reviews
+                  {site.agent.rating.reviewCount} reviews
                 </div>
                 <div className="mt-4">
                   <ButtonLink href={site.agent.links.allstateProfile} variant="outline" size="sm">
@@ -385,4 +385,3 @@ function ProcessCard({ number, title, body }: { number: string; title: string; b
     </div>
   );
 }
-

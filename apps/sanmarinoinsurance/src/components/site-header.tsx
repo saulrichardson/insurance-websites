@@ -1,16 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
-const navItems = [
-  { href: "/insurance", label: "Products" },
-  { href: "/#office", label: "Office" },
-] as const;
+type NavLink = {
+  href: string;
+  label: string;
+  dropdown?: { href: string; label: string }[];
+};
+
+const productsDropdown: NavLink["dropdown"] = [
+  { href: "/insurance", label: "Overview" },
+  ...site.offerings.map((offering) => ({
+    href: `/insurance#${offering.id}`,
+    label: offering.name.toUpperCase(),
+  })),
+];
+
+const navItems: NavLink[] = [
+  { href: "/insurance", label: "PRODUCTS", dropdown: productsDropdown },
+  { href: "/contact", label: "OFFICE" },
+];
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,27 +41,32 @@ export function SiteHeader() {
   return (
     <header className="relative z-50 bg-background text-foreground">
       {showAnnouncement ? (
-        <div className="bg-black text-white">
-          <Container className="flex h-10 items-center justify-between gap-4">
-            <div className="truncate text-[11px] font-medium uppercase tracking-[0.22em]">
-              Multi‑language support available in San Marino, CA
-            </div>
-            <div className="flex items-center gap-4">
-              <Link
-                href="/contact"
-                className="text-[11px] font-medium uppercase tracking-[0.22em] text-fuchsia-300 hover:text-fuchsia-200"
-              >
-                Read more
-              </Link>
-              <button
-                type="button"
-                onClick={() => setShowAnnouncement(false)}
-                aria-label="Close announcement"
-                className="inline-flex size-8 items-center justify-center text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70"
-              >
-                <X className="size-4" aria-hidden />
-              </button>
-            </div>
+        <div
+          role="region"
+          aria-label="Announcement"
+          className="bg-black text-white"
+        >
+          <Container className="flex h-10 items-center justify-between gap-4 font-sans text-[14px] tracking-[-0.03em] sm:text-[16px] md:text-[20px] lg:text-[25.1px]">
+            <Link
+              href="/contact"
+              className="flex min-w-0 items-center gap-3 truncate leading-none"
+            >
+              <span aria-hidden>🚀</span>
+              <span className="truncate uppercase">
+                {site.brand.shortName} • {site.agent.rating.reviewCount} REVIEWS • MULTI‑LANGUAGE SERVICE
+              </span>
+              <span className="shrink-0 uppercase text-fuchsia-300 hover:text-fuchsia-200">
+                READ MORE
+              </span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setShowAnnouncement(false)}
+              aria-label="Close announcement"
+              className="inline-flex size-10 items-center justify-center text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70"
+            >
+              <X className="size-5" aria-hidden />
+            </button>
           </Container>
         </div>
       ) : null}
@@ -59,28 +77,33 @@ export function SiteHeader() {
           className="group inline-flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
         >
           <LogoMark />
-          <span className="font-serif text-2xl font-semibold tracking-tight">
+          <span className="font-serif text-[28px] font-semibold tracking-[-0.04em] sm:text-[32px]">
             {site.brand.shortName}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <HeaderNavItem
-              key={item.href}
-              href={item.href}
-              label={item.label}
-            />
-          ))}
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+          {navItems.map((item) =>
+            item.dropdown?.length ? (
+              <HeaderNavDropdown
+                key={item.href}
+                href={item.href}
+                label={item.label}
+                dropdown={item.dropdown}
+              />
+            ) : (
+              <HeaderNavItem key={item.href} href={item.href} label={item.label} />
+            ),
+          )}
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <ButtonLink href="/#about" variant="outline" size="sm">
-            About
-          </ButtonLink>
-          <ButtonLink href="/contact" variant="primary" size="sm">
-            Contact
-          </ButtonLink>
+          <HeaderButton href="/about" variant="outline">
+            ABOUT
+          </HeaderButton>
+          <HeaderButton href="/contact" variant="solid">
+            CONTACT
+          </HeaderButton>
         </div>
 
         <button
@@ -99,21 +122,35 @@ export function SiteHeader() {
           <Container className="py-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
-                <HeaderNavItemMobile
-                  key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  onNavigate={() => setIsOpen(false)}
-                />
+                <div key={item.href} className="flex flex-col gap-1">
+                  <HeaderNavItemMobile
+                    href={item.href}
+                    label={item.label}
+                    onNavigate={() => setIsOpen(false)}
+                  />
+                  {item.dropdown?.length ? (
+                    <div className="ml-3 border-l border-foreground/20 pl-3">
+                      {item.dropdown.map((child) => (
+                        <HeaderNavItemMobile
+                          key={child.href}
+                          href={child.href}
+                          label={child.label}
+                          onNavigate={() => setIsOpen(false)}
+                          variant="subitem"
+                        />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               ))}
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2">
-              <ButtonLink href="/#about" variant="outline" size="md">
-                About
-              </ButtonLink>
-              <ButtonLink href="/contact" variant="primary" size="md">
-                Contact
-              </ButtonLink>
+              <HeaderButton href="/about" variant="outline" onClick={() => setIsOpen(false)}>
+                ABOUT
+              </HeaderButton>
+              <HeaderButton href="/contact" variant="solid" onClick={() => setIsOpen(false)}>
+                CONTACT
+              </HeaderButton>
             </div>
           </Container>
         </div>
@@ -126,8 +163,8 @@ function LogoMark() {
   return (
     <span className="grid size-9 place-items-center">
       <svg
-        width="18"
-        height="18"
+        width="20"
+        height="20"
         viewBox="0 0 18 18"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +184,7 @@ function HeaderNavItem({
   label: string;
 }) {
   const classes =
-    "inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.22em] text-foreground/80 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
+    "inline-flex items-center gap-2 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
 
   return (
     <Link href={href} className={classes}>
@@ -156,17 +193,95 @@ function HeaderNavItem({
   );
 }
 
+function HeaderNavDropdown({
+  href,
+  label,
+  dropdown,
+}: {
+  href: string;
+  label: string;
+  dropdown: { href: string; label: string }[];
+}) {
+  return (
+    <div className="group relative flex items-center">
+      <Link
+        href={href}
+        className="inline-flex items-center gap-3 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+      >
+        {label}
+        <CaretDown />
+      </Link>
+
+      <div className="pointer-events-none absolute left-0 top-full pt-6 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+        <nav aria-label={label} className="min-w-[280px]">
+          <ul className="space-y-[6px]">
+            {dropdown.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="block py-2 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
+}
+
+function CaretDown() {
+  return (
+    <span className="inline-flex size-5 items-center justify-center" aria-hidden>
+      <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1.5L7 7.5L13 1.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="square" />
+      </svg>
+    </span>
+  );
+}
+
+function HeaderButton({
+  href,
+  variant,
+  children,
+  onClick,
+}: {
+  href: string;
+  variant: "outline" | "solid";
+  children: ReactNode;
+  onClick?: () => void;
+}) {
+  const base =
+    "inline-flex h-12 items-center justify-center rounded-none border px-6 font-serif text-[20px] tracking-[-0.03em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60 md:text-[22px]";
+  const styles =
+    variant === "solid"
+      ? "border-foreground bg-foreground text-white hover:bg-foreground/90"
+      : "border-foreground bg-transparent text-foreground hover:bg-foreground/5";
+
+  return (
+    <Link href={href} className={[base, styles].join(" ")} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
 function HeaderNavItemMobile({
   href,
   label,
   onNavigate,
+  variant = "top",
 }: {
   href: string;
   label: string;
   onNavigate: () => void;
+  variant?: "top" | "subitem";
 }) {
   const classes =
-    "px-3 py-3 text-sm font-medium uppercase tracking-[0.18em] text-foreground hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
+    variant === "subitem"
+      ? "px-3 py-2 text-sm tracking-[-0.01em] text-foreground/85 hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+      : "px-3 py-3 font-serif text-[18px] tracking-[-0.03em] text-foreground hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
 
   return (
     <Link href={href} className={classes} onClick={onNavigate}>

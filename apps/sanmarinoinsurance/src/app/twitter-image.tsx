@@ -71,7 +71,7 @@ export default function TwitterImage() {
         >
           <div>Auto • Home • Renters • Condo • Life • Business</div>
           <div>
-            {`${site.agent.rating.reviewCount} five‑star reviews`}
+            {`${site.agent.rating.reviewCount} reviews`}
           </div>
         </div>
       </div>

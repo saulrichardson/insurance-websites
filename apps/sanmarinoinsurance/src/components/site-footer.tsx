@@ -79,12 +79,12 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-foreground" href="/#about">
+                <Link className="hover:text-foreground" href="/about">
                   About
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-foreground" href="/#office">
+                <Link className="hover:text-foreground" href="/contact">
                   Office
                 </Link>
               </li>

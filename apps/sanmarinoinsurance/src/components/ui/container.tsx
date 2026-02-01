@@ -9,11 +9,10 @@ export function Container({ className = "", bleed = false, ...props }: Container
     <div
       className={[
         bleed ? "px-4 sm:px-6" : "px-4 sm:px-6 lg:px-8",
-        "mx-auto w-full max-w-6xl",
+        "mx-auto w-full max-w-[1440px]",
         className,
       ].join(" ")}
       {...props}
     />
   );
 }
-

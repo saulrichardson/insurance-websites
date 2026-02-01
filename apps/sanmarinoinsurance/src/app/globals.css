@@ -24,7 +24,10 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-bodoni), ui-serif, Georgia, serif;
+  font-size: 25.1px;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 ::selection {

@@ -91,12 +91,7 @@ export default function ContactPage() {
                   </div>
                   <div className="mt-2 text-sm text-foreground/75">
                       <div className="flex items-center gap-3">
-                        <span aria-hidden className="font-serif tracking-[0.15em] text-foreground">
-                          ★★★★★
-                        </span>
-                        <span className="text-sm text-foreground/75">
-                          {site.agent.rating.reviewCount} five‑star reviews
-                        </span>
+                        <span className="text-sm text-foreground/75">{site.agent.rating.reviewCount} reviews</span>
                       </div>
                       <div className="mt-2">
                         <a
