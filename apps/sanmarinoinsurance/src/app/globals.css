@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f2c94c;
+  --foreground: #0b0b0b;
+  --surface: #f7dd82;
+  --muted: #2a2a2a;
+  --accent: #0b0b0b;
+  --accent-foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-bodoni);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--foreground) 14%, transparent);
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+button[aria-label="Open Next.js Dev Tools"] {
+  display: none !important;
+}
