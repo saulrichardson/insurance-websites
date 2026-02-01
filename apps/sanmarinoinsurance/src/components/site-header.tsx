@@ -23,6 +23,7 @@ const productsDropdown: NavLink["dropdown"] = [
 const navItems: NavLink[] = [
   { href: "/insurance", label: "PRODUCTS", dropdown: productsDropdown },
   { href: "/contact", label: "OFFICE" },
+  { href: "/careers", label: "CAREERS" },
 ];
 
 export function SiteHeader() {

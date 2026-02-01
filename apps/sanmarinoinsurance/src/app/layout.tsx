@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getFullAddressLine, site } from "@/lib/site";
 
@@ -79,7 +78,6 @@ export default function RootLayout({
         </a>
         <SiteHeader />
         {children}
-        <SiteFooter />
       </body>
     </html>
   );
