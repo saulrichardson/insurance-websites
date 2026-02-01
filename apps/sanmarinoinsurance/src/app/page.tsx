@@ -78,7 +78,7 @@ function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
             height={72}
             sizes="220px"
             unoptimized={carrier.assetPath.endsWith(".svg")}
-            className="h-7 w-auto select-none object-contain opacity-70 grayscale mix-blend-multiply sm:h-8"
+            className="h-7 w-auto select-none object-contain opacity-100 sm:h-8"
             loading="lazy"
           />
         </li>
