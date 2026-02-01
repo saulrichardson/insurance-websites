@@ -13,7 +13,6 @@ type NavLink = {
 };
 
 const productsDropdown: NavLink["dropdown"] = [
-  { href: "/insurance", label: "OVERVIEW" },
   { href: "/insurance#auto", label: "AUTO & VEHICLES" },
   { href: "/insurance#home", label: "HOME & PROPERTY" },
   { href: "/insurance#life", label: "LIFE INSURANCE" },
