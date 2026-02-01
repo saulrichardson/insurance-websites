@@ -5,7 +5,7 @@ import { getFullAddressLine, site } from "@/lib/site";
 
 export const metadata = {
   title: "Careers",
-  description: `Explore careers at ${site.brand.shortName} in ${site.agent.location}.`,
+  description: `Explore careers in ${site.agent.location}.`,
 };
 
 const roles = [
@@ -64,7 +64,7 @@ export default function CareersPage() {
             </div>
 
             <h1 className="mt-7 text-balance font-serif text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
-              Join the team at {site.brand.shortName}
+              Join the team
             </h1>
 
             <div className="mt-6 space-y-5 text-pretty text-lg leading-8 text-foreground/75">
@@ -188,4 +188,3 @@ export default function CareersPage() {
     </main>
   );
 }
-
