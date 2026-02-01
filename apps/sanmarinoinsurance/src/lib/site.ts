@@ -133,27 +133,6 @@ export const site = {
         "Coverage reviews as you grow",
       ],
     },
-    {
-      id: "motorcycle",
-      name: "Motorcycle",
-      shortDescription:
-        "Coverage options for your bike, your gear, and your passengers—so you can ride with confidence.",
-      highlights: ["Liability options", "Physical damage options", "Discounts may apply"],
-    },
-    {
-      id: "boat",
-      name: "Boat",
-      shortDescription:
-        "Coverage options to help protect your boat, trailer, and time on the water.",
-      highlights: ["Liability options", "Physical damage options", "Seasonal guidance"],
-    },
-    {
-      id: "atv",
-      name: "ATV",
-      shortDescription:
-        "Off-road coverage options for ATV owners who want protection beyond the trailhead.",
-      highlights: ["Liability options", "Physical damage options", "Flexible policy reviews"],
-    },
   ] satisfies Offering[],
 };
 

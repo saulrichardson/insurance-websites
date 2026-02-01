@@ -5,7 +5,6 @@ import {
   Landmark,
   LifeBuoy,
   Phone,
-  Sailboat,
   Shield,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -16,7 +15,7 @@ import { QuoteRequestForm } from "@/components/quote-request-form";
 
 export const metadata = {
   title: "Products",
-  description: `Auto, home, renters, condo, life, business, motorcycle, boat, and ATV insurance in ${site.agent.location}. Call ${site.agent.phone.display}.`,
+  description: `Auto, home, renters, condo, life, and business insurance in ${site.agent.location}. Call ${site.agent.phone.display}.`,
 };
 
 type CoverageDetail = {
@@ -84,36 +83,6 @@ const detailsById: Record<string, CoverageDetail> = {
       "Business interruption and real‑world scenarios",
       "Certificates of insurance (COIs) and vendor requirements",
       "When to revisit coverage as you grow",
-    ],
-  },
-  motorcycle: {
-    icon: <Car className="size-5" aria-hidden />,
-    bestFor: "Riders who want coverage for the bike, gear, and the real cost of an incident.",
-    whatWeDiscuss: [
-      "Liability limits and medical considerations",
-      "Comprehensive/collision strategy and deductibles",
-      "Accessory and gear coverage options",
-      "Seasonal use and storage considerations",
-    ],
-  },
-  boat: {
-    icon: <Sailboat className="size-5" aria-hidden />,
-    bestFor: "Boat owners who want coverage that fits how often you’re on the water.",
-    whatWeDiscuss: [
-      "Liability and physical damage options",
-      "Trailer and transportation considerations",
-      "Named perils vs. broader coverage approaches",
-      "Seasonal review and usage changes",
-    ],
-  },
-  atv: {
-    icon: <Car className="size-5" aria-hidden />,
-    bestFor: "ATV owners who want protection that extends beyond the trailhead.",
-    whatWeDiscuss: [
-      "Liability and property damage scenarios",
-      "Physical damage options and deductibles",
-      "How ATV coverage differs from auto policies",
-      "How to review as your equipment changes",
     ],
   },
 };

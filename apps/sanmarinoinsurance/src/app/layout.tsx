@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     default: `${site.brand.name} | ${site.agent.location}`,
     template: `%s | ${site.brand.shortName}`,
   },
-  description: `Auto, home, renters, condo, life, business, motorcycle, boat, and ATV insurance in ${site.agent.location}. Call ${site.agent.phone.display} for a quote.`,
+  description: `Auto, home, renters, condo, life, and business insurance in ${site.agent.location}. Call ${site.agent.phone.display} for a quote.`,
   openGraph: {
     title: `${site.brand.name} | ${site.agent.location}`,
     description: `Insurance support for San Marino and nearby communities. Call ${site.agent.phone.display} or visit us at ${getFullAddressLine()}.`,

@@ -13,9 +13,6 @@ const coverageOptions = [
   { value: "life", label: "Life insurance" },
   { value: "financial", label: "Financial products" },
   { value: "business", label: "Business insurance" },
-  { value: "motorcycle", label: "Motorcycle" },
-  { value: "boat", label: "Boat" },
-  { value: "atv", label: "ATV" },
   { value: "not_sure", label: "Not sure yet" },
 ] as const;
 
@@ -198,4 +195,3 @@ export function QuoteRequestForm() {
     </form>
   );
 }
-
