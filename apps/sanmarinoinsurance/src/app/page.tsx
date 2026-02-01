@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { site } from "@/lib/site";
 
 export default function Home() {
   return (
@@ -28,16 +28,14 @@ export default function Home() {
         <div className="mt-16">
           <Container className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="font-serif text-[14px] tracking-[0.1em] uppercase leading-none">
-              <div>Trusted by</div>
-              <div className="mt-2 text-foreground/80">
-                {site.agent.rating.reviewCount} local reviews
-              </div>
+              <div>Carrier</div>
+              <div className="mt-2 text-foreground/80">partners</div>
             </div>
 
             <div className="relative overflow-hidden md:max-w-[880px]">
-              <div className="flex w-max animate-[ticker_20s_linear_infinite] items-center text-foreground/30">
-                <TickerList />
-                <TickerList ariaHidden />
+              <div className="flex w-max animate-[ticker_20s_linear_infinite] items-center">
+                <CarrierTickerList />
+                <CarrierTickerList ariaHidden />
               </div>
             </div>
           </Container>
@@ -47,24 +45,42 @@ export default function Home() {
   );
 }
 
-function TickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
-  const items = [
-    "Auto",
-    "Home",
-    "Condo",
-    "Renters",
-    "Life",
-    "Business",
-    "Motorcycle",
-    "Boat",
-    "ATV",
-  ] as const;
+type Carrier = {
+  name: string;
+  assetPath: string;
+};
 
+const carriers: Carrier[] = [
+  { name: "Allstate", assetPath: "/carriers/allstate.svg" },
+  { name: "Bamboo", assetPath: "/carriers/bamboo.png" },
+  { name: "Chubb", assetPath: "/carriers/chubb.svg" },
+  { name: "RT Specialty", assetPath: "/carriers/rt-specialty.svg" },
+  { name: "Bristol West", assetPath: "/carriers/bristol-west.svg" },
+  { name: "Burns & Wilcox", assetPath: "/carriers/burns-wilcox.svg" },
+  { name: "National General", assetPath: "/carriers/national-general.png" },
+  { name: "Pacific Specialty", assetPath: "/carriers/pacific-specialty.svg" },
+  { name: "Stillwater", assetPath: "/carriers/stillwater.svg" },
+  { name: "Aegis", assetPath: "/carriers/aegis.svg" },
+];
+
+function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
   return (
-    <ul className="flex items-center gap-10" aria-hidden={ariaHidden}>
-      {items.map((label) => (
-        <li key={label} className="font-serif text-[25.1px] tracking-[-0.03em]">
-          {label}
+    <ul
+      className="flex items-center gap-12 md:gap-14"
+      aria-hidden={ariaHidden}
+    >
+      {carriers.map((carrier) => (
+        <li key={carrier.name} className="flex items-center">
+          <Image
+            src={carrier.assetPath}
+            alt={carrier.name}
+            width={220}
+            height={72}
+            sizes="220px"
+            unoptimized={carrier.assetPath.endsWith(".svg")}
+            className="h-7 w-auto select-none object-contain opacity-40 grayscale mix-blend-multiply sm:h-8"
+            loading="lazy"
+          />
         </li>
       ))}
     </ul>
