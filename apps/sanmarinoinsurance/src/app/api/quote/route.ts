@@ -141,9 +141,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, requestId });
   }
 
+  // If the form is submitted extremely quickly, mark as suspicious but still deliver/log
+  // (autofill is legitimate; we don't want to drop real leads).
   if (fillTimeMs >= 0 && fillTimeMs < 1200) {
-    console.log("[quote-request]", { requestId, receivedAt, delivered: false, reason: "too_fast" });
-    return NextResponse.json({ ok: true, requestId });
+    payload.suspicious = "too_fast";
+    payload.fillTimeMs = String(fillTimeMs);
   }
 
   const [webhookResult, resendResult] = await Promise.all([sendToWebhook(payload), sendViaResend(payload)]);
