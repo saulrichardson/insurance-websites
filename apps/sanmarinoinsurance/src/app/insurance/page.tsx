@@ -154,12 +154,8 @@ export default function InsurancePage() {
               actually understand.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="primary" size="md" className="gap-2">
-                <Phone className="size-4" aria-hidden />
-                Call {site.agent.phone.display}
-              </ButtonLink>
-              <ButtonLink href="/contact" variant="outline" size="md">
+            <div className="mt-9">
+              <ButtonLink href="/contact" variant="primary" size="md">
                 Contact details
               </ButtonLink>
             </div>
@@ -211,19 +207,14 @@ export default function InsurancePage() {
 
       <section className="bg-background">
         <Container className="py-16 sm:py-20">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Coverage menu
-              </h2>
-              <p className="mt-3 max-w-3xl text-pretty text-muted">
-                Start with the category that matches your situation. Each card includes the key topics we cover in a
-                quick call—so you know what you’ll get before you reach out.
-              </p>
-            </div>
-            <ButtonLink href="#quote" variant="outline" size="md">
-              Request a quote
-            </ButtonLink>
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Coverage menu
+            </h2>
+            <p className="mt-3 max-w-3xl text-pretty text-muted">
+              Start with the category that matches your situation. Each card includes the key topics we cover in a
+              quick call—so you know what you’ll get before you reach out.
+            </p>
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -408,16 +399,8 @@ export default function InsurancePage() {
                     ★★★★★
                   </span>
                   <span className="text-sm font-medium uppercase tracking-[0.18em] text-foreground/80">
-                    {site.agent.rating.reviewCount}
+                    {site.agent.rating.reviewCount} reviews
                   </span>
-                </div>
-                <div className="mt-2 text-sm text-foreground/75">
-                  {site.agent.rating.reviewCount} reviews
-                </div>
-                <div className="mt-4">
-                  <ButtonLink href={site.agent.links.allstateProfile} variant="outline" size="sm">
-                    View Allstate profile
-                  </ButtonLink>
                 </div>
               </div>
             </div>

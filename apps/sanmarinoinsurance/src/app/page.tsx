@@ -12,7 +12,7 @@ export default function Home() {
             <br />
             Insurance for any risk.
             <br />
-            Your local San Marino agency.
+            A San Marino agency for families and business owners.
           </h1>
 
           <div className="mt-12">
@@ -26,7 +26,7 @@ export default function Home() {
         </Container>
 
         <div className="mt-16">
-          <Container className="flex flex-col gap-6 md:flex-row md:items-end md:gap-8">
+          <Container className="flex flex-col gap-6 md:flex-row md:items-end md:gap-6">
             <div className="font-serif text-[14px] tracking-[0.1em] uppercase leading-none">
               Insurance
               <br />
@@ -34,7 +34,7 @@ export default function Home() {
             </div>
 
             <div className="relative overflow-hidden md:flex-1 md:min-w-0">
-              <div className="flex w-max will-change-transform animate-[ticker_20s_linear_infinite] items-center motion-reduce:animate-none">
+              <div className="flex w-max will-change-transform animate-[ticker_40s_linear_infinite] items-center motion-reduce:animate-none">
                 <CarrierTickerList />
                 <CarrierTickerList ariaHidden />
               </div>
@@ -67,22 +67,27 @@ const carriers: Carrier[] = [
 ];
 
 function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
+  const tickerCarriers = [...carriers, ...carriers];
+
   return (
     <ul
-      className="flex items-center gap-12 pr-12 md:gap-14 md:pr-14"
+      className="flex items-center"
       aria-hidden={ariaHidden}
     >
-      {carriers.map((carrier) => (
-        <li key={carrier.name} className="flex items-center">
+      {tickerCarriers.map((carrier, idx) => (
+        <li
+          key={`${carrier.name}-${idx}`}
+          className="flex h-11 w-[220px] items-center justify-center sm:h-12 sm:w-[240px] md:w-[260px]"
+        >
           <Image
             src={carrier.assetPath}
             alt={ariaHidden ? "" : carrier.name}
             width={carrier.width}
             height={carrier.height}
-            sizes="(min-width: 768px) 220px, 180px"
+            sizes="260px"
             unoptimized={carrier.assetPath.endsWith(".svg")}
-            className="h-7 w-auto select-none object-contain opacity-100 sm:h-8"
-            priority={!ariaHidden}
+            className="h-7 w-auto max-w-[200px] select-none object-contain opacity-100 sm:h-8 sm:max-w-[220px]"
+            priority={!ariaHidden && idx < carriers.length}
             loading="eager"
           />
         </li>
