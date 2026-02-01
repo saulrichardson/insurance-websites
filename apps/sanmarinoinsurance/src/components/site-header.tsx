@@ -54,7 +54,7 @@ export function SiteHeader() {
         >
           <Container className="flex h-10 items-center justify-between gap-4 font-sans text-[12px] tracking-[0.08em] sm:text-[13px]">
             <div className="min-w-0 truncate uppercase">
-              Come check out our newly renovated website
+              Come check out our newly renovated office
             </div>
             <button
               type="button"
