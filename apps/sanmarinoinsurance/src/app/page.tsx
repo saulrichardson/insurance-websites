@@ -34,7 +34,7 @@ export default function Home() {
             </div>
 
             <div className="relative overflow-hidden md:flex-1 md:min-w-0">
-              <div className="flex w-max animate-[ticker_20s_linear_infinite] items-center">
+              <div className="flex w-max will-change-transform animate-[ticker_20s_linear_infinite] items-center motion-reduce:animate-none">
                 <CarrierTickerList />
                 <CarrierTickerList ariaHidden />
               </div>
@@ -76,14 +76,14 @@ function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
         <li key={carrier.name} className="flex items-center">
           <Image
             src={carrier.assetPath}
-            alt={carrier.name}
+            alt={ariaHidden ? "" : carrier.name}
             width={carrier.width}
             height={carrier.height}
             sizes="(min-width: 768px) 220px, 180px"
             unoptimized={carrier.assetPath.endsWith(".svg")}
             className="h-7 w-auto select-none object-contain opacity-100 sm:h-8"
             priority={!ariaHidden}
-            loading={ariaHidden ? "lazy" : "eager"}
+            loading="eager"
           />
         </li>
       ))}
