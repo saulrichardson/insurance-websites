@@ -10,9 +10,9 @@ export default function Home() {
           <h1 className="font-serif text-[clamp(52px,6.4vw,92.5px)] font-medium leading-none tracking-[-0.05em] text-foreground">
             Protect what matters <span className="italic">most</span>.
             <br />
-            Insurance for any risk from your local
+            Insurance for any risk.
             <br />
-            San Marino agency.
+            Your local San Marino agency.
           </h1>
 
           <div className="mt-12">
