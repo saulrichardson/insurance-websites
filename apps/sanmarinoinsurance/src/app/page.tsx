@@ -48,19 +48,21 @@ export default function Home() {
 type Carrier = {
   name: string;
   assetPath: string;
+  width: number;
+  height: number;
 };
 
 const carriers: Carrier[] = [
-  { name: "Allstate", assetPath: "/carriers/allstate.svg" },
-  { name: "Bamboo", assetPath: "/carriers/bamboo.png" },
-  { name: "Chubb", assetPath: "/carriers/chubb.svg" },
-  { name: "RT Specialty", assetPath: "/carriers/rt-specialty.svg" },
-  { name: "Bristol West", assetPath: "/carriers/bristol-west.svg" },
-  { name: "Burns & Wilcox", assetPath: "/carriers/burns-wilcox.svg" },
-  { name: "National General", assetPath: "/carriers/national-general.png" },
-  { name: "Pacific Specialty", assetPath: "/carriers/pacific-specialty.svg" },
-  { name: "Stillwater", assetPath: "/carriers/stillwater.svg" },
-  { name: "Aegis", assetPath: "/carriers/aegis.svg" },
+  { name: "Allstate", assetPath: "/carriers/allstate.svg", width: 124, height: 27 },
+  { name: "Bamboo", assetPath: "/carriers/bamboo.png", width: 212, height: 39 },
+  { name: "Chubb", assetPath: "/carriers/chubb.svg", width: 315, height: 62 },
+  { name: "RT Specialty", assetPath: "/carriers/rt-specialty.svg", width: 405, height: 155 },
+  { name: "Bristol West", assetPath: "/carriers/bristol-west.svg", width: 542, height: 187 },
+  { name: "Burns & Wilcox", assetPath: "/carriers/burns-wilcox.svg", width: 140, height: 57 },
+  { name: "National General", assetPath: "/carriers/national-general.png", width: 1544, height: 183 },
+  { name: "Pacific Specialty", assetPath: "/carriers/pacific-specialty.svg", width: 272, height: 48 },
+  { name: "Stillwater", assetPath: "/carriers/stillwater.svg", width: 441, height: 135 },
+  { name: "Aegis", assetPath: "/carriers/aegis.svg", width: 238, height: 110 },
 ];
 
 function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
@@ -74,12 +76,13 @@ function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
           <Image
             src={carrier.assetPath}
             alt={carrier.name}
-            width={220}
-            height={72}
-            sizes="220px"
+            width={carrier.width}
+            height={carrier.height}
+            sizes="(min-width: 768px) 220px, 180px"
             unoptimized={carrier.assetPath.endsWith(".svg")}
             className="h-7 w-auto select-none object-contain opacity-100 sm:h-8"
-            loading="lazy"
+            priority={!ariaHidden}
+            loading={ariaHidden ? "lazy" : "eager"}
           />
         </li>
       ))}
