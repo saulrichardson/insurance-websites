@@ -105,6 +105,45 @@ Set these environment variables in Vercel:
 
 Resumes are stored privately and downloaded via a short-lived signed link from the admin inbox.
 
+#### AWS S3 CORS (required for browser uploads)
+
+The resume file is uploaded directly from the browser to S3 using a short-lived presigned URL.
+That requires a CORS rule on the bucket allowing `PUT` from your site origin(s).
+
+Example CORS configuration (Bucket → Permissions → CORS):
+
+```json
+[
+  {
+    "AllowedHeaders": ["*"],
+    "AllowedMethods": ["PUT", "GET", "HEAD"],
+    "AllowedOrigins": ["https://sanmarinoinsurance.com"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3000
+  }
+]
+```
+
+If you use Vercel preview URLs during testing, temporarily add your preview origin as well.
+
+#### Minimal IAM policy for uploads/downloads
+
+Attach a policy like this to the IAM user/role used by the server (adjust bucket name):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CareersResumes",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:GetObject"],
+      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/careers/resumes/*"
+    }
+  ]
+}
+```
+
 ## Vercel Deployment (Recommended: Git Integration)
 
 This repo is ready to deploy as a standard Next.js project on Vercel.
