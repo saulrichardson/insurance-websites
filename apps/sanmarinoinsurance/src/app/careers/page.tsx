@@ -1,57 +1,14 @@
 import { Briefcase, MapPin, Phone } from "lucide-react";
+import { CareersApplicationForm } from "@/components/careers-application-form";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
+import { careerRoles } from "@/lib/careers";
 import { getFullAddressLine, site } from "@/lib/site";
 
 export const metadata = {
   title: "Careers",
   description: `Explore careers in ${site.agent.location}.`,
 };
-
-const roles = [
-  {
-    title: "Licensed Sales Professional (P&C)",
-    type: "Full-time or part-time",
-    focus: [
-      "Help customers compare auto, home, renters, condo, and small business coverage options",
-      "Build long‑term relationships with families and business owners in the San Marino area",
-      "Follow up on quotes, renewals, and coverage reviews with a service-first approach",
-    ],
-    goodFor: [
-      "You’re licensed in California (Property & Casualty) or actively working toward it",
-      "You enjoy explaining complex topics clearly and responsibly",
-      "You like goals — but you care more about doing right by the customer",
-    ],
-  },
-  {
-    title: "Customer Service Representative",
-    type: "Full-time",
-    focus: [
-      "Support policy changes, billing questions, and proof-of-insurance requests",
-      "Coordinate follow‑ups and keep client records organized",
-      "Provide a calm, helpful experience for every call and visit",
-    ],
-    goodFor: [
-      "You’re organized, responsive, and detail-oriented",
-      "You’re comfortable learning new systems and processes",
-      "You value clear communication and follow-through",
-    ],
-  },
-  {
-    title: "Office & Client Experience Associate",
-    type: "Part-time",
-    focus: [
-      "Welcome clients in-office and help with scheduling and document intake",
-      "Keep the office running smoothly and support the team with administrative tasks",
-      "Assist with community outreach and local events as needed",
-    ],
-    goodFor: [
-      "You’re reliable and enjoy supporting a small, fast-moving team",
-      "You’re friendly in person and professional over the phone",
-      "You want experience in a local business with real customer impact",
-    ],
-  },
-] as const;
 
 export default function CareersPage() {
   return (
@@ -123,8 +80,8 @@ export default function CareersPage() {
               </div>
             </div>
 
-            {roles.map((role) => (
-              <section key={role.title} className="border border-foreground/20 bg-background/30 p-6 sm:p-7">
+            {careerRoles.map((role) => (
+              <section key={role.id} className="border border-foreground/20 bg-background/30 p-6 sm:p-7">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <h2 className="text-balance font-serif text-2xl tracking-[-0.03em] text-foreground">
                     {role.title}
@@ -164,7 +121,7 @@ export default function CareersPage() {
               <div className="text-sm font-semibold text-foreground">How to apply</div>
               <div className="mt-3 space-y-3 text-sm leading-7 text-foreground/75">
                 <p>
-                  The fastest way to start is to contact the office and tell us which role you’re interested in. We’ll
+                  Submit the form below or contact the office and tell us which role you’re interested in. We’ll
                   confirm next steps and what licensing (if any) is needed for the position.
                 </p>
                 <p>
@@ -182,6 +139,8 @@ export default function CareersPage() {
                 </ButtonLink>
               </div>
             </div>
+
+            <CareersApplicationForm roles={[...careerRoles]} />
           </div>
         </div>
       </Container>

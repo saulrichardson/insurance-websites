@@ -49,6 +49,62 @@ The API can deliver leads in two ways (you can enable either or both):
 
 If no delivery is configured (or delivery fails), the server will still keep a fallback record in Vercel logs.
 
+## Careers (Applications)
+
+The careers page includes an in-site application form that submits to `POST /api/careers/apply`.
+
+- Page UI: `src/app/careers/page.tsx`
+- Form UI: `src/components/careers-application-form.tsx`
+- API handler: `src/app/api/careers/apply/route.ts`
+- Admin inbox: `src/app/admin/careers/page.tsx` (Basic Auth protected)
+
+### Delivery options (configure in Vercel)
+
+The API can deliver applications in two ways (you can enable either or both):
+
+1) **Webhook** (send to your in-house CRM later)
+- `CAREERS_WEBHOOK_URL` = `https://...` (your endpoint)
+
+2) **Email via Resend**
+- `RESEND_API_KEY` = `re_...`
+- `CAREERS_TO_EMAIL` = destination inbox (where you receive applications)
+- `CAREERS_FROM_EMAIL` = verified sender (must be verified in Resend)
+- Optional:
+  - `CAREERS_REPLY_TO_EMAIL` = fallback Reply-To if applicant email is missing
+  - `CAREERS_EMAIL_SUBJECT_PREFIX` = subject prefix (default: `Job application`)
+
+If no delivery is configured (or delivery fails), the server will still keep a fallback record in Vercel logs.
+
+### In-house storage (recommended)
+
+You can store applications in your own Postgres database and manage them from `/admin/careers`.
+
+1) Create the table
+- Run `sql/careers_applications.sql` against your Postgres database.
+
+2) Configure Vercel environment variables
+- `DATABASE_URL` = your Postgres connection string
+- `SITE_TENANT_ID` = (optional) defaults to `sanmarinoinsurance`
+
+3) Protect the admin inbox
+- `ADMIN_USER` = basic auth username
+- `ADMIN_PASS` = basic auth password
+
+### Resume uploads (S3-compatible storage)
+
+Resume uploads use **S3-compatible** object storage (AWS S3 or Cloudflare R2).
+
+Set these environment variables in Vercel:
+- `S3_BUCKET`
+- `S3_ACCESS_KEY_ID`
+- `S3_SECRET_ACCESS_KEY`
+- `S3_REGION` (default: `us-east-1`)
+- `S3_ENDPOINT` (optional, for Cloudflare R2)
+- Optional:
+  - `CAREERS_RESUME_MAX_BYTES` (default: `8388608` / 8MB)
+
+Resumes are stored privately and downloaded via a short-lived signed link from the admin inbox.
+
 ## Vercel Deployment (Recommended: Git Integration)
 
 This repo is ready to deploy as a standard Next.js project on Vercel.
