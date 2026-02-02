@@ -45,10 +45,12 @@ async function listApplications(filterStatus?: string) {
     };
   }
 
+  const tenantId = process.env.SITE_TENANT_ID?.trim() || "sanmarinoinsurance";
+
   try {
     const where =
       filterStatus && statusOptions.some((s) => s.value === filterStatus)
-        ? sql`where status = ${filterStatus}`
+        ? sql`and status = ${filterStatus}`
         : sql``;
 
     const rows = await sql<ApplicationRow[]>`
@@ -66,6 +68,7 @@ async function listApplications(filterStatus?: string) {
         message,
         notes
       from careers_applications
+      where tenant_id = ${tenantId}
       ${where}
       order by received_at desc
       limit 200
@@ -74,6 +77,7 @@ async function listApplications(filterStatus?: string) {
     const summaryRows = await sql<{ status: ApplicationStatus; count: number }[]>`
       select status, count(*)::int as count
       from careers_applications
+      where tenant_id = ${tenantId}
       group by status
     `;
 
@@ -101,6 +105,8 @@ async function updateApplication(formData: FormData) {
   const sql = getSql();
   if (!sql) return;
 
+  const tenantId = process.env.SITE_TENANT_ID?.trim() || "sanmarinoinsurance";
+
   const validStatus = statusOptions.some((s) => s.value === status);
   if (!validStatus) return;
 
@@ -111,6 +117,7 @@ async function updateApplication(formData: FormData) {
           notes = ${notes || null},
           updated_at = now()
     where id = ${id}
+      and tenant_id = ${tenantId}
   `;
 
   revalidatePath("/admin/careers");

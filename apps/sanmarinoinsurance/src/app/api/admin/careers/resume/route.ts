@@ -14,10 +14,13 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: false, error: "Database is not configured." }, { status: 503 });
   }
 
+  const tenantId = process.env.SITE_TENANT_ID?.trim() || "sanmarinoinsurance";
+
   const rows = await sql<{ resume_key: string | null; resume_filename: string | null }[]>`
     select resume_key, resume_filename
     from careers_applications
     where id = ${id}
+      and tenant_id = ${tenantId}
     limit 1
   `;
 
