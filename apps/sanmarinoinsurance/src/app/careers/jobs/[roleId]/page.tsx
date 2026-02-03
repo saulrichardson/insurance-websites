@@ -14,8 +14,17 @@ function getRole(roleId: string) {
   return careerRoles.find((role) => role.id === roleId) || null;
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const role = getRole(params.roleId);
+async function resolveParams(input: Params | Promise<Params>) {
+  return await Promise.resolve(input);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params | Promise<Params>;
+}): Promise<Metadata> {
+  const resolved = await resolveParams(params);
+  const role = getRole(resolved.roleId);
   if (!role) return { title: "Job" };
 
   return {
@@ -24,8 +33,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   };
 }
 
-export default function CareersJobPage({ params }: { params: Params }) {
-  const role = getRole(params.roleId);
+export default async function CareersJobPage({ params }: { params: Params | Promise<Params> }) {
+  const resolved = await resolveParams(params);
+  const role = getRole(resolved.roleId);
   if (!role) notFound();
 
   return (
@@ -164,4 +174,3 @@ export default function CareersJobPage({ params }: { params: Params }) {
     </main>
   );
 }
-
