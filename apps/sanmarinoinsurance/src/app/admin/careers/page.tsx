@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { getSql } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Admin • Careers",
   description: "View and manage job applications.",
