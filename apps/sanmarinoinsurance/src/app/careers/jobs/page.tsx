@@ -33,20 +33,19 @@ export default function CareersJobsPage() {
             Join our team
           </h1>
           <div className="mt-4 max-w-[70ch] text-pretty text-lg leading-8 text-foreground/75">
-            Explore open roles at our San Marino agency. Filter by team, office, or search by title.
+            Explore open roles at our San Marino agency. Filter by office, or search by title.
           </div>
         </div>
 
         <Suspense
           fallback={
-            <div className="mt-6 grid gap-3 md:grid-cols-[260px_260px_1fr]">
-              <div className="h-12 w-full border border-foreground/35 bg-background/80" />
+            <div className="mt-6 grid gap-3 md:grid-cols-[260px_1fr]">
               <div className="h-12 w-full border border-foreground/35 bg-background/80" />
               <div className="h-12 w-full border border-foreground/35 bg-background/80" />
             </div>
           }
         >
-          <CareersJobsFilters teams={teams} offices={offices} />
+          <CareersJobsFilters offices={offices} />
         </Suspense>
 
         <Suspense

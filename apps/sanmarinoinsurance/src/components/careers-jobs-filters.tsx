@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type CareersJobsFiltersProps = {
-  teams: string[];
   offices: string[];
 };
 
@@ -13,13 +12,12 @@ function normalizeQuery(value: string) {
   return value.trim().replace(/\s+/g, " ");
 }
 
-export function CareersJobsFilters({ teams, offices }: CareersJobsFiltersProps) {
+export function CareersJobsFilters({ offices }: CareersJobsFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
-  const selectedTeam = searchParams.get("team") || "";
   const selectedOffice = searchParams.get("office") || "";
   const selectedQuery = searchParams.get("q") || "";
 
@@ -31,7 +29,9 @@ export function CareersJobsFilters({ teams, offices }: CareersJobsFiltersProps) 
   }, [selectedQuery]);
 
   const nextBaseParams = useMemo(() => {
-    return new URLSearchParams(searchParams.toString());
+    const next = new URLSearchParams(searchParams.toString());
+    next.delete("team");
+    return next;
   }, [searchParams]);
 
   function setParam(name: string, value: string) {
@@ -52,6 +52,7 @@ export function CareersJobsFilters({ teams, offices }: CareersJobsFiltersProps) 
     const handle = setTimeout(() => {
       if (normalized !== normalizeQuery(selectedQuery)) {
         const next = new URLSearchParams(searchParams.toString());
+        next.delete("team");
         if (normalized) next.set("q", normalized);
         else next.delete("q");
 
@@ -66,24 +67,7 @@ export function CareersJobsFilters({ teams, offices }: CareersJobsFiltersProps) 
   }, [pathname, queryInput, router, searchParams, selectedQuery, startTransition]);
 
   return (
-    <div className="mt-6 grid gap-3 md:grid-cols-[260px_260px_1fr] md:items-center">
-      <label className="grid gap-2">
-        <span className="sr-only">Team</span>
-        <select
-          value={selectedTeam}
-          onChange={(event) => setParam("team", event.target.value)}
-          disabled={isPending}
-          className="h-12 w-full rounded-none border border-foreground/35 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 disabled:opacity-70"
-        >
-          <option value="">All Teams</option>
-          {teams.map((team) => (
-            <option key={team} value={team}>
-              {team}
-            </option>
-          ))}
-        </select>
-      </label>
-
+    <div className="mt-6 grid gap-3 md:grid-cols-[260px_1fr] md:items-center">
       <label className="grid gap-2">
         <span className="sr-only">Office</span>
         <select
