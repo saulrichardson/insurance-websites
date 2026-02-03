@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { getFullAddressLine, site } from "@/lib/site";
@@ -78,6 +79,7 @@ export default function RootLayout({
         </a>
         <SiteHeader />
         {children}
+        <Analytics />
       </body>
     </html>
   );
