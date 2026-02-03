@@ -6,6 +6,8 @@ import { careerRoles } from "@/lib/careers";
 import { CareersJobsFilters } from "@/components/careers-jobs-filters";
 import { site } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Jobs",
   description: `Open roles at ${site.brand.shortName}.`,
