@@ -41,6 +41,10 @@ export default function CareersPage() {
                 <Briefcase className="size-4" aria-hidden />
                 Ask about openings
               </ButtonLink>
+              <ButtonLink href="/careers/jobs" variant="secondary" size="md" className="gap-2">
+                <Briefcase className="size-4" aria-hidden />
+                View open roles
+              </ButtonLink>
               <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="outline" size="md" className="gap-2">
                 <Phone className="size-4" aria-hidden />
                 Call {site.agent.phone.display}

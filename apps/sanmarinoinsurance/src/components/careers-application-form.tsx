@@ -43,10 +43,22 @@ function FieldHint({ children }: { children: React.ReactNode }) {
   return <div className="text-xs leading-6 text-foreground/70">{children}</div>;
 }
 
-export function CareersApplicationForm({ roles }: { roles: CareerRole[] }) {
+export type CareersApplicationFormProps = {
+  roles: CareerRole[];
+  lockedRoleId?: string;
+  source?: string;
+};
+
+export function CareersApplicationForm({
+  roles,
+  lockedRoleId,
+  source = "careers-page",
+}: CareersApplicationFormProps) {
   const [status, setStatus] = useState<ApplicationStatus>("idle");
   const [message, setMessage] = useState<string>("");
   const [startedAt] = useState(() => Date.now().toString());
+
+  const lockedRole = lockedRoleId ? roles.find((role) => role.id === lockedRoleId) : null;
 
   const statusCopy = useMemo(() => {
     if (status === "success") return "Application received. We’ll follow up soon.";
@@ -145,7 +157,9 @@ export function CareersApplicationForm({ roles }: { roles: CareerRole[] }) {
 
   return (
     <form onSubmit={onSubmit} className="border border-foreground/20 bg-background/35 p-6 sm:p-7">
-      <div className="text-sm font-semibold text-foreground">Apply</div>
+      <div className="text-sm font-semibold text-foreground">
+        {lockedRole ? `Apply for ${lockedRole.title}` : "Apply"}
+      </div>
       <div className="mt-2 text-sm text-foreground/75">
         Prefer a quick call first? Reach us at{" "}
         <a className="underline underline-offset-4 hover:text-foreground" href={`tel:${site.agent.phone.e164}`}>
@@ -155,23 +169,27 @@ export function CareersApplicationForm({ roles }: { roles: CareerRole[] }) {
       </div>
 
       <div className="mt-6 grid gap-4">
-        <div className="grid gap-2">
-          <FieldLabel htmlFor="roleId">Role</FieldLabel>
-          <select
-            id="roleId"
-            name="roleId"
-            defaultValue="general"
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
-          >
-            <option value="general">General interest / not sure yet</option>
-            {roles.map((role) => (
-              <option key={role.id} value={role.id}>
-                {role.title}
-              </option>
-            ))}
-          </select>
-          <FieldHint>If you’re unsure, pick “General interest”.</FieldHint>
-        </div>
+        {lockedRoleId ? (
+          <input type="hidden" name="roleId" value={lockedRoleId} />
+        ) : (
+          <div className="grid gap-2">
+            <FieldLabel htmlFor="roleId">Role</FieldLabel>
+            <select
+              id="roleId"
+              name="roleId"
+              defaultValue="general"
+              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            >
+              <option value="general">General interest / not sure yet</option>
+              {roles.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.title}
+                </option>
+              ))}
+            </select>
+            <FieldHint>If you’re unsure, pick “General interest”.</FieldHint>
+          </div>
+        )}
 
         <div className="grid gap-2">
           <FieldLabel htmlFor="name">Full name</FieldLabel>
@@ -253,7 +271,7 @@ export function CareersApplicationForm({ roles }: { roles: CareerRole[] }) {
         </div>
 
         <input type="hidden" name="startedAt" value={startedAt} />
-        <input type="hidden" name="source" value="careers-page" />
+        <input type="hidden" name="source" value={source} />
 
         <button
           type="submit"
