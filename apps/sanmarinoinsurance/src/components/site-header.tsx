@@ -33,7 +33,10 @@ const navItems: NavLink[] = [
         links: [
           { href: "/insurance/home", label: "Home", description: "Dwelling, belongings, and liability—built around your property." },
           { href: "/insurance/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
-          { href: "/insurance", label: "Insurance overview", description: "How we quote, explain options, and keep coverage aligned." },
+          { href: "/insurance/renters", label: "Renters", description: "Affordable protection for belongings and personal liability." },
+          { href: "/insurance/life", label: "Life", description: "Income protection and planning—structured, not salesy." },
+          { href: "/insurance/long-term-care", label: "Long‑term care", description: "Plan for extended care needs with clarity and options." },
+          { href: "/insurance/investments", label: "Investments", description: "A practical conversation about long‑term goals and next steps." },
         ],
       },
     ],

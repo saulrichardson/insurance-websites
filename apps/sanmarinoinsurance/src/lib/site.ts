@@ -99,7 +99,7 @@ export const site = {
     {
       id: "condo",
       name: "Condo",
-      href: "/insurance#condo",
+      href: "/insurance",
       shortDescription:
         "Condo coverage that complements your association’s master policy and protects what’s inside your unit.",
       highlights: [
@@ -111,7 +111,7 @@ export const site = {
     {
       id: "renters",
       name: "Renters",
-      href: "/insurance#renters",
+      href: "/insurance/renters",
       shortDescription:
         "Affordable coverage for your belongings and personal liability—at home and on the go.",
       highlights: ["Personal property options", "Liability options", "Fast setup"],
@@ -119,7 +119,7 @@ export const site = {
     {
       id: "life",
       name: "Life",
-      href: "/insurance#life",
+      href: "/insurance/life",
       shortDescription:
         "Life insurance options that can help your loved ones cover everyday costs and long-term plans.",
       highlights: [
@@ -131,7 +131,7 @@ export const site = {
     {
       id: "long-term-care",
       name: "Long‑term care",
-      href: "/insurance#long-term-care",
+      href: "/insurance/long-term-care",
       shortDescription:
         "Coverage options that can help with the cost of extended care needs—at home, assisted living, or a facility.",
       highlights: [
@@ -143,7 +143,7 @@ export const site = {
     {
       id: "business",
       name: "Business",
-      href: "/insurance#business",
+      href: "/insurance",
       shortDescription:
         "Insurance solutions for small businesses—designed to help protect what you’ve worked to build.",
       highlights: [
