@@ -33,26 +33,14 @@ const navItems: NavLink[] = [
         links: [
           { href: "/insurance/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
           { href: "/insurance/home", label: "Home", description: "Dwelling, belongings, and liability—built around your property." },
-          { href: "/insurance#condo", label: "Condo" },
-          { href: "/insurance#renters", label: "Renters" },
-          { href: "/insurance#life", label: "Life" },
-          { href: "/insurance#long-term-care", label: "Long‑term care" },
-          { href: "/insurance#business", label: "Business" },
-          { href: "/insurance#financial", label: "Financial products" },
+          { href: "/insurance", label: "All products", description: "Condo, renters, life, business, and more." },
         ],
       },
       {
-        title: "Resources",
+        title: "Next step",
         links: [
           { href: "/insurance#quote", label: "Request a quote", description: "Fast next step—online form or phone." },
           { href: "/contact", label: "Contact details", description: "Phone, hours, directions, and languages." },
-        ],
-      },
-      {
-        title: "Company",
-        links: [
-          { href: "/about", label: "About" },
-          { href: "/careers", label: "Careers" },
         ],
       },
     ],
@@ -259,9 +247,9 @@ function HeaderNavDropdown({
       <div className="pointer-events-none absolute left-0 top-full z-10 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
         <nav
           aria-label={label}
-          className="w-[760px] border border-foreground/20 bg-background px-8 py-8 shadow-sm shadow-black/10"
+          className="w-[640px] border border-foreground/20 bg-background px-8 py-8 shadow-sm shadow-black/10"
         >
-          <div className="grid gap-10 md:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-2">
             {dropdown.map((section) => (
               <div key={section.title}>
                 <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/70">
@@ -286,24 +274,6 @@ function HeaderNavDropdown({
                 </ul>
               </div>
             ))}
-          </div>
-
-          <div className="mt-10 flex items-center justify-between gap-6 border-t border-foreground/20 pt-6">
-            <div className="text-sm text-foreground/75">
-              Prefer to talk? Call{" "}
-              <a className="underline underline-offset-4 hover:text-foreground" href={`tel:${site.agent.phone.e164}`}>
-                {site.agent.phone.display}
-              </a>
-              .
-            </div>
-            <div className="flex items-center gap-3">
-              <HeaderButton href="/insurance#quote" variant="outline">
-                REQUEST QUOTE
-              </HeaderButton>
-              <HeaderButton href="/contact" variant="solid">
-                CONTACT
-              </HeaderButton>
-            </div>
           </div>
         </nav>
       </div>
