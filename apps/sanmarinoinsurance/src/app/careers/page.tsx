@@ -1,4 +1,4 @@
-import { Briefcase, MapPin, Phone } from "lucide-react";
+import { Briefcase, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { getFullAddressLine, site } from "@/lib/site";
@@ -41,10 +41,6 @@ export default function CareersPage() {
             <ButtonLink href="/contact" variant="secondary" size="md" className="gap-2">
               <Briefcase className="size-4" aria-hidden />
               Contact the office
-            </ButtonLink>
-            <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="outline" size="md" className="gap-2">
-              <Phone className="size-4" aria-hidden />
-              Call {site.agent.phone.display}
             </ButtonLink>
           </div>
 

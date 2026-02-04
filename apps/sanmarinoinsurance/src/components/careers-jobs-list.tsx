@@ -1,41 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import type { CareerRole } from "@/lib/careers";
 
 type CareersJobsListProps = {
-  teams: string[];
   roles: CareerRole[];
 };
 
-function normalize(value: string) {
-  return value.trim().toLowerCase();
-}
-
-export function CareersJobsList({ teams, roles }: CareersJobsListProps) {
-  const searchParams = useSearchParams();
-
-  const officeFilter = (searchParams.get("office") || "").trim();
-  const query = (searchParams.get("q") || "").trim();
-
-  const filtered = roles.filter((role) => {
-    if (officeFilter && !role.locations.includes(officeFilter)) return false;
-    if (query) {
-      const q = normalize(query);
-      const haystack = [role.title, role.team, role.locations.join(" ")].join(" ");
-      if (!normalize(haystack).includes(q)) return false;
-    }
-    return true;
-  });
-
-  const sorted = [...filtered].sort((a, b) => {
-    const teamIndexA = teams.indexOf(a.team);
-    const teamIndexB = teams.indexOf(b.team);
-    const normalizedIndexA = teamIndexA === -1 ? Number.MAX_SAFE_INTEGER : teamIndexA;
-    const normalizedIndexB = teamIndexB === -1 ? Number.MAX_SAFE_INTEGER : teamIndexB;
-    if (normalizedIndexA !== normalizedIndexB) return normalizedIndexA - normalizedIndexB;
+export function CareersJobsList({ roles }: CareersJobsListProps) {
+  const sorted = [...roles].sort((a, b) => {
+    const byTeam = a.team.localeCompare(b.team);
+    if (byTeam !== 0) return byTeam;
     return a.title.localeCompare(b.title);
   });
 
@@ -49,7 +23,7 @@ export function CareersJobsList({ teams, roles }: CareersJobsListProps) {
       </div>
 
       {sorted.length === 0 ? (
-        <div className="px-6 py-10 text-sm text-foreground/75">No roles match your filters.</div>
+        <div className="px-6 py-10 text-sm text-foreground/75">No open roles at the moment.</div>
       ) : null}
 
       <div className="divide-y divide-foreground/15">

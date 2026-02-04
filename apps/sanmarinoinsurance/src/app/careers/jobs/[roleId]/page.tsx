@@ -6,7 +6,6 @@ import { CareersApplicationForm } from "@/components/careers-application-form";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { careerRoles } from "@/lib/careers";
-import { site } from "@/lib/site";
 
 type Params = { roleId: string };
 
@@ -75,14 +74,6 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
             <div className="flex flex-col gap-3 sm:items-end">
               <ButtonLink href="#apply" variant="primary" size="md" className="min-w-[180px] justify-center">
                 Apply
-              </ButtonLink>
-              <ButtonLink
-                href={`tel:${site.agent.phone.e164}`}
-                variant="outline"
-                size="md"
-                className="min-w-[180px] justify-center"
-              >
-                Call {site.agent.phone.display}
               </ButtonLink>
             </div>
           </div>

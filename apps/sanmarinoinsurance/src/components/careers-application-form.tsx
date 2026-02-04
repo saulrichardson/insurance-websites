@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import type { CareerRole } from "@/lib/careers";
-import { site } from "@/lib/site";
 
 type ApplicationStatus = "idle" | "submitting" | "success" | "error";
 const MAX_RESUME_MB = 8;
@@ -62,7 +61,7 @@ export function CareersApplicationForm({
 
   const statusCopy = useMemo(() => {
     if (status === "success") return "Application received. We’ll follow up soon.";
-    if (status === "error") return "Something went wrong. Please call the office and we’ll help right away.";
+    if (status === "error") return "Something went wrong. Please try again in a moment.";
     return "";
   }, [status]);
 
@@ -161,11 +160,7 @@ export function CareersApplicationForm({
         {lockedRole ? `Apply for ${lockedRole.title}` : "Apply"}
       </div>
       <div className="mt-2 text-sm text-foreground/75">
-        Prefer a quick call first? Reach us at{" "}
-        <a className="underline underline-offset-4 hover:text-foreground" href={`tel:${site.agent.phone.e164}`}>
-          {site.agent.phone.display}
-        </a>
-        .
+        Use this form to apply. We’ll follow up by email with next steps.
       </div>
 
       <div className="mt-6 grid gap-4">
