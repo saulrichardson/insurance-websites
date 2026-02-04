@@ -8,8 +8,9 @@ type QuoteStatus = "idle" | "submitting" | "success" | "error";
 const coverageOptions = [
   { value: "auto", label: "Auto & vehicles" },
   { value: "home", label: "Home & property" },
-  { value: "condo", label: "Condo" },
   { value: "renters", label: "Renters" },
+  { value: "umbrella", label: "Umbrella liability" },
+  { value: "condo", label: "Condo" },
   { value: "life", label: "Life insurance" },
   { value: "long-term-care", label: "Long‑term care" },
   { value: "financial", label: "Investments & retirement" },

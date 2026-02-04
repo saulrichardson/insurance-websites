@@ -143,7 +143,7 @@ export const site = {
     {
       id: "business",
       name: "Business",
-      href: "/insurance",
+      href: "/insurance/business",
       shortDescription:
         "Insurance solutions for small businesses—designed to help protect what you’ve worked to build.",
       highlights: [

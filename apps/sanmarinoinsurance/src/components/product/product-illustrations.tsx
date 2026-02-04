@@ -241,3 +241,94 @@ export function InvestmentsIllustration({ className = "", ...props }: Illustrati
     </svg>
   );
 }
+
+export function BusinessIllustration({ className = "", ...props }: IllustrationProps) {
+  return (
+    <svg
+      viewBox="0 0 360 200"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden
+      {...props}
+    >
+      <path d="M86 182h188" stroke="currentColor" strokeWidth="3" strokeLinecap="square" />
+
+      <path
+        d="M110 72h140v110H110V72Z"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path d="M110 98h140" stroke="currentColor" strokeWidth="3" strokeLinecap="square" opacity="0.55" />
+
+      <path d="M132 118h44v64h-44v-64Z" stroke="currentColor" strokeWidth="3" opacity="0.85" />
+      <path d="M194 118h34v26h-34v-26Z" stroke="currentColor" strokeWidth="3" opacity="0.85" />
+      <path d="M194 156h34v26h-34v-26Z" stroke="currentColor" strokeWidth="3" opacity="0.85" />
+
+      <path
+        d="M238 46h42v36h-42V46Z"
+        stroke="currentColor"
+        strokeWidth="3"
+        opacity="0.65"
+      />
+      <path d="M248 46v-10h22v10" stroke="currentColor" strokeWidth="3" opacity="0.65" strokeLinejoin="round" />
+
+      <path d="M52 182h24" stroke="currentColor" strokeWidth="3" strokeLinecap="square" opacity="0.35" />
+      <path d="M284 182h24" stroke="currentColor" strokeWidth="3" strokeLinecap="square" opacity="0.35" />
+    </svg>
+  );
+}
+
+export function UmbrellaIllustration({ className = "", ...props }: IllustrationProps) {
+  return (
+    <svg
+      viewBox="0 0 360 200"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden
+      {...props}
+    >
+      <path
+        d="M92 108c22-36 56-54 88-54s66 18 88 54"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M92 108c18 10 38 10 54 0 16 10 34 10 50 0 16 10 34 10 50 0 16 10 36 10 54 0"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path d="M180 108v54" stroke="currentColor" strokeWidth="3" strokeLinecap="square" />
+      <path
+        d="M180 162c0 10-8 18-18 18s-18-8-18-18"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="square"
+      />
+
+      <path d="M240 120v0" stroke="currentColor" strokeWidth="3" strokeLinecap="square" />
+      <path d="M120 120v0" stroke="currentColor" strokeWidth="3" strokeLinecap="square" />
+
+      <path
+        d="M272 76c0 10-8 18-18 18"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="square"
+        opacity="0.45"
+      />
+      <path
+        d="M88 76c0 10 8 18 18 18"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="square"
+        opacity="0.45"
+      />
+
+      <path d="M52 182h256" stroke="currentColor" strokeWidth="3" strokeLinecap="square" opacity="0.35" />
+    </svg>
+  );
+}
