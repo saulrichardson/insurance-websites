@@ -32,7 +32,23 @@ function FieldHint({ children }: { children: string }) {
   return <div className="text-xs leading-6 text-foreground/70">{children}</div>;
 }
 
-export function QuoteRequestForm() {
+type CoverageValue = (typeof coverageOptions)[number]["value"];
+
+type QuoteRequestFormProps = {
+  defaultCoverage?: CoverageValue;
+  source?: string;
+  className?: string;
+};
+
+export function QuoteRequestForm(props: QuoteRequestFormProps = {}) {
+  return <QuoteRequestFormInner {...props} />;
+}
+
+function QuoteRequestFormInner({
+  defaultCoverage = "not_sure",
+  source = "insurance-page",
+  className = "",
+}: QuoteRequestFormProps = {}) {
   const [status, setStatus] = useState<QuoteStatus>("idle");
   const [message, setMessage] = useState<string>("");
   const [lastSubmittedAt, setLastSubmittedAt] = useState<string | null>(null);
@@ -79,7 +95,10 @@ export function QuoteRequestForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="border border-foreground/20 bg-background/35 p-6 sm:p-7">
+    <form
+      onSubmit={onSubmit}
+      className={["border border-foreground/20 bg-background/35 p-6 sm:p-7", className].join(" ")}
+    >
       <div className="text-sm font-semibold text-foreground">Your information</div>
       <div className="mt-2 text-sm text-foreground/75">
         Prefer to talk? Call{" "}
@@ -132,7 +151,7 @@ export function QuoteRequestForm() {
             <select
               id="coverage"
               name="coverage"
-              defaultValue="not_sure"
+              defaultValue={defaultCoverage}
               className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             >
               {coverageOptions.map((opt) => (
@@ -180,7 +199,7 @@ export function QuoteRequestForm() {
         </div>
 
         <input type="hidden" name="startedAt" value={startedAt} />
-        <input type="hidden" name="source" value="insurance-page" />
+        <input type="hidden" name="source" value={source} />
         {lastSubmittedAt ? <input type="hidden" name="submittedAt" value={lastSubmittedAt} /> : null}
 
         <button

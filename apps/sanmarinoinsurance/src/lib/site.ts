@@ -5,6 +5,7 @@ export type OfficeHour =
 export type Offering = {
   id: string;
   name: string;
+  href: string;
   shortDescription: string;
   highlights: string[];
 };
@@ -74,6 +75,7 @@ export const site = {
     {
       id: "auto",
       name: "Auto",
+      href: "/insurance/auto",
       shortDescription:
         "Coverage options for everyday driving, commuting, and new-car peace of mind.",
       highlights: [
@@ -85,6 +87,7 @@ export const site = {
     {
       id: "home",
       name: "Home",
+      href: "/insurance/home",
       shortDescription:
         "Protection for your home, belongings, and personal liability—built around your property.",
       highlights: [
@@ -96,6 +99,7 @@ export const site = {
     {
       id: "condo",
       name: "Condo",
+      href: "/insurance#condo",
       shortDescription:
         "Condo coverage that complements your association’s master policy and protects what’s inside your unit.",
       highlights: [
@@ -107,6 +111,7 @@ export const site = {
     {
       id: "renters",
       name: "Renters",
+      href: "/insurance#renters",
       shortDescription:
         "Affordable coverage for your belongings and personal liability—at home and on the go.",
       highlights: ["Personal property options", "Liability options", "Fast setup"],
@@ -114,6 +119,7 @@ export const site = {
     {
       id: "life",
       name: "Life",
+      href: "/insurance#life",
       shortDescription:
         "Life insurance options that can help your loved ones cover everyday costs and long-term plans.",
       highlights: [
@@ -125,6 +131,7 @@ export const site = {
     {
       id: "long-term-care",
       name: "Long‑term care",
+      href: "/insurance#long-term-care",
       shortDescription:
         "Coverage options that can help with the cost of extended care needs—at home, assisted living, or a facility.",
       highlights: [
@@ -136,6 +143,7 @@ export const site = {
     {
       id: "business",
       name: "Business",
+      href: "/insurance#business",
       shortDescription:
         "Insurance solutions for small businesses—designed to help protect what you’ve worked to build.",
       highlights: [

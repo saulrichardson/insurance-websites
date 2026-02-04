@@ -5,7 +5,6 @@ import {
   HeartPulse,
   Landmark,
   LifeBuoy,
-  Phone,
   Shield,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -13,6 +12,7 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import { QuoteRequestForm } from "@/components/quote-request-form";
+import { ProductStickyCta } from "@/components/product/product-sticky-cta";
 
 export const metadata = {
   title: "Products",
@@ -248,6 +248,17 @@ export default function InsurancePage() {
                       ))}
                     </ul>
                   </div>
+
+                  {!o.href.includes("#") ? (
+                    <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <ButtonLink href={o.href} variant="outline" size="sm">
+                        Learn more
+                      </ButtonLink>
+                      <ButtonLink href="#quote" variant="primary" size="sm">
+                        Request a quote
+                      </ButtonLink>
+                    </div>
+                  ) : null}
                 </section>
               );
             })}
@@ -401,7 +412,7 @@ export default function InsurancePage() {
           </div>
         </Container>
       </section>
-      <StickyCoverageCta />
+      <ProductStickyCta />
     </main>
   );
 }
@@ -412,30 +423,6 @@ function ProcessCard({ number, title, body }: { number: string; title: string; b
       <div className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/70">{number}</div>
       <div className="mt-3 text-lg font-semibold tracking-tight text-foreground">{title}</div>
       <p className="mt-3 text-sm leading-7 text-foreground/75">{body}</p>
-    </div>
-  );
-}
-
-function StickyCoverageCta() {
-  return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 pb-[max(env(safe-area-inset-bottom),12px)] md:inset-x-auto md:bottom-6 md:right-6 md:pb-0">
-      <div className="pointer-events-auto mx-auto w-full max-w-[760px] px-4 md:mx-0 md:w-[360px] md:px-0">
-        <div className="flex items-stretch gap-3 border border-foreground/20 bg-background/80 p-3 backdrop-blur-sm md:flex-col md:p-4">
-          <a
-            href={`tel:${site.agent.phone.e164}`}
-            className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-5 text-xs font-medium uppercase tracking-[0.18em] text-white shadow-sm shadow-black/15 transition-colors hover:bg-foreground/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
-          >
-            <Phone className="size-4" aria-hidden />
-            Call {site.agent.phone.display}
-          </a>
-          <a
-            href="#quote"
-            className="inline-flex h-14 flex-1 items-center justify-center rounded-none border border-foreground/60 bg-transparent px-5 text-xs font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
-          >
-            Request a quote
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

@@ -9,11 +9,54 @@ import { site } from "@/lib/site";
 type NavLink = {
   href: string;
   label: string;
-  dropdown?: { href: string; label: string }[];
+  dropdown?: NavDropdownSection[];
+};
+
+type NavDropdownLink = {
+  href: string;
+  label: string;
+  description?: string;
+};
+
+type NavDropdownSection = {
+  title: string;
+  links: NavDropdownLink[];
 };
 
 const navItems: NavLink[] = [
-  { href: "/insurance", label: "PRODUCTS" },
+  {
+    href: "/insurance",
+    label: "PRODUCTS",
+    dropdown: [
+      {
+        title: "Products",
+        links: [
+          { href: "/insurance/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
+          { href: "/insurance/home", label: "Home", description: "Dwelling, belongings, and liability—built around your property." },
+          { href: "/insurance#condo", label: "Condo" },
+          { href: "/insurance#renters", label: "Renters" },
+          { href: "/insurance#life", label: "Life" },
+          { href: "/insurance#long-term-care", label: "Long‑term care" },
+          { href: "/insurance#business", label: "Business" },
+          { href: "/insurance#financial", label: "Financial products" },
+        ],
+      },
+      {
+        title: "Resources",
+        links: [
+          { href: "/insurance#quote", label: "Request a quote", description: "Fast next step—online form or phone." },
+          { href: "/contact", label: "Contact details", description: "Phone, hours, directions, and languages." },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { href: "/about", label: "About" },
+          { href: "/careers", label: "Careers" },
+        ],
+      },
+    ],
+  },
   { href: "/about", label: "ABOUT US" },
   { href: "/careers", label: "CAREERS" },
 ];
@@ -119,14 +162,21 @@ export function SiteHeader() {
                   />
                   {item.dropdown?.length ? (
                     <div className="ml-3 border-l border-foreground/20 pl-3">
-                      {item.dropdown.map((child) => (
-                        <HeaderNavItemMobile
-                          key={child.href}
-                          href={child.href}
-                          label={child.label}
-                          onNavigate={() => setIsOpen(false)}
-                          variant="subitem"
-                        />
+                      {item.dropdown.map((section) => (
+                        <div key={section.title} className="mt-3 first:mt-0">
+                          <div className="px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/60">
+                            {section.title}
+                          </div>
+                          {section.links.map((child) => (
+                            <HeaderNavItemMobile
+                              key={child.href}
+                              href={child.href}
+                              label={child.label}
+                              onNavigate={() => setIsOpen(false)}
+                              variant="subitem"
+                            />
+                          ))}
+                        </div>
                       ))}
                     </div>
                   ) : null}
@@ -189,7 +239,7 @@ function HeaderNavDropdown({
 }: {
   href: string;
   label: string;
-  dropdown: { href: string; label: string }[];
+  dropdown: NavDropdownSection[];
 }) {
   return (
     <div className="group relative flex h-24 items-center">
@@ -207,19 +257,54 @@ function HeaderNavDropdown({
       />
 
       <div className="pointer-events-none absolute left-0 top-full z-10 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-        <nav aria-label={label} className="w-[260px] bg-background px-8 py-7">
-          <ul className="space-y-4">
-            {dropdown.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="block font-sans text-[13px] font-semibold uppercase tracking-[0.18em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
-                >
-                  {item.label}
-                </Link>
-              </li>
+        <nav
+          aria-label={label}
+          className="w-[760px] border border-foreground/20 bg-background px-8 py-8 shadow-sm shadow-black/10"
+        >
+          <div className="grid gap-10 md:grid-cols-3">
+            {dropdown.map((section) => (
+              <div key={section.title}>
+                <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/70">
+                  {section.title}
+                </div>
+                <ul className="mt-5 space-y-4">
+                  {section.links.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+                      >
+                        <div className="font-sans text-[13px] font-semibold uppercase tracking-[0.18em] text-foreground hover:text-foreground/70">
+                          {item.label}
+                        </div>
+                        {item.description ? (
+                          <div className="mt-1 text-xs leading-6 text-foreground/70">{item.description}</div>
+                        ) : null}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          <div className="mt-10 flex items-center justify-between gap-6 border-t border-foreground/20 pt-6">
+            <div className="text-sm text-foreground/75">
+              Prefer to talk? Call{" "}
+              <a className="underline underline-offset-4 hover:text-foreground" href={`tel:${site.agent.phone.e164}`}>
+                {site.agent.phone.display}
+              </a>
+              .
+            </div>
+            <div className="flex items-center gap-3">
+              <HeaderButton href="/insurance#quote" variant="outline">
+                REQUEST QUOTE
+              </HeaderButton>
+              <HeaderButton href="/contact" variant="solid">
+                CONTACT
+              </HeaderButton>
+            </div>
+          </div>
         </nav>
       </div>
     </div>
