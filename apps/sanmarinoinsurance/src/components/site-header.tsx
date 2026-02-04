@@ -36,13 +36,6 @@ const navItems: NavLink[] = [
           { href: "/insurance", label: "Insurance overview", description: "How we quote, explain options, and keep coverage aligned." },
         ],
       },
-      {
-        title: "Next step",
-        links: [
-          { href: "/insurance#quote", label: "Request a quote", description: "Fast next step—online form or phone." },
-          { href: "/contact", label: "Contact details", description: "Phone, hours, directions, and languages." },
-        ],
-      },
     ],
   },
   { href: "/about", label: "ABOUT US" },
@@ -247,9 +240,9 @@ function HeaderNavDropdown({
       <div className="pointer-events-none absolute left-0 top-full z-10 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
         <nav
           aria-label={label}
-          className="w-[640px] border border-foreground/20 bg-background px-8 py-8 shadow-sm shadow-black/10"
+          className="w-[420px] border border-foreground/20 bg-background px-8 py-8 shadow-sm shadow-black/10"
         >
-          <div className="grid gap-12 md:grid-cols-2">
+          <div className="grid gap-12">
             {dropdown.map((section) => (
               <div key={section.title}>
                 <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/70">
