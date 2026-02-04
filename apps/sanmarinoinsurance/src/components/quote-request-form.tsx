@@ -98,7 +98,7 @@ function QuoteRequestFormInner({
   return (
     <form
       onSubmit={onSubmit}
-      className={["border border-foreground/20 bg-background/35 p-6 sm:p-7", className].join(" ")}
+      className={["rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7", className].join(" ")}
     >
       <div className="text-sm font-semibold text-foreground">Your information</div>
       <div className="mt-2 text-sm text-foreground/75">
@@ -117,7 +117,7 @@ function QuoteRequestFormInner({
             name="name"
             required
             autoComplete="name"
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
           />
         </div>
 
@@ -130,7 +130,7 @@ function QuoteRequestFormInner({
               required
               inputMode="tel"
               autoComplete="tel"
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+              className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             />
           </div>
 
@@ -141,7 +141,7 @@ function QuoteRequestFormInner({
               name="email"
               type="email"
               autoComplete="email"
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+              className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             />
           </div>
         </div>
@@ -152,7 +152,7 @@ function QuoteRequestFormInner({
             id="coverage"
             name="coverage"
             defaultValue={defaultCoverage}
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
           >
             {coverageOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -168,7 +168,7 @@ function QuoteRequestFormInner({
             id="notes"
             name="notes"
             rows={4}
-            className="w-full rounded-none border border-foreground/40 bg-background/80 px-4 py-3 text-sm leading-7 text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="w-full rounded-xl border border-accent/25 bg-surface px-4 py-3 text-sm leading-7 text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
           />
           <FieldHint>
             If you have an existing policy, include the carrier and renewal date if available.
@@ -182,7 +182,7 @@ function QuoteRequestFormInner({
             name="company"
             tabIndex={-1}
             autoComplete="off"
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground"
+            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground"
           />
         </div>
 
@@ -193,7 +193,7 @@ function QuoteRequestFormInner({
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-6 text-xs font-medium uppercase tracking-[0.18em] text-white shadow-sm shadow-black/15 transition-colors hover:bg-foreground/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 disabled:pointer-events-none disabled:opacity-70"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent bg-accent px-6 text-sm font-medium text-accent-foreground shadow-sm shadow-black/10 transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 disabled:pointer-events-none disabled:opacity-70"
         >
           {status === "submitting" ? "Sending..." : "Request quote"}
         </button>

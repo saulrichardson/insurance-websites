@@ -63,7 +63,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className="relative z-50 bg-background text-foreground"
+      className="sticky top-0 z-50 bg-background/85 text-foreground backdrop-blur-sm"
       style={{ ["--header-offset" as never]: `${headerOffset}px` }}
     >
       {showAnnouncement ? (
@@ -126,7 +126,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center border border-foreground/60 bg-transparent p-2 text-foreground hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60 md:hidden"
+          className="inline-flex items-center justify-center rounded-full border border-accent/35 bg-surface/60 p-2 text-accent shadow-sm shadow-black/5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60 md:hidden"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((v) => !v)}
@@ -136,7 +136,7 @@ export function SiteHeader() {
       </Container>
 
       {isOpen ? (
-        <div className="border-t border-foreground/20 bg-background md:hidden">
+        <div className="border-t border-accent/15 bg-background md:hidden">
           <Container className="py-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
@@ -209,7 +209,7 @@ function HeaderNavItem({
   label: string;
 }) {
   const classes =
-    "inline-flex items-center gap-2 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
+    "inline-flex items-center gap-2 font-sans text-sm font-medium text-accent hover:text-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
 
   return (
     <Link href={href} className={classes}>
@@ -231,7 +231,7 @@ function HeaderNavDropdown({
     <div className="group relative flex h-24 items-center">
       <Link
         href={href}
-        className="inline-flex items-center gap-3 font-serif text-[25.1px] tracking-[-0.03em] text-foreground hover:text-foreground/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+        className="inline-flex items-center gap-2 font-sans text-sm font-medium text-accent hover:text-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
       >
         {label}
         <CaretDown className="transition-transform duration-150 group-hover:rotate-180 group-focus-within:rotate-180" />
@@ -245,7 +245,7 @@ function HeaderNavDropdown({
       <div className="pointer-events-none absolute left-0 top-full z-10 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
         <nav
           aria-label={label}
-          className="w-[420px] border border-foreground/20 bg-background px-8 py-8 shadow-sm shadow-black/10"
+          className="w-[440px] rounded-2xl border border-accent/15 bg-surface px-8 py-8 shadow-lg shadow-black/10"
         >
           <div className="grid gap-12">
             {dropdown.map((section) => (
@@ -260,7 +260,7 @@ function HeaderNavDropdown({
                         href={item.href}
                         className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
                       >
-                        <div className="font-sans text-[13px] font-semibold uppercase tracking-[0.18em] text-foreground hover:text-foreground/70">
+                        <div className="font-sans text-sm font-semibold text-accent hover:text-accent/70">
                           {item.label}
                         </div>
                         {item.description ? (
@@ -301,11 +301,11 @@ function HeaderButton({
   onClick?: () => void;
 }) {
   const base =
-    "inline-flex h-12 items-center justify-center rounded-none border px-6 font-serif text-[20px] tracking-[-0.03em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60 md:text-[22px]";
+    "inline-flex h-11 items-center justify-center rounded-full border px-5 font-sans text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
   const styles =
     variant === "solid"
-      ? "border-foreground bg-foreground text-white hover:bg-foreground/90"
-      : "border-foreground bg-transparent text-foreground hover:bg-foreground/5";
+      ? "border-accent bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm shadow-black/10"
+      : "border-accent/35 bg-surface/60 text-accent hover:bg-surface";
 
   return (
     <Link href={href} className={[base, styles].join(" ")} onClick={onClick}>
@@ -327,8 +327,8 @@ function HeaderNavItemMobile({
 }) {
   const classes =
     variant === "subitem"
-      ? "px-3 py-2 text-sm tracking-[-0.01em] text-foreground/85 hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
-      : "px-3 py-3 font-serif text-[18px] tracking-[-0.03em] text-foreground hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
+      ? "px-3 py-2 text-sm text-accent/85 hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+      : "px-3 py-3 font-sans text-base font-medium text-accent hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60";
 
   return (
     <Link href={href} className={classes} onClick={onNavigate}>
