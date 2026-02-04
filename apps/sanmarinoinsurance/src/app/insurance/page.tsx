@@ -34,7 +34,8 @@ export default function InsurancePage() {
       <Container className="py-14 sm:py-18 lg:py-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 border border-foreground/25 bg-surface/50 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
+              <span className="size-1.5 rounded-full bg-brand" aria-hidden />
               Coverage through {site.brand.legalLine}
             </div>
             <h1 className="mt-7 text-balance font-serif text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
@@ -52,21 +53,21 @@ export default function InsurancePage() {
             </div>
           </div>
 
-          <div className="border border-foreground/20 bg-surface/60 p-6 sm:p-7 lg:max-w-sm">
-            <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
+          <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-lg shadow-black/10 sm:p-7 lg:max-w-sm">
+            <div className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
               What to expect
             </div>
             <ul className="mt-4 space-y-3 text-sm text-foreground/75">
               <li className="flex gap-3">
-                <span className="mt-1 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                <span className="mt-1 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                 <span>Quick coverage review and a simple next step.</span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                <span className="mt-1 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                 <span>Recommendations based on your situation—not pressure.</span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                <span className="mt-1 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                 <span>Clear explanations of limits, deductibles, and tradeoffs.</span>
               </li>
             </ul>
@@ -74,7 +75,7 @@ export default function InsurancePage() {
         </div>
       </Container>
 
-      <section className="border-y border-foreground/20 bg-surface/40">
+      <section className="bg-surface">
         <Container className="py-12 sm:py-14">
           <div className="grid gap-6 md:grid-cols-3">
             <ProcessCard
@@ -103,7 +104,7 @@ export default function InsurancePage() {
               <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                 Start with home and auto.
               </h2>
-              <p className="mt-3 max-w-3xl text-pretty text-muted">
+              <p className="mt-3 max-w-3xl text-pretty text-foreground/75">
                 These are the two most common starting points for households in {site.agent.location}. Each page shows
                 what we prioritize, what to prepare, and how we look for savings without weakening coverage.
               </p>
@@ -119,14 +120,14 @@ export default function InsurancePage() {
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <section className="border border-foreground/20 bg-surface/60 p-7">
+            <section className="rounded-3xl border border-accent/15 bg-surface p-7 shadow-sm shadow-black/5">
               <div className="flex items-start justify-between gap-6">
                 <div className="flex items-start gap-3">
-                  <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
+                  <div className="grid size-11 place-items-center rounded-2xl border border-accent/10 bg-background text-accent">
                     <HomeIcon className="size-5" aria-hidden />
                   </div>
                   <div>
-                    <div className="text-xl font-semibold tracking-tight text-foreground">
+                    <div className="text-xl font-semibold tracking-tight text-accent">
                       Home insurance
                     </div>
                     <div className="mt-2 text-sm text-foreground/75">
@@ -142,15 +143,15 @@ export default function InsurancePage() {
 
               <ul className="mt-6 space-y-2 text-sm text-foreground/75">
                 <li className="flex gap-3">
-                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                   <span>Rebuild‑cost alignment (so the dwelling limit isn’t guesswork).</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                   <span>Belongings + special items (replacement cost and scheduling).</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                   <span>Deductibles, liability, and real claim expectations.</span>
                 </li>
               </ul>
@@ -162,14 +163,14 @@ export default function InsurancePage() {
               </div>
             </section>
 
-            <section className="border border-foreground/20 bg-surface/60 p-7">
+            <section className="rounded-3xl border border-accent/15 bg-surface p-7 shadow-sm shadow-black/5">
               <div className="flex items-start justify-between gap-6">
                 <div className="flex items-start gap-3">
-                  <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
+                  <div className="grid size-11 place-items-center rounded-2xl border border-accent/10 bg-background text-accent">
                     <Car className="size-5" aria-hidden />
                   </div>
                   <div>
-                    <div className="text-xl font-semibold tracking-tight text-foreground">
+                    <div className="text-xl font-semibold tracking-tight text-accent">
                       Auto insurance
                     </div>
                     <div className="mt-2 text-sm text-foreground/75">
@@ -185,15 +186,15 @@ export default function InsurancePage() {
 
               <ul className="mt-6 space-y-2 text-sm text-foreground/75">
                 <li className="flex gap-3">
-                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                   <span>Liability limits that protect your household (not just your car).</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                   <span>Comprehensive vs. collision + a deductible strategy that fits your budget.</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                   <span>Discount review and bundling conversations (when it truly helps).</span>
                 </li>
               </ul>
@@ -208,7 +209,7 @@ export default function InsurancePage() {
 
           <section
             id="quote"
-            className="mt-12 scroll-mt-40 border border-foreground/20 bg-surface/60 p-7"
+            className="mt-12 scroll-mt-40 rounded-3xl border border-accent/15 bg-surface p-7 shadow-sm shadow-black/5"
           >
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
               <div className="max-w-[62ch]">
@@ -225,19 +226,19 @@ export default function InsurancePage() {
                   </div>
                   <ul className="mt-3 space-y-2 text-sm text-foreground/75">
                     <li className="flex gap-3">
-                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                       <span>What you’re trying to protect and what “good coverage” means to you</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                       <span>Key limits, deductibles, and tradeoffs (plain language)</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                       <span>Bundling opportunities and smart ways to save</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                      <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                       <span>Next steps: what to send now and what can wait</span>
                     </li>
                   </ul>
@@ -252,7 +253,7 @@ export default function InsurancePage() {
         </Container>
       </section>
 
-      <section className="bg-surface/35">
+      <section className="bg-surface">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             <div>
@@ -262,7 +263,7 @@ export default function InsurancePage() {
               <p className="mt-3 max-w-xl text-pretty text-foreground/75">
                 People come to us for clarity, responsiveness, and coverage that stays aligned over time.
               </p>
-              <div className="mt-7 border border-foreground/20 bg-background/35 p-6">
+              <div className="mt-7 rounded-3xl border border-accent/15 bg-background p-6 shadow-sm shadow-black/5">
                 <div className="flex items-center gap-3">
                   <span aria-hidden className="font-serif tracking-[0.15em] text-foreground">
                     ★★★★★
@@ -276,7 +277,7 @@ export default function InsurancePage() {
 
             <div className="grid gap-6">
               {testimonials.map((t) => (
-                <figure key={t.by} className="border border-foreground/20 bg-background/35 p-7">
+                <figure key={t.by} className="rounded-3xl border border-accent/15 bg-background p-7 shadow-sm shadow-black/5">
                   <blockquote className="text-pretty text-lg leading-8 text-foreground">
                     “{t.quote}”
                   </blockquote>
@@ -296,9 +297,9 @@ export default function InsurancePage() {
 
 function ProcessCard({ number, title, body }: { number: string; title: string; body: string }) {
   return (
-    <div className="border border-foreground/20 bg-background/30 p-7">
+    <div className="rounded-2xl border border-accent/15 bg-background p-7 shadow-sm shadow-black/5">
       <div className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/70">{number}</div>
-      <div className="mt-3 text-lg font-semibold tracking-tight text-foreground">{title}</div>
+      <div className="mt-3 text-lg font-semibold tracking-tight text-accent">{title}</div>
       <p className="mt-3 text-sm leading-7 text-foreground/75">{body}</p>
     </div>
   );

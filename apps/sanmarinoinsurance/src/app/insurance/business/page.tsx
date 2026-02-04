@@ -157,7 +157,8 @@ export default function BusinessInsurancePage() {
       <Container className="py-14 sm:py-18 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 border border-foreground/25 bg-surface/50 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
+              <span className="size-1.5 rounded-full bg-brand" aria-hidden />
               Business insurance • {site.agent.location}
             </div>
             <h1 className="mt-7 text-balance font-serif text-[clamp(2.5rem,5.2vw,4.15rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
@@ -185,13 +186,13 @@ export default function BusinessInsurancePage() {
             </div>
           </div>
 
-          <div className="border border-foreground/20 bg-surface/60 p-7">
-            <div className="border border-foreground/20 bg-background/35 p-4">
-              <BusinessIllustration className="h-[132px] w-full text-foreground" />
+          <div className="rounded-3xl border border-accent/15 bg-surface p-7 shadow-lg shadow-black/10">
+            <div className="rounded-2xl border border-accent/10 bg-background p-4">
+              <BusinessIllustration className="h-[132px] w-full text-accent" />
             </div>
 
             <div className="mt-6 flex items-start gap-4">
-              <div className="grid size-12 place-items-center border border-foreground/20 bg-background/35 text-foreground">
+              <div className="grid size-12 place-items-center rounded-2xl border border-accent/10 bg-background text-accent">
                 <BriefcaseBusiness className="size-5" aria-hidden />
               </div>
               <div>
@@ -200,24 +201,24 @@ export default function BusinessInsurancePage() {
                 </div>
                 <ul className="mt-4 space-y-2 text-sm leading-7 text-foreground/75">
                   <li className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                     <span>What coverage is for (and what it isn’t) in plain language.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                     <span>How to meet contract requirements without buying the wrong structure.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                     <span>Where specialty markets can help when standard options don’t fit.</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="mt-6 border border-foreground/20 bg-background/30 p-4">
+            <div className="mt-6 rounded-2xl border border-accent/10 bg-background p-4">
               <div className="flex items-start gap-3">
-                <div className="grid size-10 place-items-center border border-foreground/20 bg-background/35 text-foreground">
+                <div className="grid size-10 place-items-center rounded-2xl border border-accent/10 bg-surface/70 text-accent">
                   <ShieldCheck className="size-5" aria-hidden />
                 </div>
                 <div>
@@ -235,7 +236,7 @@ export default function BusinessInsurancePage() {
         </div>
       </Container>
 
-      <section className="border-y border-foreground/20 bg-surface/40">
+      <section className="bg-surface">
         <Container className="py-12 sm:py-14">
           <div className="max-w-3xl">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -272,7 +273,7 @@ export default function BusinessInsurancePage() {
         defaultScenarioId="contractor"
       />
 
-      <section className="bg-surface/35">
+      <section className="bg-surface">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             <div>
@@ -319,7 +320,7 @@ export default function BusinessInsurancePage() {
         </Container>
       </section>
 
-      <section className="bg-background">
+      <section className="bg-surface">
         <Container className="py-16 sm:py-20">
           <div className="max-w-3xl">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -351,7 +352,7 @@ export default function BusinessInsurancePage() {
         </Container>
       </section>
 
-      <section className="bg-surface/35">
+      <section className="bg-background">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             <div>
@@ -380,7 +381,7 @@ export default function BusinessInsurancePage() {
         </Container>
       </section>
 
-      <section className="bg-background">
+      <section className="bg-surface">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
             <div>
@@ -416,7 +417,7 @@ export default function BusinessInsurancePage() {
         </Container>
       </section>
 
-      <section id="quote" className="bg-surface/35">
+      <section id="quote" className="bg-background">
         <Container className="py-16 sm:py-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-[62ch]">
@@ -431,19 +432,19 @@ export default function BusinessInsurancePage() {
                 and we’ll cover the essentials quickly.
               </p>
 
-              <div className="mt-6 border border-foreground/20 bg-background/35 p-6">
-                <div className="text-sm font-semibold text-foreground">Helpful to prepare</div>
+              <div className="mt-6 rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5">
+                <div className="text-sm font-semibold text-accent">Helpful to prepare</div>
                 <ul className="mt-3 space-y-2 text-sm leading-7 text-foreground/75">
                   <li className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                     <span>A short description of operations and any contract requirements.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                     <span>Current declarations page and renewal date (if insured).</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
                     <span>Revenue/payroll basics and vehicles used (if applicable).</span>
                   </li>
                 </ul>
@@ -461,4 +462,3 @@ export default function BusinessInsurancePage() {
     </main>
   );
 }
-
