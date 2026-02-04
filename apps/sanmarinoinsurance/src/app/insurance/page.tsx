@@ -1,13 +1,4 @@
-import {
-  BriefcaseBusiness,
-  Car,
-  Home as HomeIcon,
-  HeartPulse,
-  Landmark,
-  LifeBuoy,
-  Shield,
-} from "lucide-react";
-import type { ReactNode } from "react";
+import { Car, Home as HomeIcon } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { site } from "@/lib/site";
@@ -16,87 +7,7 @@ import { ProductStickyCta } from "@/components/product/product-sticky-cta";
 
 export const metadata = {
   title: "Products",
-  description: `Auto, home, renters, condo, life, and business insurance in ${site.agent.location}. Call ${site.agent.phone.display}.`,
-};
-
-type CoverageDetail = {
-  icon: ReactNode;
-  bestFor: string;
-  whatWeDiscuss: string[];
-};
-
-const detailsById: Record<string, CoverageDetail> = {
-  auto: {
-    icon: <Car className="size-5" aria-hidden />,
-    bestFor: "Drivers who want clearer limits, smarter deductibles, and fewer surprises after a claim.",
-    whatWeDiscuss: [
-      "Liability limits and what they actually protect",
-      "Comprehensive vs. collision and deductible strategy",
-      "Multi‑policy savings opportunities (home, renters, condo)",
-      "Ride‑share, teen drivers, and high‑value vehicles",
-    ],
-  },
-  home: {
-    icon: <HomeIcon className="size-5" aria-hidden />,
-    bestFor: "Homeowners who want protection that matches rebuild costs and real‑life risks, not guesswork.",
-    whatWeDiscuss: [
-      "Dwelling, other structures, and personal property options",
-      "Liability, medical payments, and umbrella conversations",
-      "Claims history + deductible tradeoffs",
-      "Bundling and policy review checkpoints after renovations",
-    ],
-  },
-  condo: {
-    icon: <Shield className="size-5" aria-hidden />,
-    bestFor: "Condo owners who want coverage that complements the HOA master policy.",
-    whatWeDiscuss: [
-      "Loss assessment and what it can mean for condo owners",
-      "Personal property and interior improvements coverage",
-      "Liability protection and deductibles",
-      "How to read a master policy summary (plain language)",
-    ],
-  },
-  renters: {
-    icon: <Shield className="size-5" aria-hidden />,
-    bestFor: "Renters who want affordable protection for belongings, liability, and peace of mind.",
-    whatWeDiscuss: [
-      "Personal property protection and replacement‑cost options",
-      "Liability and medical payments coverage",
-      "Coverage for items you take on the go",
-      "Bundling with auto for better value",
-    ],
-  },
-  life: {
-    icon: <LifeBuoy className="size-5" aria-hidden />,
-    bestFor: "Families who want a simple plan for income protection, mortgages, and long‑term goals.",
-    whatWeDiscuss: [
-      "Term vs. permanent options (pros/cons)",
-      "How much coverage makes sense (not salesy)",
-      "Beneficiaries, riders, and review cadence",
-      "How life coverage pairs with overall household planning",
-    ],
-  },
-  "long-term-care": {
-    icon: <HeartPulse className="size-5" aria-hidden />,
-    bestFor:
-      "People who want to plan ahead for extended care costs and reduce the financial burden on family members.",
-    whatWeDiscuss: [
-      "What long‑term care coverage can help with (in broad terms)",
-      "Eligibility, timing, and how options vary by situation",
-      "Budget, benefit periods, and tradeoffs to consider",
-      "How long‑term care fits alongside life and other protection plans",
-    ],
-  },
-  business: {
-    icon: <BriefcaseBusiness className="size-5" aria-hidden />,
-    bestFor: "Local businesses that want clear risk protection without drowning in jargon.",
-    whatWeDiscuss: [
-      "General liability and property considerations",
-      "Business interruption and real‑world scenarios",
-      "Certificates of insurance (COIs) and vendor requirements",
-      "When to revisit coverage as you grow",
-    ],
-  },
+  description: `Auto and home insurance in ${site.agent.location}. Call ${site.agent.phone.display} for a quote or a coverage review.`,
 };
 
 const testimonials = [
@@ -112,8 +23,8 @@ const testimonials = [
   },
   {
     quote:
-      "As a small business owner, I appreciated the structure: what risks mattered, what didn’t, and how to keep coverage updated as we grow.",
-    by: "Small business owner",
+      "Bundling home and auto saved us money, but the best part was understanding what we were changing and why. It finally felt straightforward.",
+    by: "San Marino family",
   },
 ] as const;
 
@@ -130,9 +41,8 @@ export default function InsurancePage() {
               Products built for real life in {site.agent.location}.
             </h1>
             <p className="mt-5 max-w-2xl text-pretty text-lg leading-8 text-foreground/75">
-              We’ll help you choose coverage options that make sense for your household or business—and keep your
-              policies aligned as things change. Expect a clear conversation, fast follow‑ups, and a plan you can
-              actually understand.
+              We’ll help you choose coverage options that make sense for your household—and keep your policies aligned
+              as things change. Expect a clear conversation, fast follow‑ups, and a plan you can actually understand.
             </p>
 
             <div className="mt-9">
@@ -188,97 +98,40 @@ export default function InsurancePage() {
 
       <section className="bg-background">
         <Container className="py-16 sm:py-20">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Coverage menu
-            </h2>
-            <p className="mt-3 max-w-3xl text-pretty text-muted">
-              Start with the category that matches your situation. Each card includes the key topics we cover in a
-              quick call—so you know what you’ll get before you reach out.
-            </p>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                Start with home and auto.
+              </h2>
+              <p className="mt-3 max-w-3xl text-pretty text-muted">
+                These are the two most common starting points for households in {site.agent.location}. Each page shows
+                what we prioritize, what to prepare, and how we look for savings without weakening coverage.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="#quote" variant="primary" size="md">
+                Request a quote
+              </ButtonLink>
+              <ButtonLink href="/contact" variant="outline" size="md">
+                Contact details
+              </ButtonLink>
+            </div>
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {site.offerings.map((o) => {
-              const detail = detailsById[o.id];
-              return (
-                <section
-                  key={o.id}
-                  id={o.id}
-                  className="scroll-mt-40 border border-foreground/20 bg-surface/60 p-7"
-                >
-                  <div className="flex items-start justify-between gap-6">
-                    <div className="flex items-start gap-3">
-                      <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
-                        {detail?.icon ?? <Shield className="size-5" aria-hidden />}
-                      </div>
-                      <div>
-                        <div className="text-xl font-semibold tracking-tight text-foreground">
-                          {o.name} insurance
-                        </div>
-                        <div className="mt-2 text-sm text-foreground/75">{o.shortDescription}</div>
-                      </div>
-                    </div>
-                    <div className="hidden text-xs font-medium uppercase tracking-[0.18em] text-foreground/70 sm:block">
-                      {site.agent.location}
-                    </div>
-                  </div>
-
-                  {detail ? (
-                    <div className="mt-6">
-                      <div className="border border-foreground/20 bg-background/30 p-4">
-                        <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
-                          Best for
-                        </div>
-                        <div className="mt-2 text-sm text-foreground/75">{detail.bestFor}</div>
-                      </div>
-                    </div>
-                  ) : null}
-
-                  <div className="mt-6">
-                    <div className="text-sm font-semibold text-foreground">
-                      What we’ll cover in a quick call
-                    </div>
-                    <ul className="mt-3 space-y-2 text-sm text-foreground/75">
-                      {(detail?.whatWeDiscuss ?? o.highlights).map((h) => (
-                        <li key={h} className="flex gap-3">
-                          <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {!o.href.includes("#") ? (
-                    <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                      <ButtonLink href={o.href} variant="outline" size="sm">
-                        Learn more
-                      </ButtonLink>
-                      <ButtonLink href="#quote" variant="primary" size="sm">
-                        Request a quote
-                      </ButtonLink>
-                    </div>
-                  ) : null}
-                </section>
-              );
-            })}
-
-            <section
-              id="financial"
-              className="scroll-mt-40 border border-foreground/20 bg-surface/60 p-7 lg:col-span-2"
-            >
+            <section className="border border-foreground/20 bg-surface/60 p-7">
               <div className="flex items-start justify-between gap-6">
                 <div className="flex items-start gap-3">
                   <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
-                    <Landmark className="size-5" aria-hidden />
+                    <HomeIcon className="size-5" aria-hidden />
                   </div>
                   <div>
                     <div className="text-xl font-semibold tracking-tight text-foreground">
-                      Financial products
+                      Home insurance
                     </div>
                     <div className="mt-2 text-sm text-foreground/75">
-                      A practical conversation about long‑term goals—retirement income, protection planning, and how
-                      life coverage can fit into the bigger picture.
+                      Align dwelling coverage to rebuild costs, protect belongings the right way, and make liability
+                      decisions in plain language.
                     </div>
                   </div>
                 </div>
@@ -287,44 +140,68 @@ export default function InsurancePage() {
                 </div>
               </div>
 
-              <div className="mt-6">
-                <div className="border border-foreground/20 bg-background/30 p-4">
-                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
-                    Best for
+              <ul className="mt-6 space-y-2 text-sm text-foreground/75">
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span>Rebuild‑cost alignment (so the dwelling limit isn’t guesswork).</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span>Belongings + special items (replacement cost and scheduling).</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span>Deductibles, liability, and real claim expectations.</span>
+                </li>
+              </ul>
+
+              <div className="mt-7">
+                <ButtonLink href="/insurance/home" variant="outline" size="sm">
+                  Learn more
+                </ButtonLink>
+              </div>
+            </section>
+
+            <section className="border border-foreground/20 bg-surface/60 p-7">
+              <div className="flex items-start justify-between gap-6">
+                <div className="flex items-start gap-3">
+                  <div className="grid size-11 place-items-center border border-foreground/20 bg-background/35 text-foreground">
+                    <Car className="size-5" aria-hidden />
                   </div>
-                  <div className="mt-2 text-sm text-foreground/75">
-                    Households that want to connect protection and planning—without getting lost in jargon.
+                  <div>
+                    <div className="text-xl font-semibold tracking-tight text-foreground">
+                      Auto insurance
+                    </div>
+                    <div className="mt-2 text-sm text-foreground/75">
+                      Choose liability limits, deductibles, and add‑ons with clarity—then verify discounts so savings
+                      don’t come from underinsuring.
+                    </div>
                   </div>
+                </div>
+                <div className="hidden text-xs font-medium uppercase tracking-[0.18em] text-foreground/70 sm:block">
+                  {site.agent.location}
                 </div>
               </div>
 
-              <div className="mt-6">
-                <div className="text-sm font-semibold text-foreground">
-                  What we’ll cover in a quick call
-                </div>
-                <ul className="mt-3 space-y-2 text-sm text-foreground/75">
-                  <li className="flex gap-3">
-                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
-                    <span>Your goals and timeline (retirement, income protection, legacy planning)</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
-                    <span>How life insurance and financial products can complement each other</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
-                    <span>Beneficiaries, review cadence, and keeping details up to date</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
-                    <span>Next steps: what to prepare and what decisions can wait</span>
-                  </li>
-                </ul>
-              </div>
+              <ul className="mt-6 space-y-2 text-sm text-foreground/75">
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span>Liability limits that protect your household (not just your car).</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span>Comprehensive vs. collision + a deductible strategy that fits your budget.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" aria-hidden />
+                  <span>Discount review and bundling conversations (when it truly helps).</span>
+                </li>
+              </ul>
 
-              <div className="mt-6 text-xs leading-6 text-foreground/70">
-                Financial products may be offered through licensed financial professionals; availability and eligibility
-                vary. We’ll confirm what applies to your situation.
+              <div className="mt-7">
+                <ButtonLink href="/insurance/auto" variant="outline" size="sm">
+                  Learn more
+                </ButtonLink>
               </div>
             </section>
           </div>
@@ -368,7 +245,7 @@ export default function InsurancePage() {
               </div>
 
               <div className="w-full max-w-[520px]">
-                <QuoteRequestForm />
+                <QuoteRequestForm source="insurance-overview" />
               </div>
             </div>
           </section>

@@ -31,9 +31,9 @@ const navItems: NavLink[] = [
       {
         title: "Products",
         links: [
-          { href: "/insurance/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
           { href: "/insurance/home", label: "Home", description: "Dwelling, belongings, and liability—built around your property." },
-          { href: "/insurance", label: "All products", description: "Condo, renters, life, business, and more." },
+          { href: "/insurance/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
+          { href: "/insurance", label: "Insurance overview", description: "How we quote, explain options, and keep coverage aligned." },
         ],
       },
       {
