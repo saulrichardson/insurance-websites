@@ -134,7 +134,7 @@ function QuoteRequestFormInner({
           </div>
 
           <div className="grid gap-2">
-            <FieldLabel htmlFor="email">Email (optional)</FieldLabel>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
             <input
               id="email"
               name="email"
@@ -145,37 +145,24 @@ function QuoteRequestFormInner({
           </div>
         </div>
 
-        <div className="grid gap-2 sm:grid-cols-2">
-          <div className="grid gap-2">
-            <FieldLabel htmlFor="coverage">Coverage</FieldLabel>
-            <select
-              id="coverage"
-              name="coverage"
-              defaultValue={defaultCoverage}
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
-            >
-              {coverageOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="grid gap-2">
-            <FieldLabel htmlFor="zip">ZIP code (optional)</FieldLabel>
-            <input
-              id="zip"
-              name="zip"
-              inputMode="numeric"
-              autoComplete="postal-code"
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
-            />
-          </div>
+        <div className="grid gap-2">
+          <FieldLabel htmlFor="coverage">Coverage</FieldLabel>
+          <select
+            id="coverage"
+            name="coverage"
+            defaultValue={defaultCoverage}
+            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+          >
+            {coverageOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="grid gap-2">
-          <FieldLabel htmlFor="notes">What should we know? (optional)</FieldLabel>
+          <FieldLabel htmlFor="notes">What should we know?</FieldLabel>
           <textarea
             id="notes"
             name="notes"

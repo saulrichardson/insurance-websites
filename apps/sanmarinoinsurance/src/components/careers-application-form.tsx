@@ -211,7 +211,7 @@ export function CareersApplicationForm({
           </div>
 
           <div className="grid gap-2">
-            <FieldLabel htmlFor="phone">Phone (optional)</FieldLabel>
+            <FieldLabel htmlFor="phone">Phone</FieldLabel>
             <input
               id="phone"
               name="phone"
@@ -223,7 +223,7 @@ export function CareersApplicationForm({
         </div>
 
         <div className="grid gap-2">
-          <FieldLabel htmlFor="resume">Resume (optional)</FieldLabel>
+          <FieldLabel htmlFor="resume">Resume</FieldLabel>
           <input
             id="resume"
             name="resume"
@@ -244,7 +244,7 @@ export function CareersApplicationForm({
         </div>
 
         <div className="grid gap-2">
-          <FieldLabel htmlFor="message">Message (optional)</FieldLabel>
+          <FieldLabel htmlFor="message">Message</FieldLabel>
           <textarea
             id="message"
             name="message"
