@@ -14,16 +14,11 @@ export default function LocationsPage() {
 
   return (
     <main id="main" className="bg-background">
-      <section className="relative overflow-hidden pb-14 pt-12 sm:pb-18 sm:pt-16 lg:pb-20 lg:pt-20">
+      <section className="relative overflow-hidden pb-14 pt-6 sm:pb-18 sm:pt-10 lg:pb-20 lg:pt-12">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
-                <span className="size-1.5 rounded-full bg-brand" aria-hidden />
-                Locations • {site.agent.location}
-              </div>
-
-              <h1 className="mt-7 text-balance font-serif text-[clamp(2.7rem,5.7vw,4.7rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
+              <h1 className="text-balance font-serif text-[clamp(2.7rem,5.7vw,4.7rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
                 Two local offices. One clear way to get covered.
               </h1>
 
