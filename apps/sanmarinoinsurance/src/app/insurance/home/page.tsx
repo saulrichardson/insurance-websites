@@ -360,11 +360,11 @@ export default function HomeInsurancePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/auto" variant="outline" size="md">
+              <ButtonLink href="/coverages/auto" variant="outline" size="md">
                 Auto insurance
               </ButtonLink>
-              <ButtonLink href="/insurance" variant="secondary" size="md">
-                All products
+              <ButtonLink href="/coverages" variant="secondary" size="md">
+                All coverages
               </ButtonLink>
             </div>
           </div>
@@ -373,7 +373,7 @@ export default function HomeInsurancePage() {
             <RelatedCard
               title="Auto insurance"
               body="Choose liability limits and deductibles with confidence—then check bundling opportunities."
-              href="/insurance/auto"
+              href="/coverages/auto"
             />
             <RelatedCard
               title="Policy review"

@@ -318,10 +318,10 @@ export default function RentersInsurancePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/auto" variant="outline" size="md">
+              <ButtonLink href="/coverages/auto" variant="outline" size="md">
                 Auto insurance
               </ButtonLink>
-              <ButtonLink href="/insurance/home" variant="secondary" size="md">
+              <ButtonLink href="/coverages/home" variant="secondary" size="md">
                 Home insurance
               </ButtonLink>
             </div>
@@ -331,12 +331,12 @@ export default function RentersInsurancePage() {
             <RelatedCard
               title="Auto insurance"
               body="Structure liability and deductibles with clarity, and review bundle opportunities."
-              href="/insurance/auto"
+              href="/coverages/auto"
             />
             <RelatedCard
               title="Life insurance"
               body="Build a household protection plan that supports long‑term goals."
-              href="/insurance/life"
+              href="/coverages/life"
             />
           </div>
         </Container>

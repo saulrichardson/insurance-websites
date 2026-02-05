@@ -34,8 +34,8 @@ const situations: Situation[] = [
       "Liability limits that match the bigger household plan",
     ],
     links: [
-      { label: "Home insurance", href: "/insurance/home" },
-      { label: "Umbrella liability", href: "/insurance/umbrella" },
+      { label: "Home insurance", href: "/coverages/home" },
+      { label: "Umbrella liability", href: "/coverages/umbrella" },
     ],
   },
   {
@@ -51,8 +51,8 @@ const situations: Situation[] = [
       "Umbrella conversations for higher liability exposure",
     ],
     links: [
-      { label: "Auto insurance", href: "/insurance/auto" },
-      { label: "Umbrella liability", href: "/insurance/umbrella" },
+      { label: "Auto insurance", href: "/coverages/auto" },
+      { label: "Umbrella liability", href: "/coverages/umbrella" },
     ],
   },
   {
@@ -68,8 +68,8 @@ const situations: Situation[] = [
       "Fast proof-of-insurance for landlords when needed",
     ],
     links: [
-      { label: "Renters insurance", href: "/insurance/renters" },
-      { label: "Auto insurance", href: "/insurance/auto" },
+      { label: "Renters insurance", href: "/coverages/renters" },
+      { label: "Auto insurance", href: "/coverages/auto" },
     ],
   },
   {
@@ -85,8 +85,8 @@ const situations: Situation[] = [
       "A practical next step for investments/retirement alignment",
     ],
     links: [
-      { label: "Life insurance", href: "/insurance/life" },
-      { label: "Investments", href: "/insurance/investments" },
+      { label: "Life insurance", href: "/coverages/life" },
+      { label: "Investments", href: "/coverages/investments" },
     ],
   },
   {
@@ -102,8 +102,8 @@ const situations: Situation[] = [
       "Umbrella/excess layers when higher limits are required",
     ],
     links: [
-      { label: "Business insurance", href: "/insurance/business" },
-      { label: "Umbrella liability", href: "/insurance/umbrella" },
+      { label: "Business insurance", href: "/coverages/business" },
+      { label: "Umbrella liability", href: "/coverages/umbrella" },
     ],
   },
   {
@@ -119,7 +119,7 @@ const situations: Situation[] = [
       "Expectation setting: what’s realistic right now vs. later",
     ],
     links: [
-      { label: "Business insurance", href: "/insurance/business" },
+      { label: "Business insurance", href: "/coverages/business" },
       { label: "Contact details", href: "/contact" },
     ],
   },
@@ -173,10 +173,10 @@ export function SituationExplorer() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/insurance"
+              href="/coverages"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/35 bg-transparent px-5 py-2.5 text-sm font-medium text-accent hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             >
-              View all products
+              View all coverages
               <ArrowRight className="size-4" aria-hidden />
             </Link>
             <a

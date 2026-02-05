@@ -139,8 +139,8 @@ export default function ContactPage() {
                 <ButtonLink href={`tel:${site.agent.phone.e164}`} variant="primary" size="md">
                   Call now
                 </ButtonLink>
-                <ButtonLink href="/insurance" variant="outline" size="md">
-                  Insurance we offer
+                <ButtonLink href="/coverages" variant="outline" size="md">
+                  Coverages we offer
                 </ButtonLink>
               </div>
             </div>

@@ -26,20 +26,20 @@ type NavDropdownSection = {
 
 const navItems: NavLink[] = [
   {
-    href: "/insurance",
-    label: "PRODUCTS",
+    href: "/coverages",
+    label: "COVERAGES",
     dropdown: [
       {
-        title: "Products",
+        title: "Coverages",
         links: [
-          { href: "/insurance/home", label: "Home", description: "Dwelling, belongings, and liability—built around your property." },
-          { href: "/insurance/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
-          { href: "/insurance/renters", label: "Renters", description: "Affordable protection for belongings and personal liability." },
-          { href: "/insurance/umbrella", label: "Umbrella", description: "Extra liability protection above auto and home limits." },
-          { href: "/insurance/life", label: "Life", description: "Income protection and planning—structured, not salesy." },
-          { href: "/insurance/long-term-care", label: "Long‑term care", description: "Plan for extended care needs with clarity and options." },
-          { href: "/insurance/investments", label: "Investments", description: "A practical conversation about long‑term goals and next steps." },
-          { href: "/insurance/business", label: "Business", description: "Contracts, COIs, and specialty-market access when needed." },
+          { href: "/coverages/home", label: "Home", description: "Dwelling, belongings, and liability—built around your property." },
+          { href: "/coverages/auto", label: "Auto", description: "Everyday driving, commuting, and family coverage." },
+          { href: "/coverages/renters", label: "Renters", description: "Affordable protection for belongings and personal liability." },
+          { href: "/coverages/umbrella", label: "Umbrella", description: "Extra liability protection above auto and home limits." },
+          { href: "/coverages/life", label: "Life", description: "Income protection and planning—structured, not salesy." },
+          { href: "/coverages/long-term-care", label: "Long‑term care", description: "Plan for extended care needs with clarity and options." },
+          { href: "/coverages/investments", label: "Investments", description: "A practical conversation about long‑term goals and next steps." },
+          { href: "/coverages/business", label: "Business", description: "Contracts, COIs, and specialty-market access when needed." },
         ],
       },
     ],

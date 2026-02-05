@@ -393,10 +393,10 @@ export default function BusinessInsurancePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/umbrella" variant="outline" size="md">
+              <ButtonLink href="/coverages/umbrella" variant="outline" size="md">
                 Umbrella liability
               </ButtonLink>
-              <ButtonLink href="/insurance/home" variant="secondary" size="md">
+              <ButtonLink href="/coverages/home" variant="secondary" size="md">
                 Home insurance
               </ButtonLink>
             </div>
@@ -406,12 +406,12 @@ export default function BusinessInsurancePage() {
             <RelatedCard
               title="Umbrella liability"
               body="Add an extra layer of liability protection above auto and home—structured and explained clearly."
-              href="/insurance/umbrella"
+              href="/coverages/umbrella"
             />
             <RelatedCard
               title="Auto insurance"
               body="For owners and households: align liability limits and deductibles with the bigger plan."
-              href="/insurance/auto"
+              href="/coverages/auto"
             />
           </div>
         </Container>

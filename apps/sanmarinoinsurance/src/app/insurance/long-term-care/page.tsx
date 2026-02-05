@@ -317,10 +317,10 @@ export default function LongTermCarePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/life" variant="outline" size="md">
+              <ButtonLink href="/coverages/life" variant="outline" size="md">
                 Life insurance
               </ButtonLink>
-              <ButtonLink href="/insurance/investments" variant="secondary" size="md">
+              <ButtonLink href="/coverages/investments" variant="secondary" size="md">
                 Investments
               </ButtonLink>
             </div>
@@ -330,12 +330,12 @@ export default function LongTermCarePage() {
             <RelatedCard
               title="Life insurance"
               body="Protect income and long‑term goals with a structured, no‑pressure approach."
-              href="/insurance/life"
+              href="/coverages/life"
             />
             <RelatedCard
               title="Investments & retirement"
               body="Connect planning to next steps with a calm, practical conversation."
-              href="/insurance/investments"
+              href="/coverages/investments"
             />
           </div>
         </Container>

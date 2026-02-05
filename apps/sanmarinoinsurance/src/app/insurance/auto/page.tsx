@@ -345,21 +345,21 @@ export default function AutoInsurancePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/home" variant="outline" size="md">
+              <ButtonLink href="/coverages/home" variant="outline" size="md">
                 Home insurance
               </ButtonLink>
-              <ButtonLink href="/insurance" variant="secondary" size="md">
-                All products
+              <ButtonLink href="/coverages" variant="secondary" size="md">
+                All coverages
               </ButtonLink>
             </div>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <RelatedCard
-              title="Home insurance"
-              body="Align dwelling coverage with rebuild costs, protect belongings, and review liability options."
-              href="/insurance/home"
-            />
+              <RelatedCard
+                title="Home insurance"
+                body="Align dwelling coverage with rebuild costs, protect belongings, and review liability options."
+                href="/coverages/home"
+              />
             <RelatedCard
               title="Coverage review"
               body="Already insured? We’ll review limits and deductibles and show what changes actually do."

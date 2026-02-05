@@ -17,6 +17,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/insurance",
+        destination: "/coverages",
+        permanent: true,
+      },
+      {
+        source: "/insurance/:path*",
+        destination: "/coverages/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

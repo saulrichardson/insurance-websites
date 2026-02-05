@@ -317,10 +317,10 @@ export default function InvestmentsPage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/life" variant="outline" size="md">
+              <ButtonLink href="/coverages/life" variant="outline" size="md">
                 Life insurance
               </ButtonLink>
-              <ButtonLink href="/insurance/long-term-care" variant="secondary" size="md">
+              <ButtonLink href="/coverages/long-term-care" variant="secondary" size="md">
                 Long‑term care
               </ButtonLink>
             </div>
@@ -330,12 +330,12 @@ export default function InvestmentsPage() {
             <RelatedCard
               title="Life insurance"
               body="Protect the household plan with income-focused coverage conversations."
-              href="/insurance/life"
+              href="/coverages/life"
             />
             <RelatedCard
               title="Long‑term care"
               body="Plan ahead for extended care costs with clarity and options."
-              href="/insurance/long-term-care"
+              href="/coverages/long-term-care"
             />
           </div>
         </Container>

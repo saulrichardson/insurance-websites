@@ -344,10 +344,10 @@ export default function UmbrellaLiabilityPage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <ButtonLink href="/insurance/auto" variant="outline" size="md">
+              <ButtonLink href="/coverages/auto" variant="outline" size="md">
                 Auto insurance
               </ButtonLink>
-              <ButtonLink href="/insurance/home" variant="secondary" size="md">
+              <ButtonLink href="/coverages/home" variant="secondary" size="md">
                 Home insurance
               </ButtonLink>
             </div>
@@ -357,12 +357,12 @@ export default function UmbrellaLiabilityPage() {
             <RelatedCard
               title="Auto insurance"
               body="Align liability limits and deductibles with the household plan."
-              href="/insurance/auto"
+              href="/coverages/auto"
             />
             <RelatedCard
               title="Home insurance"
               body="Structure dwelling, belongings, and liability decisions with a clear rationale."
-              href="/insurance/home"
+              href="/coverages/home"
             />
           </div>
         </Container>

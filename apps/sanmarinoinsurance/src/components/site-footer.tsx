@@ -74,8 +74,8 @@ export function SiteFooter() {
             <div className="text-sm font-semibold text-foreground">Explore</div>
             <ul className="mt-3 space-y-2 text-sm text-muted">
               <li>
-                <Link className="hover:text-foreground" href="/insurance">
-                  Insurance we offer
+                <Link className="hover:text-foreground" href="/coverages">
+                  Coverages
                 </Link>
               </li>
               <li>

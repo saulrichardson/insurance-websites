@@ -75,7 +75,7 @@ export const site = {
     {
       id: "auto",
       name: "Auto",
-      href: "/insurance/auto",
+      href: "/coverages/auto",
       shortDescription:
         "Coverage options for everyday driving, commuting, and new-car peace of mind.",
       highlights: [
@@ -87,7 +87,7 @@ export const site = {
     {
       id: "home",
       name: "Home",
-      href: "/insurance/home",
+      href: "/coverages/home",
       shortDescription:
         "Protection for your home, belongings, and personal liability—built around your property.",
       highlights: [
@@ -97,29 +97,29 @@ export const site = {
       ],
     },
     {
-      id: "condo",
-      name: "Condo",
-      href: "/insurance",
-      shortDescription:
-        "Condo coverage that complements your association’s master policy and protects what’s inside your unit.",
-      highlights: [
-        "Interior improvements + personal property",
-        "Personal liability options",
-        "Flexible deductibles and add-ons",
-      ],
-    },
-    {
       id: "renters",
       name: "Renters",
-      href: "/insurance/renters",
+      href: "/coverages/renters",
       shortDescription:
         "Affordable coverage for your belongings and personal liability—at home and on the go.",
       highlights: ["Personal property options", "Liability options", "Fast setup"],
     },
     {
+      id: "umbrella",
+      name: "Umbrella",
+      href: "/coverages/umbrella",
+      shortDescription:
+        "Extra liability protection that can extend above home and auto limits—designed to help keep one incident from becoming a long-term financial problem.",
+      highlights: [
+        "Higher liability limits above your base policies",
+        "Good fit for higher exposure households",
+        "Coverage review to align limits cleanly",
+      ],
+    },
+    {
       id: "life",
       name: "Life",
-      href: "/insurance/life",
+      href: "/coverages/life",
       shortDescription:
         "Life insurance options that can help your loved ones cover everyday costs and long-term plans.",
       highlights: [
@@ -131,7 +131,7 @@ export const site = {
     {
       id: "long-term-care",
       name: "Long‑term care",
-      href: "/insurance/long-term-care",
+      href: "/coverages/long-term-care",
       shortDescription:
         "Coverage options that can help with the cost of extended care needs—at home, assisted living, or a facility.",
       highlights: [
@@ -141,9 +141,21 @@ export const site = {
       ],
     },
     {
+      id: "investments",
+      name: "Investments",
+      href: "/coverages/investments",
+      shortDescription:
+        "A practical conversation about retirement, long-term goals, and next steps—aligned with your overall protection plan.",
+      highlights: [
+        "Clarify goals and time horizons",
+        "Coordinate with life + long-term planning",
+        "Simple, pressure-free next steps",
+      ],
+    },
+    {
       id: "business",
       name: "Business",
-      href: "/insurance/business",
+      href: "/coverages/business",
       shortDescription:
         "Insurance solutions for small businesses—designed to help protect what you’ve worked to build.",
       highlights: [

@@ -105,8 +105,8 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/insurance" variant="primary" size="sm">
-                View products
+              <ButtonLink href="/coverages" variant="primary" size="sm">
+                View coverages
               </ButtonLink>
               <ButtonLink href={site.agent.links.allstateProfile} variant="outline" size="sm">
                 Allstate profile

@@ -46,7 +46,7 @@ export default function Home() {
                 <ButtonLink href="#quote" variant="primary" size="md">
                   Get a quote
                 </ButtonLink>
-                <ButtonLink href="/insurance" variant="outline" size="md">
+                <ButtonLink href="/coverages" variant="outline" size="md">
                   Browse products
                 </ButtonLink>
                 <a
@@ -143,7 +143,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/insurance" variant="outline" size="md">
+              <ButtonLink href="/coverages" variant="outline" size="md">
                 Products overview
               </ButtonLink>
               <ButtonLink href="#quote" variant="primary" size="md">
@@ -156,49 +156,49 @@ export default function Home() {
             <LandingProductCard
               title="Home"
               description="Dwelling, belongings, and liability—built around your property."
-              href="/insurance/home"
+              href="/coverages/home"
               illustration={<HomeIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Auto"
               description="Everyday driving, commuting, and family coverage."
-              href="/insurance/auto"
+              href="/coverages/auto"
               illustration={<AutoIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Renters"
               description="Affordable protection for belongings and personal liability."
-              href="/insurance/renters"
+              href="/coverages/renters"
               illustration={<RentersIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Umbrella"
               description="Extra liability protection above auto and home limits."
-              href="/insurance/umbrella"
+              href="/coverages/umbrella"
               illustration={<UmbrellaIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Life"
               description="Income protection and planning—structured, not salesy."
-              href="/insurance/life"
+              href="/coverages/life"
               illustration={<LifeIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Long-term care"
               description="Plan for extended care needs with clarity and options."
-              href="/insurance/long-term-care"
+              href="/coverages/long-term-care"
               illustration={<LongTermCareIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Investments"
               description="A practical conversation about long-term goals and next steps."
-              href="/insurance/investments"
+              href="/coverages/investments"
               illustration={<InvestmentsIllustration className="h-full w-full text-accent" />}
             />
             <LandingProductCard
               title="Business"
               description="Contracts, COIs, and specialty-market access when needed."
-              href="/insurance/business"
+              href="/coverages/business"
               illustration={<BusinessIllustration className="h-full w-full text-accent" />}
             />
           </div>
