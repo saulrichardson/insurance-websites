@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { CareerRole } from "@/lib/careers";
 
 type ApplicationStatus = "idle" | "submitting" | "success" | "error";
@@ -25,6 +25,14 @@ function inferResumeContentType(file: File) {
 
 function isAllowedResumeContentType(contentType: string) {
   return (ACCEPTED_RESUME_TYPES as readonly string[]).includes(contentType.trim().toLowerCase());
+}
+
+function formatBytes(bytes: number) {
+  if (bytes <= 0) return "0 B";
+  const units = ["B", "KB", "MB", "GB"] as const;
+  const exponent = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+  const value = bytes / 1024 ** exponent;
+  return `${value.toFixed(exponent === 0 ? 0 : 1)} ${units[exponent]}`;
 }
 
 function FieldLabel({ htmlFor, children }: { htmlFor: string; children: string }) {
@@ -56,6 +64,8 @@ export function CareersApplicationForm({
   const [status, setStatus] = useState<ApplicationStatus>("idle");
   const [message, setMessage] = useState<string>("");
   const [startedAt] = useState(() => Date.now().toString());
+  const resumeInputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedResume, setSelectedResume] = useState<{ name: string; size: number } | null>(null);
 
   const lockedRole = lockedRoleId ? roles.find((role) => role.id === lockedRoleId) : null;
 
@@ -148,6 +158,8 @@ export function CareersApplicationForm({
 
       setStatus("success");
       form.reset();
+      setSelectedResume(null);
+      if (resumeInputRef.current) resumeInputRef.current.value = "";
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Unable to submit form.");
@@ -227,10 +239,49 @@ export function CareersApplicationForm({
 
         <div className="grid gap-2">
           <FieldLabel htmlFor="resume">Resume</FieldLabel>
+          <div className="flex flex-col gap-3 rounded-2xl border border-accent/25 bg-background p-3 shadow-sm shadow-black/5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <div className="truncate text-sm font-medium text-foreground">
+                {selectedResume ? selectedResume.name : "No file selected"}
+              </div>
+              <div className="mt-1 text-xs text-foreground/70">
+                {selectedResume
+                  ? `${formatBytes(selectedResume.size)} • PDF/DOC/DOCX`
+                  : `PDF/DOC/DOCX • Max ${MAX_RESUME_MB}MB`}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <label
+                htmlFor="resume"
+                className="inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-accent bg-accent px-5 text-sm font-medium text-accent-foreground shadow-sm shadow-black/10 transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+              >
+                Choose file
+              </label>
+              {selectedResume ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedResume(null);
+                    if (resumeInputRef.current) resumeInputRef.current.value = "";
+                  }}
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-accent/35 bg-transparent px-5 text-sm font-medium text-accent shadow-sm shadow-black/5 transition-colors hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+                >
+                  Remove
+                </button>
+              ) : null}
+            </div>
+          </div>
+
           <input
+            ref={resumeInputRef}
             id="resume"
             name="resume"
             type="file"
+            onChange={(event) => {
+              const file = event.currentTarget.files?.[0] ?? null;
+              setSelectedResume(file ? { name: file.name, size: file.size } : null);
+            }}
             accept={[
               ".pdf",
               ".doc",
@@ -239,7 +290,7 @@ export function CareersApplicationForm({
               "application/msword",
               "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             ].join(",")}
-            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="sr-only"
           />
           <FieldHint>
             Upload a PDF or Word document. Max {MAX_RESUME_MB}MB.
