@@ -21,16 +21,11 @@ import { site } from "@/lib/site";
 export default function Home() {
   return (
     <main id="main" className="bg-background">
-      <section className="relative overflow-hidden pb-16 pt-12 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      <section className="relative overflow-hidden pb-14 pt-6 sm:pb-18 sm:pt-10 lg:pb-22 lg:pt-12">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
-                <span className="size-1.5 rounded-full bg-brand" aria-hidden />
-                San Marino Insurance Agency • {site.agent.location}
-              </div>
-
-              <h1 className="mt-7 text-balance font-serif text-[clamp(2.8rem,5.6vw,4.6rem)] leading-[0.95] tracking-tight text-foreground">
+              <h1 className="text-balance font-serif text-[clamp(2.8rem,5.6vw,4.6rem)] leading-[0.95] tracking-tight text-foreground">
                 Insurance that&apos;s{" "}
                 <span className="text-brand">clear</span>.{" "}
                 <span className="text-accent-2">responsive</span>.{" "}
