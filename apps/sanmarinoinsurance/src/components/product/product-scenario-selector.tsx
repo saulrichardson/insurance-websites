@@ -71,7 +71,7 @@ export function ProductScenarioSelector({
                       className={[
                         "rounded-full border px-4 py-2 text-sm font-medium shadow-sm shadow-black/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60",
                         isSelected
-                          ? "border-brand bg-brand text-background"
+                          ? "border-accent bg-accent text-accent-foreground"
                           : "border-accent/15 bg-surface/70 text-accent hover:bg-surface",
                       ].join(" ")}
                     >

@@ -33,7 +33,7 @@ export default function Home() {
               <h1 className="mt-7 text-balance font-serif text-[clamp(2.8rem,5.6vw,4.6rem)] leading-[0.95] tracking-tight text-foreground">
                 Insurance that&apos;s{" "}
                 <span className="text-brand">clear</span>.{" "}
-                <span className="text-brand">responsive</span>.{" "}
+                <span className="text-accent-2">responsive</span>.{" "}
                 <span className="text-brand">built around your life</span>.
               </h1>
 

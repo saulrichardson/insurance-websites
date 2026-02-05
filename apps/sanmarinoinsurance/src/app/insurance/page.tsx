@@ -29,11 +29,14 @@ type ProductCardProps = {
   illustration: ReactNode;
 };
 
+type ProductGroupTone = "accent" | "brand" | "accent2";
+
 const productGroups = [
   {
     id: "personal",
     eyebrow: "Personal",
     title: "Personal coverage",
+    tone: "accent2",
     description: `Start with the household essentials—then strengthen liability so one accident doesn’t become a long-term financial problem.`,
     products: [
       {
@@ -66,6 +69,7 @@ const productGroups = [
     id: "planning",
     eyebrow: "Life + Planning",
     title: "Life and planning",
+    tone: "brand",
     description:
       "Long-term protection isn’t about buying “everything.” It’s about structuring the right plan around income, family responsibilities, and time horizons.",
     products: [
@@ -93,6 +97,7 @@ const productGroups = [
     id: "business",
     eyebrow: "Business",
     title: "Business and specialty markets",
+    tone: "accent",
     description:
       "If you need COIs, contract-ready limits, or your risk doesn’t fit standard programs, we can help structure coverage—and widen the search through specialty markets.",
     products: [
@@ -165,7 +170,10 @@ export default function InsurancePage() {
                 <a
                   key={group.id}
                   href={`#${group.id}`}
-                  className="inline-flex items-center rounded-full border border-accent/15 bg-background px-3 py-1.5 text-xs font-medium text-accent shadow-sm shadow-black/5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+                  className={[
+                    "inline-flex items-center rounded-full border bg-background px-3 py-1.5 text-xs font-medium shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60",
+                    tonePillClasses(group.tone),
+                  ].join(" ")}
                 >
                   {group.eyebrow}
                 </a>
@@ -196,7 +204,10 @@ export default function InsurancePage() {
                 <a
                   key={group.id}
                   href={`#${group.id}`}
-                  className="inline-flex items-center rounded-full border border-accent/15 bg-background px-4 py-2 text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+                  className={[
+                    "inline-flex items-center rounded-full border bg-background px-4 py-2 text-sm font-medium shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60",
+                    tonePillClasses(group.tone),
+                  ].join(" ")}
                 >
                   {group.title}
                 </a>
@@ -383,4 +394,10 @@ function DirectoryProductCard({ title, description, href, illustration }: Produc
       </div>
     </Link>
   );
+}
+
+function tonePillClasses(tone: ProductGroupTone) {
+  if (tone === "brand") return "border-brand/25 text-brand hover:bg-brand/10";
+  if (tone === "accent2") return "border-accent-2/25 text-accent-2 hover:bg-accent-2/10";
+  return "border-accent/25 text-accent hover:bg-accent/5";
 }
