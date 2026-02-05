@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import type { ReactNode } from "react";
@@ -325,23 +324,26 @@ export default function Home() {
 
 type Carrier = {
   name: string;
-  assetPath: string;
-  width: number;
-  height: number;
 };
 
 const carriers: Carrier[] = [
-  { name: "Allstate", assetPath: "/carriers/allstate.svg", width: 124, height: 27 },
-  { name: "Bamboo", assetPath: "/carriers/bamboo.png", width: 212, height: 39 },
-  { name: "Chubb", assetPath: "/carriers/chubb.svg", width: 315, height: 62 },
-  { name: "RT Specialty", assetPath: "/carriers/rt-specialty.svg", width: 405, height: 155 },
-  { name: "Bristol West", assetPath: "/carriers/bristol-west.svg", width: 542, height: 187 },
-  { name: "Burns & Wilcox", assetPath: "/carriers/burns-wilcox.svg", width: 140, height: 57 },
-  { name: "National General", assetPath: "/carriers/national-general.png", width: 1544, height: 183 },
-  { name: "Pacific Specialty", assetPath: "/carriers/pacific-specialty.svg", width: 272, height: 48 },
-  { name: "Stillwater", assetPath: "/carriers/stillwater.svg", width: 441, height: 135 },
-  { name: "Aegis", assetPath: "/carriers/aegis.svg", width: 238, height: 110 },
+  { name: "Allstate" },
+  { name: "Bamboo" },
+  { name: "Chubb" },
+  { name: "RT Specialty" },
+  { name: "Bristol West" },
+  { name: "Burns & Wilcox" },
+  { name: "National General" },
+  { name: "Pacific Specialty" },
+  { name: "Stillwater" },
+  { name: "Aegis" },
 ];
+
+const carrierTextTones = [
+  "from-accent via-accent to-brand",
+  "from-accent-2 via-accent to-accent-2",
+  "from-brand via-accent to-brand",
+] as const;
 
 function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
   const tickerCarriers = [...carriers, ...carriers];
@@ -356,17 +358,11 @@ function CarrierTickerList({ ariaHidden = false }: { ariaHidden?: boolean }) {
           key={`${carrier.name}-${idx}`}
           className="flex h-12 w-[220px] items-center justify-center sm:w-[240px] md:w-[260px]"
         >
-          <Image
-            src={carrier.assetPath}
-            alt={ariaHidden ? "" : carrier.name}
-            width={carrier.width}
-            height={carrier.height}
-            sizes="260px"
-            unoptimized={carrier.assetPath.endsWith(".svg")}
-            className="h-7 w-auto max-w-[200px] select-none object-contain opacity-100 sm:h-8 sm:max-w-[220px]"
-            priority={!ariaHidden && idx < carriers.length}
-            loading="eager"
-          />
+          <span
+            className={`inline-flex max-w-[200px] items-center rounded-full border border-accent/15 bg-surface/90 px-4 py-1.5 text-center font-serif text-sm font-semibold tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r sm:max-w-[220px] sm:text-base ${carrierTextTones[idx % carrierTextTones.length]}`}
+          >
+            {carrier.name}
+          </span>
         </li>
       ))}
     </ul>
