@@ -251,7 +251,6 @@ function HeaderNavDropdown({
         className="inline-flex items-center gap-2 font-sans text-sm font-medium text-accent hover:text-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
       >
         {label}
-        <CaretDown className="transition-transform duration-150 group-hover:rotate-180 group-focus-within:rotate-180" />
       </Link>
 
       <div
@@ -293,16 +292,6 @@ function HeaderNavDropdown({
         </nav>
       </div>
     </div>
-  );
-}
-
-function CaretDown({ className = "" }: { className?: string }) {
-  return (
-    <span className={["inline-flex size-5 items-center justify-center", className].join(" ")} aria-hidden>
-      <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1.5L7 7.5L13 1.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="square" />
-      </svg>
-    </span>
   );
 }
 
