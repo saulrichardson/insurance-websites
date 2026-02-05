@@ -211,8 +211,8 @@ export default function Home() {
 
       <section id="carriers" className="bg-surface">
         <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
-            <div>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+            <div className="min-w-0">
               <div className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/70">
                 Market <span className="text-brand">access</span>
               </div>
@@ -232,7 +232,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-accent/15 bg-background p-6 shadow-sm shadow-black/5">
+            <div className="min-w-0 rounded-3xl border border-accent/15 bg-background p-6 shadow-sm shadow-black/5">
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <div className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/70">
@@ -247,7 +247,7 @@ export default function Home() {
                 </ButtonLink>
               </div>
 
-              <div className="mt-7 relative overflow-hidden">
+              <div className="mt-7 relative min-w-0 overflow-hidden">
                 <div className="flex w-max will-change-transform animate-[ticker_40s_linear_infinite] items-center motion-reduce:animate-none">
                   <CarrierTickerList />
                   <CarrierTickerList ariaHidden />
