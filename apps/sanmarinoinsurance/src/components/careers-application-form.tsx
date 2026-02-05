@@ -155,8 +155,11 @@ export function CareersApplicationForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="border border-foreground/20 bg-background/35 p-6 sm:p-7">
-      <div className="text-sm font-semibold text-foreground">
+    <form
+      onSubmit={onSubmit}
+      className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7"
+    >
+      <div className="text-sm font-semibold text-accent">
         {lockedRole ? `Apply for ${lockedRole.title}` : "Apply"}
       </div>
       <div className="mt-2 text-sm text-foreground/75">
@@ -173,7 +176,7 @@ export function CareersApplicationForm({
               id="roleId"
               name="roleId"
               defaultValue="general"
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+              className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             >
               <option value="general">General interest / not sure yet</option>
               {roles.map((role) => (
@@ -193,7 +196,7 @@ export function CareersApplicationForm({
             name="name"
             required
             autoComplete="name"
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
           />
         </div>
 
@@ -206,7 +209,7 @@ export function CareersApplicationForm({
               type="email"
               required
               autoComplete="email"
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+              className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             />
           </div>
 
@@ -217,7 +220,7 @@ export function CareersApplicationForm({
               name="phone"
               inputMode="tel"
               autoComplete="tel"
-              className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+              className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
             />
           </div>
         </div>
@@ -236,7 +239,7 @@ export function CareersApplicationForm({
               "application/msword",
               "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             ].join(",")}
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
           />
           <FieldHint>
             Upload a PDF or Word document. Max {MAX_RESUME_MB}MB.
@@ -249,7 +252,7 @@ export function CareersApplicationForm({
             id="message"
             name="message"
             rows={4}
-            className="w-full rounded-none border border-foreground/40 bg-background/80 px-4 py-3 text-sm leading-7 text-foreground placeholder:text-foreground/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
+            className="w-full rounded-xl border border-accent/25 bg-surface px-4 py-3 text-sm leading-7 text-foreground placeholder:text-foreground/40 shadow-sm shadow-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
           />
           <FieldHint>Tell us what role you’re interested in and what experience you bring.</FieldHint>
         </div>
@@ -261,7 +264,7 @@ export function CareersApplicationForm({
             name="company"
             tabIndex={-1}
             autoComplete="off"
-            className="h-11 w-full rounded-none border border-foreground/40 bg-background/80 px-4 text-sm text-foreground"
+            className="h-11 w-full rounded-xl border border-accent/25 bg-surface px-4 text-sm text-foreground"
           />
         </div>
 
@@ -271,7 +274,7 @@ export function CareersApplicationForm({
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-6 text-xs font-medium uppercase tracking-[0.18em] text-white shadow-sm shadow-black/15 transition-colors hover:bg-foreground/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 disabled:pointer-events-none disabled:opacity-70"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent bg-accent px-6 text-sm font-medium text-accent-foreground shadow-sm shadow-black/10 transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 disabled:pointer-events-none disabled:opacity-70"
         >
           {status === "submitting" ? "Sending..." : "Submit application"}
         </button>
@@ -280,9 +283,9 @@ export function CareersApplicationForm({
           <div
             role="status"
             className={[
-              "border px-4 py-3 text-sm",
+              "rounded-2xl border px-4 py-3 text-sm shadow-sm shadow-black/5",
               status === "success"
-                ? "border-foreground/20 bg-surface/60 text-foreground"
+                ? "border-accent/15 bg-surface text-foreground"
                 : "border-red-500/40 bg-red-500/10 text-foreground",
             ].join(" ")}
           >

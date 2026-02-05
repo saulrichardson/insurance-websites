@@ -43,7 +43,7 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
         <div className="mx-auto max-w-[920px]">
           <Link
             href="/careers/jobs"
-            className="inline-flex items-center gap-2 text-sm text-foreground/75 underline underline-offset-4 hover:text-foreground"
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
           >
             <ChevronLeft className="size-4" aria-hidden />
             Back to jobs
@@ -51,7 +51,8 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
 
           <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 border border-foreground/25 bg-surface/50 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">
+              <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
+                <span className="size-1.5 rounded-full bg-brand" aria-hidden />
                 Open role
               </div>
 
@@ -59,15 +60,17 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
                 {role.title}
               </h1>
 
-              <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-foreground/75">
-                <span className="inline-flex items-center gap-2">
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-background px-3 py-1 text-xs font-medium text-accent shadow-sm shadow-black/5">
                   <MapPin className="size-4" aria-hidden />
                   {role.locations.join(" | ")}
                 </span>
-                <span className="text-foreground/40">•</span>
-                <span>{role.team}</span>
-                <span className="text-foreground/40">•</span>
-                <span>{role.type}</span>
+                <span className="inline-flex items-center rounded-full border border-accent/15 bg-background px-3 py-1 text-xs font-medium text-accent shadow-sm shadow-black/5">
+                  {role.team}
+                </span>
+                <span className="inline-flex items-center rounded-full border border-accent/15 bg-background px-3 py-1 text-xs font-medium text-accent shadow-sm shadow-black/5">
+                  {role.type}
+                </span>
               </div>
             </div>
 
@@ -79,7 +82,7 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
           </div>
 
           <div className="mt-12 space-y-10">
-            <section className="border border-foreground/20 bg-surface/50 p-6 sm:p-7">
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">About our agency</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/75">
                 <p>
@@ -94,7 +97,7 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
               </div>
             </section>
 
-            <section>
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">About the role</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/75">
                 {role.about.map((paragraph) => (
@@ -103,22 +106,28 @@ export default async function CareersJobPage({ params }: { params: Params | Prom
               </div>
             </section>
 
-            <section>
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">Responsibilities</h2>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-foreground/75">
+              <ul className="mt-4 space-y-2 text-sm leading-7 text-foreground/75">
                 {role.focus.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             </section>
 
-            <section>
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">
                 You may be a good fit if you:
               </h2>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-foreground/75">
+              <ul className="mt-4 space-y-2 text-sm leading-7 text-foreground/75">
                 {role.goodFor.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             </section>

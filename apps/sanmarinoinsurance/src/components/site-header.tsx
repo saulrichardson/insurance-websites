@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
+import { careerRoles } from "@/lib/careers";
 
 type NavLink = {
   href: string;
@@ -50,7 +51,7 @@ const navItems: NavLink[] = [
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
-  const headerOffset = (showAnnouncement ? 40 : 0) + 96;
+  const headerOffset = (showAnnouncement ? 44 : 0) + 96;
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -70,17 +71,24 @@ export function SiteHeader() {
         <div
           role="region"
           aria-label="Announcement"
-          className="bg-black text-white/75"
+          className="bg-accent text-accent-foreground"
         >
-          <Container className="flex h-10 items-center justify-between gap-4 font-sans text-[12px] tracking-[0.04em] sm:text-[13px]">
-            <div className="min-w-0 truncate">
-              Come check out our newly renovated office
-            </div>
+          <Container className="flex h-11 items-center justify-between gap-4 font-sans text-sm">
+            <Link
+              href="/careers/jobs"
+              className="inline-flex min-w-0 items-center gap-2 truncate text-accent-foreground/90 hover:text-accent-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground/70"
+            >
+              <span className="size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+              <span className="truncate">
+                We’re hiring — {careerRoles.length} open {careerRoles.length === 1 ? "role" : "roles"}
+              </span>
+              <ArrowRight className="size-4 shrink-0" aria-hidden />
+            </Link>
             <button
               type="button"
               onClick={() => setShowAnnouncement(false)}
               aria-label="Close announcement"
-              className="inline-flex size-10 items-center justify-center text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70"
+              className="inline-flex size-10 items-center justify-center text-accent-foreground/80 hover:text-accent-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground/70"
             >
               <X className="size-5" aria-hidden />
             </button>

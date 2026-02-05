@@ -1,6 +1,7 @@
 import { Briefcase, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
+import { careerRoles } from "@/lib/careers";
 import { getFullAddressLine, site } from "@/lib/site";
 
 export const metadata = {
@@ -13,13 +14,40 @@ export default function CareersPage() {
     <main id="main" className="bg-background">
       <Container className="py-16 sm:py-20">
         <div className="mx-auto max-w-[920px]">
-          <div className="inline-flex items-center gap-2 border border-foreground/25 bg-surface/50 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">
+          <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
+            <span className="size-1.5 rounded-full bg-brand" aria-hidden />
             Careers • {site.agent.location}
           </div>
 
           <h1 className="mt-7 text-balance font-serif text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
             Join the team
           </h1>
+
+          <section className="mt-7 rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5 sm:p-7">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <div className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/70">
+                  Open roles
+                </div>
+                <div className="mt-2 text-lg font-semibold tracking-tight text-accent">
+                  {careerRoles.length} open {careerRoles.length === 1 ? "role" : "roles"}
+                </div>
+                <div className="mt-2 text-sm text-foreground/75">
+                  Explore roles at our San Marino office. We care about clarity, follow‑through, and calm service.
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <ButtonLink href="/careers/jobs" variant="primary" size="md" className="gap-2">
+                  <Briefcase className="size-4" aria-hidden />
+                  View open roles
+                </ButtonLink>
+                <ButtonLink href="/about" variant="outline" size="md">
+                  About the agency
+                </ButtonLink>
+              </div>
+            </div>
+          </section>
 
           <div className="mt-6 space-y-5 text-pretty text-lg leading-8 text-foreground/75">
             <p>
@@ -33,19 +61,8 @@ export default function CareersPage() {
             </p>
           </div>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/careers/jobs" variant="primary" size="md" className="gap-2">
-              <Briefcase className="size-4" aria-hidden />
-              View open roles
-            </ButtonLink>
-            <ButtonLink href="/contact" variant="secondary" size="md" className="gap-2">
-              <Briefcase className="size-4" aria-hidden />
-              Contact the office
-            </ButtonLink>
-          </div>
-
           <div className="mt-12 grid gap-4 sm:grid-cols-2">
-            <div className="border border-foreground/20 bg-surface/60 p-6 sm:p-7">
+            <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5 sm:p-7">
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">Where we work</div>
               <div className="mt-3 text-sm leading-7 text-foreground/75">{getFullAddressLine()}</div>
               <div className="mt-5">
@@ -56,19 +73,31 @@ export default function CareersPage() {
               </div>
             </div>
 
-            <div className="border border-foreground/20 bg-surface/60 p-6 sm:p-7">
+            <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5 sm:p-7">
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">What we value</div>
               <ul className="mt-4 space-y-2 text-sm leading-7 text-foreground/75">
-                <li>Clear, honest coverage conversations</li>
-                <li>Fast follow‑up and reliable service</li>
-                <li>Respect for the customer’s time and budget</li>
-                <li>Consistency — not pressure</li>
+                <li className="flex gap-3">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                  <span>Clear, honest coverage conversations</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                  <span>Fast follow‑up and reliable service</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                  <span>Respect for the customer’s time and budget</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                  <span>Consistency — not pressure</span>
+                </li>
               </ul>
             </div>
           </div>
 
           <div className="mt-12 space-y-10">
-            <section className="border border-foreground/20 bg-background/30 p-6 sm:p-7">
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">What we do</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/75">
                 <p>
@@ -83,7 +112,7 @@ export default function CareersPage() {
               </div>
             </section>
 
-            <section className="border border-foreground/20 bg-background/30 p-6 sm:p-7">
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">How we work</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/75">
                 <p>
@@ -97,7 +126,7 @@ export default function CareersPage() {
               </div>
             </section>
 
-            <section className="border border-foreground/20 bg-background/30 p-6 sm:p-7">
+            <section className="rounded-3xl border border-accent/15 bg-surface/70 p-6 shadow-sm shadow-black/5 sm:p-7">
               <h2 className="font-serif text-2xl tracking-[-0.03em] text-foreground">Who thrives here</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/75">
                 <p>
