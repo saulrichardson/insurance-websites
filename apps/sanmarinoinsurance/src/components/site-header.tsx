@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
 
@@ -115,12 +115,16 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <HeaderButton href="/about" variant="outline">
-            ABOUT
-          </HeaderButton>
-          <HeaderButton href="/contact" variant="solid">
-            CONTACT
+        <div className="hidden items-center gap-4 md:flex">
+          <a
+            href={`tel:${site.agent.phone.e164}`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+          >
+            <Phone className="size-4" aria-hidden />
+            {site.agent.phone.display}
+          </a>
+          <HeaderButton href="/#quote" variant="solid">
+            Get Quoted
           </HeaderButton>
         </div>
 
@@ -170,12 +174,17 @@ export function SiteHeader() {
               ))}
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2">
-              <HeaderButton href="/about" variant="outline" onClick={() => setIsOpen(false)}>
-                ABOUT
+              <HeaderButton href="/#quote" variant="solid" onClick={() => setIsOpen(false)}>
+                Get Quoted
               </HeaderButton>
-              <HeaderButton href="/contact" variant="solid" onClick={() => setIsOpen(false)}>
-                CONTACT
-              </HeaderButton>
+              <a
+                href={`tel:${site.agent.phone.e164}`}
+                onClick={() => setIsOpen(false)}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/35 bg-surface/60 px-5 font-sans text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
+              >
+                <Phone className="size-4" aria-hidden />
+                Call
+              </a>
             </div>
           </Container>
         </div>

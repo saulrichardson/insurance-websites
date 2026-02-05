@@ -15,7 +15,8 @@ export default function AboutPage() {
       <Container className="py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
-            <div className="inline-flex items-center gap-2 border border-foreground/25 bg-surface/50 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-surface/70 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-black/5">
+              <span className="size-1.5 rounded-full bg-brand" aria-hidden />
               {site.brand.legalLine}
             </div>
 
@@ -50,8 +51,8 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <div className="border border-foreground/20 bg-surface/60 p-5">
-                <div className="text-sm font-semibold text-foreground">Office address</div>
+              <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5">
+                <div className="text-sm font-semibold text-accent">Office address</div>
                 <div className="mt-2 text-sm text-foreground/75">{getFullAddressLine()}</div>
                 <div className="mt-4">
                   <ButtonLink href={site.agent.links.mapCid} variant="outline" size="sm" className="gap-2">
@@ -61,8 +62,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="border border-foreground/20 bg-surface/60 p-5">
-                <div className="text-sm font-semibold text-foreground">Languages</div>
+              <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5">
+                <div className="text-sm font-semibold text-accent">Languages</div>
                 <div className="mt-2 text-sm text-foreground/75">{site.agent.languages.join(", ")}</div>
                 <div className="mt-4 text-xs text-foreground/70">
                   We can support multi‑language conversations when reviewing coverage options.
@@ -71,13 +72,13 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="border border-foreground/20 bg-surface/60 p-6 sm:p-7">
+          <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-lg shadow-black/10 sm:p-7">
             <div className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
               {site.agent.name}
             </div>
             <div className="mt-2 text-sm text-foreground/75">{site.agent.location}</div>
 
-            <div className="mt-6 overflow-hidden border border-foreground/20 bg-background/35">
+            <div className="mt-6 overflow-hidden rounded-2xl border border-accent/10 bg-background">
               <Image
                 src={site.agent.images.portrait}
                 alt={`Photo of ${site.agent.name}`}
@@ -89,13 +90,13 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="border border-foreground/20 bg-background/30 p-4">
+              <div className="rounded-2xl border border-accent/10 bg-background p-4">
                 <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
                   Phone
                 </div>
                 <div className="mt-2 text-sm text-foreground/75">{site.agent.phone.display}</div>
               </div>
-              <div className="border border-foreground/20 bg-background/30 p-4">
+              <div className="rounded-2xl border border-accent/10 bg-background p-4">
                 <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
                   Address
                 </div>
@@ -114,7 +115,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <section className="mt-16 border-t border-foreground/20 pt-12">
+        <section className="mt-16 border-t border-accent/15 pt-12">
           <div className="max-w-[62ch]">
             <h2 className="font-serif text-[clamp(1.75rem,3.2vw,2.5rem)] leading-[0.95] tracking-[-0.03em] text-foreground">
               Meet the team
@@ -127,9 +128,9 @@ export default function AboutPage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member) => (
-              <article key={member.name} className="border border-foreground/20 bg-surface/60 p-6">
+              <article key={member.name} className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5">
                 <div className="flex items-start gap-4">
-                  <div className="grid size-12 shrink-0 place-items-center border border-foreground/25 bg-background/35 font-serif text-lg tracking-[-0.02em] text-foreground">
+                  <div className="grid size-12 shrink-0 place-items-center rounded-2xl border border-accent/10 bg-background font-serif text-lg tracking-[-0.02em] text-accent">
                     {getInitials(member.name)}
                   </div>
                   <div>
@@ -150,7 +151,7 @@ export default function AboutPage() {
                   {member.focus.map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center border border-foreground/25 bg-background/35 px-3 py-1 text-[12px] font-medium uppercase tracking-[0.18em] text-foreground/80"
+                      className="inline-flex items-center rounded-full border border-accent/15 bg-background px-3 py-1 text-[12px] font-medium text-accent shadow-sm shadow-black/5"
                     >
                       {item}
                     </span>
