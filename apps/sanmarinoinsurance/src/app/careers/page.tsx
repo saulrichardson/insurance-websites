@@ -2,7 +2,7 @@ import { Briefcase, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { careerRoles } from "@/lib/careers";
-import { getFullAddressLine, site } from "@/lib/site";
+import { getFullAddressLine, getOffice, site } from "@/lib/site";
 
 export const metadata = {
   title: "Careers",
@@ -10,6 +10,9 @@ export const metadata = {
 };
 
 export default function CareersPage() {
+  const sanMarino = getOffice("san-marino");
+  const laPalma = getOffice("la-palma");
+
   return (
     <main id="main" className="bg-background">
       <Container className="py-16 sm:py-20">
@@ -51,9 +54,9 @@ export default function CareersPage() {
 
           <div className="mt-6 space-y-5 text-pretty text-lg leading-8 text-foreground/75">
             <p>
-              We’re a service-first insurance agency in San Marino. Our work is simple to explain but meaningful in
-              practice: help people protect what they’ve built, understand their options, and feel supported when life
-              changes.
+              We’re a service-first insurance agency with offices in San Marino and La Palma. Our work is simple to
+              explain but meaningful in practice: help people protect what they’ve built, understand their options,
+              and feel supported when life changes.
             </p>
             <p>
               That means we care about the details — the right limits, the right deductibles, clear follow‑ups, and a
@@ -64,11 +67,24 @@ export default function CareersPage() {
           <div className="mt-12 grid gap-4 sm:grid-cols-2">
             <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5 sm:p-7">
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">Where we work</div>
-              <div className="mt-3 text-sm leading-7 text-foreground/75">{getFullAddressLine()}</div>
-              <div className="mt-5">
-                <ButtonLink href={site.agent.links.mapCid} variant="outline" size="sm" className="gap-2">
+              <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/75">
+                <div>
+                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+                    {sanMarino.location}
+                  </div>
+                  <div className="mt-2">{getFullAddressLine("san-marino")}</div>
+                </div>
+                <div>
+                  <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+                    {laPalma.location}
+                  </div>
+                  <div className="mt-2">{getFullAddressLine("la-palma")}</div>
+                </div>
+              </div>
+              <div className="mt-6">
+                <ButtonLink href="/locations" variant="outline" size="sm" className="gap-2">
                   <MapPin className="size-4" aria-hidden />
-                  Directions
+                  View locations
                 </ButtonLink>
               </div>
             </div>

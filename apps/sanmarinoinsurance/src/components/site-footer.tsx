@@ -1,29 +1,11 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { getFullAddressLine, site } from "@/lib/site";
-
-function HoursList() {
-  return (
-    <ul className="mt-3 space-y-2 text-sm text-muted">
-      {site.agent.hours.map((h) => (
-        <li key={h.day} className="flex items-start justify-between gap-4">
-          <span className="min-w-10 text-foreground/80">{h.day}</span>
-          {"note" in h ? (
-            <span className="text-right">{h.note}</span>
-          ) : (
-            <span className="text-right">
-              {h.open} – {h.close}
-            </span>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { getFullAddressLine, getOffice, site } from "@/lib/site";
 
 export function SiteFooter() {
-  const addressLine = getFullAddressLine();
   const year = new Date().getFullYear();
+  const sanMarino = getOffice("san-marino");
+  const laPalma = getOffice("la-palma");
 
   return (
     <footer className="border-t border-foreground/20 bg-background">
@@ -37,7 +19,7 @@ export function SiteFooter() {
 
             <div className="mt-6 space-y-2 text-sm text-muted">
               <div>
-                <span className="text-foreground/80">Call:</span>{" "}
+                <span className="text-foreground/80">Main line:</span>{" "}
                 <a className="hover:text-foreground" href={`tel:${site.agent.phone.e164}`}>
                   {site.agent.phone.display}
                 </a>
@@ -46,24 +28,66 @@ export function SiteFooter() {
                 <span className="text-foreground/80">Fax:</span>{" "}
                 <span>{site.agent.fax.display}</span>
               </div>
-              <div>
-                <span className="text-foreground/80">Address:</span>{" "}
-                <a
-                  className="hover:text-foreground"
-                  href={site.agent.links.mapCid}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {addressLine}
-                </a>
-              </div>
+            </div>
+
+            <div className="mt-8 text-sm font-semibold text-foreground">
+              Languages
+            </div>
+            <div className="mt-3 text-sm text-muted">
+              {site.agent.languages.join(", ")}
             </div>
           </div>
 
           <div>
-            <div className="text-sm font-semibold text-foreground">Office hours</div>
-            <HoursList />
-            <div className="mt-4 space-y-1 text-sm text-muted">
+            <div className="text-sm font-semibold text-foreground">Offices</div>
+
+            <div className="mt-5 space-y-6 text-sm text-muted">
+              <div>
+                <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+                  {sanMarino.location}
+                </div>
+                <div className="mt-2">{getFullAddressLine("san-marino")}</div>
+                <div className="mt-2">
+                  <a className="hover:text-foreground" href={`tel:${sanMarino.phone.e164}`}>
+                    {sanMarino.phone.display}
+                  </a>
+                </div>
+                <div className="mt-2 text-xs text-foreground/60">{officeHoursSummary("san-marino")}</div>
+                <div className="mt-3">
+                  <a className="hover:text-foreground" href={sanMarino.links.mapCid} target="_blank" rel="noreferrer">
+                    Directions
+                  </a>
+                  <span className="mx-2 text-foreground/25">|</span>
+                  <Link className="hover:text-foreground" href="/locations/san-marino">
+                    Details
+                  </Link>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+                  {laPalma.location}
+                </div>
+                <div className="mt-2">{getFullAddressLine("la-palma")}</div>
+                <div className="mt-2">
+                  <a className="hover:text-foreground" href={`tel:${laPalma.phone.e164}`}>
+                    {laPalma.phone.display}
+                  </a>
+                </div>
+                <div className="mt-2 text-xs text-foreground/60">{officeHoursSummary("la-palma")}</div>
+                <div className="mt-3">
+                  <a className="hover:text-foreground" href={laPalma.links.mapCid} target="_blank" rel="noreferrer">
+                    Directions
+                  </a>
+                  <span className="mx-2 text-foreground/25">|</span>
+                  <Link className="hover:text-foreground" href="/locations/la-palma">
+                    Details
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 space-y-1 text-sm text-muted">
               {site.agent.notes.map((note) => (
                 <div key={note}>{note}</div>
               ))}
@@ -76,6 +100,11 @@ export function SiteFooter() {
               <li>
                 <Link className="hover:text-foreground" href="/coverages">
                   Coverages
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground" href="/locations">
+                  Locations
                 </Link>
               </li>
               <li>
@@ -94,6 +123,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link className="hover:text-foreground" href="/careers">
+                  Careers
+                </Link>
+              </li>
+              <li>
                 <a
                   className="hover:text-foreground"
                   href={site.agent.links.allstateProfile}
@@ -104,13 +138,6 @@ export function SiteFooter() {
                 </a>
               </li>
             </ul>
-
-            <div className="mt-8 text-sm font-semibold text-foreground">
-              Languages
-            </div>
-            <div className="mt-3 text-sm text-muted">
-              {site.agent.languages.join(", ")}
-            </div>
           </div>
         </div>
 
@@ -131,17 +158,17 @@ export function SiteFooter() {
               Source: Allstate agent page
             </a>
             <span className="text-foreground/30">|</span>
-            <a
-              className="hover:text-foreground"
-              href={site.agent.links.mapCid}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Directions
-            </a>
+            <Link className="hover:text-foreground" href="/locations">
+              Locations
+            </Link>
           </div>
         </div>
       </Container>
     </footer>
   );
+}
+
+function officeHoursSummary(officeId: "san-marino" | "la-palma") {
+  if (officeId === "san-marino") return "Mon–Fri 9:00–6:00 • Weekends by appointment";
+  return "Mon–Fri 9:00–5:45 • Weekends closed";
 }

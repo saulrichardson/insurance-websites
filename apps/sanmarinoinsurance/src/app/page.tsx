@@ -282,7 +282,11 @@ export default function Home() {
                   >
                     {site.agent.phone.display}
                   </a>{" "}
-                  or stop by {site.agent.address.street}.
+                  or visit one of our offices in{" "}
+                  <Link className="font-medium text-accent underline underline-offset-4 hover:text-accent/80" href="/locations">
+                    San Marino or La Palma
+                  </Link>
+                  .
                 </div>
               </div>
             </div>

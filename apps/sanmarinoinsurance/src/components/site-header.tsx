@@ -44,6 +44,7 @@ const navItems: NavLink[] = [
       },
     ],
   },
+  { href: "/locations", label: "OFFICES" },
   { href: "/about", label: "ABOUT US" },
   { href: "/careers", label: "CAREERS" },
 ];

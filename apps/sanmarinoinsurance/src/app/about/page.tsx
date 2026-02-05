@@ -2,14 +2,17 @@ import Image from "next/image";
 import { MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
-import { getFullAddressLine, site } from "@/lib/site";
+import { getFullAddressLine, getOffice, site } from "@/lib/site";
 
 export const metadata = {
   title: "About",
-  description: `Learn about ${site.agent.name} and the ${site.brand.shortName} office in ${site.agent.location}.`,
+  description: `Learn about ${site.agent.name} and our offices in San Marino and La Palma, CA.`,
 };
 
 export default function AboutPage() {
+  const sanMarino = getOffice("san-marino");
+  const laPalma = getOffice("la-palma");
+
   return (
     <main id="main" className="bg-background">
       <Container className="py-16 sm:py-20">
@@ -52,12 +55,25 @@ export default function AboutPage() {
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               <div className="rounded-3xl border border-accent/15 bg-surface p-6 shadow-sm shadow-black/5">
-                <div className="text-sm font-semibold text-accent">Office address</div>
-                <div className="mt-2 text-sm text-foreground/75">{getFullAddressLine()}</div>
-                <div className="mt-4">
-                  <ButtonLink href={site.agent.links.mapCid} variant="outline" size="sm" className="gap-2">
+                <div className="text-sm font-semibold text-accent">Offices</div>
+                <div className="mt-4 space-y-4 text-sm text-foreground/75">
+                  <div>
+                    <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+                      {sanMarino.location}
+                    </div>
+                    <div className="mt-2">{getFullAddressLine("san-marino")}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+                      {laPalma.location}
+                    </div>
+                    <div className="mt-2">{getFullAddressLine("la-palma")}</div>
+                  </div>
+                </div>
+                <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+                  <ButtonLink href="/locations" variant="outline" size="sm" className="gap-2">
                     <MapPin className="size-4" aria-hidden />
-                    Directions
+                    View locations
                   </ButtonLink>
                 </div>
               </div>
@@ -98,9 +114,12 @@ export default function AboutPage() {
               </div>
               <div className="rounded-2xl border border-accent/10 bg-background p-4">
                 <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/75">
-                  Address
+                  Offices
                 </div>
-                <div className="mt-2 text-sm text-foreground/75">{getFullAddressLine()}</div>
+                <div className="mt-2 text-sm text-foreground/75">
+                  <div>{sanMarino.location}</div>
+                  <div className="mt-1">{laPalma.location}</div>
+                </div>
               </div>
             </div>
 

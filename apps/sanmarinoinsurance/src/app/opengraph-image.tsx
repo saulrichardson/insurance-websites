@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getFullAddressLine, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export const size = {
   width: 1200,
@@ -73,7 +73,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div style={{ fontSize: 18, color: "rgba(11,11,11,0.7)" }}>
-            {getFullAddressLine()}
+            Offices: San Marino • La Palma
           </div>
           <div style={{ fontSize: 18, color: "rgba(11,11,11,0.7)" }}>
             {`${site.agent.rating.reviewCount} reviews`}

@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
-import { getFullAddressLine, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const bodoni = Cormorant_Garamond({
   variable: "--font-bodoni",
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
   description: `Auto, home, renters, condo, life, long‑term care, and business insurance in ${site.agent.location}. Call ${site.agent.phone.display} for a quote.`,
   openGraph: {
     title: `${site.brand.name} | ${site.agent.location}`,
-    description: `Insurance support for San Marino and nearby communities. Call ${site.agent.phone.display} or visit us at ${getFullAddressLine()}.`,
+    description: `Insurance support with offices in San Marino and La Palma. Call ${site.agent.phone.display} for a quote or coverage review.`,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.brand.name} | ${site.agent.location}`,
-    description: `Insurance support for San Marino and nearby communities. Call ${site.agent.phone.display}.`,
+    description: `Insurance support with offices in San Marino and La Palma. Call ${site.agent.phone.display}.`,
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
