@@ -17,10 +17,37 @@ import {
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { careerRoles } from "@/lib/careers";
 
 export default function Home() {
+  const careersCopy =
+    careerRoles.length > 0
+      ? `We’re hiring — ${careerRoles.length} open ${careerRoles.length === 1 ? "role" : "roles"}`
+      : "Careers — explore roles and culture";
+
   return (
     <main id="main" className="bg-background">
+      <section aria-label="Careers" className="border-b border-accent/15 bg-accent text-accent-foreground">
+        <Container className="flex h-12 items-center justify-between gap-4 font-sans text-sm">
+          <Link
+            href="/careers/jobs"
+            className="inline-flex min-w-0 items-center gap-2 truncate text-accent-foreground/90 hover:text-accent-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground/70"
+          >
+            <span className="size-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+            <span className="truncate">{careersCopy}</span>
+            <ArrowRight className="size-4 shrink-0" aria-hidden />
+          </Link>
+
+          <Link
+            href="/careers"
+            className="hidden items-center gap-2 rounded-full border border-accent-foreground/25 bg-accent-foreground/10 px-4 py-2 text-xs font-medium text-accent-foreground/90 shadow-sm shadow-black/10 hover:bg-accent-foreground/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground/70 sm:inline-flex"
+          >
+            Learn more
+            <ArrowRight className="size-4" aria-hidden />
+          </Link>
+        </Container>
+      </section>
+
       <section className="relative overflow-hidden pb-14 pt-6 sm:pb-18 sm:pt-10 lg:pb-22 lg:pt-12">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
