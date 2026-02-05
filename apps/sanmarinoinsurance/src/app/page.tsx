@@ -46,7 +46,7 @@ export default function Home() {
                 <ButtonLink href="#quote" variant="primary" size="md">
                   Get a quote
                 </ButtonLink>
-                <ButtonLink href="#products" variant="outline" size="md">
+                <ButtonLink href="/insurance" variant="outline" size="md">
                   Browse products
                 </ButtonLink>
                 <a
@@ -60,9 +60,6 @@ export default function Home() {
 
               <div className="mt-8 flex flex-wrap items-center gap-2 text-sm text-foreground/70">
                 <span className="font-medium text-accent">Jump to:</span>
-                <a className="rounded-full bg-surface/70 px-3 py-1.5 hover:bg-surface" href="#products">
-                  Products
-                </a>
                 <a className="rounded-full bg-surface/70 px-3 py-1.5 hover:bg-surface" href="#situations">
                   Situations
                 </a>
