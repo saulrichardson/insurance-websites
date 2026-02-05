@@ -117,7 +117,7 @@ Example CORS configuration (Bucket → Permissions → CORS):
   {
     "AllowedHeaders": ["*"],
     "AllowedMethods": ["PUT", "GET", "HEAD"],
-    "AllowedOrigins": ["https://sanmarinoinsurance.com"],
+    "AllowedOrigins": ["https://tracyzhang.com", "https://www.tracyzhang.com"],
     "ExposeHeaders": ["ETag"],
     "MaxAgeSeconds": 3000
   }
@@ -152,7 +152,7 @@ This repo is ready to deploy as a standard Next.js project on Vercel.
 2. In Vercel: **Add New → Project → Import Git Repository**.
 3. Keep the default Next.js build settings.
 4. Set environment variables (Project → Settings → Environment Variables):
-   - `NEXT_PUBLIC_SITE_URL` = `https://sanmarinoinsurance.com` (set for **Production** and **Preview**)
+   - `NEXT_PUBLIC_SITE_URL` = `https://tracyzhang.com` (set for **Production** and **Preview**)
 5. Deploy.
 
 ## Cloudflare Domain Setup (Manual DNS)
@@ -160,8 +160,8 @@ This repo is ready to deploy as a standard Next.js project on Vercel.
 You said you want manual Cloudflare configuration (no auto-integration). Great — do this after the first Vercel deploy:
 
 1. In Vercel project: **Settings → Domains → Add**
-   - `sanmarinoinsurance.com`
-   - `www.sanmarinoinsurance.com`
+   - `tracyzhang.com`
+   - `www.tracyzhang.com`
 2. Vercel will show the exact DNS records required (A/CNAME/TXT depending on your setup).
 3. In Cloudflare: **DNS** tab → add the records exactly as Vercel shows.
    - During verification, set those records to **DNS only** (grey cloud), then you can enable proxy later if desired.
