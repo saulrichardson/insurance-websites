@@ -15,7 +15,7 @@ export function CareersJobsList({ roles }: CareersJobsListProps) {
 
   return (
     <div className="mt-10 overflow-hidden rounded-3xl border border-accent/15 bg-surface shadow-sm shadow-black/5">
-      <div className="hidden grid-cols-[260px_1fr_340px_140px] items-center gap-6 border-b border-accent/10 bg-surface/70 px-6 py-4 text-xs font-medium uppercase tracking-[0.18em] text-foreground/70 md:grid">
+      <div className="hidden grid-cols-[220px_1.4fr_1fr_140px] items-center gap-6 border-b border-accent/10 bg-surface/70 px-6 py-4 text-xs font-medium uppercase tracking-[0.18em] text-foreground/70 md:grid">
         <div>Team</div>
         <div>Role</div>
         <div>Location</div>
@@ -31,7 +31,7 @@ export function CareersJobsList({ roles }: CareersJobsListProps) {
           <Link
             key={role.id}
             href={`/careers/jobs/${encodeURIComponent(role.id)}`}
-            className="group grid gap-3 px-6 py-5 transition-colors hover:bg-background/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 md:grid-cols-[260px_1fr_340px_140px] md:items-center md:gap-6"
+            className="group grid gap-3 px-6 py-5 transition-colors hover:bg-background/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60 md:grid-cols-[220px_1.4fr_1fr_140px] md:items-center md:gap-6"
           >
             <div className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">{role.team}</div>
             <div className="font-serif text-xl tracking-[-0.03em] text-foreground group-hover:text-accent">
