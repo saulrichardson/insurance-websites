@@ -253,7 +253,7 @@ export default function AutoInsurancePage() {
             />
             <ValueCard
               title="Deductible strategy"
-              body="A deductible is a financial decision. We’ll pick a number that keeps premiums reasonable without making claims unusable."
+              body="A deductible is a financial decision. We’ll help you choose one that keeps premiums reasonable—without turning a claim into a cash‑flow problem."
             />
             <ValueCard
               title="Bundle (on purpose)"
