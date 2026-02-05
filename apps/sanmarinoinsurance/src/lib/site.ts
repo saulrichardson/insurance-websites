@@ -36,7 +36,6 @@ export const site = {
     languages: [
       "English",
       "Cantonese",
-      "Spanish",
       "Mandarin",
       "Taiwanese",
       "Vietnamese",
