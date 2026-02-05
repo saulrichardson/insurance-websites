@@ -29,8 +29,8 @@ export default function AboutPage() {
 
             <div className="mt-6 space-y-5 text-pretty text-lg leading-8 text-foreground/75">
               <p>
-                San Marino Insurance is led by {site.agent.name}, an Allstate agent who helps local families and
-                business owners protect what they’ve worked hard to build.
+                This agency is led by {site.agent.name}, an Allstate agent who helps local families and business
+                owners protect what they’ve worked hard to build.
               </p>
               <p>
                 Our office is known for thoughtful guidance on life insurance and financial products—so your
