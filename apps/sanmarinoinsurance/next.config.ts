@@ -20,14 +20,54 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/about",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/careers",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/careers/:path*",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/contact",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/coverages",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/coverages/:path*",
+        destination: "/",
+        permanent: false,
+      },
+      {
         source: "/insurance",
-        destination: "/coverages",
-        permanent: true,
+        destination: "/",
+        permanent: false,
       },
       {
         source: "/insurance/:path*",
-        destination: "/coverages/:path*",
-        permanent: true,
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/locations",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/locations/:path*",
+        destination: "/",
+        permanent: false,
       },
     ];
   },
