@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f3f0ea;
-  --foreground: #14181f;
-  --surface: #ffffff;
-  --muted: #5b6472;
-  --accent: #1f4a78;
-  --accent-foreground: #f7f9fc;
-  --brand: #d8c8ae;
-  --accent-2: #e8edf4;
-  --accent-2-foreground: #14181f;
+  /* San Marino palette (coastal + modern) */
+  --background: #eef3f7; /* cool mist */
+  --foreground: #0b1220; /* ink */
+  --surface: #ffffff; /* cards */
+  --muted: #415a77; /* slate for secondary text */
+  --accent: #0b3c5d; /* deep ocean (primary CTA + dark panels) */
+  --accent-foreground: #eef3f7;
+  --brand: #f6ae2d; /* citrus */
+  --accent-2: #2a9d8f; /* sea glass */
+  --accent-2-foreground: #eef3f7;
 }
 
 @theme inline {
@@ -34,7 +35,6 @@ body {
   font-size: 16px;
   letter-spacing: normal;
   line-height: 1.5;
-  min-height: 100vh;
 }
 
 ::selection {

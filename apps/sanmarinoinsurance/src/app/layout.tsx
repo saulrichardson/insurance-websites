@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import { SiteHeader } from "@/components/site-header";
 import { site } from "@/lib/site";
 
 const bodoni = Cormorant_Garamond({
@@ -39,16 +40,16 @@ export const metadata: Metadata = {
     default: `${site.brand.name} | ${site.agent.location}`,
     template: `%s | ${site.brand.shortName}`,
   },
-  description: `Contact ${site.brand.legalLine} in ${site.agent.location}. Call ${site.agent.phone.display} for quotes, service, and office support.`,
+  description: `Auto, home, renters, condo, life, long‑term care, and business insurance in ${site.agent.location}. Call ${site.agent.phone.display} for a quote.`,
   openGraph: {
     title: `${site.brand.name} | ${site.agent.location}`,
-    description: `Contact ${site.brand.legalLine}. Call ${site.agent.phone.display} or visit the San Marino or La Palma office.`,
+    description: `Insurance support with offices in San Marino and La Palma. Call ${site.agent.phone.display} for a quote or coverage review.`,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.brand.name} | ${site.agent.location}`,
-    description: `Contact ${site.brand.legalLine}. Call ${site.agent.phone.display}.`,
+    description: `Insurance support with offices in San Marino and La Palma. Call ${site.agent.phone.display}.`,
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
@@ -76,6 +77,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <SiteHeader />
         {children}
         <Analytics />
       </body>
