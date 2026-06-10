@@ -28,6 +28,8 @@ export function LanguageSwitch({
   const targetHref = `${targetPath}${query ? `?${query}` : ""}${hash}`;
   const nextLocale = isZh ? "en-US" : "zh-Hans";
   const isMenu = variant === "menu";
+  const label = isZh ? "中文" : "EN";
+  const switchLabel = isZh ? "Switch language to English" : "Switch language to Chinese";
 
   useEffect(() => {
     function syncHash() {
@@ -44,7 +46,8 @@ export function LanguageSwitch({
     <Link
       href={targetHref}
       hrefLang={nextLocale}
-      aria-label={isZh ? "Switch language to English" : "切换到中文"}
+      aria-label={switchLabel}
+      title={switchLabel}
       className={[
         "group inline-flex shrink-0 items-center gap-2 rounded-full border border-accent/20 bg-surface/95 p-1 text-xs font-semibold text-muted shadow-sm shadow-black/5 transition hover:border-brand/50 hover:bg-background focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60",
         isMenu ? "h-12 w-full justify-between px-2" : "",
@@ -64,27 +67,12 @@ export function LanguageSwitch({
       </span>
       <span
         className={[
-          "grid grid-cols-2 rounded-full bg-background p-0.5",
-          isMenu ? "min-w-40" : "min-w-28",
+          "inline-flex h-8 min-w-14 items-center justify-center rounded-full bg-accent px-3 text-center text-accent-foreground shadow-sm transition duration-200",
+          isMenu ? "min-w-24" : "",
         ].join(" ")}
         aria-hidden
       >
-        <span
-          className={[
-            "rounded-full px-2.5 py-1 text-center transition duration-200",
-            !isZh ? "bg-accent text-accent-foreground shadow-sm" : "text-muted group-hover:text-accent",
-          ].join(" ")}
-        >
-          EN
-        </span>
-        <span
-          className={[
-            "rounded-full px-2.5 py-1 text-center transition duration-200",
-            isZh ? "bg-accent text-accent-foreground shadow-sm" : "text-muted group-hover:text-accent",
-          ].join(" ")}
-        >
-          中文
-        </span>
+        {label}
       </span>
     </Link>
   );

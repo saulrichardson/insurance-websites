@@ -31,7 +31,9 @@ cloned websites, cloned apps, or separate Chinese domains.
   exists; missing Chinese story content should fail build/render validation
   rather than falling back to English on a Chinese URL.
 - English/Chinese switching should be a route-aware control that links to the
-  equivalent localized URL and preserves query strings and hash fragments.
+  equivalent localized URL and preserves query strings and hash fragments. The
+  visible control should show the active locale only; English pages should not
+  display Chinese text just because Chinese is the switch target.
 - LLM translation can be used as a drafting and storage tool. The repo-level
   translation CLI writes source-hashed artifacts under
   `content/translations/<locale>/`; production page rendering should not call

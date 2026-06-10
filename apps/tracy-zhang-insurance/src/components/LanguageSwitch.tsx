@@ -28,6 +28,8 @@ export function LanguageSwitch({
   const targetPath = isZh ? fromZhPath(pathname) : toZhPath(pathname);
   const targetHref = `${targetPath}${query ? `?${query}` : ""}${hash}`;
   const nextLocale = isZh ? "en-US" : "zh-Hans";
+  const label = isZh ? "中文" : "EN";
+  const switchLabel = isZh ? "Switch language to English" : "Switch language to Chinese";
 
   useEffect(() => {
     function syncHash() {
@@ -49,7 +51,8 @@ export function LanguageSwitch({
       )}
       href={targetHref}
       hrefLang={nextLocale}
-      aria-label={isZh ? "Switch language to English" : "切换到中文"}
+      aria-label={switchLabel}
+      title={switchLabel}
       onClick={() => {
         trackMarketingEvent("language_switch", {
           source,
@@ -64,31 +67,12 @@ export function LanguageSwitch({
       </span>
       <span
         className={cn(
-          "grid grid-cols-2 rounded-full bg-[var(--surface-muted)]/75 p-0.5",
-          variant === "menu" ? "min-w-40" : "min-w-28",
+          "inline-flex h-8 min-w-14 items-center justify-center rounded-full bg-[var(--ink)] px-3 text-center text-white shadow-sm transition duration-200",
+          variant === "menu" && "min-w-24",
         )}
         aria-hidden
       >
-        <span
-          className={cn(
-            "rounded-full px-2.5 py-1 text-center transition duration-200",
-            !isZh
-              ? "bg-[var(--ink)] text-white shadow-sm"
-              : "text-[var(--muted)] group-hover:text-[var(--ink)]",
-          )}
-        >
-          EN
-        </span>
-        <span
-          className={cn(
-            "rounded-full px-2.5 py-1 text-center transition duration-200",
-            isZh
-              ? "bg-[var(--ink)] text-white shadow-sm"
-              : "text-[var(--muted)] group-hover:text-[var(--ink)]",
-          )}
-        >
-          中文
-        </span>
+        {label}
       </span>
     </Link>
   );

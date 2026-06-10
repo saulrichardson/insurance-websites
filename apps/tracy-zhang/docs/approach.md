@@ -118,9 +118,9 @@ Search discoverability for the Chinese advisor surface should verify
 from the Chinese page into `https://tracyzhanginsurance.com/zh/...`.
 
 The header language switcher should remain a normal localized link between `/`
-and `/zh`, preserving query strings and hash fragments. Do not replace it with
-client-side runtime translation; use the repo-level translation CLI for stored
-drafts when advisor copy changes.
+and `/zh`, preserving query strings and hash fragments. Its visible label shows
+the current locale only. Do not replace it with client-side runtime translation;
+use the repo-level translation CLI for stored drafts when advisor copy changes.
 
 ## Deployment
 

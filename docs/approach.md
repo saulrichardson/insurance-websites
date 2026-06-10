@@ -47,7 +47,9 @@ deployment notes.
   apps, with `zh-Hans` sitemap alternates and self-canonical Chinese URLs. Do
   not create cloned Chinese apps or domains for this purpose.
 - Language switching is a route-aware UI control that links between real
-  localized URLs while preserving query strings and hash fragments.
+  localized URLs while preserving query strings and hash fragments. The visible
+  control shows the current locale only, so English pages do not display
+  Chinese UI text merely as a switch target.
 
 ## Visual Operating Model
 

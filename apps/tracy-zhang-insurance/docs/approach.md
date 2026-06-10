@@ -88,7 +88,8 @@ production-ready.
 
 The header language switcher should remain a normal localized link, not a
 client-side translation widget. It preserves query strings and hash fragments
-so visitors can switch language while staying in the same page context.
+so visitors can switch language while staying in the same page context. The
+visible label should show the current locale only.
 
 LLM translation support is a repo-level drafting workflow, not a production
 request path. Use `pnpm i18n:translate --id <id> ...` to store draft
