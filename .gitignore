@@ -4,6 +4,9 @@
 node_modules
 .pnp
 .pnp.*
+package-lock.json
+yarn.lock
+bun.lockb
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -22,6 +25,10 @@ build
 
 # misc
 .DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
 *.pem
 
 # debug
@@ -31,9 +38,19 @@ yarn-error.log*
 .pnpm-debug.log*
 .next-dev.log
 .next-dev.pid
+*.log
+
+# temporary smoke outputs
+.tmp/
+.playwright-cli/
+.playwright-mcp/
+output/
+apps/**/screenshots/
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!apps/**/.env.example
 
 # local secrets (never commit)
 .secrets/
