@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Renters Insurance",
-  description:
-    "Renters insurance quotes and guidance in California. Protect your belongings and add liability coverage with a simple policy.",
-  alternates: { canonical: "/renters-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("renters-insurance");
 
 export default function RentersInsurancePage() {
   return (

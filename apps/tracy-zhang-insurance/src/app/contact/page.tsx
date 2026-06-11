@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
@@ -8,13 +6,9 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { site } from "@/config/site";
 import { getOfficeById } from "@insurance-websites/domain";
 import { getRequestMarket } from "@/lib/market";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Tracy Zhang Insurance for auto, home, condo, renters, life, business, specialty, and California property insurance conversations.",
-  alternates: { canonical: "/contact" },
-};
+export const metadata = getRouteMetadata("/contact");
 
 export default async function ContactPage() {
   const market = await getRequestMarket();

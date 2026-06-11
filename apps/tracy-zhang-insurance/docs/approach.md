@@ -16,6 +16,9 @@ website for Tracy Zhang Insurance.
 - notification: Resend through `RESEND_API_KEY`
 - analytics: Vercel Analytics, Vercel Speed Insights, optional GA4 through
   `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- SEO: centralized route/product metadata in `src/lib/seo.ts`, JSON-LD helpers
+  in `src/lib/schema.ts`, reciprocal English/Simplified Chinese alternates, and
+  content-owned internal links between products and guidance
 - hosting: Vercel
 - DNS: Cloudflare-managed where zones exist
 - package manager: `pnpm@10.23.0` from the repo root
@@ -91,6 +94,15 @@ client-side translation widget. It preserves query strings and hash fragments
 so visitors can switch language while staying in the same page context. The
 visible label should show the current locale only.
 
+Every current indexable English route should publish explicit `en-US`,
+`zh-Hans`, and `x-default` alternates when a real Chinese equivalent exists.
+Utility or conversion-completion routes that are not localized, such as
+`/thanks`, should not invent hreflang alternates. Chinese routes should emit
+Chinese WebPage/Breadcrumb schema centrally from the `/zh/[[...slug]]` route;
+English product pages should emit Service and Breadcrumb schema through the
+product decision guide; English stories should emit Article and Breadcrumb
+schema from their story page.
+
 LLM translation support is a repo-level drafting workflow, not a production
 request path. Use `pnpm i18n:translate --id <id> ...` to store draft
 translations under `content/translations/<locale>/`, then run
@@ -102,6 +114,10 @@ optional hero image and inline image sections. Store story-specific web assets
 under `public/story-images/` with stable descriptive filenames so article pages,
 story cards, Open Graph metadata, and sitemap-discoverable routes can share the
 same source-of-truth content.
+
+Story entries also own `relatedProductIds`. This is the source for story-to-
+product internal links and Article `about` schema. Product-to-product links
+come from the shared domain product graph, not per-page one-off arrays.
 
 Homepage guidance should not rely only on the header nav or a generic
 button-style link. The canonical and local homepages should expose the latest

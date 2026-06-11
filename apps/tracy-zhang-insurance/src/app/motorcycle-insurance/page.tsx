@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Motorcycle Insurance",
-  description:
-    "Motorcycle insurance quotes and guidance in California. Coverage options for bikes, liability, accessories, and more.",
-  alternates: { canonical: "/motorcycle-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("motorcycle-insurance");
 
 export default function MotorcycleInsurancePage() {
   return (

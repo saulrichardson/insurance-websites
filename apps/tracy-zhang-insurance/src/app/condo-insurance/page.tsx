@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Condo Insurance",
-  description:
-    "Condo (HO-6) insurance guidance and quotes in California. Coordinate unit coverage with your HOA master policy and avoid common gaps.",
-  alternates: { canonical: "/condo-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("condo-insurance");
 
 export default function CondoInsurancePage() {
   return (

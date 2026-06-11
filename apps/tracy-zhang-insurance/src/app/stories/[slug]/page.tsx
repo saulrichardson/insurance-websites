@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { products } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
@@ -9,6 +10,8 @@ import { StoryProse } from "@/components/StoryProse";
 import { buttonClasses } from "@/components/ui/button";
 import { site, siteUrl } from "@/config/site";
 import { getStory, getStorySlugs, stories } from "@/content/stories";
+import { getBreadcrumbSchema, getJsonLdGraph } from "@/lib/schema";
+import { absoluteUrl, localizedAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getStorySlugs().map((slug) => ({ slug }));
@@ -42,12 +45,12 @@ export async function generateMetadata({
   }
 
   const storyUrl = `${siteUrl}/stories/${story.slug}`;
-  const storyImageUrl = story.image ? `${siteUrl}${story.image.src}` : undefined;
+  const storyImageUrl = story.image ? absoluteUrl(story.image.src) : undefined;
 
   return {
     title: story.title,
     description: story.description,
-    alternates: { canonical: `/stories/${story.slug}` },
+    alternates: localizedAlternates(`/stories/${story.slug}`),
     openGraph: {
       type: "article",
       title: story.title,
@@ -77,7 +80,11 @@ export default async function StoryPage({ params }: StoryPageProps) {
   if (!story) return notFound();
 
   const dateLabel = formatDate(story.dateISO);
-  const storyImageUrl = story.image ? `${siteUrl}${story.image.src}` : undefined;
+  const storyUrl = absoluteUrl(`/stories/${story.slug}`);
+  const storyImageUrl = story.image ? absoluteUrl(story.image.src) : undefined;
+  const relatedProducts = story.relatedProductIds
+    .map((id) => products.find((product) => product.id === id))
+    .filter((product): product is (typeof products)[number] => Boolean(product));
 
   const nextStory =
     stories.find((s) => s.slug !== story.slug && new Date(s.dateISO) <= new Date(story.dateISO)) ??
@@ -85,12 +92,13 @@ export default async function StoryPage({ params }: StoryPageProps) {
     null;
 
   const articleSchema = {
-    "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${storyUrl}#article`,
     headline: story.title,
     description: story.description,
     datePublished: story.dateISO,
     dateModified: story.dateISO,
+    inLanguage: "en-US",
     author: {
       "@type": "Organization",
       name: site.name,
@@ -102,8 +110,17 @@ export default async function StoryPage({ params }: StoryPageProps) {
       url: site.url,
     },
     image: storyImageUrl ? [storyImageUrl] : undefined,
-    mainEntityOfPage: `${siteUrl}/stories/${story.slug}`,
+    mainEntityOfPage: storyUrl,
+    about: relatedProducts.map((product) => ({
+      "@type": "Service",
+      name: product.title,
+      url: absoluteUrl(product.href),
+    })),
   };
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Insurance guidance", path: "/stories" },
+    { name: story.title, path: `/stories/${story.slug}` },
+  ]);
 
   return (
     <div className="bg-[var(--background)]">
@@ -213,6 +230,41 @@ export default async function StoryPage({ params }: StoryPageProps) {
               )}
             </div>
           </div>
+
+          {relatedProducts.length > 0 ? (
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="text-sm font-semibold text-slate-950">
+                Related coverage paths
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Continue with the coverage pages most closely tied to this
+                guidance.
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {relatedProducts.map((product) => (
+                  <TrackedLink
+                    key={product.id}
+                    href={product.href}
+                    eventName="product_click"
+                    eventProps={{
+                      source: "tracy_zhang_insurance_story_related_products",
+                      story: story.slug,
+                      product: product.id,
+                    }}
+                    className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 transition hover:border-slate-300 hover:bg-white"
+                  >
+                    <div className="font-semibold text-slate-950">
+                      {product.title}
+                    </div>
+                    <div className="mt-1 leading-6">{product.description}</div>
+                    <div className="mt-3 font-medium text-slate-950">
+                      Open page →
+                    </div>
+                  </TrackedLink>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </article>
       </Container>
 
@@ -220,7 +272,9 @@ export default async function StoryPage({ params }: StoryPageProps) {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getJsonLdGraph([articleSchema, breadcrumbSchema])),
+        }}
       />
     </div>
   );

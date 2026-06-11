@@ -1,16 +1,16 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Request received",
-  description: "Thanks — we received your request and will follow up soon.",
-  alternates: { canonical: "/thanks" },
-};
+export const metadata = getRouteMetadata("/thanks", {
+  robots: { index: false, follow: false },
+}, {
+  localized: false,
+});
 
 export default function ThanksPage() {
   return (

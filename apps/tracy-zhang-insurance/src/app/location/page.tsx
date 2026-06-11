@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
@@ -7,13 +5,9 @@ import { Card } from "@/components/ui/Card";
 import { site } from "@/config/site";
 import { getOfficeById } from "@insurance-websites/domain";
 import { getRequestMarket } from "@/lib/market";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Location",
-  description:
-    "Visit or contact our local insurance offices. Call, text, or request a quote online.",
-  alternates: { canonical: "/location" },
-};
+export const metadata = getRouteMetadata("/location");
 
 function getOfficeMapEmbed(address: {
   streetAddress: string;

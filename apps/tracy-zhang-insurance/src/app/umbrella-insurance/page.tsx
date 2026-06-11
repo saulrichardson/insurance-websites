@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
+import { getProductMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Umbrella Insurance",
-  description:
-    "Umbrella insurance guidance for California households and business owners who want additional liability protection.",
-  alternates: { canonical: "/umbrella-insurance" },
-};
+export const metadata = getProductMetadata("umbrella-insurance");
 
 export default function UmbrellaInsurancePage() {
   return (

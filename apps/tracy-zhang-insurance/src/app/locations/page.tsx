@@ -6,18 +6,19 @@ import { PageHero } from "@/components/PageHero";
 import { TrackedLink } from "@/components/marketing-events";
 import { Card } from "@/components/ui/Card";
 import { getRequestMarket } from "@/lib/market";
+import { metadataFromSeo } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const market = await getRequestMarket();
   const isLocal = market.domainRole === "local";
 
-  return {
+  return metadataFromSeo({
+    path: "/locations",
     title: isLocal ? `${market.label} Location` : "Locations",
     description: isLocal
       ? `${market.label} office details, service area, and insurance guidance.`
       : "Local Tracy Zhang Insurance office pages for San Marino, La Palma, and nearby California communities.",
-    alternates: { canonical: "/locations" },
-  };
+  });
 }
 
 export default async function LocationsPage() {

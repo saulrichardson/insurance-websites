@@ -29,6 +29,7 @@ import { site } from "@/config/site";
 import { stories, type Story } from "@/content/stories";
 import { cn } from "@/lib/cn";
 import { getMarketUrl, getRequestMarket } from "@/lib/market";
+import { localizedAlternates } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const market = await getRequestMarket();
@@ -39,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: localizedAlternates("/", url),
     openGraph: {
       type: "website",
       locale: site.locale,

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
+  getProductBySlug,
   getMarketProfile,
   getOfficeById,
   type MarketProfile,
@@ -29,6 +31,7 @@ import {
 } from "@/i18n/zh";
 import { fromZhPath, toZhPath } from "@/i18n/routing";
 import { getMarketUrl, getRequestMarket } from "@/lib/market";
+import { getBreadcrumbSchema, getJsonLdGraph } from "@/lib/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -95,23 +98,25 @@ export default async function ChinesePage({ params }: PageProps) {
   const office = getOfficeById(market.primaryOfficeId);
   const product = getProductForPath(path);
   const story = getStoryForPath(path);
+  let page: ReactNode;
 
-  if (path === "/") return <ZhHome market={market} office={office} />;
-  if (path === "/products") return <ZhProductsPage />;
-  if (product) return <ZhProductPage product={product} />;
-  if (path === "/contact") return <ZhContactPage market={market} office={office} />;
-  if (path === "/locations" || path === "/location") return <ZhLocationsPage market={market} />;
-  if (path.startsWith("/locations/")) return <ZhLocationPage path={path} />;
-  if (path === "/about") return <ZhAboutPage market={market} office={office} />;
-  if (path === "/team") return <ZhTeamPage />;
-  if (path === "/privacy") return <ZhPolicyPage kind="privacy" />;
-  if (path === "/terms") return <ZhPolicyPage kind="terms" />;
-  if (path === "/sms-terms") return <ZhPolicyPage kind="sms" />;
-  if (path === "/contact-consent") return <ZhPolicyPage kind="consent" />;
-  if (path === "/stories") return <ZhStoriesPage />;
-  if (story) return <ZhStoryPage story={story} />;
+  if (path === "/") page = <ZhHome market={market} office={office} />;
+  else if (path === "/products") page = <ZhProductsPage />;
+  else if (product) page = <ZhProductPage product={product} />;
+  else if (path === "/contact") page = <ZhContactPage market={market} office={office} />;
+  else if (path === "/locations" || path === "/location") page = <ZhLocationsPage market={market} />;
+  else if (path.startsWith("/locations/")) page = <ZhLocationPage path={path} />;
+  else if (path === "/about") page = <ZhAboutPage market={market} office={office} />;
+  else if (path === "/team") page = <ZhTeamPage />;
+  else if (path === "/privacy") page = <ZhPolicyPage kind="privacy" />;
+  else if (path === "/terms") page = <ZhPolicyPage kind="terms" />;
+  else if (path === "/sms-terms") page = <ZhPolicyPage kind="sms" />;
+  else if (path === "/contact-consent") page = <ZhPolicyPage kind="consent" />;
+  else if (path === "/stories") page = <ZhStoriesPage />;
+  else if (story) page = <ZhStoryPage story={story} />;
+  else notFound();
 
-  notFound();
+  return withChineseStructuredData(page, path, market);
 }
 
 function ZhHome({ market, office }: { market: MarketProfile; office: Office }) {
@@ -288,6 +293,13 @@ function ZhProductsPage() {
 }
 
 function ZhProductPage({ product }: { product: LocalizedProduct }) {
+  const sourceProduct = getProductBySlug(product.slug);
+  const relatedProducts = sourceProduct
+    ? sourceProduct.related
+        .map((id) => zhProducts.find((item) => item.id === id))
+        .filter((item): item is LocalizedProduct => Boolean(item))
+    : [];
+
   return (
     <div lang="zh-Hans" className="bg-white">
       <PageHero
@@ -341,6 +353,37 @@ function ZhProductPage({ product }: { product: LocalizedProduct }) {
             </Card>
           </div>
         </div>
+
+        {relatedProducts.length > 0 ? (
+          <div className="mt-12 border-t border-slate-200 pt-8">
+            <div className="text-sm font-semibold text-slate-950">
+              相关保险页面
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {relatedProducts.map((related) => (
+                <TrackedLink
+                  key={related.id}
+                  href={related.zhHref}
+                  eventName="product_click"
+                  eventProps={{
+                    source: "tracy_zhang_insurance_zh_product_related",
+                    product: product.id,
+                    related_product: related.id,
+                  }}
+                  className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 transition hover:border-slate-300 hover:bg-white"
+                >
+                  <div className="font-semibold text-slate-950">
+                    {related.title}
+                  </div>
+                  <div className="mt-1 leading-6">{related.description}</div>
+                  <div className="mt-3 font-medium text-slate-950">
+                    查看详情 →
+                  </div>
+                </TrackedLink>
+              ))}
+            </div>
+          </div>
+        ) : null}
       </Container>
 
       <PageCTA
@@ -759,6 +802,10 @@ function ZhStoriesPage() {
 }
 
 function ZhStoryPage({ story }: { story: LocalizedStory }) {
+  const relatedProducts = story.relatedProductIds
+    .map((id) => zhProducts.find((product) => product.id === id))
+    .filter((product): product is LocalizedProduct => Boolean(product));
+
   return (
     <div lang="zh-Hans" className="bg-[var(--background)]">
       <PageHero
@@ -827,6 +874,40 @@ function ZhStoryPage({ story }: { story: LocalizedStory }) {
               </TrackedLink>
             </div>
           </div>
+
+          {relatedProducts.length > 0 ? (
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="text-sm font-semibold text-slate-950">
+                相关保险页面
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                继续查看和这篇指南最相关的中文保险页面。
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {relatedProducts.map((product) => (
+                  <TrackedLink
+                    key={product.id}
+                    href={product.zhHref}
+                    eventName="product_click"
+                    eventProps={{
+                      source: "tracy_zhang_insurance_zh_story_related_products",
+                      story: story.slug,
+                      product: product.id,
+                    }}
+                    className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 transition hover:border-slate-300 hover:bg-white"
+                  >
+                    <div className="font-semibold text-slate-950">
+                      {product.title}
+                    </div>
+                    <div className="mt-1 leading-6">{product.description}</div>
+                    <div className="mt-3 font-medium text-slate-950">
+                      查看详情 →
+                    </div>
+                  </TrackedLink>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </article>
       </Container>
     </div>
@@ -880,6 +961,103 @@ const policyContent = {
     ].map(([title, body]) => ({ title, body })),
   },
 } as const;
+
+function withChineseStructuredData(
+  page: ReactNode,
+  path: `/${string}`,
+  market: MarketProfile,
+) {
+  const meta = getPageMeta(path, market);
+  if (!meta) return page;
+
+  const base = getCanonicalBase(market, path);
+  const chinesePath = toZhPath(path);
+  const canonical = absoluteUrl(chinesePath, base);
+  const product = getProductForPath(path);
+  const story = getStoryForPath(path);
+  const nodes: unknown[] = [
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: meta.title,
+      description: meta.description,
+      inLanguage: "zh-Hans",
+      isPartOf: {
+        "@id": `${new URL("/", base).toString().replace(/\/$/, "")}/#website`,
+      },
+    },
+  ];
+
+  if (path !== "/") {
+    nodes.push(
+      getBreadcrumbSchema(
+        [
+          { name: "中文保险咨询", path: "/zh" },
+          { name: meta.title, path: chinesePath },
+        ],
+        base,
+      ),
+    );
+  }
+
+  if (product) {
+    nodes.push({
+      "@type": "Service",
+      "@id": `${canonical}#service`,
+      name: product.title,
+      serviceType: product.title,
+      description: product.description,
+      url: canonical,
+      inLanguage: "zh-Hans",
+      provider: {
+        "@id": `${new URL("/", base).toString().replace(/\/$/, "")}/#agency`,
+      },
+    });
+  }
+
+  if (story) {
+    nodes.push({
+      "@type": "Article",
+      "@id": `${canonical}#article`,
+      headline: story.title,
+      description: story.description,
+      datePublished: story.dateISO,
+      dateModified: story.dateISO,
+      inLanguage: "zh-Hans",
+      author: {
+        "@type": "Organization",
+        name: site.name,
+        url: site.url,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: site.name,
+        url: site.url,
+      },
+      image: story.image ? [absoluteUrl(story.image.src, base)] : undefined,
+      mainEntityOfPage: canonical,
+      about: story.relatedProductIds
+        .map((id) => zhProducts.find((item) => item.id === id))
+        .filter((item): item is LocalizedProduct => Boolean(item))
+        .map((item) => ({
+          "@type": "Service",
+          name: item.title,
+          url: absoluteUrl(item.zhHref, base),
+        })),
+    });
+  }
+
+  return (
+    <>
+      {page}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getJsonLdGraph(nodes)) }}
+      />
+    </>
+  );
+}
 
 function getPathFromParams(slug: string[] | undefined): `/${string}` {
   if (!slug || slug.length === 0) return "/";

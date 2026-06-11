@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 
 import { Container } from "@/components/Container";
@@ -8,13 +7,9 @@ import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
 import { site } from "@/config/site";
 import { stories } from "@/content/stories";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Insurance Guidance",
-  description:
-    "Short insurance guidance notes from Tracy Zhang Insurance: coverage clarity, California-specific realities, and a calmer way to shop.",
-  alternates: { canonical: "/stories" },
-};
+export const metadata = getRouteMetadata("/stories");
 
 function formatDate(dateISO: string) {
   const [year, month, day] = dateISO.split("-").map(Number);

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Container } from "@/components/Container";
@@ -9,13 +8,9 @@ import { Card } from "@/components/ui/Card";
 import { site } from "@/config/site";
 import { getOfficeById } from "@insurance-websites/domain";
 import { getRequestMarket } from "@/lib/market";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Meet Tracy Zhang Insurance. Clear California insurance guidance, local office support, and coverage options that fit your goals.",
-  alternates: { canonical: "/about" },
-};
+export const metadata = getRouteMetadata("/about");
 
 export default async function AboutPage() {
   const market = await getRequestMarket();

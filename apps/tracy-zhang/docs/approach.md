@@ -11,7 +11,8 @@ This is Tracy Zhang's advisor profile, office, and contact website for
 - UI dependencies: `lucide-react`
 - analytics: Vercel Analytics, Vercel Speed Insights, optional GA4 through
   `NEXT_PUBLIC_GA_MEASUREMENT_ID`
-- structured data: `Person` and office `InsuranceAgency` JSON-LD
+- structured data: `Person`, `ProfilePage`, `WebSite`, and office
+  `InsuranceAgency` JSON-LD
 - hosting: Vercel
 - domains: `tracyzhang.com`, `www.tracyzhang.com`
 - package manager: `pnpm@10.23.0` from the repo root
@@ -116,6 +117,10 @@ screenshots.
 Search discoverability for the Chinese advisor surface should verify
 `https://www.tracyzhang.com/zh`, the sitemap `zh-Hans` alternate, and links
 from the Chinese page into `https://tracyzhanginsurance.com/zh/...`.
+
+The advisor schema should describe Tracy by name, language fit, California
+service context, and both real office entities. Keep this site an advisor
+profile; product-depth SEO belongs on `tracyzhanginsurance.com`.
 
 The header language switcher should remain a normal localized link between `/`
 and `/zh`, preserving query strings and hash fragments. Its visible label shows

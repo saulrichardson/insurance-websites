@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Life Insurance",
-  description:
-    "Life insurance guidance and quotes in California. Term and permanent life options sized for your goals and budget.",
-  alternates: { canonical: "/life-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("life-insurance");
 
 export default function LifeInsurancePage() {
   return (

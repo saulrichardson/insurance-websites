@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
 import { consentCopy } from "@insurance-websites/lead-capture";
 
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact Consent",
-  description: "Contact consent language used by Tracy Zhang Insurance lead forms.",
-  alternates: { canonical: "/contact-consent" },
-};
+export const metadata = getRouteMetadata("/contact-consent");
 
 export default function ContactConsentPage() {
   return (

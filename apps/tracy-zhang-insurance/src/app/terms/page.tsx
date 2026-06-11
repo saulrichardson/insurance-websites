@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { site } from "@/config/site";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms",
-  description: "Website and insurance inquiry terms for Tracy Zhang Insurance.",
-  alternates: { canonical: "/terms" },
-};
+export const metadata = getRouteMetadata("/terms");
 
 export default function TermsPage() {
   return (

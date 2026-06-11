@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
+import { getProductMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "California Property Insurance",
-  description:
-    "California property insurance guidance for renewal changes, nonrenewal concerns, FAIR Plan questions, and coverage gaps.",
-  alternates: { canonical: "/california-property-insurance" },
-};
+export const metadata = getProductMetadata("california-property-insurance");
 
 export default function CaliforniaPropertyInsurancePage() {
   return (

@@ -22,7 +22,7 @@ const quoteHref = `${businessSite}/zh/contact#quote`;
 export const metadata: Metadata = {
   title: { absolute: "Tracy Zhang | 加州中文保险顾问" },
   description:
-    "Tracy Zhang 为加州家庭、房主、车主和企业主提供中文保险咨询、办公室联系方式和下一步指引。",
+    "Tracy Zhang 为加州华人家庭、房主、车主和企业主提供中文保险咨询，服务 San Marino、La Palma、Cerritos 和全加州客户。",
   alternates: {
     canonical: "/zh",
     languages: {
@@ -33,10 +33,17 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Tracy Zhang | 加州中文保险顾问",
-    description: "中文保险咨询、本地办公室和直接联系 Tracy 的方式。",
+    description:
+      "中文保险咨询、本地办公室和直接联系 Tracy 的方式，适合加州家庭、房主、车主和企业主。",
     type: "website",
     locale: "zh_Hans",
     url: "/zh",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tracy Zhang | 加州中文保险顾问",
+    description:
+      "中文保险咨询、本地办公室和直接联系 Tracy 的方式，适合加州家庭、房主、车主和企业主。",
   },
 };
 

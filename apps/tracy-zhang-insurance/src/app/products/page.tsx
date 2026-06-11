@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { TrackedLink } from "@/components/marketing-events";
 import { PageCTA } from "@/components/PageCTA";
@@ -7,13 +5,9 @@ import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
 import { site } from "@/config/site";
 import { stories } from "@/content/stories";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Insurance Products",
-  description:
-    "Explore auto, home, condo, renters, life, business, motorcycle, ATV, boat, and California specialty insurance options.",
-  alternates: { canonical: "/products" },
-};
+export const metadata = getRouteMetadata("/products");
 
 export default function ProductsPage() {
   return (

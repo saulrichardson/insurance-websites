@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import Link from "next/link";
 
 import { Container } from "@/components/Container";
@@ -7,12 +5,9 @@ import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Home & Condo Insurance",
-  description:
-    "Homeowners and condo insurance quotes in California. Guidance on replacement cost, deductibles, liability, and valuables.",
-  alternates: { canonical: "/home-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("home-insurance");
 
 export default function HomeInsurancePage() {
   return (

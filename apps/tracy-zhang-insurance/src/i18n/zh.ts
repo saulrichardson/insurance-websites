@@ -44,6 +44,7 @@ export type LocalizedStory = {
   dateISO: string;
   readingMinutes: number;
   tags: string[];
+  relatedProductIds: ProductId[];
   image?: StoryImage;
   sections: StorySection[];
 };
@@ -642,6 +643,7 @@ export const zhStories: LocalizedStory[] = stories.map((story) => {
     ...localized,
     slug: story.slug,
     dateISO: story.dateISO,
+    relatedProductIds: story.relatedProductIds,
     image: story.image,
   };
 });

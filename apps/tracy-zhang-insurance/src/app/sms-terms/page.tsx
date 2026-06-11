@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { site } from "@/config/site";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "SMS Terms",
-  description: "SMS terms for Tracy Zhang Insurance text message communications.",
-  alternates: { canonical: "/sms-terms" },
-};
+export const metadata = getRouteMetadata("/sms-terms");
 
 export default function SmsTermsPage() {
   return (

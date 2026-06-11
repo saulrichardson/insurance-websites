@@ -30,6 +30,8 @@ deployment notes.
 - analytics: Vercel Analytics/Speed Insights and optional GA4 via
   `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 - structured data: JSON-LD in app layouts and article pages
+- SEO model: route/product metadata helpers, reciprocal hreflang alternates,
+  local-domain self-canonical homepages, and content-owned internal links
 - verification: app-specific lint/build plus tests and browser checks for UI
   changes
 
@@ -50,6 +52,12 @@ deployment notes.
   localized URLs while preserving query strings and hash fragments. The visible
   control shows the current locale only, so English pages do not display
   Chinese UI text merely as a switch target.
+- Public insurance metadata is source-owned through `apps/tracy-zhang-insurance/src/lib/seo.ts`.
+  Product pages should not carry ad hoc title, description, canonical, or
+  hreflang blocks when the route belongs to the current indexed surface.
+- Product and guidance internal links are content-owned. Product relationships
+  come from `packages/domain`; story-to-product relationships live with story
+  content so crawlers and visitors can move between advice and service pages.
 
 ## Visual Operating Model
 

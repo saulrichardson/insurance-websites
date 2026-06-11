@@ -1,3 +1,5 @@
+import type { ProductId } from "@insurance-websites/domain";
+
 export type StoryImage = {
   src: `/${string}`;
   alt: string;
@@ -18,6 +20,7 @@ export type Story = {
   dateISO: string;
   readingMinutes: number;
   tags: string[];
+  relatedProductIds: ProductId[];
   image?: StoryImage;
   sections: StorySection[];
 };
@@ -35,6 +38,7 @@ const unsortedStories: Story[] = [
     dateISO: "2026-06-09",
     readingMinutes: 9,
     tags: ["Coverage", "Value", "Renewals"],
+    relatedProductIds: ["auto", "home", "umbrella", "california-property"],
     image: {
       src: "/story-images/cheapest-insurance-hero.webp",
       alt: "A calm insurance desk with a model home, car keys, blank policy papers, and an umbrella.",
@@ -405,6 +409,7 @@ const unsortedStories: Story[] = [
     dateISO: "2026-01-17",
     readingMinutes: 4,
     tags: ["California", "Process", "Local"],
+    relatedProductIds: ["auto", "home", "business", "life"],
     sections: [
       {
         type: "p",
@@ -457,6 +462,7 @@ const unsortedStories: Story[] = [
     dateISO: "2026-01-14",
     readingMinutes: 6,
     tags: ["California", "CA FAIR Plan", "Home"],
+    relatedProductIds: ["fair-plan", "home", "california-property"],
     sections: [
       {
         type: "p",
@@ -504,6 +510,7 @@ const unsortedStories: Story[] = [
     dateISO: "2026-01-10",
     readingMinutes: 5,
     tags: ["Condo", "HOA", "Coverage"],
+    relatedProductIds: ["condo", "home", "umbrella"],
     sections: [
       {
         type: "p",
@@ -547,6 +554,7 @@ const unsortedStories: Story[] = [
     dateISO: "2026-01-08",
     readingMinutes: 3,
     tags: ["Auto", "Quoting"],
+    relatedProductIds: ["auto", "motorcycle", "atv"],
     sections: [
       {
         type: "p",

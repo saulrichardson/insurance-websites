@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
 import { site } from "@/config/site";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Team",
-  description:
-    "Meet the team behind Tracy Zhang Insurance. Fast response, plain-English recommendations, and support after the sale.",
-  alternates: { canonical: "/team" },
-};
+export const metadata = getRouteMetadata("/team");
 
 const teamRoles = [
   {

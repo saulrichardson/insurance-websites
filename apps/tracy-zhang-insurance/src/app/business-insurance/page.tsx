@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Business Insurance",
-  description:
-    "Business insurance guidance and quotes in California. General liability, property, workers’ comp, and coverage built around your operations.",
-  alternates: { canonical: "/business-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("business-insurance");
 
 export default function BusinessInsurancePage() {
   return (

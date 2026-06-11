@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "Auto Insurance",
-  description:
-    "Auto insurance quotes and guidance in California. Coverage options for drivers, families, and multi-car households.",
-  alternates: { canonical: "/auto-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("auto-insurance");
 
 export default function AutoInsurancePage() {
   return (

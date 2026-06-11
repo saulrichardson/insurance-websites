@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "ATV Insurance",
-  description:
-    "ATV insurance quotes and guidance in California. Coverage options for off-road vehicles, liability, and physical damage.",
-  alternates: { canonical: "/atv-insurance" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("atv-insurance");
 
 export default function ATVInsurancePage() {
   return (

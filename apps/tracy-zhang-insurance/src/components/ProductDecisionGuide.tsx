@@ -1,15 +1,31 @@
 import { Container } from "@/components/Container";
 import { TrackedLink } from "@/components/marketing-events";
 import { getProductGuide } from "@/content/product-guidance";
+import { getProductBySlug } from "@insurance-websites/domain";
 import { getStory } from "@/content/stories";
+import { getBreadcrumbSchema, getJsonLdGraph, getProductServiceSchema } from "@/lib/schema";
+import { getProductSeo, getRelatedProducts } from "@/lib/seo";
 
 export function ProductDecisionGuide({ product }: { product: string }) {
   const guide = getProductGuide(product);
   if (!guide) return null;
 
+  const sourceProduct = getProductBySlug(product);
+  const productSeo = getProductSeo(product);
+  const relatedProducts = sourceProduct ? getRelatedProducts(sourceProduct) : [];
   const relatedStories = guide.relatedStorySlugs
     .map((slug) => getStory(slug))
     .filter((story) => Boolean(story));
+  const schema =
+    sourceProduct && productSeo
+      ? getJsonLdGraph([
+          getProductServiceSchema(productSeo, sourceProduct),
+          getBreadcrumbSchema([
+            { name: "Insurance products", path: "/products" },
+            { name: sourceProduct.title, path: sourceProduct.href },
+          ]),
+        ])
+      : null;
 
   return (
     <section className="border-y border-[var(--rail-border)] bg-[var(--background)]">
@@ -37,6 +53,42 @@ export function ProductDecisionGuide({ product }: { product: string }) {
             <GuideColumn title="What to watch" items={guide.watchouts} marker="W" />
           </div>
         </div>
+
+        {relatedProducts.length > 0 ? (
+          <div className="mt-10 grid gap-3 border-t border-[var(--rail-border)] pt-8 lg:grid-cols-[0.72fr_1.28fr]">
+            <div className="text-sm font-semibold text-[var(--ink)]">
+              Related coverage
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {relatedProducts.map((related) => (
+                <TrackedLink
+                  key={related.id}
+                  href={related.href}
+                  eventName="product_click"
+                  eventProps={{
+                    source: "tracy_zhang_insurance_product_related",
+                    product,
+                    related_product: related.id,
+                  }}
+                  className="group border border-[var(--rail-border)] bg-[var(--surface)] p-4 text-sm transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-sm)]"
+                >
+                  <div className="font-semibold text-[var(--ink)]">
+                    {related.title}
+                  </div>
+                  <p className="mt-1 leading-6 text-[var(--muted)]">
+                    {related.description}
+                  </p>
+                  <div className="mt-4 font-semibold text-[var(--brand-ink)]">
+                    Open{" "}
+                    <span className="inline-block transition group-hover:translate-x-0.5">
+                      →
+                    </span>
+                  </div>
+                </TrackedLink>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         {relatedStories.length > 0 ? (
           <div className="mt-10 grid gap-3 border-t border-[var(--rail-border)] pt-8 lg:grid-cols-[0.72fr_1.28fr]">
@@ -76,6 +128,12 @@ export function ProductDecisionGuide({ product }: { product: string }) {
           </div>
         ) : null}
       </Container>
+      {schema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ) : null}
     </section>
   );
 }

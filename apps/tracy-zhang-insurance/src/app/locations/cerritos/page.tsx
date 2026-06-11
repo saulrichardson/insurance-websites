@@ -1,14 +1,8 @@
-import type { Metadata } from "next";
-
 import { MarketLocationPage } from "@/components/MarketLocationPage";
 import { redirectMismatchedLocalMarket } from "@/lib/local-market-guard";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Cerritos Insurance Guidance",
-  description:
-    "Insurance guidance for Cerritos households, property owners, drivers, families, and small businesses.",
-  alternates: { canonical: "/locations/cerritos" },
-};
+export const metadata = getRouteMetadata("/locations/cerritos");
 
 export default async function CerritosLocationPage() {
   await redirectMismatchedLocalMarket("cerritos");

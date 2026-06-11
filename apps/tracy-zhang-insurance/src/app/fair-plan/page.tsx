@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { ProductDecisionGuide } from "@/components/ProductDecisionGuide";
 import { Card } from "@/components/ui/Card";
-export const metadata: Metadata = {
-  title: "CA FAIR Plan Guidance",
-  description:
-    "Guidance for the California FAIR Plan and specialty markets. We help you understand next steps when standard home insurance options aren’t available.",
-  alternates: { canonical: "/fair-plan" },
-};
+import { getProductMetadata } from "@/lib/seo";
+
+export const metadata = getProductMetadata("fair-plan");
 
 export default function FairPlanPage() {
   return (

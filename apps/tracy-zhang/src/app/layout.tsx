@@ -36,7 +36,8 @@ export const metadata: Metadata = {
     default: `${site.agent.name} | California Insurance Advisor`,
     template: `%s | ${site.brand.shortName}`,
   },
-  description: `${site.agent.name} provides local insurance guidance for California families, property owners, and business owners.`,
+  description:
+    `${site.agent.name} provides California insurance guidance for families, property owners, drivers, and business owners from San Marino and La Palma offices.`,
   alternates: {
     canonical: "/",
     languages: {
@@ -58,14 +59,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `${site.agent.name} | California Insurance Advisor`,
-    description: `Clear insurance guidance, multilingual support, and direct office contact for California clients.`,
+    description:
+      "Clear insurance guidance, multilingual support, and direct office contact for California clients in San Marino, La Palma, Cerritos, and nearby communities.",
     type: "website",
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.agent.name} | California Insurance Advisor`,
-    description: `Local insurance guidance for California families, property owners, and business owners.`,
+    description:
+      "Local insurance guidance for California families, property owners, drivers, and business owners.",
   },
   icons: {
     icon: [

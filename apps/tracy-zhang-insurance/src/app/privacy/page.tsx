@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
-
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { site } from "@/config/site";
+import { getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy policy for Tracy Zhang Insurance inquiries, forms, and communications.",
-  alternates: { canonical: "/privacy" },
-};
+export const metadata = getRouteMetadata("/privacy");
 
 export default function PrivacyPage() {
   return (
