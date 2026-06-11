@@ -118,6 +118,12 @@ Search discoverability for the Chinese advisor surface should verify
 `https://www.tracyzhang.com/zh`, the sitemap `zh-Hans` alternate, and links
 from the Chinese page into `https://tracyzhanginsurance.com/zh/...`.
 
+Advisor-site SEO measurement should stay focused on Tracy's profile role:
+brand/name searches, Chinese-language advisor searches, office trust signals,
+and click-throughs into the canonical insurance site. Product-depth query
+optimization belongs on `tracyzhanginsurance.com`; do not expand this site into
+a duplicate product catalog to chase search traffic.
+
 The advisor schema should describe Tracy by name, language fit, California
 service context, and both real office entities. Keep this site an advisor
 profile; product-depth SEO belongs on `tracyzhanginsurance.com`.

@@ -287,6 +287,16 @@ immediate Search Console table status showed `Couldn't fetch` for the submitted
 sitemaps while direct requests returned HTTP 200 `application/xml`, so treat
 that as a Google processing state unless it persists after a later recheck.
 
+The next SEO layer is operational measurement, not more page cloning. At a high
+level, the team should recheck Search Console sitemap/indexing status, request
+indexing for the highest-value canonical/local/Chinese URLs, review queries by
+brand, city, product, guidance topic, and Chinese-language intent, then improve
+stored content, metadata, internal links, local profile data, or conversion
+tracking where production evidence shows a gap. Keep Baidu or other
+China-focused search work as a separate market decision; for Chinese-speaking
+California shoppers, first prove the current Google/local-search surfaces are
+indexed and converting.
+
 ## Deployment
 
 Deploy through the existing Vercel project currently named

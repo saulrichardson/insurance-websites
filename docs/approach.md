@@ -58,6 +58,10 @@ deployment notes.
 - Product and guidance internal links are content-owned. Product relationships
   come from `packages/domain`; story-to-product relationships live with story
   content so crawlers and visitors can move between advice and service pages.
+- SEO measurement is an operating loop, not another runtime feature. Use Search
+  Console, GA4, Vercel Analytics, sitemap status, and production smoke checks to
+  decide which Chinese, local, product, or guidance surfaces need improvement.
+  See `docs/records/2026-06-11-seo-measurement-operations.md`.
 
 ## Visual Operating Model
 
@@ -265,6 +269,11 @@ Current production deployment notes:
   2026-06-07. Google initially reported `Couldn't fetch` in the sitemap table
   even though direct Googlebot-style requests returned HTTP 200 XML; recheck
   Search Console after processing lag before making code or DNS changes.
+- The next SEO operating layer is measurement and search operations: recheck
+  sitemap processing, inspect queries by page and locale, use URL inspection
+  for high-value pages, keep local profile data consistent, and let production
+  search/lead evidence guide future content expansion rather than creating
+  cloned or runtime-translated pages.
 - The canonical insurance app should be deployed through a staged root-level
   pnpm source deploy with an offline-derived staged lockfile and frozen install,
   not the nested-app prebuilt path. See
