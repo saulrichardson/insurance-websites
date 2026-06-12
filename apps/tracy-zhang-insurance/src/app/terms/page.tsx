@@ -1,11 +1,13 @@
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
-import { site } from "@/config/site";
+import { getRequestMarketOffice } from "@/lib/market";
 import { getRouteMetadata } from "@/lib/seo";
 
 export const metadata = getRouteMetadata("/terms");
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const { office } = await getRequestMarketOffice();
+
   return (
     <div className="bg-white">
       <PageHero
@@ -43,7 +45,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-lg font-semibold text-slate-900">Contact</h2>
             <p className="mt-2">
-              For urgent changes or coverage questions, call {site.phoneDisplay}
+              For urgent changes or coverage questions, call {office.phoneDisplay}
               instead of relying only on a website submission.
             </p>
           </section>

@@ -109,12 +109,12 @@ export default async function ChinesePage({ params }: PageProps) {
   else if (path.startsWith("/locations/")) page = <ZhLocationPage path={path} />;
   else if (path === "/about") page = <ZhAboutPage market={market} office={office} />;
   else if (path === "/team") page = <ZhTeamPage />;
-  else if (path === "/privacy") page = <ZhPolicyPage kind="privacy" />;
-  else if (path === "/terms") page = <ZhPolicyPage kind="terms" />;
-  else if (path === "/sms-terms") page = <ZhPolicyPage kind="sms" />;
-  else if (path === "/contact-consent") page = <ZhPolicyPage kind="consent" />;
+  else if (path === "/privacy") page = <ZhPolicyPage kind="privacy" office={office} />;
+  else if (path === "/terms") page = <ZhPolicyPage kind="terms" office={office} />;
+  else if (path === "/sms-terms") page = <ZhPolicyPage kind="sms" office={office} />;
+  else if (path === "/contact-consent") page = <ZhPolicyPage kind="consent" office={office} />;
   else if (path === "/stories") page = <ZhStoriesPage />;
-  else if (story) page = <ZhStoryPage story={story} />;
+  else if (story) page = <ZhStoryPage story={story} office={office} />;
   else notFound();
 
   return withChineseStructuredData(page, path, market);
@@ -533,6 +533,7 @@ function ZhContactPage({
                   locale="zh"
                   officeOptions={isLocal ? [office] : undefined}
                   defaultOfficePreference={isLocal ? office.slug : undefined}
+                  contactOffice={office}
                 />
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">
@@ -752,8 +753,14 @@ function ZhTeamPage() {
   );
 }
 
-function ZhPolicyPage({ kind }: { kind: "privacy" | "terms" | "sms" | "consent" }) {
-  const content = policyContent[kind];
+function ZhPolicyPage({
+  kind,
+  office,
+}: {
+  kind: "privacy" | "terms" | "sms" | "consent";
+  office: Office;
+}) {
+  const content = getPolicyContent(office)[kind];
   return (
     <div lang="zh-Hans" className="bg-white">
       <PageHero
@@ -832,7 +839,7 @@ function ZhStoriesPage() {
   );
 }
 
-function ZhStoryPage({ story }: { story: LocalizedStory }) {
+function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office }) {
   const relatedProducts = story.relatedProductIds
     .map((id) => zhProducts.find((product) => product.id === id))
     .filter((product): product is LocalizedProduct => Boolean(product));
@@ -889,11 +896,15 @@ function ZhStoryPage({ story }: { story: LocalizedStory }) {
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <TrackedAnchor
                 className={buttonClasses({ variant: "primary", size: "md" })}
-                href={`tel:${site.phoneE164}`}
+                href={`tel:${office.phoneE164}`}
                 eventName="phone_click"
-                eventProps={{ source: "tracy_zhang_insurance_zh_story_cta", story: story.slug }}
+                eventProps={{
+                  source: "tracy_zhang_insurance_zh_story_cta",
+                  story: story.slug,
+                  phone: office.phoneDisplay,
+                }}
               >
-                {zhCommon.callLabel} {site.phoneDisplay}
+                {zhCommon.callLabel} {office.phoneDisplay}
               </TrackedAnchor>
               <TrackedLink
                 className={buttonClasses({ variant: "outline", size: "md" })}
@@ -959,53 +970,55 @@ function ZhStoryPage({ story }: { story: LocalizedStory }) {
   );
 }
 
-const policyContent = {
-  privacy: {
-    eyebrow: "隐私政策",
-    title: "隐私政策",
-    subtitle: "Tracy Zhang Insurance 如何处理咨询、报价、联系和沟通信息。",
-    sections: [
-      ["我们收集的信息", "当你请求保险协助时，我们可能收集姓名、电话、电子邮箱、邮编、偏好办公室、保险需求、留言、来源页面、广告或活动信息、IP 地址、浏览器信息和同意记录。"],
-      ["我们如何使用信息", "我们使用这些信息来回应你的请求、准备报价或保障讨论、把咨询转给合适办公室、记录同意、改进营销归因，并服务保险相关请求。"],
-      ["信息如何共享", "为了报价、签发、服务或支持保险产品和客户沟通，我们可能与保险公司、代理服务商、技术供应商和必要相关方共享信息。"],
-      ["手机信息", "用于短信沟通的手机信息不会为了第三方或关联方营销目的而共享。它可能与协助发送短信和支持沟通的服务商共享。"],
-      ["你的选择", "你可以要求停止营销沟通。短信可回复 STOP 退订，回复 HELP 获取帮助，也可以直接致电办公室。"],
-    ].map(([title, body]) => ({ title, body })),
-  },
-  terms: {
-    eyebrow: "网站条款",
-    title: "网站使用条款",
-    subtitle: "使用本网站和提交保险咨询的一般条款。",
-    sections: [
-      ["一般信息", "本网站提供一般保险信息和咨询路径，不提供法律、税务、财务或具有约束力的保险建议。"],
-      ["不会在线绑定保障", "提交表格、发送信息、留言或使用本网站不会绑定、变更、续保或取消任何保险。保障只有在承保方批准并书面确认后才生效。"],
-      ["可得性", "产品、承保公司、资格、核保和价格会因产品、风险、地点和当前市场条件而变化。"],
-      ["联系", `如有紧急变更或保障问题，请致电 ${site.phoneDisplay}，不要只依赖网站提交。`],
-    ].map(([title, body]) => ({ title, body })),
-  },
-  sms: {
-    eyebrow: "短信条款",
-    title: "短信沟通条款",
-    subtitle: "Tracy Zhang Insurance 短信沟通的条款。",
-    sections: [
-      ["项目说明", "Tracy Zhang Insurance 可能发送与保险咨询、报价跟进、预约协调、文件请求、服务更新和单独同意的营销沟通相关的短信。"],
-      ["短信频率", "短信频率取决于请求和沟通类型。处理一个有效咨询或服务请求时，你可能收到多条短信。"],
-      ["费用和支持", `可能产生短信和数据费用。回复 HELP 获取帮助，或致电 ${site.phoneDisplay}。`],
-      ["退订", "回复 STOP 可退订短信。运营商不对延迟或未送达短信负责。"],
-      ["隐私", "请查看隐私政策了解信息如何收集和使用。手机信息不会为了第三方营销目的共享。"],
-    ].map(([title, body]) => ({ title, body })),
-  },
-  consent: {
-    eyebrow: "联系同意",
-    title: "联系同意说明",
-    subtitle: "中文咨询表使用的联系和短信同意说明。",
-    sections: [
-      ["联系同意", "提交此请求即表示你授权 Tracy Zhang Insurance 使用你提供的联系方式，就你的保险咨询与你联系。提交此表格不会绑定保险。"],
-      ["短信同意", "如果你选择短信，你同意接收 Tracy Zhang Insurance 就你的咨询发送的短信。可能产生短信和数据费用。回复 STOP 可退订，回复 HELP 可获得帮助。"],
-      ["营销信息", "可选营销信息需要单独明确同意；不同意营销信息也可以提交保险咨询。"],
-    ].map(([title, body]) => ({ title, body })),
-  },
-} as const;
+function getPolicyContent(office: Office) {
+  return {
+    privacy: {
+      eyebrow: "隐私政策",
+      title: "隐私政策",
+      subtitle: "Tracy Zhang Insurance 如何处理咨询、报价、联系和沟通信息。",
+      sections: [
+        ["我们收集的信息", "当你请求保险协助时，我们可能收集姓名、电话、电子邮箱、邮编、偏好办公室、保险需求、留言、来源页面、广告或活动信息、IP 地址、浏览器信息和同意记录。"],
+        ["我们如何使用信息", "我们使用这些信息来回应你的请求、准备报价或保障讨论、把咨询转给合适办公室、记录同意、改进营销归因，并服务保险相关请求。"],
+        ["信息如何共享", "为了报价、签发、服务或支持保险产品和客户沟通，我们可能与保险公司、代理服务商、技术供应商和必要相关方共享信息。"],
+        ["手机信息", "用于短信沟通的手机信息不会为了第三方或关联方营销目的而共享。它可能与协助发送短信和支持沟通的服务商共享。"],
+        ["你的选择", "你可以要求停止营销沟通。短信可回复 STOP 退订，回复 HELP 获取帮助，也可以直接致电办公室。"],
+      ].map(([title, body]) => ({ title, body })),
+    },
+    terms: {
+      eyebrow: "网站条款",
+      title: "网站使用条款",
+      subtitle: "使用本网站和提交保险咨询的一般条款。",
+      sections: [
+        ["一般信息", "本网站提供一般保险信息和咨询路径，不提供法律、税务、财务或具有约束力的保险建议。"],
+        ["不会在线绑定保障", "提交表格、发送信息、留言或使用本网站不会绑定、变更、续保或取消任何保险。保障只有在承保方批准并书面确认后才生效。"],
+        ["可得性", "产品、承保公司、资格、核保和价格会因产品、风险、地点和当前市场条件而变化。"],
+        ["联系", `如有紧急变更或保障问题，请致电 ${office.phoneDisplay}，不要只依赖网站提交。`],
+      ].map(([title, body]) => ({ title, body })),
+    },
+    sms: {
+      eyebrow: "短信条款",
+      title: "短信沟通条款",
+      subtitle: "Tracy Zhang Insurance 短信沟通的条款。",
+      sections: [
+        ["项目说明", "Tracy Zhang Insurance 可能发送与保险咨询、报价跟进、预约协调、文件请求、服务更新和单独同意的营销沟通相关的短信。"],
+        ["短信频率", "短信频率取决于请求和沟通类型。处理一个有效咨询或服务请求时，你可能收到多条短信。"],
+        ["费用和支持", `可能产生短信和数据费用。回复 HELP 获取帮助，或致电 ${office.phoneDisplay}。`],
+        ["退订", "回复 STOP 可退订短信。运营商不对延迟或未送达短信负责。"],
+        ["隐私", "请查看隐私政策了解信息如何收集和使用。手机信息不会为了第三方营销目的共享。"],
+      ].map(([title, body]) => ({ title, body })),
+    },
+    consent: {
+      eyebrow: "联系同意",
+      title: "联系同意说明",
+      subtitle: "中文咨询表使用的联系和短信同意说明。",
+      sections: [
+        ["联系同意", "提交此请求即表示你授权 Tracy Zhang Insurance 使用你提供的联系方式，就你的保险咨询与你联系。提交此表格不会绑定保险。"],
+        ["短信同意", "如果你选择短信，你同意接收 Tracy Zhang Insurance 就你的咨询发送的短信。可能产生短信和数据费用。回复 STOP 可退订，回复 HELP 可获得帮助。"],
+        ["营销信息", "可选营销信息需要单独明确同意；不同意营销信息也可以提交保险咨询。"],
+      ].map(([title, body]) => ({ title, body })),
+    },
+  } as const;
+}
 
 function withChineseStructuredData(
   page: ReactNode,

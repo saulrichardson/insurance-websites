@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getMarketByHost, isRetiredHost, publicContact } from "./index";
+import { getMarketByHost, getOfficeById, isRetiredHost, publicContact } from "./index";
 
 describe("market resolution", () => {
   it("uses the canonical statewide market for tracyzhanginsurance.com", () => {
@@ -11,6 +11,15 @@ describe("market resolution", () => {
   it("uses local markets for local domains", () => {
     expect(getMarketByHost("sanmarinoinsurance.com").id).toBe("san-marino");
     expect(getMarketByHost("lapalmainsurance.com").id).toBe("la-palma");
+  });
+
+  it("routes La Palma market pages to the La Palma office number", () => {
+    const market = getMarketByHost("lapalmainsurance.com");
+    const office = getOfficeById(market.primaryOfficeId);
+
+    expect(market.primaryOfficeId).toBe("la-palma");
+    expect(office.phoneDisplay).toBe("(562) 402-4375");
+    expect(office.phoneE164).toBe("+15624024375");
   });
 
   it("marks the misspelled domain as retired", () => {

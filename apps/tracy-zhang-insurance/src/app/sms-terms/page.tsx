@@ -1,11 +1,13 @@
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
-import { site } from "@/config/site";
+import { getRequestMarketOffice } from "@/lib/market";
 import { getRouteMetadata } from "@/lib/seo";
 
 export const metadata = getRouteMetadata("/sms-terms");
 
-export default function SmsTermsPage() {
+export default async function SmsTermsPage() {
+  const { office } = await getRequestMarketOffice();
+
   return (
     <div className="bg-white">
       <PageHero
@@ -37,7 +39,7 @@ export default function SmsTermsPage() {
             <h2 className="text-lg font-semibold text-slate-900">Rates and support</h2>
             <p className="mt-2">
               Message and data rates may apply. Reply HELP for help or call{" "}
-              {site.phoneDisplay}.
+              {office.phoneDisplay}.
             </p>
           </section>
           <section>

@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import {
   domains,
+  getOfficeById,
   getMarketByHost,
   getMarketProfile,
   isRetiredHost,
@@ -16,6 +17,12 @@ export async function getRequestMarket() {
   }
 
   return getMarketByHost(host);
+}
+
+export async function getRequestMarketOffice() {
+  const market = await getRequestMarket();
+  const office = getOfficeById(market.primaryOfficeId);
+  return { market, office };
 }
 
 export function getMarketUrl(id: MarketId) {

@@ -194,6 +194,7 @@ export default async function ContactPage() {
                 <QuoteForm
                   officeOptions={isLocal ? [office] : undefined}
                   defaultOfficePreference={isLocal ? office.slug : undefined}
+                  contactOffice={office}
                 />
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">

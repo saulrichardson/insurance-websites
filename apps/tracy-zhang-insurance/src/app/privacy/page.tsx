@@ -1,11 +1,13 @@
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
-import { site } from "@/config/site";
+import { getRequestMarketOffice } from "@/lib/market";
 import { getRouteMetadata } from "@/lib/seo";
 
 export const metadata = getRouteMetadata("/privacy");
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const { office } = await getRequestMarketOffice();
+
   return (
     <div className="bg-white">
       <PageHero
@@ -54,9 +56,9 @@ export default function PrivacyPage() {
             Questions about this policy can be directed to{" "}
             <a
               className="font-medium text-slate-900 hover:underline"
-              href={`tel:${site.phoneE164}`}
+              href={`tel:${office.phoneE164}`}
             >
-              {site.phoneDisplay}
+              {office.phoneDisplay}
             </a>
             .
           </PolicySection>

@@ -11,6 +11,7 @@ import { StoryProse } from "@/components/StoryProse";
 import { buttonClasses } from "@/components/ui/button";
 import { site, siteUrl } from "@/config/site";
 import { getStory, getStorySlugs, stories } from "@/content/stories";
+import { getRequestMarketOffice } from "@/lib/market";
 import { getBreadcrumbSchema, getJsonLdGraph } from "@/lib/schema";
 import { absoluteUrl, localizedAlternates } from "@/lib/seo";
 
@@ -80,6 +81,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
   const story = getStory(slug);
   if (!story) return notFound();
 
+  const { office } = await getRequestMarketOffice();
   const dateLabel = formatDate(story.dateISO);
   const storyUrl = absoluteUrl(`/stories/${story.slug}`);
   const storyImageUrl = story.image ? absoluteUrl(story.image.src) : undefined;
@@ -172,15 +174,15 @@ export default async function StoryPage({ params }: StoryPageProps) {
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <TrackedAnchor
                   className={buttonClasses({ variant: "primary", size: "md" })}
-                  href={`tel:${site.phoneE164}`}
+                  href={`tel:${office.phoneE164}`}
                   eventName="phone_click"
                   eventProps={{
                     source: "tracy_zhang_insurance_story_cta",
                     story: story.slug,
-                    phone: site.phoneDisplay,
+                    phone: office.phoneDisplay,
                   }}
                 >
-                  Call {site.phoneDisplay}
+                  Call {office.phoneDisplay}
                 </TrackedAnchor>
                 <TrackedLink
                   className={buttonClasses({ variant: "outline", size: "md" })}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { buttonClasses } from "@/components/ui/button";
-import { site } from "@/config/site";
+import { getRequestMarketOffice } from "@/lib/market";
 import { getRouteMetadata } from "@/lib/seo";
 
 export const metadata = getRouteMetadata("/thanks", {
@@ -12,7 +12,9 @@ export const metadata = getRouteMetadata("/thanks", {
   localized: false,
 });
 
-export default function ThanksPage() {
+export default async function ThanksPage() {
+  const { office } = await getRequestMarketOffice();
+
   return (
     <div className="bg-white">
       <PageHero
@@ -33,9 +35,9 @@ export default function ThanksPage() {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
               className={buttonClasses({ variant: "primary", size: "md" })}
-              href={`tel:${site.phoneE164}`}
+              href={`tel:${office.phoneE164}`}
             >
-              Call {site.phoneDisplay}
+              Call {office.phoneDisplay}
             </a>
             <Link
               className={buttonClasses({ variant: "outline", size: "md" })}

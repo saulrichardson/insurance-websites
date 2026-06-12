@@ -154,10 +154,12 @@ const formCopy = {
 export function QuoteForm({
   officeOptions = site.offices,
   defaultOfficePreference,
+  contactOffice,
   locale = "en",
 }: {
   officeOptions?: Office[];
   defaultOfficePreference?: Office["slug"];
+  contactOffice?: Office;
   locale?: Locale;
 }) {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -173,6 +175,13 @@ export function QuoteForm({
       : undefined;
   const copy = formCopy[locale];
   const nextSteps = copy.nextSteps;
+  const selectedContactOffice =
+    contactOffice ??
+    officeOptions.find((option) => option.slug === defaultOfficePreference) ??
+    (officeOptions.length === 1 ? officeOptions[0] : undefined);
+  const contactPhoneDisplay = selectedContactOffice?.phoneDisplay ?? site.phoneDisplay;
+  const contactPhoneE164 = selectedContactOffice?.phoneE164 ?? site.phoneE164;
+  const contactSmsE164 = selectedContactOffice?.smsE164 ?? site.smsE164;
 
   const interestOptions = useMemo(
     () => copy.interestOptions,
@@ -423,23 +432,23 @@ export function QuoteForm({
           <div className="mt-3 flex flex-wrap gap-2">
             <a
               className={buttonClasses({ variant: "primary", size: "sm" })}
-              href={`tel:${site.phoneE164}`}
+              href={`tel:${contactPhoneE164}`}
               onClick={() =>
                 trackMarketingEvent("phone_click", {
                   source: "tracy_zhang_insurance_quote_error",
-                  phone: site.phoneDisplay,
+                  phone: contactPhoneDisplay,
                 })
               }
             >
-              {copy.labels.call} {site.phoneDisplay}
+              {copy.labels.call} {contactPhoneDisplay}
             </a>
             <a
               className={buttonClasses({ variant: "outline", size: "sm" })}
-              href={`sms:${site.smsE164}`}
+              href={`sms:${contactSmsE164}`}
               onClick={() =>
                 trackMarketingEvent("sms_click", {
                   source: "tracy_zhang_insurance_quote_error",
-                  phone: site.phoneDisplay,
+                  phone: contactPhoneDisplay,
                 })
               }
             >
@@ -453,7 +462,7 @@ export function QuoteForm({
         <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-950">
           <div className="font-semibold">{copy.labels.successTitle}</div>
           <div className="mt-1">
-            {copy.successBody(site.phoneDisplay)}
+            {copy.successBody(contactPhoneDisplay)}
           </div>
           {requestId ? <div className="mt-2 text-xs">Reference: {requestId}</div> : null}
         </div>

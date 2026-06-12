@@ -567,7 +567,13 @@ function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
       canonical: expectedUrl(origin, "/"),
       alternates: buildLocalizedAlternates(origin, "/"),
       schemaTypes: ["InsuranceAgency", "WebSite"],
-      includes: [activeOffice.address.addressLocality, activeOffice.address.streetAddress, ...contactIncludes],
+      includes: [
+        activeOffice.address.addressLocality,
+        activeOffice.address.streetAddress,
+        activeOffice.phoneDisplay,
+        activeOffice.phoneE164,
+        ...contactIncludes,
+      ],
       excludes: [
         inactiveOffice.address.streetAddress,
         inactiveOffice.phoneDisplay,
@@ -579,7 +585,14 @@ function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
       canonical: expectedUrl(origin, "/zh"),
       alternates: buildLocalizedAlternates(origin, "/zh"),
       schemaTypes: ["WebPage", "BreadcrumbList", "InsuranceAgency", "WebSite"],
-      includes: ["保险", activeOffice.address.addressLocality, activeOffice.address.streetAddress, ...contactIncludes],
+      includes: [
+        "保险",
+        activeOffice.address.addressLocality,
+        activeOffice.address.streetAddress,
+        activeOffice.phoneDisplay,
+        activeOffice.phoneE164,
+        ...contactIncludes,
+      ],
       excludes: [
         inactiveOffice.address.streetAddress,
         inactiveOffice.phoneDisplay,
