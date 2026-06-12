@@ -210,6 +210,7 @@ pnpm build:tracy-zhang-insurance
 pnpm lint:tracy-zhang
 pnpm build:tracy-zhang
 pnpm test
+pnpm seo:check
 ```
 
 Expected manual checks:
@@ -220,6 +221,20 @@ Expected manual checks:
 - admin auth and lead inbox behavior
 - sitemap/robots checks after route or content changes
 - live smoke checks after deployment
+
+SEO contract checks:
+
+- `pnpm seo:check` validates production robots, sitemaps, canonicals,
+  hreflang, JSON-LD types, noindex utility routes, related internal links,
+  local-domain office isolation, and the advisor site's profile schema.
+- `pnpm seo:check:local` runs the same contract against local production
+  servers. By default it expects the insurance app at `http://127.0.0.1:3000`
+  and the advisor app at `http://127.0.0.1:3001`; override with
+  `--insurance-origin` or `--personal-origin` when ports differ.
+- SEO checks intentionally parse durable rendered HTML contracts rather than
+  CSS classes or visual layout. Redesigns can change composition, but they must
+  not silently remove canonical URLs, language alternates, schema, sitemap
+  membership, noindex boundaries, or crawlable product/story links.
 
 Deployment preference:
 
@@ -274,6 +289,9 @@ Current production deployment notes:
   for high-value pages, keep local profile data consistent, and let production
   search/lead evidence guide future content expansion rather than creating
   cloned or runtime-translated pages.
+- The executable SEO regression path is `pnpm seo:check`. Run it after route,
+  layout, metadata, localization, schema, sitemap, story, product, or domain
+  changes and after production deployment.
 - The canonical insurance app should be deployed through a staged root-level
   pnpm source deploy with an offline-derived staged lockfile and frozen install,
   not the nested-app prebuilt path. See

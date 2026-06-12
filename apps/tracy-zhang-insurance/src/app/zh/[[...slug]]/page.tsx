@@ -989,17 +989,15 @@ function withChineseStructuredData(
     },
   ];
 
-  if (path !== "/") {
-    nodes.push(
-      getBreadcrumbSchema(
-        [
-          { name: "中文保险咨询", path: "/zh" },
-          { name: meta.title, path: chinesePath },
-        ],
-        base,
-      ),
-    );
-  }
+  nodes.push(
+    getBreadcrumbSchema(
+      [
+        { name: "中文保险咨询", path: "/zh" },
+        ...(path === "/" ? [] : [{ name: meta.title, path: chinesePath }]),
+      ],
+      base,
+    ),
+  );
 
   if (product) {
     nodes.push({

@@ -117,6 +117,9 @@ screenshots.
 Search discoverability for the Chinese advisor surface should verify
 `https://www.tracyzhang.com/zh`, the sitemap `zh-Hans` alternate, and links
 from the Chinese page into `https://tracyzhanginsurance.com/zh/...`.
+`pnpm seo:check` covers those advisor-site contracts in production, including
+canonical URLs, reciprocal language alternates, sitemap membership, and
+`Person`/`ProfilePage`/`WebSite`/office `InsuranceAgency` schema.
 
 Advisor-site SEO measurement should stay focused on Tracy's profile role:
 brand/name searches, Chinese-language advisor searches, office trust signals,

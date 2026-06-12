@@ -264,6 +264,7 @@ Auto lead intake:
 Search discoverability checks after SEO or domain changes:
 
 ```bash
+pnpm seo:check
 curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://tracyzhanginsurance.com/sitemap.xml
 curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://sanmarinoinsurance.com/sitemap.xml
 curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://lapalmainsurance.com/sitemap.xml
@@ -296,6 +297,13 @@ tracking where production evidence shows a gap. Keep Baidu or other
 China-focused search work as a separate market decision; for Chinese-speaking
 California shoppers, first prove the current Google/local-search surfaces are
 indexed and converting.
+
+The executable SEO contract lives at `scripts/seo/check-contracts.mjs`. It
+derives product and story expectations from source data, then validates rendered
+HTML/sitemaps for canonicals, reciprocal `zh-Hans` alternates, JSON-LD types,
+related product links, noindex utility pages, and local-domain office isolation.
+Keep future layout changes compatible with that contract instead of weakening
+the checker to match a broken page.
 
 ## Deployment
 

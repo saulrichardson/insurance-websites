@@ -25,6 +25,8 @@
     "lint:tracy-zhang": "pnpm --filter @insurance-websites/tracy-zhang lint",
     "build:all": "pnpm build:tracy-zhang-insurance && pnpm build:tracy-zhang",
     "lint:all": "pnpm lint:tracy-zhang-insurance && pnpm lint:tracy-zhang",
+    "seo:check": "node --no-warnings scripts/seo/check-contracts.mjs",
+    "seo:check:local": "node --no-warnings scripts/seo/check-contracts.mjs --target local",
     "i18n:translate": "node scripts/i18n/translate.mjs",
     "i18n:check": "node scripts/i18n/check-translations.mjs"
   },
