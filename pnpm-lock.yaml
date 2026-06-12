@@ -17,6 +17,9 @@ importers:
 
   apps/tracy-zhang:
     dependencies:
+      '@insurance-websites/domain':
+        specifier: workspace:*
+        version: link:../../packages/domain
       '@vercel/analytics':
         specifier: 1.6.1
         version: 1.6.1(next@16.2.7(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)

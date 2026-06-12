@@ -1,3 +1,5 @@
+import { publicContact } from "@insurance-websites/domain";
+
 export type OfficeHour =
   | { day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri"; open: string; close: string }
   | { day: "Sat" | "Sun"; note: string };
@@ -39,6 +41,7 @@ export const site = {
       display: "(626) 300-8338",
       e164: "+16263008338",
     },
+    contact: publicContact,
     fax: {
       display: "(833) 679-4583",
     },

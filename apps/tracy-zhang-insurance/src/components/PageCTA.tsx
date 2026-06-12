@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { ScheduleButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -23,6 +24,7 @@ export async function PageCTA({
   const marketOffice = office ?? getOfficeById((await getRequestMarket()).primaryOfficeId);
   const phoneDisplay = marketOffice.phoneDisplay ?? site.phoneDisplay;
   const phoneE164 = marketOffice.phoneE164 ?? site.phoneE164;
+  const locale = quoteHref.startsWith("/zh") ? "zh" : "en";
   const defaultCallLabel = quoteHref.startsWith("/zh")
     ? `致电 ${phoneDisplay}`
     : `Call ${phoneDisplay}`;
@@ -37,7 +39,7 @@ export async function PageCTA({
             </h2>
             <p className="mt-3 text-base leading-7 text-white/70">{body}</p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
             <TrackedAnchor
               className={buttonClasses({
                 variant: "secondary",
@@ -54,6 +56,13 @@ export async function PageCTA({
             >
               {callLabel ?? defaultCallLabel}
             </TrackedAnchor>
+            <ScheduleButton
+              locale={locale}
+              source="tracy_zhang_insurance_page_cta"
+              variant="secondary"
+              size="lg"
+              className="border border-white/50 bg-transparent text-white hover:bg-white hover:text-[var(--ink)]"
+            />
             <TrackedLink
               className={buttonClasses({
                 variant: "secondary",

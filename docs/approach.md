@@ -43,6 +43,10 @@ deployment notes.
 - `packages/domain`: shared brand, office, product, domain, and market data.
 - `packages/lead-capture`: shared lead validation and consent model.
 - `packages/ui`: shared UI primitives.
+- Public direct-contact facts, including Tracy's public email and Calendly
+  scheduling URL, are source-owned in `packages/domain` as `publicContact` and
+  consumed by both public apps. Do not hardcode alternate public email or
+  scheduling links in individual pages.
 - `docs/`: portfolio-level product intent, approach, and records.
 - `apps/<site>/docs/`: site-specific intent, approach, and records.
 - Simplified Chinese discoverability uses `/zh/` URL paths inside the existing
@@ -58,6 +62,10 @@ deployment notes.
 - Product and guidance internal links are content-owned. Product relationships
   come from `packages/domain`; story-to-product relationships live with story
   content so crawlers and visitors can move between advice and service pages.
+- Product-depth blog/guidance content belongs on the canonical insurance app's
+  `/stories` routes. The personal advisor app can feature and route to that
+  guidance, but should not duplicate full article bodies as a second product
+  blog unless the product role intentionally changes.
 - SEO measurement is an operating loop, not another runtime feature. Use Search
   Console, GA4, Vercel Analytics, sitemap status, and production smoke checks to
   decide which Chinese, local, product, or guidance surfaces need improvement.

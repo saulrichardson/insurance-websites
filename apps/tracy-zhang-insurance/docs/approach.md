@@ -119,6 +119,12 @@ Story entries also own `relatedProductIds`. This is the source for story-to-
 product internal links and Article `about` schema. Product-to-product links
 come from the shared domain product graph, not per-page one-off arrays.
 
+Public email and scheduling links are shared domain facts. Use
+`publicContact` from `packages/domain` through the app site config and contact
+action components; do not place independent `mailto:` or Calendly URLs in page
+content. High-value surfaces should expose call, schedule, email, and quote
+paths with localized labels where applicable.
+
 Homepage guidance should not rely only on the header nav or a generic
 button-style link. The canonical and local homepages should expose the latest
 story through an editorial coverage-note object near the first screen, then use

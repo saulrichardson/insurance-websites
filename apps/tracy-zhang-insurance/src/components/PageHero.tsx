@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { ScheduleButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -25,6 +26,7 @@ export async function PageHero({
   const marketOffice = office ?? getOfficeById((await getRequestMarket()).primaryOfficeId);
   const phoneDisplay = marketOffice.phoneDisplay ?? site.phoneDisplay;
   const phoneE164 = marketOffice.phoneE164 ?? site.phoneE164;
+  const locale = quoteHref.startsWith("/zh") ? "zh" : "en";
   const defaultCallLabel = quoteHref.startsWith("/zh")
     ? `致电 ${phoneDisplay}`
     : `Call ${phoneDisplay}`;
@@ -44,7 +46,7 @@ export async function PageHero({
             {subtitle}
           </p>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <TrackedLink
               className={buttonClasses({ variant: "primary", size: "md" })}
               href={quoteHref}
@@ -65,6 +67,13 @@ export async function PageHero({
             >
               {callLabel ?? defaultCallLabel}
             </TrackedAnchor>
+            <ScheduleButton
+              locale={locale}
+              source="tracy_zhang_insurance_page_hero"
+              eventProps={{ page_title: title }}
+              variant="outline"
+              size="md"
+            />
           </div>
         </div>
       </Container>

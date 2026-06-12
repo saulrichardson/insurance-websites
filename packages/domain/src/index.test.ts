@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getMarketByHost, isRetiredHost } from "./index";
+import { getMarketByHost, isRetiredHost, publicContact } from "./index";
 
 describe("market resolution", () => {
   it("uses the canonical statewide market for tracyzhanginsurance.com", () => {
@@ -17,5 +17,13 @@ describe("market resolution", () => {
     expect(isRetiredHost("tracysinsurnace.com")).toBe(true);
     expect(isRetiredHost("www.tracysinsurnace.com")).toBe(true);
     expect(isRetiredHost("tracyzhanginsurance.com")).toBe(false);
+  });
+
+  it("publishes shared public contact actions", () => {
+    expect(publicContact.email).toBe("tzhang@allstate.com");
+    expect(publicContact.scheduling.provider).toBe("calendly");
+    expect(publicContact.scheduling.url).toBe(
+      "https://calendly.com/tracyzhangallstate/new-meeting",
+    );
   });
 });

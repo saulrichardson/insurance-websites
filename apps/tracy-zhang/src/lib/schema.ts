@@ -29,6 +29,7 @@ export function getPersonSchema() {
         jobTitle: "Insurance advisor",
         image: site.agent.images.portrait,
         telephone: site.agent.phone.e164,
+        email: site.agent.contact.email,
         knowsLanguage: site.agent.languages,
         knowsAbout: [
           "Auto insurance",
@@ -48,6 +49,11 @@ export function getPersonSchema() {
           "@id": "https://tracyzhanginsurance.com/#agency",
         },
         workLocation: offices.map((office) => ({ "@id": office["@id"] })),
+        potentialAction: {
+          "@type": "ScheduleAction",
+          target: site.agent.contact.scheduling.url,
+          name: site.agent.contact.scheduling.label,
+        },
       },
       {
         "@type": "ProfilePage",

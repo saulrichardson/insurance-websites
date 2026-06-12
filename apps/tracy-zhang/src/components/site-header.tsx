@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ExternalLink, Menu, Phone, X } from "lucide-react";
 
+import { EmailButton, ScheduleButton } from "@/components/contact-actions";
 import { LanguageSwitch } from "@/components/language-switch";
 import { trackMarketingEvent } from "@/components/marketing-events";
 import { Container } from "@/components/ui/container";
@@ -98,6 +99,13 @@ export function SiteHeader() {
             <Phone className="size-4" aria-hidden />
             {site.agent.phone.display}
           </a>
+          <ScheduleButton
+            locale={locale}
+            source="tracy_header"
+            variant="outline"
+            size="sm"
+            icon
+          />
           <a
             href={quoteHref}
             className="inline-flex h-10 items-center justify-center rounded-full border border-accent bg-accent px-5 text-sm font-medium text-accent-foreground shadow-sm shadow-black/10 hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
@@ -169,6 +177,24 @@ export function SiteHeader() {
               <Phone className="size-4" aria-hidden />
               {isZh ? "致电" : "Call"} {site.agent.phone.display}
             </a>
+            <ScheduleButton
+              locale={locale}
+              source="tracy_mobile_menu"
+              variant="outline"
+              size="md"
+              icon
+              onClick={() => setIsOpen(false)}
+            />
+            <EmailButton
+              locale={locale}
+              source="tracy_mobile_menu"
+              variant="ghost"
+              size="md"
+              icon
+              onClick={() => setIsOpen(false)}
+            >
+              {isZh ? "发送邮件" : `Email ${site.agent.contact.email}`}
+            </EmailButton>
           </Container>
         </div>
       ) : null}

@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
@@ -16,8 +17,6 @@ export default async function ContactPage() {
   const isLocal = market.domainRole === "local";
   const visibleOffices = isLocal ? [office] : site.offices;
   const serviceArea = isLocal ? market.serviceArea : site.serviceArea;
-  const email = site.email?.trim();
-  const hasEmail = Boolean(email && email.length > 0);
   const title = isLocal ? `Contact the ${market.label} office` : "Call, text, or request a quote";
   const subtitle = isLocal
     ? `Tell us what changed, what you need covered, and how you prefer to be reached. The ${market.label} office will help shape the next step.`
@@ -103,14 +102,13 @@ export default async function ContactPage() {
                           Fax {item.faxDisplay}
                         </div>
                       ) : null}
-                      {hasEmail ? (
-                        <a
-                          className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                          href={`mailto:${email}`}
-                        >
-                          Email {email}
-                        </a>
-                      ) : null}
+                      <EmailAnchor
+                        source="tracy_zhang_insurance_contact_page"
+                        eventProps={{ office: item.slug }}
+                        className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
+                      >
+                        Email {site.contact.email}
+                      </EmailAnchor>
                     </div>
 
                     <div className="grid gap-1">
@@ -125,6 +123,11 @@ export default async function ContactPage() {
                           {item.hours.note}
                         </div>
                       ) : null}
+                      <ScheduleAnchor
+                        source="tracy_zhang_insurance_contact_page"
+                        eventProps={{ office: item.slug }}
+                        className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
+                      />
                       {item.links?.appointment ? (
                         <a
                           className="mt-2 inline-flex font-medium text-slate-950 hover:underline"

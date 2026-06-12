@@ -11,6 +11,11 @@ import {
   Star,
 } from "lucide-react";
 
+import {
+  EmailAnchor,
+  EmailButton,
+  ScheduleButton,
+} from "@/components/contact-actions";
 import { TrackedAnchor } from "@/components/marketing-events";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -75,6 +80,13 @@ const proofStats = [
   },
 ];
 
+const latestGuidance = {
+  title: "Why You Should Consider the CA FAIR Plan",
+  description:
+    "A practical look at when the FAIR Plan can create a better structure than accepting the first painful specialty-market quote.",
+  href: `${businessSite}/stories/why-you-should-consider-the-ca-fair-plan`,
+};
+
 export default function Home() {
   return (
     <main id="main" className="bg-background text-foreground">
@@ -103,7 +115,7 @@ export default function Home() {
                 tradeoff worth reviewing.
               </p>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <ButtonLink
                   href={quoteHref}
                   variant="primary"
@@ -117,6 +129,12 @@ export default function Home() {
                   Get insurance help
                   <ArrowRight className="size-4" aria-hidden />
                 </ButtonLink>
+                <ScheduleButton
+                  source="tracy_hero"
+                  variant="outline"
+                  size="md"
+                  icon
+                />
                 <TrackedAnchor
                   href={`tel:${site.agent.phone.e164}`}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/25 bg-surface px-5 text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-background/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
@@ -188,6 +206,13 @@ export default function Home() {
                   View public profile
                   <ArrowRight className="size-4" aria-hidden />
                 </TrackedAnchor>
+                <EmailAnchor
+                  source="tracy_profile_panel"
+                  className="flex items-center justify-between border-t border-accent/10 px-5 py-4 text-sm font-semibold text-accent hover:bg-background/75"
+                >
+                  Email {site.agent.contact.email}
+                  <ArrowRight className="size-4" aria-hidden />
+                </EmailAnchor>
               </div>
             </aside>
           </div>
@@ -323,6 +348,13 @@ export default function Home() {
                 Get insurance help
                 <ArrowRight className="size-4" aria-hidden />
               </ButtonLink>
+              <ScheduleButton
+                source="tracy_midpage"
+                variant="secondary"
+                size="md"
+                className="border-accent-foreground/25 bg-transparent text-accent-foreground hover:bg-accent-foreground/8"
+                icon
+              />
               <TrackedAnchor
                 href={`tel:${site.agent.phone.e164}`}
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent-foreground/25 px-5 text-sm font-semibold text-accent-foreground hover:bg-accent-foreground/8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground"
@@ -335,7 +367,58 @@ export default function Home() {
                 <Phone className="size-4" aria-hidden />
                 Call Tracy
               </TrackedAnchor>
+              <EmailButton
+                source="tracy_midpage"
+                variant="ghost"
+                size="md"
+                className="text-accent-foreground hover:bg-accent-foreground/8"
+                icon
+              />
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-accent/10 bg-surface">
+        <Container className="py-16 sm:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+            <div>
+              <div className="text-xs font-semibold uppercase text-muted">
+                Latest guidance
+              </div>
+              <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-accent sm:text-5xl">
+                Clear thinking for hard California insurance decisions.
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-foreground/70">
+                When a renewal, nonrenewal, lender deadline, or wildfire-area
+                question gets stressful, start with the issue in front of you
+                and compare the real options.
+              </p>
+            </div>
+
+            <TrackedAnchor
+              href={latestGuidance.href}
+              eventName="cross_site_click"
+              eventProps={{
+                source: "tracy_latest_guidance",
+                destination: latestGuidance.href,
+              }}
+              className="group border border-accent/10 bg-background p-7 shadow-sm shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10"
+            >
+              <div className="text-xs font-semibold uppercase text-muted">
+                CA FAIR Plan
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold leading-tight text-accent">
+                {latestGuidance.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-foreground/70">
+                {latestGuidance.description}
+              </p>
+              <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                Read the post
+                <ArrowRight className="size-4 transition group-hover:translate-x-0.5" aria-hidden />
+              </div>
+            </TrackedAnchor>
           </div>
         </Container>
       </section>
@@ -420,6 +503,12 @@ export default function Home() {
                   >
                     Directions
                   </TrackedAnchor>
+                  <ScheduleButton
+                    source="tracy_office_card"
+                    eventProps={{ office: office.id }}
+                    variant="outline"
+                    size="sm"
+                  />
                 </div>
               </div>
             ))}

@@ -12,7 +12,7 @@ export function getLocalBusinessSchema(options?: {
   const market = options?.market;
   const selectedOffice = options?.office ?? primaryOffice;
   const schemaUrl = options?.url ?? site.url;
-  const email = site.email?.trim();
+  const email = site.contact.email.trim();
   const sameAs = [
     site.social.googleBusinessProfile,
     site.social.facebook,
@@ -51,7 +51,19 @@ export function getLocalBusinessSchema(options?: {
         logo: absoluteUrl("/icon.png", schemaUrl),
         image: absoluteUrl("/icon.png", schemaUrl),
         telephone: selectedOffice.phoneE164,
-        email: email && email.length > 0 ? email : undefined,
+        email,
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: selectedOffice.phoneE164,
+          email,
+          contactType: "customer service",
+          availableLanguage: selectedOffice.languages,
+        },
+        potentialAction: {
+          "@type": "ScheduleAction",
+          target: site.contact.scheduling.url,
+          name: site.contact.scheduling.label,
+        },
         address: {
           "@type": "PostalAddress",
           streetAddress: selectedOffice.address.streetAddress,

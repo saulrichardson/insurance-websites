@@ -10,6 +10,11 @@ import {
   Star,
 } from "lucide-react";
 
+import {
+  EmailAnchor,
+  EmailButton,
+  ScheduleButton,
+} from "@/components/contact-actions";
 import { TrackedAnchor } from "@/components/marketing-events";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -18,6 +23,12 @@ import { getSiteUrl } from "@/lib/site-url";
 
 const businessSite = "https://tracyzhanginsurance.com";
 const quoteHref = `${businessSite}/zh/contact#quote`;
+const latestGuidance = {
+  title: "为什么加州房主应该认真考虑 CA FAIR Plan",
+  description:
+    "如果房屋保险被取消、不续保或涨价太多，先比较 FAIR Plan 和补充保障结构，再决定是否接受昂贵报价。",
+  href: `${businessSite}/zh/stories/why-you-should-consider-the-ca-fair-plan`,
+};
 
 export const metadata: Metadata = {
   title: { absolute: "Tracy Zhang | 加州中文保险顾问" },
@@ -115,7 +126,7 @@ export default function ChineseHome() {
                 先从你面前的真实变化开始：续保、新车、新房、证书、贷款要求、家庭规划或商业需求。Tracy 帮你把保障问题和下一步分清楚。
               </p>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <ButtonLink
                   href={quoteHref}
                   variant="primary"
@@ -126,6 +137,13 @@ export default function ChineseHome() {
                   获取中文保险帮助
                   <ArrowRight className="size-4" aria-hidden />
                 </ButtonLink>
+                <ScheduleButton
+                  locale="zh"
+                  source="tracy_zh_hero"
+                  variant="outline"
+                  size="md"
+                  icon
+                />
                 <TrackedAnchor
                   href={`tel:${site.agent.phone.e164}`}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/25 bg-surface px-5 text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-background/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
@@ -181,6 +199,14 @@ export default function ChineseHome() {
                     ))}
                   </div>
                 </div>
+                <EmailAnchor
+                  locale="zh"
+                  source="tracy_zh_profile_panel"
+                  className="flex items-center justify-between border-t border-accent/10 px-5 py-4 text-sm font-semibold text-accent hover:bg-background/75"
+                >
+                  发送邮件 {site.agent.contact.email}
+                  <ArrowRight className="size-4" aria-hidden />
+                </EmailAnchor>
               </div>
             </aside>
           </div>
@@ -277,17 +303,77 @@ export default function ChineseHome() {
                 你可以直接电话沟通，也可以通过 Tracy Zhang Insurance 的中文咨询表开始。
               </p>
             </div>
-            <ButtonLink
-              href={quoteHref}
-              variant="secondary"
-              size="md"
-              className="border-accent-foreground/20 bg-accent-foreground text-accent hover:bg-accent-foreground/90"
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <ButtonLink
+                href={quoteHref}
+                variant="secondary"
+                size="md"
+                className="border-accent-foreground/20 bg-accent-foreground text-accent hover:bg-accent-foreground/90"
+                eventName="cross_site_click"
+                eventProps={{ source: "tracy_zh_midpage_quote", destination: quoteHref }}
+              >
+                获取中文保险帮助
+                <ArrowRight className="size-4" aria-hidden />
+              </ButtonLink>
+              <ScheduleButton
+                locale="zh"
+                source="tracy_zh_midpage"
+                variant="secondary"
+                size="md"
+                className="border-accent-foreground/25 bg-transparent text-accent-foreground hover:bg-accent-foreground/8"
+                icon
+              />
+              <EmailButton
+                locale="zh"
+                source="tracy_zh_midpage"
+                variant="ghost"
+                size="md"
+                className="text-accent-foreground hover:bg-accent-foreground/8"
+                icon
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-accent/10 bg-surface">
+        <Container className="py-16 sm:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+            <div>
+              <div className="text-xs font-semibold uppercase text-muted">
+                最新保险指南
+              </div>
+              <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-accent sm:text-5xl">
+                用中文理解困难的加州保险决定。
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-foreground/70">
+                当续保、不续保、贷款期限或 wildfire 区域问题带来压力时，先把真实选择比较清楚。
+              </p>
+            </div>
+
+            <TrackedAnchor
+              href={latestGuidance.href}
               eventName="cross_site_click"
-              eventProps={{ source: "tracy_zh_midpage_quote", destination: quoteHref }}
+              eventProps={{
+                source: "tracy_zh_latest_guidance",
+                destination: latestGuidance.href,
+              }}
+              className="group border border-accent/10 bg-background p-7 shadow-sm shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10"
             >
-              获取中文保险帮助
-              <ArrowRight className="size-4" aria-hidden />
-            </ButtonLink>
+              <div className="text-xs font-semibold uppercase text-muted">
+                CA FAIR Plan
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold leading-tight text-accent">
+                {latestGuidance.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-foreground/70">
+                {latestGuidance.description}
+              </p>
+              <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                阅读文章
+                <ArrowRight className="size-4 transition group-hover:translate-x-0.5" aria-hidden />
+              </div>
+            </TrackedAnchor>
           </div>
         </Container>
       </section>
@@ -324,6 +410,15 @@ export default function ChineseHome() {
                   >
                     {office.phone.display}
                   </TrackedAnchor>
+                  <div className="mt-4">
+                    <ScheduleButton
+                      locale="zh"
+                      source="tracy_zh_office"
+                      eventProps={{ office: office.id }}
+                      variant="outline"
+                      size="sm"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

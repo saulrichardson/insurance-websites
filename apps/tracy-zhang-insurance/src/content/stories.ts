@@ -31,6 +31,180 @@ function byDateDesc(a: Story, b: Story) {
 
 const unsortedStories: Story[] = [
   {
+    slug: "why-you-should-consider-the-ca-fair-plan",
+    title: "Why You Should Consider the CA FAIR Plan",
+    description:
+      "If your California home insurance was dropped, doubled, or became hard to place, compare the FAIR Plan structure before accepting a punishing specialty-market premium.",
+    dateISO: "2026-06-12",
+    readingMinutes: 8,
+    tags: ["CA FAIR Plan", "California", "Home", "Nonrenewal"],
+    relatedProductIds: ["fair-plan", "home", "california-property", "umbrella"],
+    sections: [
+      {
+        type: "quote",
+        text: "If your California home insurance was dropped, doubled, or suddenly became difficult to place, do not assume the most expensive quote is the safest quote. The CA FAIR Plan can be a practical way to insure the hardest part of the risk - fire - without automatically accepting a punishing specialty-market premium.",
+      },
+      {
+        type: "p",
+        text: "There is a particular kind of panic that comes with a California home insurance problem.",
+      },
+      {
+        type: "p",
+        text: "It does not usually arrive dramatically. It shows up in the mail, in an email, or in a renewal packet. The house is the same house. The mortgage is still due. The family has not suddenly become reckless. But the insurance company has changed its mind.",
+      },
+      {
+        type: "p",
+        text: "Maybe the policy is being non-renewed. Maybe the premium has jumped so much that it feels less like an increase and more like a warning. Maybe the only quote left on the table comes from a specialty or non-admitted carrier at a price that makes the homeowner wonder whether they are being insured or cornered.",
+      },
+      {
+        type: "p",
+        text: "That is the moment when people start hearing about the CA FAIR Plan.",
+      },
+      {
+        type: "p",
+        text: "And too often, they hear about it in the wrong way.",
+      },
+      {
+        type: "p",
+        text: "The FAIR Plan gets described like a last stop. A fallback. A place you go when every real option disappears. There is some truth in that, but it misses the more useful point. In today's California insurance market, the FAIR Plan is not always a sign that something has gone wrong. Sometimes it is the tool that keeps you from making a worse decision.",
+      },
+      {
+        type: "p",
+        text: "The real issue is not whether the FAIR Plan sounds ideal. It usually does not. The real issue is whether it gives you a better structure than the alternatives sitting in front of you.",
+      },
+      {
+        type: "p",
+        text: "Because right now, many homeowners are not choosing between perfect and imperfect. They are choosing between expensive, confusing, incomplete, and urgent.",
+      },
+      {
+        type: "p",
+        text: "That is why the FAIR Plan deserves a serious look.",
+      },
+      {
+        type: "h2",
+        text: "When fire exposure breaks the insurance conversation",
+      },
+      {
+        type: "p",
+        text: "For many California homes, fire is the problem that breaks the insurance conversation. Wildfire exposure has changed the way carriers look at entire communities. A home can be well cared for and still land in a risk category that makes standard carriers hesitate. When that happens, some homeowners are pushed toward specialty markets where the quote is available, but the price is painful.",
+      },
+      {
+        type: "p",
+        text: "Availability matters. But availability is not the same thing as value.",
+      },
+      {
+        type: "p",
+        text: "A specialty-market quote might be the right answer. Sometimes it offers a cleaner package, broader coverage, or a simpler path. But sometimes it is just the most expensive answer that arrived first. And when a homeowner is under pressure from a renewal deadline or lender requirement, the first available answer can start to feel like the only answer.",
+      },
+      {
+        type: "p",
+        text: "That is where the FAIR Plan can create leverage.",
+      },
+      {
+        type: "p",
+        text: "Instead of buying one very expensive policy that tries to solve everything at once, the FAIR Plan can help solve the fire portion directly. Then the rest of the insurance picture can be built around it, often with companion coverage designed to address the things the FAIR Plan does not handle the same way a traditional homeowners policy would.",
+      },
+      {
+        type: "p",
+        text: "That distinction matters. The FAIR Plan is not a standard homeowners policy. It should not be treated like one. If someone simply buys it, files it away, and assumes the old coverage has been recreated, that can be a problem.",
+      },
+      {
+        type: "p",
+        text: "But used correctly, it can be part of a smart strategy.",
+      },
+      {
+        type: "h2",
+        text: "Structuring the risk instead of settling",
+      },
+      {
+        type: "p",
+        text: "Think of it this way: if fire is the risk that made the standard market walk away, why not isolate that problem and solve it as directly as possible? Then look at the rest of the risks - liability, theft, water damage, personal property, lender requirements, deductible choices - and decide what needs to be added.",
+      },
+      {
+        type: "p",
+        text: "That is not settling. That is structuring.",
+      },
+      {
+        type: "p",
+        text: "And in this market, structure matters.",
+      },
+      {
+        type: "p",
+        text: "The worst decision a homeowner can make is to confuse a high premium with strong protection. Expensive insurance can still have gaps. A specialty policy can still have exclusions. A cheaper option can be dangerously thin. A FAIR Plan policy can be useful but incomplete. None of these choices should be judged by price alone.",
+      },
+      {
+        type: "p",
+        text: "The better question is: what am I actually getting for the money?",
+      },
+      {
+        type: "p",
+        text: "That question changes the conversation. It turns the FAIR Plan from a stigma into an option. It turns a scary renewal into something that can be analyzed. It turns a specialty-market quote from a take-it-or-leave-it demand into one piece of a comparison.",
+      },
+      {
+        type: "h2",
+        text: "Where Tracy Zhang can help",
+      },
+      {
+        type: "p",
+        text: "If you have been dropped, non-renewed, quoted an unreasonable increase, or pushed toward a policy that feels too expensive, Tracy can help you slow the decision down and look at the full picture. Not in theory. In practical terms.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Is there still a standard carrier worth considering?",
+          "Is the specialty quote actually better, or just more expensive?",
+          "Does the FAIR Plan give you a cleaner way to insure the fire exposure?",
+          "What companion coverage would be needed?",
+          "Does the final package protect the home, satisfy the lender, and make sense for your budget?",
+        ],
+      },
+      {
+        type: "p",
+        text: "Those are the questions that matter.",
+      },
+      {
+        type: "p",
+        text: "The California insurance market is not easy right now. Homeowners know that. They do not need a lecture about wildfire risk or a glossary of insurance terms. They need someone who can look at the options in front of them and say, clearly, here is what this does, here is what it does not do, here is where the cost makes sense, and here is where it does not.",
+      },
+      {
+        type: "p",
+        text: "That is the value of having the right person in the conversation.",
+      },
+      {
+        type: "h2",
+        text: "Bring the real documents",
+      },
+      {
+        type: "p",
+        text: "The FAIR Plan is not magic. It is not automatically cheap. It is not always the best answer. But it should not be dismissed just because it is called a last resort. For some homeowners, it may be the most disciplined way to keep the home insured without handing over a painful premium to a specialty market that may or may not be giving them better protection.",
+      },
+      {
+        type: "p",
+        text: "If your insurance situation has become harder, more expensive, or more confusing, do not make the decision alone and do not wait until the deadline makes the decision for you.",
+      },
+      {
+        type: "p",
+        text: "Bring the renewal. Bring the non-renewal letter. Bring the quote that made you angry. Bring the FAIR Plan option you are not sure how to judge.",
+      },
+      {
+        type: "p",
+        text: "Tracy Zhang can help you compare the choices and build a plan around the risk you actually have.",
+      },
+      {
+        type: "p",
+        text: "Because the goal is not just to get insured.",
+      },
+      {
+        type: "p",
+        text: "The goal is to avoid overpaying for the wrong answer.",
+      },
+      {
+        type: "p",
+        text: "Note: This story is general information and does not bind or change coverage. CA FAIR Plan, companion coverage, specialty-market availability, pricing, eligibility, and policy terms depend on the specific property, carrier guidelines, underwriting, and current program rules.",
+      },
+    ],
+  },
+  {
     slug: "cheapest-insurance-not-always-best-deal",
     title: "The Cheapest Insurance Is Not Always the Best Deal",
     description:

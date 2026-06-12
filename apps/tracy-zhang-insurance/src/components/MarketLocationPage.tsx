@@ -8,6 +8,7 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
+import { EmailButton, ScheduleButton } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
@@ -60,7 +61,7 @@ export function MarketLocationPage({ marketId }: { marketId: MarketId }) {
                   </div>
                 </div>
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <TrackedAnchor
                     className={buttonClasses({ variant: "primary", size: "md" })}
                     href={`tel:${office.phoneE164}`}
@@ -81,6 +82,18 @@ export function MarketLocationPage({ marketId }: { marketId: MarketId }) {
                   >
                     Start request
                   </TrackedLink>
+                  <ScheduleButton
+                    source={`${market.id}_location_page`}
+                    eventProps={{ office: office.slug }}
+                    variant="secondary"
+                    size="md"
+                  />
+                  <EmailButton
+                    source={`${market.id}_location_page`}
+                    eventProps={{ office: office.slug }}
+                    variant="ghost"
+                    size="md"
+                  />
                 </div>
 
                 <div className="mt-8 grid gap-5 text-sm text-slate-700 sm:grid-cols-2">

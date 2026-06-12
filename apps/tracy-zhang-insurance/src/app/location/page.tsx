@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
@@ -27,8 +28,6 @@ export default async function LocationPage() {
   const isLocal = market.domainRole === "local";
   const visibleOffices = isLocal ? [office] : site.offices;
   const serviceArea = isLocal ? market.serviceArea : site.serviceArea;
-  const email = site.email?.trim();
-  const hasEmail = Boolean(email && email.length > 0);
   const title = isLocal ? `${market.label} office` : "Two offices. One standard.";
   const subtitle = isLocal
     ? `Call, text, request a quote, or use directions for the ${market.label} office.`
@@ -108,14 +107,18 @@ export default async function LocationPage() {
                             Fax {item.faxDisplay}
                           </div>
                         ) : null}
-                        {hasEmail ? (
-                          <a
-                            className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                            href={`mailto:${email}`}
-                          >
-                            Email {email}
-                          </a>
-                        ) : null}
+                        <EmailAnchor
+                          source="tracy_zhang_insurance_location_page"
+                          eventProps={{ office: item.slug }}
+                          className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
+                        >
+                          Email {site.contact.email}
+                        </EmailAnchor>
+                        <ScheduleAnchor
+                          source="tracy_zhang_insurance_location_page"
+                          eventProps={{ office: item.slug }}
+                          className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
+                        />
                         {item.links?.appointment ? (
                           <a
                             className="mt-2 inline-flex font-medium text-slate-950 hover:underline"

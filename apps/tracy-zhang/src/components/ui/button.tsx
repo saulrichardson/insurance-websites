@@ -41,6 +41,16 @@ const variants: Record<Variant, string> = {
 };
 
 function isExternalHref(href: string) {
+  return (
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("sms:")
+  );
+}
+
+function opensNewTabByDefault(href: string) {
   return href.startsWith("http://") || href.startsWith("https://");
 }
 
@@ -64,12 +74,13 @@ export function ButtonLink({
   };
 
   if (isExternalHref(href)) {
+    const opensNewTab = opensNewTabByDefault(href);
     return (
       <a
         href={href}
         className={classes}
-        target={target ?? "_blank"}
-        rel={rel ?? "noreferrer"}
+        target={target ?? (opensNewTab ? "_blank" : undefined)}
+        rel={rel ?? (opensNewTab ? "noreferrer" : undefined)}
         onClick={handleClick}
         {...props}
       />

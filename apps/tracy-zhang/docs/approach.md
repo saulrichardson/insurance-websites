@@ -55,6 +55,8 @@ Preserve this separation when improving copy or layout.
 - `src/app/page.tsx`: advisor homepage, coverage moments, office proof
 - `src/components/site-header.tsx`: top navigation and insurance-help CTA
 - `src/components/site-footer.tsx`: office, phone, product, and profile links
+- `src/components/contact-actions.tsx`: shared advisor-site email and
+  scheduling controls backed by `packages/domain.publicContact`
 - `src/components/site-telemetry.tsx`: Vercel/GA4 telemetry
 - `src/lib/site.ts`: Tracy, office, image, review, and contact data
 - `src/lib/schema.ts`: structured data
@@ -72,6 +74,11 @@ Product-depth needs route through explicit homepage, header, and footer links
 to Tracy Zhang Insurance. The app does not carry old product, quote, career, or
 location routes and does not preserve app-level redirects for them.
 
+Tracy's advisor site may feature the latest insurance guidance, but canonical
+article bodies and product-depth blog SEO belong on
+`tracyzhanginsurance.com/stories`. Use featured links into those canonical
+stories instead of duplicating full posts on `tracyzhang.com`.
+
 ## Configuration
 
 - `NEXT_PUBLIC_SITE_URL`: canonical site URL
@@ -80,6 +87,10 @@ location routes and does not preserve app-level redirects for them.
 The personal site has no quote, career, database, or file-upload backend. Product
 depth, lead capture, compliance copy, and quote intake are owned by
 `apps/tracy-zhang-insurance`.
+
+Public direct-contact actions are intentionally present on the advisor profile:
+phone, email, and scheduling. The public email and Calendly URL come from
+`packages/domain.publicContact`, not from local literals in the personal app.
 
 Production Vercel env for this app should only contain frontend/runtime values
 the current source uses. The expected production env keys are

@@ -36,6 +36,16 @@ export type Office = {
   };
 };
 
+export type PublicContact = {
+  email: string;
+  scheduling: {
+    provider: "calendly";
+    url: string;
+    label: string;
+    zhLabel: string;
+  };
+};
+
 export type ProductId =
   | "auto"
   | "home"
@@ -129,6 +139,16 @@ export const brand = {
   licenseLine: "California insurance guidance. Coverage availability and eligibility vary by carrier, product, underwriting, and location.",
   carrierNotes:
     "We help review Allstate options and additional markets when appropriate, including specialty paths for California risks. Carrier availability varies by coverage type, eligibility, underwriting appetite, and location.",
+};
+
+export const publicContact: PublicContact = {
+  email: "tzhang@allstate.com",
+  scheduling: {
+    provider: "calendly",
+    url: "https://calendly.com/tracyzhangallstate/new-meeting",
+    label: "Schedule a call",
+    zhLabel: "预约咨询",
+  },
 };
 
 export const carrierMarkets: CarrierMarket[] = [

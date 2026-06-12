@@ -48,7 +48,10 @@ export const productGuides: Record<string, ProductGuide> = {
       "Special limits can affect jewelry, collectibles, and other valuables",
       "Wildfire or carrier restrictions may change the realistic path",
     ],
-    relatedStorySlugs: ["fair-plan-basics-without-drama", "a-calm-way-to-shop-insurance-in-california"],
+    relatedStorySlugs: [
+      "why-you-should-consider-the-ca-fair-plan",
+      "fair-plan-basics-without-drama",
+    ],
   },
   "condo-insurance": {
     product: "Condo insurance",
@@ -237,7 +240,10 @@ export const productGuides: Record<string, ProductGuide> = {
       "Deadlines matter when a lender or escrow is involved",
       "California market availability changes and must be confirmed for the risk",
     ],
-    relatedStorySlugs: ["fair-plan-basics-without-drama"],
+    relatedStorySlugs: [
+      "why-you-should-consider-the-ca-fair-plan",
+      "fair-plan-basics-without-drama",
+    ],
   },
   "california-property-insurance": {
     product: "California property insurance",
@@ -258,7 +264,10 @@ export const productGuides: Record<string, ProductGuide> = {
       "Market value and rebuild cost are different conversations",
       "A lender deadline can narrow what is realistic if the review starts too late",
     ],
-    relatedStorySlugs: ["fair-plan-basics-without-drama"],
+    relatedStorySlugs: [
+      "why-you-should-consider-the-ca-fair-plan",
+      "fair-plan-basics-without-drama",
+    ],
   },
 };
 

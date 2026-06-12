@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { products } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
+import { EmailButton, ScheduleButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { PageCTA } from "@/components/PageCTA";
 import { StoryHero } from "@/components/StoryHero";
@@ -168,7 +169,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
                 Call or text and we’ll give you the shortest path to a quote
                 you can trust.
               </p>
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <TrackedAnchor
                   className={buttonClasses({ variant: "primary", size: "md" })}
                   href={`tel:${site.phoneE164}`}
@@ -192,6 +193,18 @@ export default async function StoryPage({ params }: StoryPageProps) {
                 >
                   Request a quote
                 </TrackedLink>
+                <ScheduleButton
+                  source="tracy_zhang_insurance_story_cta"
+                  eventProps={{ story: story.slug }}
+                  variant="secondary"
+                  size="md"
+                />
+                <EmailButton
+                  source="tracy_zhang_insurance_story_cta"
+                  eventProps={{ story: story.slug }}
+                  variant="ghost"
+                  size="md"
+                />
               </div>
             </div>
 

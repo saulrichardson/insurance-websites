@@ -7,9 +7,11 @@ import {
   languages,
   offices as sharedOffices,
   products,
+  publicContact,
   type Address,
   type Office,
   type CarrierMarket,
+  type PublicContact,
 } from "@insurance-websites/domain";
 
 export type { Address, Office };
@@ -20,7 +22,7 @@ export type SiteConfig = {
   description: string;
   locale: string;
   url: string;
-  email?: string;
+  contact: PublicContact;
   phoneDisplay: string;
   phoneE164: string;
   smsE164: string;
@@ -61,6 +63,7 @@ export const site: SiteConfig = {
   description: brand.description,
   locale: brand.locale,
   url: siteUrl,
+  contact: publicContact,
   phoneDisplay: primaryOffice.phoneDisplay,
   phoneE164: primaryOffice.phoneE164,
   smsE164: primaryOffice.smsE164,

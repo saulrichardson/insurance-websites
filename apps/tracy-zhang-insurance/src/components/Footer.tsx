@@ -7,6 +7,7 @@ import type { MarketProfile, Office } from "@insurance-websites/domain";
 
 import { site } from "@/config/site";
 import { Container } from "@/components/Container";
+import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { isZhPath, localizedHref, type Locale } from "@/i18n/routing";
 
@@ -20,8 +21,6 @@ export function Footer({
   const pathname = usePathname();
   const locale: Locale = isZhPath(pathname) ? "zh" : "en";
   const isZh = locale === "zh";
-  const email = site.email?.trim();
-  const hasEmail = Boolean(email && email.length > 0);
   const isLocal = market.domainRole === "local";
   const visibleOffices = isLocal ? [office] : site.offices;
   const footerDescription = isLocal
@@ -94,17 +93,22 @@ export function Footer({
                         </TrackedAnchor>
                       </>
                     ) : null}
-                    {hasEmail ? (
-                      <>
-                        <span className="px-2 text-[var(--rail-border)]">/</span>
-                        <a
-                          className="font-medium text-[var(--ink)] hover:text-[var(--brand-strong)] hover:underline"
-                          href={`mailto:${email}`}
-                        >
-                          {email}
-                        </a>
-                      </>
-                    ) : null}
+                    <span className="px-2 text-[var(--rail-border)]">/</span>
+                    <EmailAnchor
+                      locale={locale}
+                      source={trackingSource}
+                      eventProps={{ office: item.slug }}
+                      className="font-medium text-[var(--ink)] hover:text-[var(--brand-strong)] hover:underline"
+                    >
+                      {site.contact.email}
+                    </EmailAnchor>
+                    <span className="px-2 text-[var(--rail-border)]">/</span>
+                    <ScheduleAnchor
+                      locale={locale}
+                      source={trackingSource}
+                      eventProps={{ office: item.slug }}
+                      className="font-medium text-[var(--ink)] hover:text-[var(--brand-strong)] hover:underline"
+                    />
                   </div>
                   <div className="mt-2">
                     <div>{item.address.streetAddress}</div>

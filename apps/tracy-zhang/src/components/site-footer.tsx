@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+import { EmailAnchor, ScheduleAnchor } from "@/components/contact-actions";
 import { TrackedAnchor } from "@/components/marketing-events";
 import { Container } from "@/components/ui/container";
 import { isZhPath, localizedHref } from "@/i18n/routing";
@@ -20,6 +21,7 @@ export function SiteFooter() {
   const locale = isZh ? "zh" : "en";
   const quoteHref = `${businessSite}${isZh ? "/zh" : ""}/contact#quote`;
   const productsHref = `${businessSite}${isZh ? "/zh" : ""}/products`;
+  const guidanceHref = `${businessSite}${isZh ? "/zh" : ""}/stories`;
 
   return (
     <footer className="border-t border-foreground/20 bg-background">
@@ -60,6 +62,23 @@ export function SiteFooter() {
               <div>
                 <span className="text-foreground/80">{isZh ? "传真：" : "Fax:"}</span>{" "}
                 <span>{site.agent.fax.display}</span>
+              </div>
+              <div>
+                <span className="text-foreground/80">{isZh ? "电子邮件：" : "Email:"}</span>{" "}
+                <EmailAnchor
+                  locale={locale}
+                  source="tracy_footer"
+                  className="hover:text-foreground"
+                >
+                  {site.agent.contact.email}
+                </EmailAnchor>
+              </div>
+              <div>
+                <ScheduleAnchor
+                  locale={locale}
+                  source="tracy_footer"
+                  className="font-medium text-foreground hover:underline"
+                />
               </div>
             </div>
 
@@ -115,6 +134,13 @@ export function SiteFooter() {
                   <Link className="hover:text-foreground" href={localizedHref("/#offices", locale)}>
                     {isZh ? "办公室信息" : "Office section"}
                   </Link>
+                  <span className="mx-2 text-foreground/25">|</span>
+                  <ScheduleAnchor
+                    locale={locale}
+                    source="tracy_footer_office"
+                    eventProps={{ office: sanMarino.id }}
+                    className="hover:text-foreground"
+                  />
                 </div>
               </div>
 
@@ -158,6 +184,13 @@ export function SiteFooter() {
                   <Link className="hover:text-foreground" href={localizedHref("/#offices", locale)}>
                     {isZh ? "办公室信息" : "Office section"}
                   </Link>
+                  <span className="mx-2 text-foreground/25">|</span>
+                  <ScheduleAnchor
+                    locale={locale}
+                    source="tracy_footer_office"
+                    eventProps={{ office: laPalma.id }}
+                    className="hover:text-foreground"
+                  />
                 </div>
               </div>
             </div>
@@ -211,6 +244,19 @@ export function SiteFooter() {
                   }}
                 >
                   {isZh ? "保险产品" : "Insurance products"}
+                </TrackedAnchor>
+              </li>
+              <li>
+                <TrackedAnchor
+                  className="hover:text-foreground"
+                  href={guidanceHref}
+                  eventName="cross_site_click"
+                  eventProps={{
+                    source: "tracy_footer_explore",
+                    destination: guidanceHref,
+                  }}
+                >
+                  {isZh ? "保险指南" : "Insurance guidance"}
                 </TrackedAnchor>
               </li>
               <li>

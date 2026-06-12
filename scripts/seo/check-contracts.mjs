@@ -6,6 +6,7 @@ import {
   domains,
   getOfficeById,
   products,
+  publicContact,
 } from "../../packages/domain/src/index.ts";
 import { stories } from "../../apps/tracy-zhang-insurance/src/content/stories.ts";
 
@@ -459,6 +460,7 @@ function productById(id) {
 }
 
 function buildInsurancePageContracts() {
+  const contactIncludes = [publicContact.email, publicContact.scheduling.url];
   const contracts = [
     {
       path: "/",
@@ -466,6 +468,7 @@ function buildInsurancePageContracts() {
       alternates: buildLocalizedAlternates(insuranceOrigin, "/"),
       schemaTypes: ["InsuranceAgency", "WebSite"],
       internalPaths: ["/products", "/contact", "/stories"],
+      includes: contactIncludes,
     },
     {
       path: "/zh",
@@ -473,7 +476,21 @@ function buildInsurancePageContracts() {
       alternates: buildLocalizedAlternates(insuranceOrigin, "/zh"),
       schemaTypes: ["WebPage", "BreadcrumbList", "InsuranceAgency", "WebSite"],
       internalPaths: ["/zh/products", "/zh/contact"],
-      includes: ["保险"],
+      includes: ["保险", ...contactIncludes],
+    },
+    {
+      path: "/contact",
+      canonical: expectedUrl(insuranceOrigin, "/contact"),
+      alternates: buildLocalizedAlternates(insuranceOrigin, "/contact"),
+      schemaTypes: ["InsuranceAgency", "WebSite"],
+      includes: contactIncludes,
+    },
+    {
+      path: "/zh/contact",
+      canonical: expectedUrl(insuranceOrigin, "/zh/contact"),
+      alternates: buildLocalizedAlternates(insuranceOrigin, "/contact"),
+      schemaTypes: ["WebPage", "BreadcrumbList", "InsuranceAgency", "WebSite"],
+      includes: ["保险", ...contactIncludes],
     },
     {
       path: "/products",
@@ -542,6 +559,7 @@ function buildInsurancePageContracts() {
 function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
   const activeOffice = getOfficeById(activeOfficeId);
   const inactiveOffice = getOfficeById(inactiveOfficeId);
+  const contactIncludes = [publicContact.email, publicContact.scheduling.url];
 
   return [
     {
@@ -549,7 +567,7 @@ function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
       canonical: expectedUrl(origin, "/"),
       alternates: buildLocalizedAlternates(origin, "/"),
       schemaTypes: ["InsuranceAgency", "WebSite"],
-      includes: [activeOffice.address.addressLocality, activeOffice.address.streetAddress],
+      includes: [activeOffice.address.addressLocality, activeOffice.address.streetAddress, ...contactIncludes],
       excludes: [
         inactiveOffice.address.streetAddress,
         inactiveOffice.phoneDisplay,
@@ -561,7 +579,7 @@ function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
       canonical: expectedUrl(origin, "/zh"),
       alternates: buildLocalizedAlternates(origin, "/zh"),
       schemaTypes: ["WebPage", "BreadcrumbList", "InsuranceAgency", "WebSite"],
-      includes: ["保险", activeOffice.address.addressLocality, activeOffice.address.streetAddress],
+      includes: ["保险", activeOffice.address.addressLocality, activeOffice.address.streetAddress, ...contactIncludes],
       excludes: [
         inactiveOffice.address.streetAddress,
         inactiveOffice.phoneDisplay,
@@ -572,6 +590,7 @@ function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
 }
 
 function buildPersonalPageContracts() {
+  const contactIncludes = [publicContact.email, publicContact.scheduling.url];
   return [
     {
       path: "/",
@@ -579,7 +598,7 @@ function buildPersonalPageContracts() {
       alternates: buildLocalizedAlternates(personalOrigin, "/"),
       schemaTypes: ["Person", "ProfilePage", "WebSite", "InsuranceAgency"],
       internalPaths: ["/zh"],
-      includes: ["Tracy Zhang"],
+      includes: ["Tracy Zhang", ...contactIncludes],
     },
     {
       path: "/zh",
@@ -587,7 +606,7 @@ function buildPersonalPageContracts() {
       alternates: buildLocalizedAlternates(personalOrigin, "/zh"),
       schemaTypes: ["Person", "ProfilePage", "WebSite", "InsuranceAgency"],
       internalPaths: ["/"],
-      includes: ["Tracy Zhang", "保险"],
+      includes: ["Tracy Zhang", "保险", ...contactIncludes],
     },
   ];
 }

@@ -11,6 +11,7 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
+import { EmailAnchor, EmailButton, ScheduleAnchor, ScheduleButton } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -474,6 +475,14 @@ function ZhContactPage({
                           {zhCommon.textOffice}
                         </a>
                       ) : null}
+                      <EmailAnchor
+                        locale="zh"
+                        source="tracy_zhang_insurance_zh_contact_page"
+                        eventProps={{ office: item.slug }}
+                        className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
+                      >
+                        发送邮件 {site.contact.email}
+                      </EmailAnchor>
                     </div>
                     <div className="grid gap-1">
                       <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -482,6 +491,12 @@ function ZhContactPage({
                       <div>{formatZhHours(item.hours.mondayFriday)}</div>
                       <div>{formatZhHours(item.hours.saturday)}</div>
                       <div>{formatZhHours(item.hours.sunday)}</div>
+                      <ScheduleAnchor
+                        locale="zh"
+                        source="tracy_zhang_insurance_zh_contact_page"
+                        eventProps={{ office: item.slug }}
+                        className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
+                      />
                     </div>
                   </div>
                 </Card>
@@ -613,9 +628,25 @@ function ZhLocationPage({ path }: { path: string }) {
               {office.address.streetAddress}, {office.address.addressLocality},{" "}
               {office.address.addressRegion} {office.address.postalCode}
             </p>
-            <a className="mt-4 inline-flex font-medium text-slate-950 hover:underline" href={`tel:${office.phoneE164}`}>
-              {zhCommon.callLabel} {office.phoneDisplay}
-            </a>
+            <div className="mt-4 grid gap-2 text-sm">
+              <a className="font-medium text-slate-950 hover:underline" href={`tel:${office.phoneE164}`}>
+                {zhCommon.callLabel} {office.phoneDisplay}
+              </a>
+              <EmailAnchor
+                locale="zh"
+                source="tracy_zhang_insurance_zh_location_page"
+                eventProps={{ office: office.slug }}
+                className="font-medium text-slate-950 hover:underline"
+              >
+                发送邮件 {site.contact.email}
+              </EmailAnchor>
+              <ScheduleAnchor
+                locale="zh"
+                source="tracy_zhang_insurance_zh_location_page"
+                eventProps={{ office: office.slug }}
+                className="font-medium text-slate-950 hover:underline"
+              />
+            </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {market.serviceArea.map((area) => (
                 <span key={area} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-700">
@@ -855,7 +886,7 @@ function ZhStoryPage({ story }: { story: LocalizedStory }) {
             <p className="mt-2 text-sm leading-6 text-slate-600">
               电话、短信或提交中文咨询表，我们会帮你找到最短的下一步。
             </p>
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <TrackedAnchor
                 className={buttonClasses({ variant: "primary", size: "md" })}
                 href={`tel:${site.phoneE164}`}
@@ -872,6 +903,20 @@ function ZhStoryPage({ story }: { story: LocalizedStory }) {
               >
                 {zhCommon.quoteLabel}
               </TrackedLink>
+              <ScheduleButton
+                locale="zh"
+                source="tracy_zhang_insurance_zh_story_cta"
+                eventProps={{ story: story.slug }}
+                variant="secondary"
+                size="md"
+              />
+              <EmailButton
+                locale="zh"
+                source="tracy_zhang_insurance_zh_story_cta"
+                eventProps={{ story: story.slug }}
+                variant="ghost"
+                size="md"
+              />
             </div>
           </div>
 

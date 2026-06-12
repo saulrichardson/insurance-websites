@@ -7,6 +7,7 @@ import { Menu, Phone, ShieldCheck } from "lucide-react";
 import type { MarketProfile, Office } from "@insurance-websites/domain";
 
 import { site } from "@/config/site";
+import { EmailButton, ScheduleButton } from "@/components/ContactActions";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
@@ -48,7 +49,7 @@ export function Header({
         <div className="flex items-center justify-between gap-4">
           <Link
             href={localizedHref("/", locale)}
-            className="group flex min-w-0 items-center gap-3 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20"
+            className="group flex shrink-0 items-center gap-3 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20"
           >
             <span className="relative grid size-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-[#0e1941]/15 bg-white shadow-[0_10px_24px_rgba(8,38,40,0.18)] transition-transform duration-200 group-hover:-translate-y-0.5">
               <Image
@@ -61,10 +62,10 @@ export function Header({
               />
             </span>
             <div className="min-w-0 leading-tight">
-              <div className="truncate text-[15px] font-semibold text-[var(--ink)]">
+              <div className="whitespace-nowrap text-[15px] font-semibold text-[var(--ink)]">
                 {site.name}
               </div>
-              <div className="hidden text-xs text-[var(--muted)] sm:block">
+              <div className="hidden text-xs text-[var(--muted)] 2xl:block">
                 {headerSubline}
               </div>
             </div>
@@ -97,6 +98,15 @@ export function Header({
               <Phone className="size-4" aria-hidden />
               {isZh ? "致电" : "Call"}
             </TrackedAnchor>
+            <ScheduleButton
+              locale={locale}
+              source={trackingSource}
+              variant="outline"
+              size="sm"
+              icon
+            >
+              {isZh ? "预约" : "Schedule"}
+            </ScheduleButton>
             <TrackedLink
               className={buttonClasses({
                 variant: "primary",
@@ -154,6 +164,22 @@ export function Header({
                 >
                   {isZh ? "致电" : "Call"} {office.phoneDisplay}
                 </TrackedAnchor>
+                <ScheduleButton
+                  locale={locale}
+                  source={`${trackingSource}_mobile_menu`}
+                  variant="outline"
+                  size="md"
+                  icon
+                />
+                <EmailButton
+                  locale={locale}
+                  source={`${trackingSource}_mobile_menu`}
+                  variant="ghost"
+                  size="md"
+                  icon
+                >
+                  {isZh ? "发送邮件" : `Email ${site.contact.email}`}
+                </EmailButton>
                 <TrackedLink
                   className={buttonClasses({ variant: "primary", size: "md" })}
                   href={quoteHref}
