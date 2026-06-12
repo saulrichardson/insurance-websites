@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
                 {site.brand.name}
               </div>
             <div style={{ fontSize: 18, color: "rgba(11,11,11,0.7)" }}>
-              {`${site.agent.location} • ${site.agent.phone.display}`}
+              {`${site.agent.location} • ${site.agent.officePhone.display}`}
             </div>
           </div>
         </div>

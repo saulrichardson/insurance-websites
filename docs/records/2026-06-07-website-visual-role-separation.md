@@ -19,7 +19,7 @@ The portfolio should preserve three distinct website feelings:
   surfaces with city-led first screens, address/office proof, service area, and
   local product emphasis.
 - `tracyzhang.com`: personal advisor dossier for Tracy by name, with portrait,
-  direct phone path, languages, review context, offices, and routing into the
+  office phone path, languages, review context, offices, and routing into the
   insurance site for product-depth work.
 
 These surfaces may share domain data, product facts, analytics, compliance

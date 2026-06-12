@@ -136,16 +136,16 @@ export default function Home() {
                   icon
                 />
                 <TrackedAnchor
-                  href={`tel:${site.agent.phone.e164}`}
+                  href={`tel:${site.agent.officePhone.e164}`}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/25 bg-surface px-5 text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-background/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
                   eventName="phone_click"
                   eventProps={{
                     source: "tracy_hero",
-                    phone: site.agent.phone.display,
+                    phone: site.agent.officePhone.display,
                   }}
                 >
                   <Phone className="size-4" aria-hidden />
-                  Call {site.agent.phone.display}
+                  Call {site.agent.officePhone.display}
                 </TrackedAnchor>
               </div>
             </div>
@@ -165,10 +165,10 @@ export default function Home() {
                   </div>
                   <div className="min-w-0 self-center">
                     <div className="text-xs font-semibold uppercase text-muted">
-                      Direct line
+                      Office phone
                     </div>
                     <div className="mt-2 whitespace-nowrap text-xl font-semibold leading-tight text-accent sm:text-2xl">
-                      {site.agent.phone.display}
+                      {site.agent.officePhone.display}
                     </div>
                     <div className="mt-3 flex items-center gap-2 text-sm text-foreground/62">
                       <Star className="size-4 text-brand" aria-hidden />
@@ -356,12 +356,12 @@ export default function Home() {
                 icon
               />
               <TrackedAnchor
-                href={`tel:${site.agent.phone.e164}`}
+                href={`tel:${site.agent.officePhone.e164}`}
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent-foreground/25 px-5 text-sm font-semibold text-accent-foreground hover:bg-accent-foreground/8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground"
                 eventName="phone_click"
                 eventProps={{
                   source: "tracy_midpage_phone",
-                  phone: site.agent.phone.display,
+                  phone: site.agent.officePhone.display,
                 }}
               >
                 <Phone className="size-4" aria-hidden />
@@ -520,7 +520,7 @@ export default function Home() {
                 <CheckCircle2 className="mt-1 size-5 shrink-0 text-brand" aria-hidden />
                 <p className="max-w-2xl text-sm leading-6 text-foreground/70">
                   Not sure which office or coverage path fits? Start with the
-                  direct line and the team will route the next step.
+                  office number and the team will route the next step.
                 </p>
               </div>
               <ButtonLink

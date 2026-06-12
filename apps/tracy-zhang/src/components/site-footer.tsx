@@ -49,14 +49,14 @@ export function SiteFooter() {
                 <span className="text-foreground/80">{isZh ? "主要电话：" : "Main line:"}</span>{" "}
                 <TrackedAnchor
                   className="hover:text-foreground"
-                  href={`tel:${site.agent.phone.e164}`}
+                  href={`tel:${site.agent.officePhone.e164}`}
                   eventName="phone_click"
                   eventProps={{
                     source: "tracy_footer",
-                    phone: site.agent.phone.display,
+                    phone: site.agent.officePhone.display,
                   }}
                 >
-                  {site.agent.phone.display}
+                  {site.agent.officePhone.display}
                 </TrackedAnchor>
               </div>
               <div>

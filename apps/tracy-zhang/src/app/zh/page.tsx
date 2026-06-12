@@ -145,13 +145,13 @@ export default function ChineseHome() {
                   icon
                 />
                 <TrackedAnchor
-                  href={`tel:${site.agent.phone.e164}`}
+                  href={`tel:${site.agent.officePhone.e164}`}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/25 bg-surface px-5 text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-background/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
                   eventName="phone_click"
-                  eventProps={{ source: "tracy_zh_hero", phone: site.agent.phone.display }}
+                  eventProps={{ source: "tracy_zh_hero", phone: site.agent.officePhone.display }}
                 >
                   <Phone className="size-4" aria-hidden />
-                  致电 {site.agent.phone.display}
+                  致电 {site.agent.officePhone.display}
                 </TrackedAnchor>
               </div>
             </div>
@@ -171,10 +171,10 @@ export default function ChineseHome() {
                   </div>
                   <div className="min-w-0 self-center">
                     <div className="text-xs font-semibold uppercase text-muted">
-                      直接电话
+                      办公室电话
                     </div>
                     <div className="mt-2 whitespace-nowrap text-xl font-semibold leading-tight text-accent sm:text-2xl">
-                      {site.agent.phone.display}
+                      {site.agent.officePhone.display}
                     </div>
                     <div className="mt-3 flex items-center gap-2 text-sm text-foreground/62">
                       <Star className="size-4 text-brand" aria-hidden />
@@ -300,7 +300,7 @@ export default function ChineseHome() {
                 把问题带来。Tracy 可以帮你把它变成清楚的保险下一步。
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-accent-foreground/74">
-                你可以直接电话沟通，也可以通过 Tracy Zhang Insurance 的中文咨询表开始。
+                你可以致电办公室沟通，也可以通过 Tracy Zhang Insurance 的中文咨询表开始。
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

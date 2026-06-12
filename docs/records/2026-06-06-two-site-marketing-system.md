@@ -17,7 +17,7 @@ The durable product split is:
 - `apps/san-marino-insurance`: canonical agency marketing, content, product,
   guidance, quote-routing, local SEO, and conversion-tracking site.
 - `apps/tracy-zhang`: personal advisor profile for Tracy Zhang: biography,
-  offices, languages, reputation, direct phone paths, and intent-based routing
+  offices, languages, reputation, office phone paths, and intent-based routing
   to San Marino Insurance.
 
 San Marino should not be narrowed back to only commercial/business insurance.

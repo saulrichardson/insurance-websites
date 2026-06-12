@@ -28,7 +28,7 @@ of the web properties.
 
 - First viewport: Tracy Zhang, local advisor serving California.
 - Core promise: clear insurance guidance before a policy decision.
-- Proof: local offices, direct phone line, languages, Allstate review context.
+- Proof: local offices, office phone path, languages, Allstate review context.
 - Paths: household coverage, life changes, property questions, business
   deadlines, higher liability exposure.
 - Primary CTA: get insurance help through Tracy Zhang Insurance.
@@ -44,7 +44,7 @@ The homepage uses a personal advisor dossier pattern:
 
 - large Tracy-name signal
 - compact portrait/contact panel instead of a hero product collage
-- direct phone path and review/language proof in the first screen
+- office phone path and review/language proof in the first screen
 - customer moments that route into Tracy Zhang Insurance rather than local
   product-card duplication
 
@@ -68,7 +68,7 @@ Preserve this separation when improving copy or layout.
 - `/zh`: Simplified Chinese advisor profile homepage
 - `/#approach`: working style and decision context
 - `/#coverage-help`: common coverage moments
-- `/#offices`: offices and direct phone paths
+- `/#offices`: offices and office phone paths
 
 Product-depth needs route through explicit homepage, header, and footer links
 to Tracy Zhang Insurance. The app does not carry old product, quote, career, or

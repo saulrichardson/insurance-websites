@@ -89,6 +89,6 @@ visitor needs product detail, quote intake, certificates, or campaign content
 
 The homepage should feel like an advisor dossier, not an insurance product
 catalog. The first viewport should establish Tracy by name with portrait,
-direct line, review context, languages, and a concise advisor promise. Coverage
+office phone path, review context, languages, and a concise advisor promise. Coverage
 paths should be framed as reasons to call or start help, then route to Tracy
 Zhang Insurance for product depth and quote intake.

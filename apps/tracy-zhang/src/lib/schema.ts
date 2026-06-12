@@ -28,7 +28,7 @@ export function getPersonSchema() {
         name: site.agent.name,
         jobTitle: "Insurance advisor",
         image: site.agent.images.portrait,
-        telephone: site.agent.phone.e164,
+        telephone: site.agent.officePhone.e164,
         email: site.agent.contact.email,
         knowsLanguage: site.agent.languages,
         knowsAbout: [

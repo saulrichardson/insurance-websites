@@ -20,7 +20,7 @@ advisor-profile surface and explicit links into the insurance app.
 
 The canonical insurance site owns product depth, quote intake, compliance
 language, campaign traffic, and lead capture. The personal site should stay
-small and advisor-led: Tracy by name, direct line, office proof, languages,
+small and advisor-led: Tracy by name, office phone path, office proof, languages,
 review context, and routing into the canonical insurance experience.
 
 ## Future Guidance

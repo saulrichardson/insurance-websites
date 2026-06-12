@@ -80,7 +80,7 @@ deployment notes.
   office acquisition surfaces: city-specific headline, office proof, service
   area, and locally weighted product merchandising.
 - `tracyzhang.com` should feel like a personal advisor dossier: Tracy's name,
-  portrait, direct line, languages, review context, offices, and intent routing.
+  portrait, office phone path, languages, review context, offices, and intent routing.
   It should not drift into a second full product catalog.
 
 ## Operating Model

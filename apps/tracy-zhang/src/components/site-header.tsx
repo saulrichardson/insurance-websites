@@ -87,17 +87,17 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <LanguageSwitch source="tracy_header_desktop" />
           <a
-            href={`tel:${site.agent.phone.e164}`}
+            href={`tel:${site.agent.officePhone.e164}`}
             className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground/60"
             onClick={() =>
               trackMarketingEvent("phone_click", {
                 source: "tracy_header",
-                phone: site.agent.phone.display,
+                phone: site.agent.officePhone.display,
               })
             }
           >
             <Phone className="size-4" aria-hidden />
-            {site.agent.phone.display}
+            {site.agent.officePhone.display}
           </a>
           <ScheduleButton
             locale={locale}
@@ -164,18 +164,18 @@ export function SiteHeader() {
               <ExternalLink className="size-4" aria-hidden />
             </a>
             <a
-              href={`tel:${site.agent.phone.e164}`}
+              href={`tel:${site.agent.officePhone.e164}`}
               className="mt-2 inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/25 bg-surface px-5 text-sm font-medium text-accent"
               onClick={() => {
                 trackMarketingEvent("phone_click", {
                   source: "tracy_mobile_menu",
-                  phone: site.agent.phone.display,
+                  phone: site.agent.officePhone.display,
                 });
                 setIsOpen(false);
               }}
             >
               <Phone className="size-4" aria-hidden />
-              {isZh ? "致电" : "Call"} {site.agent.phone.display}
+              {isZh ? "致电" : "Call"} {site.agent.officePhone.display}
             </a>
             <ScheduleButton
               locale={locale}

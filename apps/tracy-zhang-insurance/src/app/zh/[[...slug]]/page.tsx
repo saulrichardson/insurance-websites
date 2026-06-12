@@ -428,7 +428,7 @@ function ZhContactPage({
               联系方式
             </h2>
             <p className="text-base leading-7 text-slate-600">
-              如有紧急证书、续保期限或贷款证明需求，请直接电话或短信。新报价和保单审查可以使用表格。
+              如有紧急证书、续保期限或贷款证明需求，请致电或短信联系办公室。新报价和保单审查可以使用表格。
             </p>
 
             <div className="grid gap-4">

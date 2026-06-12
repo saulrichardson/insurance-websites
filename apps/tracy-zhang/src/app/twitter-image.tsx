@@ -53,7 +53,7 @@ export default function TwitterImage() {
             Local insurance guidance for California.
           </div>
           <div style={{ fontSize: 22, color: "rgba(11,11,11,0.72)" }}>
-            {`Call ${site.agent.phone.display} • Multi‑language support available`}
+            {`Call ${site.agent.officePhone.display} • Multi‑language support available`}
           </div>
         </div>
 

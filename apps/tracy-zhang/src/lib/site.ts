@@ -37,7 +37,7 @@ export const site = {
   agent: {
     name: "Tracy Zhang",
     location: "California",
-    phone: {
+    officePhone: {
       display: "(626) 300-8338",
       e164: "+16263008338",
     },
