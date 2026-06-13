@@ -19,7 +19,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@insurance-websites/ui/route-transition": [
+        "../../packages/ui/src/route-transition.tsx"
+      ]
     }
   },
   "include": [

@@ -24,10 +24,12 @@ import { getSiteUrl } from "@/lib/site-url";
 const businessSite = "https://tracyzhanginsurance.com";
 const quoteHref = `${businessSite}/zh/contact#quote`;
 const latestGuidance = {
+  topic: "CA FAIR Plan",
   title: "为什么加州房主应该认真考虑 CA FAIR Plan",
   description:
     "如果房屋保险被取消、不续保或涨价太多，先比较 FAIR Plan 和补充保障结构，再决定是否接受昂贵报价。",
   href: `${businessSite}/zh/stories/why-you-should-consider-the-ca-fair-plan`,
+  readTime: "8 分钟阅读",
 };
 
 export const metadata: Metadata = {
@@ -358,20 +360,38 @@ export default function ChineseHome() {
                 source: "tracy_zh_latest_guidance",
                 destination: latestGuidance.href,
               }}
-              className="group border border-accent/10 bg-background p-7 shadow-sm shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10"
+              className="group grid overflow-hidden border border-accent/10 bg-background shadow-sm shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10 sm:grid-cols-[0.38fr_0.62fr]"
             >
-              <div className="text-xs font-semibold uppercase text-muted">
-                CA FAIR Plan
+              <div className="relative min-h-[220px] bg-accent p-6 text-accent-foreground">
+                <div className="absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
+                <div className="relative flex h-full min-h-[170px] flex-col justify-between">
+                  <div className="text-xs font-semibold uppercase text-accent-foreground/72">
+                    {latestGuidance.topic}
+                  </div>
+                  <div>
+                    <div className="font-serif text-6xl font-semibold leading-none">
+                      FP
+                    </div>
+                    <div className="mt-4 text-xs font-semibold uppercase text-accent-foreground/72">
+                      {latestGuidance.readTime}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="mt-3 text-2xl font-semibold leading-tight text-accent">
-                {latestGuidance.title}
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-foreground/70">
-                {latestGuidance.description}
-              </p>
-              <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
-                阅读文章
-                <ArrowRight className="size-4 transition group-hover:translate-x-0.5" aria-hidden />
+              <div className="p-7">
+                <div className="text-xs font-semibold uppercase text-muted">
+                  最新保险指南
+                </div>
+                <h3 className="mt-3 text-2xl font-semibold leading-tight text-accent">
+                  {latestGuidance.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-foreground/70">
+                  {latestGuidance.description}
+                </p>
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                  阅读指南
+                  <ArrowRight className="size-4 transition group-hover:translate-x-0.5" aria-hidden />
+                </div>
               </div>
             </TrackedAnchor>
           </div>

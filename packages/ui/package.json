@@ -4,9 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.tsx"
+    ".": "./src/index.tsx",
+    "./route-transition": "./src/route-transition.tsx"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "next": "16.2.7",
     "react": "19.2.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17"
   }
 }

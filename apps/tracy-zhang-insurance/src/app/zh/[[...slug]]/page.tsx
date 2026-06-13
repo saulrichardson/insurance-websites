@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   getProductBySlug,
@@ -15,6 +14,9 @@ import { EmailAnchor, EmailButton, ScheduleAnchor, ScheduleButton } from "@/comp
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
+import { StoryHero } from "@/components/StoryHero";
+import { StoryProse } from "@/components/StoryProse";
+import { StoryVisual } from "@/components/StoryVisual";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { Card } from "@/components/ui/Card";
 import { buttonClasses } from "@/components/ui/button";
@@ -785,52 +787,136 @@ function ZhPolicyPage({
 }
 
 function ZhStoriesPage() {
+  const [featuredStory, ...archiveStories] = zhStories;
+  const topics = Array.from(new Set(zhStories.flatMap((story) => story.tags))).slice(0, 8);
+
   return (
     <div lang="zh-Hans" className="bg-[var(--background)]">
-      <PageHero
-        eyebrow="保险指南"
-        title="用中文理解保险决定。"
-        subtitle="关于加州保险、保障取舍、FAIR Plan、车险信息和公寓保险缺口的简明说明。"
-        quoteHref="/zh/contact#quote"
-        quoteLabel={zhCommon.quoteLabel}
-      />
+      <section className="border-b border-[var(--rail-border)] bg-[#fbfaf4]">
+        <Container className="py-14 sm:py-18 lg:py-20">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,0.78fr)] lg:items-end">
+            <div>
+              <div className="flex items-center gap-3 text-xs font-semibold uppercase text-[var(--brand-ink)]">
+                <span className="inline-block size-2 rounded-[2px] bg-[var(--brand)]" />
+                保险指南
+              </div>
+              <h1 className="mt-7 max-w-4xl text-pretty font-serif text-5xl font-normal leading-[0.98] text-[var(--ink)] sm:text-6xl lg:text-7xl">
+                按真实问题整理保险决定。
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
+                用中文理解加州续保、FAIR Plan、报价比较、保障缺口和下一步选择。
+              </p>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {topics.map((topic) => (
+                  <span
+                    key={topic}
+                    className="rounded-lg border border-[var(--rail-border)] bg-white px-3 py-1.5 text-xs font-medium text-[var(--muted)]"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {featuredStory ? (
+              <TrackedLink
+                href={toZhPath(`/stories/${featuredStory.slug}`)}
+                eventName="guidance_click"
+                eventProps={{
+                  source: "tracy_zhang_insurance_zh_stories_featured",
+                  story: featuredStory.slug,
+                }}
+                className="group block rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fbfaf4]"
+              >
+                <StoryVisual
+                  image={featuredStory.image}
+                  title={featuredStory.title}
+                  tags={featuredStory.tags}
+                  locale="zh"
+                  priority
+                  className="transition duration-300 group-hover:-translate-y-1"
+                />
+                <div className="mt-5 border-t border-[var(--rail-border)] pt-5">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--muted)]">
+                    <span>重点指南</span>
+                    <span aria-hidden>/</span>
+                    <span>{formatZhDate(featuredStory.dateISO)}</span>
+                    <span aria-hidden>/</span>
+                    <span>{featuredStory.readingMinutes} {zhCommon.minutesRead}</span>
+                  </div>
+                  <h2 className="mt-3 text-2xl font-semibold leading-tight text-[var(--ink)]">
+                    {featuredStory.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                    {featuredStory.description}
+                  </p>
+                  <div className="mt-5 text-sm font-semibold text-[var(--ink)]">
+                    {zhCommon.readStoryLabel}
+                  </div>
+                </div>
+              </TrackedLink>
+            ) : null}
+          </div>
+        </Container>
+      </section>
+
       <Container className="py-16 sm:py-20">
-        <div className="grid gap-4 lg:grid-cols-3">
-          {zhStories.map((story) => (
+        <div className="flex flex-col gap-4 border-b border-[var(--rail-border)] pb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+              全部指南
+            </div>
+            <h2 className="mt-3 font-serif text-4xl font-normal leading-tight text-[var(--ink)] sm:text-5xl">
+              最近文章
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-6 text-[var(--muted)]">
+            先快速找到最接近的问题，再进入报价、电话或办公室沟通路径。
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {archiveStories.map((story) => (
             <TrackedLink
               key={story.slug}
               href={toZhPath(`/stories/${story.slug}`)}
               eventName="guidance_click"
               eventProps={{ source: "tracy_zhang_insurance_zh_stories_index", story: story.slug }}
-              className="group"
+              className="group flex h-full flex-col rounded-lg border border-[var(--rail-border)] bg-[var(--surface)] shadow-[var(--shadow-sm)] outline-none transition hover:-translate-y-0.5 hover:shadow-[0_18px_55px_rgba(15,23,42,0.10)] focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              <Card className="h-full overflow-hidden p-0 transition group-hover:-translate-y-0.5 group-hover:shadow-[0_18px_55px_rgba(15,23,42,0.10)]">
-                {story.image ? (
-                  <div className="relative aspect-[16/10] border-b border-slate-200 bg-slate-100">
-                    <Image
-                      src={story.image.src}
-                      alt={story.image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 31vw, (min-width: 768px) 45vw, 100vw"
-                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                ) : null}
-                <div className="p-7">
-                  <div className="text-xs text-slate-500">
-                    {formatZhDate(story.dateISO)} · {story.readingMinutes} {zhCommon.minutesRead}
-                  </div>
-                  <div className="mt-4 text-lg font-semibold tracking-tight text-slate-950">
-                    {story.title}
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {story.description}
-                  </p>
-                  <div className="mt-6 text-sm font-medium text-slate-950">
-                    {zhCommon.readStoryLabel} →
-                  </div>
+              <StoryVisual
+                image={story.image}
+                title={story.title}
+                tags={story.tags}
+                locale="zh"
+                className="min-h-[210px] rounded-b-none border-0 shadow-none"
+              />
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--muted)]">
+                  <span>{formatZhDate(story.dateISO)}</span>
+                  <span aria-hidden>/</span>
+                  <span>{story.readingMinutes} {zhCommon.minutesRead}</span>
                 </div>
-              </Card>
+                <div className="mt-4 text-lg font-semibold leading-snug text-[var(--ink)]">
+                  {story.title}
+                </div>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  {story.description}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {story.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-lg border border-[var(--rail-border)] bg-white px-3 py-1 text-xs text-[var(--muted)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-auto pt-6 text-sm font-semibold text-[var(--ink)]">
+                  {zhCommon.readStoryLabel}
+                </div>
+              </div>
             </TrackedLink>
           ))}
         </div>
@@ -846,56 +932,110 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
 
   return (
     <div lang="zh-Hans" className="bg-[var(--background)]">
-      <PageHero
+      <StoryHero
         eyebrow="保险指南"
         title={story.title}
         subtitle={story.description}
-        quoteHref="/zh/contact#quote"
-        quoteLabel={zhCommon.quoteLabel}
+        image={story.image}
+        tags={story.tags}
+        locale="zh"
+        backHref="/zh/stories"
+        backLabel="全部指南"
+        meta={
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <span className="text-sm text-[var(--muted)]">{formatZhDate(story.dateISO)}</span>
+            <span className="text-[var(--rail-border)]" aria-hidden>/</span>
+            <span className="text-sm text-[var(--muted)]">
+              {story.readingMinutes} {zhCommon.minutesRead}
+            </span>
+            {story.tags.length > 0 ? (
+              <>
+                <span className="text-[var(--rail-border)]" aria-hidden>/</span>
+                <div className="flex flex-wrap gap-2">
+                  {story.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-lg border border-[var(--rail-border)] bg-white px-3 py-1 text-xs text-[var(--muted)] shadow-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </>
+            ) : null}
+          </div>
+        }
       />
       <Container className="py-14 sm:py-16">
-        <article className="mx-auto max-w-3xl">
-          {story.image ? (
-            <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-2xl bg-slate-100">
-              <Image src={story.image.src} alt={story.image.alt} fill className="object-cover" />
+        <article className="grid gap-10 lg:grid-cols-[220px_minmax(0,760px)] lg:justify-center lg:items-start">
+          <aside className="space-y-5 lg:sticky lg:top-28">
+            <div className="rounded-lg border border-[var(--rail-border)] bg-white p-5 shadow-sm">
+              <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+                发布日期
+              </div>
+              <div className="mt-2 text-sm font-semibold text-[var(--ink)]">
+                {formatZhDate(story.dateISO)}
+              </div>
+              <div className="mt-1 text-sm text-[var(--muted)]">
+                {story.readingMinutes} {zhCommon.minutesRead}
+              </div>
+              {story.tags.length > 0 ? (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {story.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-lg border border-[var(--rail-border)] bg-[var(--background)] px-2.5 py-1 text-xs text-[var(--muted)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </div>
-          ) : null}
-          <div className="mb-8 text-sm text-slate-500">
-            {formatZhDate(story.dateISO)} · {story.readingMinutes} {zhCommon.minutesRead}
-          </div>
-          <div className="prose prose-slate max-w-none">
-            {story.sections.map((section, index) => {
-              if (section.type === "h2") return <h2 key={index}>{section.text}</h2>;
-              if (section.type === "ul") {
-                return (
-                  <ul key={index}>
-                    {section.items.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                );
-              }
-              if (section.type === "quote") return <blockquote key={index}>{section.text}</blockquote>;
-              if (section.type === "image") {
-                return (
-                  <figure key={index}>
-                    <Image src={section.image.src} alt={section.image.alt} width={1200} height={675} />
-                    {section.image.caption ? <figcaption>{section.image.caption}</figcaption> : null}
-                  </figure>
-                );
-              }
-              return <p key={index}>{section.text}</p>;
-            })}
-          </div>
 
-          <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="text-sm font-semibold text-slate-950">
-              想讨论你的情况？
-            </div>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              电话、短信或提交中文咨询表，我们会帮你找到最短的下一步。
-            </p>
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {relatedProducts.length > 0 ? (
+              <div className="rounded-lg border border-[var(--rail-border)] bg-white p-5 shadow-sm">
+                <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+                  相关页面
+                </div>
+                <div className="mt-4 grid gap-3">
+                  {relatedProducts.map((product) => (
+                    <TrackedLink
+                      key={product.id}
+                      href={product.zhHref}
+                      eventName="product_click"
+                      eventProps={{
+                        source: "tracy_zhang_insurance_zh_story_sidebar_products",
+                        story: story.slug,
+                        product: product.id,
+                      }}
+                      className="border-b border-[var(--rail-border)] pb-3 text-sm font-medium leading-5 text-[var(--ink)] last:border-b-0 last:pb-0 hover:underline underline-offset-4"
+                    >
+                      {product.title}
+                    </TrackedLink>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </aside>
+
+          <div>
+            <StoryProse sections={story.sections} />
+
+            <div className="mt-14 rounded-lg border border-[#102625]/20 bg-[#102625] p-6 text-white shadow-[var(--shadow-lg)] sm:p-8">
+              <div className="text-sm font-semibold text-white">
+                想讨论你的情况？
+              </div>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-white/74">
+                电话、短信或提交中文咨询表，我们会帮你找到最短的下一步。
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <TrackedAnchor
-                className={buttonClasses({ variant: "primary", size: "md" })}
+                className={buttonClasses({
+                  variant: "primary",
+                  size: "md",
+                  className: "bg-white text-[var(--ink)] hover:bg-white/90",
+                })}
                 href={`tel:${office.phoneE164}`}
                 eventName="phone_click"
                 eventProps={{
@@ -907,7 +1047,12 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
                 {zhCommon.callLabel} {office.phoneDisplay}
               </TrackedAnchor>
               <TrackedLink
-                className={buttonClasses({ variant: "outline", size: "md" })}
+                className={buttonClasses({
+                  variant: "outline",
+                  size: "md",
+                  className:
+                    "border-white/45 text-white hover:bg-white hover:text-[var(--ink)]",
+                })}
                 href="/zh/contact#quote"
                 eventName="quote_click"
                 eventProps={{ source: "tracy_zhang_insurance_zh_story_cta", story: story.slug }}
@@ -920,6 +1065,7 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
                 eventProps={{ story: story.slug }}
                 variant="secondary"
                 size="md"
+                className="border-white/25 bg-white/10 text-white hover:bg-white hover:text-[var(--ink)]"
               />
               <EmailButton
                 locale="zh"
@@ -927,44 +1073,46 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
                 eventProps={{ story: story.slug }}
                 variant="ghost"
                 size="md"
+                className="text-white/82 hover:bg-white/10 hover:text-white"
               />
             </div>
           </div>
-
-          {relatedProducts.length > 0 ? (
-            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="text-sm font-semibold text-slate-950">
-                相关保险页面
-              </div>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                继续查看和这篇指南最相关的中文保险页面。
-              </p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                {relatedProducts.map((product) => (
-                  <TrackedLink
-                    key={product.id}
-                    href={product.zhHref}
-                    eventName="product_click"
-                    eventProps={{
-                      source: "tracy_zhang_insurance_zh_story_related_products",
-                      story: story.slug,
-                      product: product.id,
-                    }}
-                    className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 transition hover:border-slate-300 hover:bg-white"
-                  >
-                    <div className="font-semibold text-slate-950">
-                      {product.title}
-                    </div>
-                    <div className="mt-1 leading-6">{product.description}</div>
-                    <div className="mt-3 font-medium text-slate-950">
-                      查看详情 →
-                    </div>
-                  </TrackedLink>
-                ))}
-              </div>
-            </div>
-          ) : null}
+          </div>
         </article>
+
+        {relatedProducts.length > 0 ? (
+          <section className="mt-16">
+            <div className="text-sm font-semibold text-[var(--ink)]">
+              相关保险页面
+            </div>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              继续查看和这篇指南最相关的中文保险页面。
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {relatedProducts.map((product) => (
+                <TrackedLink
+                  key={product.id}
+                  href={product.zhHref}
+                  eventName="product_click"
+                  eventProps={{
+                    source: "tracy_zhang_insurance_zh_story_related_products",
+                    story: story.slug,
+                    product: product.id,
+                  }}
+                  className="rounded-lg border border-[var(--rail-border)] bg-white p-4 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fbfaf4]"
+                >
+                  <div className="font-semibold text-[var(--ink)]">
+                    {product.title}
+                  </div>
+                  <div className="mt-1 leading-6">{product.description}</div>
+                  <div className="mt-3 font-medium text-[var(--ink)]">
+                    查看详情
+                  </div>
+                </TrackedLink>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </Container>
     </div>
   );

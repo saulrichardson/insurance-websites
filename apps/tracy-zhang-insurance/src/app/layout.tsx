@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { RouteTransition } from "@insurance-websites/ui/route-transition";
 import { SiteTelemetry } from "@/components/SiteTelemetry";
 import { site, siteUrl } from "@/config/site";
 import { getLocalBusinessSchema } from "@/lib/schema";
@@ -99,7 +100,9 @@ export default async function RootLayout({
           Skip to content
         </a>
         <Header market={market} office={office} />
-        <main id="main">{children}</main>
+        <main id="main">
+          <RouteTransition>{children}</RouteTransition>
+        </main>
         <Footer market={market} office={office} />
 
         <script

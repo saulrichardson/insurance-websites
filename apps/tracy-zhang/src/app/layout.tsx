@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteTelemetry } from "@/components/site-telemetry";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { RouteTransition } from "@insurance-websites/ui/route-transition";
 import { getPersonSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
@@ -108,7 +109,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        {children}
+        <RouteTransition>{children}</RouteTransition>
         <SiteFooter />
         <script
           type="application/ld+json"

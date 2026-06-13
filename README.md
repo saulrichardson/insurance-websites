@@ -76,6 +76,7 @@ pnpm --filter @insurance-websites/tracy-zhang-insurance db:migrate:leads
 Run checks from the repo root:
 
 ```bash
+pnpm hygiene:check
 pnpm lint
 pnpm build
 pnpm test
@@ -117,9 +118,16 @@ There should be exactly one `AGENTS.md` in this repository.
 
 Vercel hosts the apps. Cloudflare manages DNS where zones exist.
 
-This repo uses `pnpm@10.23.0`. Do not add app-local `package-lock.json` files
-or run app-local installs; dependency resolution belongs to the root
-`pnpm-lock.yaml`.
+This repo uses `pnpm@10.23.0`. Do not add app-local lockfiles or run app-local
+installs; dependency resolution belongs to the root `pnpm-lock.yaml`. App and
+package `node_modules` entries created by the root pnpm install are workspace
+linker artifacts, not independent installs; leave them alone or recreate them
+with `pnpm install --frozen-lockfile` from the repo root.
+
+Run `pnpm hygiene:check` before deployment-oriented cleanup. It fails on real
+workspace drift such as app-local lockfiles, npm `file:` dependencies, pulled
+`.vercel/.env*` files, or stale local Vercel Node metadata, while allowing
+pnpm-created workspace `node_modules` linker entries.
 
 Production deployments should run on Node 24.x and install with the committed
 root lockfile. Use frozen installs for deployment packages; if the lockfile is

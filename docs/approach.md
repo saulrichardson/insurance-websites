@@ -42,7 +42,9 @@ deployment notes.
 - `apps/tracy-zhang`: advisor profile and trust site.
 - `packages/domain`: shared brand, office, product, domain, and market data.
 - `packages/lead-capture`: shared lead validation and consent model.
-- `packages/ui`: shared UI primitives.
+- `packages/ui`: shared UI primitives. Cross-app primitives such as
+  `RouteTransition` live here; app-specific CSS owns each site's visual tokens
+  and motion styling.
 - Public direct-contact facts, including Tracy's public email and Calendly
   scheduling URL, are source-owned in `packages/domain` as `publicContact` and
   consumed by both public apps. Do not hardcode alternate public email or
@@ -189,8 +191,11 @@ Defer until needed:
 - San Marino and La Palma domains are local acquisition surfaces, not separate
   brands.
 - The misspelled `tracysinsurnace.com` domain is retired and must not be used.
-- Dependency installation is root-only through pnpm. Do not add app-local
-  `package-lock.json`, `node_modules`, or npm `file:` workspace dependencies.
+- Dependency installation is root-only through pnpm. Do not run app-local
+  installs, add app-local lockfiles, or add npm `file:` workspace dependencies.
+  App/package `node_modules` entries created by the root pnpm install are
+  workspace linker artifacts and should be left alone or recreated with
+  `pnpm install --frozen-lockfile` from the repo root.
 - Production dependency resolution must use exact package versions and the
   committed root `pnpm-lock.yaml`; deployment packages should install with
   `pnpm install --frozen-lockfile`.
@@ -213,6 +218,7 @@ Defer until needed:
 Expected local checks:
 
 ```bash
+pnpm hygiene:check
 pnpm lint:tracy-zhang-insurance
 pnpm build:tracy-zhang-insurance
 pnpm lint:tracy-zhang
@@ -243,6 +249,10 @@ SEO contract checks:
   CSS classes or visual layout. Redesigns can change composition, but they must
   not silently remove canonical URLs, language alternates, schema, sitemap
   membership, noindex boundaries, or crawlable product/story links.
+- `pnpm hygiene:check` validates deployment/workspace hygiene: root pnpm
+  install policy, no non-pnpm lockfiles, no npm `file:` workspace dependencies,
+  no pulled `.vercel/.env*` files, and no stale local Vercel Node metadata. It
+  intentionally allows pnpm-created workspace `node_modules` linker entries.
 
 Deployment preference:
 

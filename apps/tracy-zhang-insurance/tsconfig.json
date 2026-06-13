@@ -24,7 +24,10 @@
       "@insurance-websites/lead-capture": [
         "../../packages/lead-capture/src/index.ts"
       ],
-      "@insurance-websites/ui": ["../../packages/ui/src/index.tsx"]
+      "@insurance-websites/ui": ["../../packages/ui/src/index.tsx"],
+      "@insurance-websites/ui/route-transition": [
+        "../../packages/ui/src/route-transition.tsx"
+      ]
     }
   },
   "include": [

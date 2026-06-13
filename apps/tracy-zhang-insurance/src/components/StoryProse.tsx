@@ -11,7 +11,7 @@ export function StoryProse({
   className?: string;
 }) {
   return (
-    <div className={cn("space-y-6", className)}>
+    <div className={cn("space-y-7", className)}>
       {sections.map((section, index) => {
         const key = `${section.type}-${index}`;
         switch (section.type) {
@@ -19,14 +19,14 @@ export function StoryProse({
             return (
               <h2
                 key={key}
-                className="pt-4 text-2xl font-semibold tracking-tight text-slate-950"
+                className="pt-6 font-serif text-3xl font-normal leading-tight text-[var(--ink)]"
               >
                 {section.text}
               </h2>
             );
           case "p":
             return (
-              <p key={key} className="text-base leading-7 text-slate-700">
+              <p key={key} className="text-[17px] leading-8 text-[var(--muted)]">
                 {section.text}
               </p>
             );
@@ -34,7 +34,7 @@ export function StoryProse({
             return (
               <ul
                 key={key}
-                className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-base text-slate-700 shadow-sm"
+                className="grid gap-3 rounded-lg border border-[var(--rail-border)] bg-white p-6 text-base text-[var(--muted)] shadow-sm"
               >
                 {section.items.map((item) => (
                   <li key={item} className="flex items-start gap-3">
@@ -48,15 +48,15 @@ export function StoryProse({
             return (
               <figure
                 key={key}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-lg border border-[var(--rail-border)] bg-white p-6 shadow-sm"
               >
                 <div className="h-1 w-12 rounded-full bg-[var(--brand)]" />
-                <blockquote className="mt-4 text-base leading-7 text-slate-900">
-                  “{section.text}”
+                <blockquote className="mt-4 text-[17px] leading-8 text-[var(--ink)]">
+                  &ldquo;{section.text}&rdquo;
                 </blockquote>
                 {section.attribution ? (
-                  <figcaption className="mt-3 text-sm text-slate-600">
-                    — {section.attribution}
+                  <figcaption className="mt-3 text-sm text-[var(--muted)]">
+                    - {section.attribution}
                   </figcaption>
                 ) : null}
               </figure>
@@ -64,7 +64,7 @@ export function StoryProse({
           case "image":
             return (
               <figure key={key} className="py-4">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.10)]">
+                <div className="relative aspect-[3/2] overflow-hidden rounded-lg border border-[var(--rail-border)] bg-white shadow-[0_18px_60px_rgba(15,23,42,0.10)]">
                   <Image
                     src={section.image.src}
                     alt={section.image.alt}
@@ -74,7 +74,7 @@ export function StoryProse({
                   />
                 </div>
                 {section.image.caption ? (
-                  <figcaption className="mt-3 text-center text-sm leading-6 text-slate-500">
+                  <figcaption className="mt-3 text-center text-sm leading-6 text-[var(--muted)]">
                     {section.image.caption}
                   </figcaption>
                 ) : null}

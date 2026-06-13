@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, Phone, ShieldCheck } from "lucide-react";
+import { Menu, Phone } from "lucide-react";
 import type { MarketProfile, Office } from "@insurance-websites/domain";
 
 import { site } from "@/config/site";
@@ -71,7 +71,7 @@ export function Header({
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {primaryNav.map((link) => (
               <TrackedLink
                 key={link.href}
@@ -98,15 +98,6 @@ export function Header({
               <Phone className="size-4" aria-hidden />
               {isZh ? "致电" : "Call"}
             </TrackedAnchor>
-            <ScheduleButton
-              locale={locale}
-              source={trackingSource}
-              variant="outline"
-              size="sm"
-              icon
-            >
-              {isZh ? "预约" : "Schedule"}
-            </ScheduleButton>
             <TrackedLink
               className={buttonClasses({
                 variant: "primary",
@@ -131,7 +122,7 @@ export function Header({
               <Menu className="size-4" aria-hidden />
               <span>{isZh ? "菜单" : "Menu"}</span>
             </summary>
-            <div className="absolute right-0 mt-2 w-[min(92vw,360px)] rounded-2xl border border-slate-200 bg-white p-2 shadow-lg">
+            <div className="absolute right-0 mt-2 w-[min(92vw,360px)] rounded-lg border border-slate-200 bg-white p-2 shadow-lg">
               <div className="grid gap-1 p-1">
                 {primaryNav.map((link) => (
                   <TrackedLink
@@ -142,7 +133,7 @@ export function Header({
                       source: `${trackingSource}_mobile_menu`,
                       destination: link.href,
                     }}
-                    className="rounded-xl px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
                   >
                     {link.label}
                   </TrackedLink>
@@ -192,60 +183,8 @@ export function Header({
             </div>
           </details>
         </div>
-
-        <div className="mt-3 hidden border-t border-[var(--rail-border)]/70 pt-2.5 lg:block">
-          <div
-            aria-label="Carrier markets"
-            className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-[var(--rail-border)]/75 bg-[linear-gradient(135deg,#ffffff_0%,#fffdf8_58%,#f2eee4_100%)] p-2.5 shadow-[0_12px_34px_rgba(8,38,40,0.065)]"
-          >
-            <div className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-[#0e1941]/15 bg-white px-3 text-[#0e1941] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_8px_22px_rgba(14,25,65,0.08)]">
-              <ShieldCheck className="size-4" aria-hidden />
-              <span className="font-serif text-xl leading-none">Allstate</span>
-            </div>
-
-            <CarrierNameList
-              eyebrow={isZh ? "保险市场" : "Markets"}
-              carriers={site.carrierMarkets.filter(
-                (carrier) => carrier.relationship !== "allstate",
-              )}
-            />
-          </div>
-        </div>
       </Container>
     </header>
-  );
-}
-
-function CarrierNameList({
-  eyebrow,
-  carriers,
-}: {
-  eyebrow: string;
-  carriers: Array<(typeof site.carrierMarkets)[number]>;
-}) {
-  return (
-    <div className="flex min-h-10 min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-1 rounded-xl bg-white/45 px-3 py-2 text-sm leading-6 text-[var(--muted)]">
-      <span className="mr-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--brand-ink)]/75">
-        {eyebrow}
-      </span>
-      {carriers.map((carrier, index) => (
-        <span
-          key={carrier.name}
-          className={cn(
-            "inline-flex items-center gap-2 whitespace-nowrap",
-            carrier.relationship === "specialty-access" &&
-              "font-medium text-[var(--brand-ink)]",
-          )}
-        >
-          <span>{carrier.name}</span>
-          {index < carriers.length - 1 ? (
-            <span className="text-[var(--rail-border)]" aria-hidden>
-              /
-            </span>
-          ) : null}
-        </span>
-      ))}
-    </div>
   );
 }
 
@@ -257,10 +196,8 @@ function getPrimaryNav(market: MarketProfile, locale: Locale): Array<{ href: str
       : { href: "/locations", label: isZh ? "办公室" : "Offices" };
 
   return [
-    { href: "/#coverage", label: isZh ? "保险范围" : "Coverage" },
     { href: "/products", label: isZh ? "保险产品" : "Products" },
     { href: "/stories", label: isZh ? "保险指南" : "Guidance" },
-    { href: "/#business", label: isZh ? "商业保险" : "Business" },
     locationLink,
     { href: "/contact", label: isZh ? "联系我们" : "Contact" },
   ];

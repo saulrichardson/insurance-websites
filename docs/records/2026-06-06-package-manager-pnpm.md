@@ -21,6 +21,14 @@ Use `pnpm@10.23.0` as the package manager for this repository.
   such as `pnpm build:tracy-zhang-insurance`.
 - Do not add app-local `package-lock.json` files.
 - Do not add npm `file:` dependencies for internal packages.
+- Do not treat every app/package `node_modules` entry as app-local dependency
+  drift. pnpm creates workspace linker artifacts under workspace packages from
+  the root install, and local verification commands may need them. If they are
+  missing or suspect, recreate them with `pnpm install --frozen-lockfile` from
+  the repo root rather than deleting them as cleanup.
+- Use `pnpm hygiene:check` before deployment-oriented cleanup. It verifies
+  real dependency and environment drift without treating pnpm workspace linker
+  directories as a problem.
 
 The root `preinstall` script rejects non-pnpm installs so accidental
 `npm install` fails with an explicit message instead of rewriting the workspace.
