@@ -3,7 +3,8 @@
 Project: `insurance-websites`
 
 This repository is a source-focused monorepo for Tracy Zhang Insurance public
-websites, local acquisition surfaces, shared insurance data, and lead capture.
+websites, local acquisition surfaces, shared insurance data, lead capture, and
+visitor contact capture.
 
 Use this file for the repo-level operating model. Use each app's
 `docs/approach.md` for website-specific stack details, routes, env vars, and
@@ -24,7 +25,8 @@ deployment notes.
 - runtime target: Node.js 24.x for local verification and Vercel production
 - package manager: `pnpm@10.23.0` with one root `pnpm-lock.yaml`
 - production builds: `next build --webpack` for both apps
-- canonical insurance runtime: Vercel route handlers for lead capture/admin
+- canonical insurance runtime: Vercel route handlers for lead capture, visitor
+  identity capture, and admin review
 - database: Postgres/Neon through `DATABASE_URL`
 - email notification: Resend
 - analytics: Vercel Analytics/Speed Insights and optional GA4 via
@@ -38,7 +40,8 @@ deployment notes.
 ## Architecture
 
 - `apps/tracy-zhang-insurance`: canonical insurance app with host-aware
-  statewide/local surfaces, product pages, guidance, lead backend, and admin.
+  statewide/local surfaces, product pages, guidance, visitor contact capture,
+  lead backend, and admin.
 - `apps/tracy-zhang`: advisor profile and trust site.
 - `packages/domain`: shared brand, office, product, domain, and market data.
 - `packages/lead-capture`: shared lead validation and consent model.
@@ -76,8 +79,8 @@ deployment notes.
 ## Visual Operating Model
 
 - `tracyzhanginsurance.com` should feel like the statewide insurance command
-  center: broad product coverage, decision paths, guidance, quote intake, and
-  campaign readiness.
+  center: broad product coverage, decision paths, guidance, direct contact
+  paths, visitor contact capture, and campaign readiness.
 - `sanmarinoinsurance.com` and future local domains should feel like local
   office acquisition surfaces: city-specific headline, office proof, service
   area, and locally weighted product merchandising.
@@ -156,7 +159,12 @@ Current production-ready building blocks:
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID`, Vercel Analytics, and Speed Insights:
   website analytics
 - `/api/leads`: public website lead capture endpoint
+- `/api/visitor-events`: first-party visit capture and identity-resolution
+  trigger
 - `/admin/leads`: protected internal lead review surface
+- `/admin/contact-capture`: protected visitor identity-resolution ledger
+- `identity:create-token`: known-contact token creation script for campaign
+  URLs
 
 Minimum next configuration:
 

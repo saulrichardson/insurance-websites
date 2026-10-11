@@ -41,7 +41,7 @@ export function Header({
   const trackingSource = isLocal
     ? `tracy_zhang_insurance_${market.id}_header`
     : "tracy_zhang_insurance_header";
-  const quoteHref = localizedHref("/contact#quote", locale);
+  const contactHref = localizedHref("/contact", locale);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--rail-border)] bg-[#fbfaf4]/95 shadow-[0_1px_0_rgba(18,56,58,0.05)] backdrop-blur-xl">
@@ -104,11 +104,11 @@ export function Header({
                 size: "sm",
                 className: "shadow-[0_12px_28px_rgba(8,38,40,0.18)]",
               })}
-              href={quoteHref}
-              eventName="quote_click"
+              href={contactHref}
+              eventName="contact_click"
               eventProps={{ source: trackingSource }}
             >
-              {isZh ? "获取报价" : "Get a quote"}
+              {isZh ? "联系我们" : "Contact us"}
             </TrackedLink>
           </div>
 
@@ -173,11 +173,11 @@ export function Header({
                 </EmailButton>
                 <TrackedLink
                   className={buttonClasses({ variant: "primary", size: "md" })}
-                  href={quoteHref}
-                  eventName="quote_click"
+                  href={contactHref}
+                  eventName="contact_click"
                   eventProps={{ source: `${trackingSource}_mobile_menu` }}
                 >
-                  {isZh ? "获取报价" : "Get a quote"}
+                  {isZh ? "联系我们" : "Contact us"}
                 </TrackedLink>
               </div>
             </div>

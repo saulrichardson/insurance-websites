@@ -74,6 +74,12 @@ export default async function LeadsAdminPage({ searchParams }: PageProps) {
           <div className="flex flex-wrap gap-2">
             <Link
               className={buttonClasses({ variant: "secondary", size: "sm" })}
+              href="/admin/contact-capture"
+            >
+              Contact capture
+            </Link>
+            <Link
+              className={buttonClasses({ variant: "secondary", size: "sm" })}
               href="/admin/auto-leads"
             >
               Auto leads
@@ -253,7 +259,15 @@ function LeadDetail({
 }: {
   selected: NonNullable<Awaited<ReturnType<typeof getLeadDetail>>>;
 }) {
-  const { lead, events } = selected;
+  const {
+    lead,
+    events,
+    contact,
+    contactSource,
+    contactIdentities,
+    contactConsents,
+    contactEvents,
+  } = selected;
 
   return (
     <div>
@@ -302,6 +316,94 @@ function LeadDetail({
         ))}
       </dl>
 
+      {contact || contactSource ? (
+        <div className="mt-6 grid gap-4">
+          <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+            Contact capture
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="border border-[var(--rail-border)] bg-[var(--background)] p-4">
+              <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+                Contact profile
+              </div>
+              <dl className="mt-3 grid gap-2 text-sm">
+                <DetailRow label="Contact ID" value={shortId(contact?.id)} />
+                <DetailRow label="Stage" value={contact?.lifecycleStage} />
+                <DetailRow label="Language" value={contact?.preferredLanguage} />
+                <DetailRow label="Office" value={contact?.primaryOfficeId} />
+                <DetailRow
+                  label="Last seen"
+                  value={contact?.lastSeenAt ? formatDate(contact.lastSeenAt) : null}
+                />
+              </dl>
+              {contactIdentities.length > 0 ? (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {contactIdentities.map((identity) => (
+                    <span
+                      key={identity.id}
+                      className="rounded-full border border-[var(--rail-border)] bg-white px-3 py-1 text-xs text-[var(--muted)]"
+                    >
+                      {identity.identityType}: {identity.value}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="border border-[var(--rail-border)] bg-[var(--background)] p-4">
+              <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+                Source snapshot
+              </div>
+              <dl className="mt-3 grid gap-2 text-sm">
+                <DetailRow
+                  label="Landing"
+                  value={contactSource?.landingPath ?? lead.sourcePath}
+                />
+                <DetailRow
+                  label="Submitted"
+                  value={contactSource?.submittedPath ?? lead.sourcePath}
+                />
+                <DetailRow label="First referrer" value={contactSource?.firstReferrer} />
+                <DetailRow label="Referrer" value={contactSource?.referrer ?? lead.referrer} />
+                <DetailRow label="UTM source" value={contactSource?.utmSource ?? lead.utmSource} />
+                <DetailRow label="UTM campaign" value={contactSource?.utmCampaign ?? lead.utmCampaign} />
+                <DetailRow label="Campaign" value={contactSource?.campaignSlug} />
+                <DetailRow label="Market" value={contactSource?.marketId} />
+                <DetailRow label="Visitor" value={shortId(contactSource?.visitorId)} />
+                <DetailRow label="Session" value={shortId(contactSource?.sessionId)} />
+              </dl>
+            </div>
+          </div>
+
+          {contactConsents.length > 0 ? (
+            <div className="border border-[var(--rail-border)] bg-[var(--background)] p-4">
+              <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+                Consent records
+              </div>
+              <div className="mt-3 grid gap-2">
+                {contactConsents.map((consent) => (
+                  <div
+                    key={consent.id}
+                    className="grid gap-2 border border-[var(--rail-border)] bg-white p-3 text-sm sm:grid-cols-[0.8fr_1fr_1fr]"
+                  >
+                    <div className="font-semibold text-[var(--ink)]">
+                      {consent.channel} / {consent.status}
+                    </div>
+                    <div className="text-[var(--muted)]">
+                      {consent.purpose} · {consent.consentCopyVersion}
+                    </div>
+                    <div className="text-[var(--muted)]">
+                      {formatDate(consent.occurredAt)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
       {lead.message ? (
         <div className="mt-5 border border-[var(--rail-border)] bg-[var(--background)] p-4 text-sm leading-6 text-[var(--ink)]">
           <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
@@ -331,7 +433,7 @@ function LeadDetail({
 
       <div className="mt-8">
         <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
-          Events
+          Lead events
         </div>
         <div className="mt-3 grid gap-3">
           {events.map((event) => (
@@ -349,6 +451,29 @@ function LeadDetail({
           ))}
         </div>
       </div>
+
+      {contactEvents.length > 0 ? (
+        <div className="mt-8">
+          <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
+            Contact events
+          </div>
+          <div className="mt-3 grid gap-3">
+            {contactEvents.map((event) => (
+              <div key={event.id} className="border-l-2 border-[var(--ink)] bg-[var(--background)] px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="text-sm font-semibold text-[var(--ink)]">{event.eventType}</div>
+                  <div className="text-xs text-[var(--muted)]">{formatDate(event.createdAt)}</div>
+                </div>
+                {event.eventBody ? (
+                  <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-[var(--muted)]">
+                    {event.eventBody}
+                  </p>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -376,6 +501,20 @@ function filterClass(active: boolean) {
       ? "border-[var(--ink)] bg-[var(--ink)] text-white"
       : "border-[var(--rail-border)] bg-[var(--surface)] text-[var(--muted)] hover:text-[var(--ink)]",
   ].join(" ");
+}
+
+function DetailRow({ label, value }: { label: string; value?: string | null }) {
+  return (
+    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+      <dt className="text-xs font-semibold uppercase text-[var(--brand-ink)]">{label}</dt>
+      <dd className="break-words text-[var(--ink)]">{value || "Not provided"}</dd>
+    </div>
+  );
+}
+
+function shortId(value?: string | null) {
+  if (!value) return null;
+  return value.length > 18 ? `${value.slice(0, 12)}...${value.slice(-4)}` : value;
 }
 
 function formatDate(value: string) {

@@ -22,8 +22,8 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
+import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
-import { QuoteForm } from "@/components/QuoteForm";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { stories, type Story } from "@/content/stories";
@@ -231,8 +231,8 @@ function StatewideHome({
                     size: "lg",
                     className: "border-white/20 bg-white text-[var(--ink)] hover:bg-white/90",
                   })}
-                  href="/contact#quote"
-                  eventName="quote_click"
+                  href="/contact"
+                  eventName="contact_click"
                   eventProps={{ source: "statewide_hero" }}
                 >
                   Start insurance help
@@ -362,7 +362,7 @@ function StatewideHome({
       </section>
 
       <GuidanceSection market={market} stories={featuredStories} />
-      <QuoteSection market={market} office={office} tone="statewide" />
+      <ContactSection market={market} office={office} tone="statewide" />
     </div>
   );
 }
@@ -415,8 +415,8 @@ function LocalMarketHome({
                     size: "lg",
                     className: "bg-[#173f3b] hover:bg-[#0d2c29]",
                   })}
-                  href="/contact#quote"
-                  eventName="quote_click"
+                  href="/contact"
+                  eventName="contact_click"
                   eventProps={{ source: `${market.id}_local_hero` }}
                 >
                   Start a local request
@@ -528,7 +528,7 @@ function LocalMarketHome({
       </section>
 
       <GuidanceSection market={market} stories={featuredStories} local />
-      <QuoteSection market={market} office={office} tone="local" />
+      <ContactSection market={market} office={office} tone="local" />
     </div>
   );
 }
@@ -971,7 +971,7 @@ function GuidanceSection({
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">
               These guides explain common decisions before a visitor reaches the
-              quote form.
+              office conversation.
             </p>
           </div>
           <div className="flex lg:justify-end">
@@ -1026,7 +1026,7 @@ function GuidanceSection({
   );
 }
 
-function QuoteSection({
+function ContactSection({
   market,
   office,
   tone,
@@ -1036,20 +1036,20 @@ function QuoteSection({
   tone: "statewide" | "local";
 }) {
   return (
-    <section id="quote" className={tone === "local" ? "bg-[#173f3b] text-white" : "bg-[var(--ink)] text-white"}>
+    <section className={tone === "local" ? "bg-[#173f3b] text-white" : "bg-[var(--ink)] text-white"}>
       <Container className="py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
             <div className="text-xs font-semibold uppercase text-white/60">
-              Quote request
+              Direct office contact
             </div>
             <h2 className="mt-4 font-[var(--font-serif)] text-4xl leading-tight sm:text-5xl">
-              Tell us what changed, what you own, or what you need covered.
+              Call, text, email, or schedule when the timing matters.
             </h2>
             <p className="mt-5 text-base leading-7 text-white/70">
               New driver, new home, business contract, renewal, life change, or
-              a property that has become harder to insure: start with the basics
-              and we will route the next step.
+              a property that has become harder to insure: the office can route
+              the next step directly.
             </p>
             <div className="mt-7 flex flex-col gap-3 text-sm sm:flex-row">
               <TrackedAnchor
@@ -1057,7 +1057,7 @@ function QuoteSection({
                 className="inline-flex h-11 items-center justify-center border border-white/25 px-5 font-medium text-white hover:bg-white/10"
                 eventName="phone_click"
                 eventProps={{
-                  source: `${market.id}_quote_section`,
+                  source: `${market.id}_contact_section`,
                   phone: office.phoneDisplay,
                 }}
               >
@@ -1068,7 +1068,7 @@ function QuoteSection({
                 className="inline-flex h-11 items-center justify-center border border-white/25 px-5 font-medium text-white hover:bg-white/10"
                 eventName="sms_click"
                 eventProps={{
-                  source: `${market.id}_quote_section`,
+                  source: `${market.id}_contact_section`,
                   phone: office.phoneDisplay,
                 }}
               >
@@ -1080,19 +1080,51 @@ function QuoteSection({
           <div className="bg-[var(--surface)] p-5 text-[var(--ink)] shadow-[var(--shadow-lg)] sm:p-7">
             <div className="mb-6">
               <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
-                Quote request
+                Contact paths
               </div>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                This request is saved with consent and source attribution so the
-                team can follow up cleanly. No coverage is bound through the
-                website.
+                Use a direct channel so the office can confirm context before
+                moving forward.
               </p>
             </div>
-            <QuoteForm
-              officeOptions={tone === "local" ? [office] : undefined}
-              defaultOfficePreference={tone === "local" ? office.slug : undefined}
-              contactOffice={office}
-            />
+            <div className="grid gap-3">
+              <TrackedAnchor
+                href={`tel:${office.phoneE164}`}
+                className={buttonClasses({ variant: "primary", size: "md" })}
+                eventName="phone_click"
+                eventProps={{
+                  source: `${market.id}_contact_section`,
+                  phone: office.phoneDisplay,
+                }}
+              >
+                Call {office.phoneDisplay}
+              </TrackedAnchor>
+              {office.smsE164 ? (
+                <TrackedAnchor
+                  href={`sms:${office.smsE164}`}
+                  className={buttonClasses({ variant: "secondary", size: "md" })}
+                  eventName="sms_click"
+                  eventProps={{
+                    source: `${market.id}_contact_section`,
+                    phone: office.phoneDisplay,
+                  }}
+                >
+                  Text the office
+                </TrackedAnchor>
+              ) : null}
+              <EmailAnchor
+                source={`${market.id}_contact_section`}
+                eventProps={{ office: office.slug }}
+                className={buttonClasses({ variant: "outline", size: "md" })}
+              >
+                Email {site.contact.email}
+              </EmailAnchor>
+              <ScheduleAnchor
+                source={`${market.id}_contact_section`}
+                eventProps={{ office: office.slug }}
+                className={buttonClasses({ variant: "outline", size: "md" })}
+              />
+            </div>
           </div>
         </div>
       </Container>

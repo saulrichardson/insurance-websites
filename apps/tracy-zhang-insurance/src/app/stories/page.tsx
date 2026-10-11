@@ -162,7 +162,7 @@ export default function StoriesPage() {
 
       <PageCTA
         title="Want the simple version?"
-        body="Call, text, or request a quote online. We’ll ask only what we need, then bring options you can compare."
+        body="Call, text, email, or schedule a conversation. We’ll ask only what we need, then bring options you can compare."
       />
     </div>
   );

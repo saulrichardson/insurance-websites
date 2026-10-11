@@ -8,10 +8,10 @@ import { getRequestMarket } from "@/lib/market";
 
 export async function PageCTA({
   title = "Ready to talk?",
-  body = "Call, text, or request a quote online. We will respond quickly and help you compare the next step.",
+  body = "Call, text, email, or schedule a conversation. We will respond quickly and help you compare the next step.",
   office,
-  quoteHref = "/contact#quote",
-  quoteLabel = "Get a quote",
+  quoteHref = "/contact",
+  quoteLabel = "Contact us",
   callLabel,
 }: {
   title?: string;
@@ -71,7 +71,7 @@ export async function PageCTA({
                   "bg-transparent text-white hover:bg-white hover:text-[var(--ink)] border border-white/50",
               })}
               href={quoteHref}
-              eventName="quote_click"
+              eventName="contact_click"
               eventProps={{ source: "tracy_zhang_insurance_page_cta" }}
             >
               {quoteLabel}

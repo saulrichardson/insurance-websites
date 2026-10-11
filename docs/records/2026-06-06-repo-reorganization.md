@@ -4,9 +4,9 @@
 
 ## Context
 
-The insurance website code was consolidated under `/Users/saulrichardson/projects/insurance-websites`.
+The insurance website code was consolidated under `/LOCAL_OWNER/projects/insurance-websites`.
 
-The previous active repo lived at `/Users/saulrichardson/projects/allstate/website` and already used the `saulrichardson/insurance-websites` git remote. A separate Tracy Zhang marketing website lived at `/Users/saulrichardson/projects/allstate/gtm/online/web`.
+The previous active repo lived at `/LOCAL_OWNER/projects/allstate/website` and already used the `saulrichardson/insurance-websites` git remote. A separate Tracy Zhang marketing website lived at `/LOCAL_OWNER/projects/allstate/gtm/online/web`.
 
 ## Record
 

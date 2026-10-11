@@ -11,8 +11,8 @@ export async function PageHero({
   title,
   subtitle,
   office,
-  quoteHref = "/contact#quote",
-  quoteLabel = "Get a quote",
+  quoteHref = "/contact",
+  quoteLabel = "Contact us",
   callLabel,
 }: {
   eyebrow: string;
@@ -50,7 +50,7 @@ export async function PageHero({
             <TrackedLink
               className={buttonClasses({ variant: "primary", size: "md" })}
               href={quoteHref}
-              eventName="quote_click"
+              eventName="contact_click"
               eventProps={{ source: "tracy_zhang_insurance_page_hero", page_title: title }}
             >
               {quoteLabel}

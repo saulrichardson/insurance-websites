@@ -3,7 +3,8 @@ import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
-import { QuoteForm } from "@/components/QuoteForm";
+import { buttonClasses } from "@/components/ui/button";
+import { TrackedAnchor } from "@/components/marketing-events";
 import { site } from "@/config/site";
 import { getOfficeById } from "@insurance-websites/domain";
 import { getRequestMarket } from "@/lib/market";
@@ -17,7 +18,7 @@ export default async function ContactPage() {
   const isLocal = market.domainRole === "local";
   const visibleOffices = isLocal ? [office] : site.offices;
   const serviceArea = isLocal ? market.serviceArea : site.serviceArea;
-  const title = isLocal ? `Contact the ${market.label} office` : "Call, text, or request a quote";
+  const title = isLocal ? `Contact the ${market.label} office` : "Call, text, email, or schedule";
   const subtitle = isLocal
     ? `Tell us what changed, what you need covered, and how you prefer to be reached. The ${market.label} office will help shape the next step.`
     : "Tell us what changed, what you need covered, and how you prefer to be reached. We will route the next step to the right office.";
@@ -42,8 +43,8 @@ export default async function ContactPage() {
             </h2>
             <p className="text-base leading-7 text-slate-600">
               For urgent certificates or renewal deadlines, call or text. For
-              new quotes and reviews, use the form and include the detail that
-              matters most.
+              coverage reviews or new conversations, use the direct channel
+              that fits the timing.
             </p>
 
             <div className="grid gap-4">
@@ -182,24 +183,59 @@ export default async function ContactPage() {
             </Card>
           </div>
 
-          <div id="quote" className="scroll-mt-28">
+          <div className="scroll-mt-28">
             <Card className="p-7">
               <div className="text-xl font-semibold tracking-tight text-slate-900">
-                Quote request
+                Reach the office directly
               </div>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Provide basic details and we will help shape the next step.
+                Use the fastest channel for the situation. The office will
+                confirm details before any coverage discussion, recommendation,
+                carrier submission, or next step.
               </p>
-              <div className="mt-6">
-                <QuoteForm
-                  officeOptions={isLocal ? [office] : undefined}
-                  defaultOfficePreference={isLocal ? office.slug : undefined}
-                  contactOffice={office}
+              <div className="mt-6 grid gap-3">
+                <TrackedAnchor
+                  className={buttonClasses({ variant: "primary", size: "md" })}
+                  href={`tel:${office.phoneE164}`}
+                  eventName="phone_click"
+                  eventProps={{
+                    source: "tracy_zhang_insurance_contact_direct",
+                    office: office.slug,
+                    phone: office.phoneDisplay,
+                  }}
+                >
+                  Call {office.phoneDisplay}
+                </TrackedAnchor>
+                {office.smsE164 ? (
+                  <TrackedAnchor
+                    className={buttonClasses({ variant: "secondary", size: "md" })}
+                    href={`sms:${office.smsE164}`}
+                    eventName="sms_click"
+                    eventProps={{
+                      source: "tracy_zhang_insurance_contact_direct",
+                      office: office.slug,
+                      phone: office.phoneDisplay,
+                    }}
+                  >
+                    Text this office
+                  </TrackedAnchor>
+                ) : null}
+                <EmailAnchor
+                  source="tracy_zhang_insurance_contact_direct"
+                  eventProps={{ office: office.slug }}
+                  className={buttonClasses({ variant: "outline", size: "md" })}
+                >
+                  Email {site.contact.email}
+                </EmailAnchor>
+                <ScheduleAnchor
+                  source="tracy_zhang_insurance_contact_direct"
+                  eventProps={{ office: office.slug }}
+                  className={buttonClasses({ variant: "outline", size: "md" })}
                 />
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">
-                Note: Quotes are subject to underwriting, eligibility, and
-                carrier guidelines. This form does not bind coverage.
+                Coverage is not bound until details are confirmed by the office
+                and any required carrier steps are complete.
               </p>
             </Card>
           </div>

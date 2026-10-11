@@ -35,7 +35,7 @@ export function Footer({
   const trackingSource = isLocal
     ? `tracy_zhang_insurance_${market.id}_footer`
     : "tracy_zhang_insurance_footer";
-  const quoteHref = localizedHref("/contact#quote", locale);
+  const contactHref = localizedHref("/contact", locale);
 
   return (
     <footer className="border-t border-[var(--rail-border)] bg-[var(--surface)]">
@@ -244,11 +244,11 @@ export function Footer({
             </Link>
             <TrackedLink
               className="hover:text-[var(--ink)] hover:underline"
-              href={quoteHref}
-              eventName="quote_click"
+              href={contactHref}
+              eventName="contact_click"
               eventProps={{ source: "tracy_zhang_insurance_footer" }}
             >
-              {isZh ? "获取报价" : "Get a quote"}
+              {isZh ? "联系我们" : "Contact"}
             </TrackedLink>
           </div>
         </div>

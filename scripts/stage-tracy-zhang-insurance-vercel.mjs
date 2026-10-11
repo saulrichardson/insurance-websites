@@ -88,7 +88,7 @@ function copyRequiredRootFiles() {
 }
 
 function writeStagedLockfile() {
-  execFileSync("pnpm", ["install", "--lockfile-only", "--offline"], {
+  execFileSync("corepack", ["pnpm", "install", "--lockfile-only", "--offline"], {
     cwd: targetRoot,
     stdio: "inherit",
   });

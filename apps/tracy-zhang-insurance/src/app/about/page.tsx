@@ -98,7 +98,7 @@ export default async function AboutPage() {
                 How to start
               </div>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Call, text, or request a quote online. We’ll confirm a few
+                Call, text, email, or schedule a conversation. We’ll confirm a few
                 details and bring you options you can compare.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -110,9 +110,9 @@ export default async function AboutPage() {
                 </a>
                 <Link
                   className={buttonClasses({ variant: "outline", size: "md" })}
-                  href="/contact#quote"
+                  href="/contact"
                 >
-                  Request a quote
+                  Contact the office
                 </Link>
               </div>
             </Card>
