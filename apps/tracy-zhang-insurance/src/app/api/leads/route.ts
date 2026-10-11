@@ -11,8 +11,10 @@ import {
   LeadStoreNotConfiguredError,
   recordLeadEvent,
 } from "@/lib/lead-store";
+import { parseVisitorCaptureJson } from "@/lib/visitor-data";
 
 export const runtime = "nodejs";
+const leadSubmissionRetired = true;
 
 type DeliveryResult =
   | { attempted: false; ok: false; reason: "not_configured" }
@@ -20,15 +22,35 @@ type DeliveryResult =
   | { attempted: true; ok: false; error: string };
 
 export async function POST(request: Request) {
+  if (leadSubmissionRetired) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Online quote submissions are no longer accepted. Please call, text, email, or schedule with the office directly.",
+      },
+      { status: 410 },
+    );
+  }
+
   const startedAt = Date.now();
   const traceId = request.headers.get("x-vercel-id") ?? crypto.randomUUID();
-  const parsed = parseLeadInput(await readBody(request));
+  const body = await readBody(request);
+  const parsed = parseLeadInput(body);
   const url = new URL(request.url);
   parsed.sourceDomain ||= url.host;
   parsed.sourcePath ||= `${url.pathname}${url.search}`;
   parsed.referrer ||= request.headers.get("referer") ?? undefined;
   parsed.userAgent ||= request.headers.get("user-agent") ?? undefined;
   parsed.ip ||= request.headers.get("x-forwarded-for") ?? request.headers.get("x-real-ip") ?? undefined;
+  const visitorContext = parseVisitorCaptureJson(getBodyValue(body, "visitorContext"), {
+    eventName: "quote_form_submit",
+    sourceDomain: parsed.sourceDomain,
+    path: parsed.sourcePath,
+    referrer: parsed.referrer,
+    userAgent: parsed.userAgent,
+    ip: parsed.ip,
+  });
 
   const logContext = {
     traceId,
@@ -54,7 +76,7 @@ export async function POST(request: Request) {
 
   try {
     if (result.blocked) {
-      await insertLead(result.lead, { status: "spam", blockedReason: result.reason });
+      await insertLead(result.lead, { status: "spam", blockedReason: result.reason, visitorContext });
       await recordLeadEvent({
         leadId: result.lead.requestId,
         eventType: "lead_blocked",
@@ -68,7 +90,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true, requestId: result.lead.requestId });
     }
 
-    await insertLead(result.lead);
+    await insertLead(result.lead, { visitorContext });
     logLeadApi("info", "lead_stored", startedAt, {
       ...logContext,
       leadId: result.lead.requestId,
@@ -147,6 +169,16 @@ async function readBody(request: Request) {
     return (await request.json()) as Record<string, unknown>;
   }
   return request.formData();
+}
+
+function getBodyValue(body: FormData | Record<string, unknown>, key: string) {
+  if (body instanceof FormData) {
+    const value = body.get(key);
+    return typeof value === "string" ? value : undefined;
+  }
+
+  const value = body[key];
+  return typeof value === "string" ? value : undefined;
 }
 
 async function sendLeadNotification(lead: ValidLead): Promise<DeliveryResult> {

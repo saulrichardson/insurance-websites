@@ -72,9 +72,11 @@ intentionally moved to a different account or verification method.
 - `/terms`
 - `/sms-terms`
 - `/contact-consent`
-- `/api/leads`
+- `/api/leads` retired; returns `410 Gone` for public quote submissions
+- `/api/visitor-events`
 - `/api/auto-leads`
 - `/admin/leads` session-protected lead inbox
+- `/admin/contact-capture` session-protected visitor identity ledger
 - `/admin/auto-leads` session-protected auto lead review
 
 Product routes include auto, home, condo, renters, life, umbrella, business,
@@ -84,10 +86,12 @@ Simplified Chinese public routes live under `/zh/` and are served by
 `src/app/zh/[[...slug]]/page.tsx`. They cover the homepage, products, product
 detail pages, contact, locations, about/team, legal/consent pages, and guidance
 stories. The Chinese pages use `zh-Hans` metadata alternates, self-canonical
-Chinese URLs, and the same lead backend/forms with localized labels. New
+Chinese URLs, and the same direct contact paths with localized labels. New
 English stories or public content should not silently appear under `/zh` in
 English; add reviewed Chinese content before treating the localized route as
 production-ready.
+Chinese contact pages use the same direct call, text, email, and schedule paths
+as English pages; they should not reintroduce the retired quote form.
 
 The header language switcher should remain a normal localized link, not a
 client-side translation widget. It preserves query strings and hash fragments
@@ -142,7 +146,7 @@ use grouped, wrapping names instead of an overflow rail.
 `src/app/page.tsx` is host-aware through `getRequestMarket()`.
 
 - Canonical hosts render the statewide homepage with the coverage atlas,
-  broad product lanes, guidance, and quote request flow.
+  broad product lanes, guidance, and direct contact flow.
 - Local hosts render a local-office homepage with city headline, nearest
   office board, local proof points, service area, and market-specific product
   merchandising.
@@ -178,6 +182,14 @@ dynamically on Vercel.
   auto lead notifications; falls back to `LEADS_TO_EMAIL`
 - `AUTO_LEADS_EMAIL_SUBJECT_PREFIX`: optional auto lead notification subject
   prefix
+- `IDENTITY_RESOLUTION_ENDPOINT`: optional server-side webhook used to resolve
+  unknown website visitors into contact candidates
+- `IDENTITY_RESOLUTION_PROVIDER`: optional label for the identity provider;
+  defaults to `generic_webhook` when an endpoint is configured
+- `IDENTITY_RESOLUTION_API_KEY`: optional bearer token sent to the identity
+  provider webhook
+- `IDENTITY_RESOLUTION_MIN_ACCEPTED_CONFIDENCE`: optional match-confidence
+  threshold, defaulting to `0.1`
 - `ADMIN_USER`: admin basic-auth username
 - `ADMIN_PASS`: admin basic-auth password
 
@@ -203,7 +215,7 @@ the search favicon easier for Google to crawl and retain.
 
 The current insurance icon is a tightly cropped raster mark generated from the
 approved local source image
-`/Users/saulrichardson/Downloads/Gemini_Generated_Image_6ddrxz6ddrxz6ddr.png`.
+`/LOCAL_OWNER/Downloads/Gemini_Generated_Image_6ddrxz6ddrxz6ddr.png`.
 The canonical cropped source is kept at `/tz-logo-cropped.png`; the web icon
 served to crawlers is `/icon.png`.
 
@@ -218,19 +230,34 @@ pnpm build:tracy-zhang-insurance
 pnpm test
 ```
 
-After DNS/deployment changes, smoke-check each attached domain and submit one
-test lead with a test inbox before launching campaigns.
+After DNS/deployment changes, smoke-check each attached domain and verify the
+direct contact paths. Do not submit test quote leads through `/api/leads`; the
+public quote submission endpoint is retired.
 
 Lead-flow observability:
 
-- `/api/leads` emits structured JSON logs for receipt, validation failures,
-  storage, Resend notification success/failure, and event-recording failures.
-  Logs should include request/trace id, duration, source domain/path, campaign
-  fields, product interest, and status without logging lead message content.
-- The quote form tracks `form_start`, `lead_submit_attempt`, `generate_lead`,
-  and `lead_error` through Vercel Analytics and GA4 when configured.
-- Resend delivery ids are stored in lead event metadata when available. Keep
-  `lead_events.metadata` as queryable JSON objects, not JSON strings.
+- `/api/visitor-events` captures first-party public visit/source context and
+  invokes the identity-resolution layer after the visit is stored.
+- Known-contact campaign URLs use a `ct`, `cid`, `contact_token`,
+  `identity_token`, or `trk` query parameter. The browser persists the newest
+  token in first-party storage, sends it with visitor events, and the server
+  matches it against `known_contact_tokens` by SHA-256 hash.
+- Unknown visitors create `identity_resolution_requests`. If
+  `IDENTITY_RESOLUTION_ENDPOINT` is configured, the route posts visit context to
+  that webhook and stores returned person/household/company matches in
+  `identity_matches`, `contacts`, `contact_identities`, `contact_addresses`,
+  `contact_sources`, and `contact_events`. If no endpoint is configured, the
+  request is stored as `skipped` with provider `not_configured`.
+- Use
+  `pnpm --filter @insurance-websites/tracy-zhang-insurance identity:create-token -- --name "Jane Example" --email jane@example.com --label july-campaign --base-url https://tracyzhanginsurance.com/`
+  to create a hashed known-contact token and print a campaign URL containing
+  the raw token exactly once.
+- `/admin/contact-capture` shows provider status, recent resolution attempts,
+  and resolved contact matches for operator review.
+- `/api/leads` remains in the codebase for historical/admin compatibility but
+  returns `410 Gone` and must not send Resend notifications while retired.
+- Historical lead/admin tables remain available for previous records. Do not
+  wholesale delete them without an explicit migration and archival plan.
 
 Auto lead intake:
 

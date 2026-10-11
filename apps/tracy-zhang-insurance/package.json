@@ -12,7 +12,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "db:migrate:leads": "node scripts/migrate-leads.mjs"
+    "db:migrate:leads": "node scripts/migrate-leads.mjs",
+    "identity:create-token": "node scripts/create-contact-token.mjs"
   },
   "dependencies": {
     "@insurance-websites/domain": "workspace:*",

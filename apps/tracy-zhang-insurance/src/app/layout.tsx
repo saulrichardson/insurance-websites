@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { RouteTransition } from "@insurance-websites/ui/route-transition";
 import { SiteTelemetry } from "@/components/SiteTelemetry";
+import { VisitorCapture } from "@/components/VisitorCapture";
 import { site, siteUrl } from "@/config/site";
 import { getLocalBusinessSchema } from "@/lib/schema";
 import { getMarketUrl, getRequestMarket } from "@/lib/market";
@@ -110,6 +111,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <SiteTelemetry />
+        <VisitorCapture marketId={market.id} officeId={office.id} />
       </body>
     </html>
   );

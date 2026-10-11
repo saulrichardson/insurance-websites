@@ -1,5 +1,5 @@
-import { site } from "@/lib/site";
-import { getSiteUrl } from "@/lib/site-url";
+import { site } from "./site";
+import { getSiteUrl } from "./site-url";
 
 export function getPersonSchema() {
   const base = getSiteUrl().toString().replace(/\/$/, "");
@@ -63,6 +63,9 @@ export function getPersonSchema() {
         description:
           "Advisor profile, language fit, office details, and contact paths for Tracy Zhang.",
         inLanguage: ["en-US", "zh-Hans"],
+        mainEntity: {
+          "@id": `${base}/#tracy-zhang`,
+        },
         about: {
           "@id": `${base}/#tracy-zhang`,
         },

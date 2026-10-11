@@ -13,7 +13,6 @@ import { Container } from "@/components/Container";
 import { EmailAnchor, EmailButton, ScheduleAnchor, ScheduleButton } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
-import { QuoteForm } from "@/components/QuoteForm";
 import { StoryHero } from "@/components/StoryHero";
 import { StoryProse } from "@/components/StoryProse";
 import { StoryVisual } from "@/components/StoryVisual";
@@ -139,7 +138,7 @@ function ZhHome({ market, office }: { market: MarketProfile; office: Office }) {
         title={marketCopy.title}
         subtitle={marketCopy.subtitle}
         office={office}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
         callLabel={`${zhCommon.callLabel} ${office.phoneDisplay}`}
       />
@@ -231,7 +230,7 @@ function ZhHome({ market, office }: { market: MarketProfile; office: Office }) {
         title="想用中文讨论保险？"
         body="电话、短信或在线提交信息。我们会帮你把保障问题、文件需求和下一步分清楚。"
         office={office}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
         callLabel={`${zhCommon.callLabel} ${office.phoneDisplay}`}
       />
@@ -246,7 +245,7 @@ function ZhProductsPage() {
         eyebrow="保险产品"
         title="从你真正需要处理的问题开始。"
         subtitle="选择车、房、家庭、商业或加州财产问题。我们会用中文说明哪些信息会影响保障和报价。"
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
 
@@ -288,7 +287,7 @@ function ZhProductsPage() {
       <PageCTA
         title="不确定从哪里开始？"
         body="告诉我们发生了什么变化，我们会帮你判断应该先看哪类保险。"
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
     </div>
@@ -309,7 +308,7 @@ function ZhProductPage({ product }: { product: LocalizedProduct }) {
         eyebrow="加州中文保险咨询"
         title={product.heroTitle}
         subtitle={product.heroSubtitle}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
 
@@ -392,7 +391,7 @@ function ZhProductPage({ product }: { product: LocalizedProduct }) {
       <PageCTA
         title={product.ctaTitle}
         body={product.ctaBody}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
     </div>
@@ -418,7 +417,7 @@ function ZhContactPage({
         title={isLocal ? `联系 ${market.label} 办公室` : "电话、短信或提交中文保险咨询"}
         subtitle={isLocal ? marketCopy.localIntro : "告诉我们发生了什么变化、需要保障什么，以及你希望如何联系。我们会把下一步安排到合适办公室。"}
         office={office}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
         callLabel={`${zhCommon.callLabel} ${office.phoneDisplay}`}
       />
@@ -522,20 +521,54 @@ function ZhContactPage({
             </Card>
           </div>
 
-          <div id="quote" className="scroll-mt-28">
+          <div className="scroll-mt-28">
             <Card className="p-7">
               <div className="text-xl font-semibold tracking-tight text-slate-900">
-                中文保险咨询表
+                直接联系办公室
               </div>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                提供基本信息，我们会帮你确认下一步。
+                请用电话、短信、电子邮件或预约通话联系办公室。我们会先确认情况，再讨论下一步。
               </p>
-              <div className="mt-6">
-                <QuoteForm
+              <div className="mt-6 grid gap-3">
+                <TrackedAnchor
+                  className={buttonClasses({ variant: "primary", size: "md" })}
+                  href={`tel:${office.phoneE164}`}
+                  eventName="phone_click"
+                  eventProps={{
+                    source: "tracy_zhang_insurance_zh_contact_direct",
+                    office: office.slug,
+                    phone: office.phoneDisplay,
+                  }}
+                >
+                  致电 {office.phoneDisplay}
+                </TrackedAnchor>
+                {office.smsE164 ? (
+                  <TrackedAnchor
+                    className={buttonClasses({ variant: "secondary", size: "md" })}
+                    href={`sms:${office.smsE164}`}
+                    eventName="sms_click"
+                    eventProps={{
+                      source: "tracy_zhang_insurance_zh_contact_direct",
+                      office: office.slug,
+                      phone: office.phoneDisplay,
+                    }}
+                  >
+                    发送短信
+                  </TrackedAnchor>
+                ) : null}
+                <EmailAnchor
                   locale="zh"
-                  officeOptions={isLocal ? [office] : undefined}
-                  defaultOfficePreference={isLocal ? office.slug : undefined}
-                  contactOffice={office}
+                  source="tracy_zhang_insurance_zh_contact_direct"
+                  eventProps={{ office: office.slug }}
+                  className={buttonClasses({ variant: "outline", size: "md" })}
+                >
+                  发送邮件 {site.contact.email}
+                </EmailAnchor>
+                <ScheduleAnchor
+                  locale="zh"
+                  source="tracy_zhang_insurance_zh_contact_direct"
+                  eventProps={{ office: office.slug }}
+                  className={buttonClasses({ variant: "outline", size: "md" })}
                 />
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">
@@ -565,7 +598,7 @@ function ZhLocationsPage({ market }: { market: MarketProfile }) {
         eyebrow="办公室"
         title={isLocal ? `${market.label} 中文服务办公室` : "本地办公室，服务全加州。"}
         subtitle={isLocal ? zhMarketContent[market.id].localIntro : "选择离你最近或最符合需求的办公室开始。"}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
       <Container className="py-16 sm:py-20">
@@ -617,7 +650,7 @@ function ZhLocationPage({ path }: { path: string }) {
         title={copy.title}
         subtitle={copy.subtitle}
         office={office}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
         callLabel={`${zhCommon.callLabel} ${office.phoneDisplay}`}
       />
@@ -675,7 +708,7 @@ function ZhLocationPage({ path }: { path: string }) {
         title={`${market.label} 中文保险咨询`}
         body="告诉我们你的房屋、车辆、家庭或商业保险问题，我们会帮你整理下一步。"
         office={office}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
         callLabel={`${zhCommon.callLabel} ${office.phoneDisplay}`}
       />
@@ -692,7 +725,7 @@ function ZhAboutPage({ market, office }: { market: MarketProfile; office: Office
         title="本地保险服务，中文清楚沟通。"
         subtitle={`${copy.serviceAreaBody} 我们帮助客户把保障选择、报价条件和文件需求讲清楚。`}
         office={office}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
       <Container className="py-16">
@@ -733,7 +766,7 @@ function ZhTeamPage() {
         eyebrow="团队"
         title="中文沟通，清楚解释保险选择。"
         subtitle="Tracy Zhang Insurance 团队协助客户处理报价、保单审查、证书、商业保险和加州特殊承保问题。"
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
       <Container className="py-16">
@@ -769,7 +802,7 @@ function ZhPolicyPage({
         eyebrow={content.eyebrow}
         title={content.title}
         subtitle={content.subtitle}
-        quoteHref="/zh/contact#quote"
+        quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
       />
       <Container className="py-16">
@@ -1053,8 +1086,8 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
                   className:
                     "border-white/45 text-white hover:bg-white hover:text-[var(--ink)]",
                 })}
-                href="/zh/contact#quote"
-                eventName="quote_click"
+                href="/zh/contact"
+                eventName="contact_click"
                 eventProps={{ source: "tracy_zhang_insurance_zh_story_cta", story: story.slug }}
               >
                 {zhCommon.quoteLabel}

@@ -57,8 +57,8 @@ export default function ProductsPage() {
           ))}
 
           <TrackedLink
-            href="/contact#quote"
-            eventName="quote_click"
+            href="/contact"
+            eventName="contact_click"
             eventProps={{ source: "tracy_zhang_insurance_products_grid_unsure" }}
             className="group rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-slate-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:col-span-2 lg:col-span-1"
           >
@@ -197,7 +197,7 @@ export default function ProductsPage() {
 
       <PageCTA
         title="Get started"
-        body="Call, text, or request a quote online. We’ll respond quickly and help you compare options."
+        body="Call, text, email, or schedule a conversation. We’ll respond quickly and help you compare options."
       />
     </div>
   );

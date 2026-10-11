@@ -15,8 +15,9 @@ The app should support:
 - tailored local acquisition surfaces for San Marino and La Palma domains
 - product and guidance depth across personal, property, family, business, and
   specialty insurance
-- consented lead capture with persistence, notification, attribution, and admin
-  review
+- first-party visitor/session attribution and identity-resolution hooks that
+  can support future outreach infrastructure without depending on a public
+  quote-request form
 - policy, privacy, and SMS terms needed before email/SMS campaigns
 - Simplified Chinese discovery and conversion paths for Chinese-speaking
   California shoppers across the canonical, local, and campaign surfaces
@@ -27,12 +28,12 @@ This is not a San Marino-only site and not a generic agency template. It is the
 primary insurance identity for Tracy Zhang Insurance.
 
 City domains should tailor the first screen, product emphasis, local proof, and
-SEO framing. They should not fork product facts, lead capture, compliance copy,
+SEO framing. They should not fork product facts, contact paths, compliance copy,
 or analytics behavior.
 
 City domains should also avoid mentioning the other office in persistent
 customer-facing surfaces. Header, footer, contact, location, structured data,
-and local quote forms should resolve to the active city office only.
+and direct contact actions should resolve to the active city office only.
 
 Chinese-language pages should preserve the same boundaries. They should make
 Tracy Zhang Insurance discoverable to Chinese-speaking visitors through `/zh/`
@@ -44,7 +45,8 @@ The canonical domain and local domains intentionally share business logic but
 should not look like simple copies.
 
 - `tracyzhanginsurance.com`: statewide coverage command center with broad
-  insurance categories, decision-path language, guidance, and quote intake.
+  insurance categories, decision-path language, guidance, and direct office
+  contact paths.
 - `sanmarinoinsurance.com`: local office surface leading with San Marino,
   Huntington Drive office proof, city imagery, service area, and local product
   weighting.
@@ -52,8 +54,9 @@ should not look like simple copies.
   city imagery, nearby Cerritos/Orange County relevance, and household/small-
   business product weighting.
 
-Keep product facts, consent copy, analytics, and lead capture shared. Vary the
-homepage composition, first-viewport proof, product ordering, and local context.
+Keep product facts, compliance copy, analytics, and visitor/session attribution
+shared. Vary the homepage composition, first-viewport proof, product ordering,
+and local context.
 
 ## Core Workflows
 
@@ -62,9 +65,9 @@ homepage composition, first-viewport proof, product ordering, and local context.
 ```text
 visitor lands on tracyzhanginsurance.com or a local domain
   -> sees market-appropriate coverage merchandising
-  -> chooses a product, local page, guide, phone path, or lead form
-  -> submits consented lead details
-  -> request is saved, notification is attempted, and admin can review
+  -> chooses a product, local page, guide, call, text, email, or schedule path
+  -> first-party visit/source context is captured for future attribution
+  -> no public quote-request form is shown or accepted
 ```
 
 ### Local Acquisition
@@ -80,9 +83,22 @@ visitor lands on sanmarinoinsurance.com or lapalmainsurance.com
 
 ```text
 email/SMS/ad visitor opens a branded campaign URL
-  -> campaign and UTM source are captured
-  -> consent language is visible before submission
-  -> admin can see source, status, and notification history
+  -> campaign, UTM source, and any contact token are captured
+  -> visitor/session context persists as first-party attribution
+  -> known contact tokens resolve the visitor to an existing contact
+  -> unknown visitors create an identity-resolution request for the configured provider
+  -> operator reviews the contact capture ledger before outbound use
+```
+
+### Visitor Contact Capture
+
+```text
+visitor opens any public page
+  -> browser stores a stable first-party visitor/session id
+  -> /api/visitor-events records visit context and route/product intent
+  -> identity token, when present, links the visit to a known contact
+  -> provider webhook, when configured, attempts unknown-visitor resolution
+  -> /admin/contact-capture shows resolved people and all resolution attempts
 ```
 
 ### Auto Lead Intake

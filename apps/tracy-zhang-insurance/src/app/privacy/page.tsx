@@ -22,14 +22,25 @@ export default async function PrivacyPage() {
             When you request insurance help, we may collect your name, phone
             number, email address, ZIP code, preferred office, coverage
             interest, message details, source page, referral/campaign
-            information, IP address, user agent, and consent records.
+            information, visitor and session identifiers, browser language,
+            timezone, screen and viewport size, IP address, user agent, and
+            consent records.
           </PolicySection>
 
           <PolicySection title="How we use information">
             We use information to respond to your request, prepare quote or
             coverage conversations, route your inquiry to the right office,
-            document consent, improve marketing attribution, and service
-            insurance-related requests.
+            attach website context to your inquiry, document consent,
+            understand marketing attribution, and service insurance-related
+            requests.
+          </PolicySection>
+
+          <PolicySection title="Website context and cookies">
+            We use first-party cookies and local browser storage to remember a
+            visitor identifier, session identifier, landing page, referral
+            source, and campaign context. This helps us understand which
+            website visit led to an inquiry and follow up on that inquiry; it
+            does not bind coverage or determine insurance eligibility.
           </PolicySection>
 
           <PolicySection title="How information may be shared">

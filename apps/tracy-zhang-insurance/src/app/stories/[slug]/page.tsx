@@ -248,14 +248,14 @@ export default async function StoryPage({ params }: StoryPageProps) {
                     className:
                       "border-white/45 text-white hover:bg-white hover:text-[var(--ink)]",
                   })}
-                  href="/contact#quote"
-                  eventName="quote_click"
+                  href="/contact"
+                  eventName="contact_click"
                   eventProps={{
                     source: "tracy_zhang_insurance_story_cta",
                     story: story.slug,
                   }}
                 >
-                  Request a quote
+                  Contact the office
                 </TrackedLink>
                 <ScheduleButton
                   source="tracy_zhang_insurance_story_cta"

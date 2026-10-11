@@ -52,7 +52,7 @@ export type LocalizedStory = {
 export const zhCommon = {
   siteName: "Tracy Zhang Insurance",
   languageName: "简体中文",
-  quoteLabel: "获取报价",
+  quoteLabel: "联系我们",
   callLabel: "致电",
   menuLabel: "菜单",
   closeMenuLabel: "关闭菜单",

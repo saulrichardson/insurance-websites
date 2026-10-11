@@ -8,6 +8,7 @@ import { trackMarketingEvent } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
 import type { Locale } from "@/i18n/routing";
+import { buildVisitorContext } from "@/lib/client-visitor-context";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -486,6 +487,8 @@ export function QuoteForm({
 
 function appendSourceFields(formData: FormData) {
   const url = new URL(window.location.href);
+  const visitorContext = buildVisitorContext({ eventName: "quote_form_submit" });
+
   formData.set("sourceDomain", window.location.host);
   formData.set("sourcePath", `${window.location.pathname}${window.location.search}`);
   formData.set("referrer", document.referrer);
@@ -495,6 +498,9 @@ function appendSourceFields(formData: FormData) {
   formData.set("utmTerm", url.searchParams.get("utm_term") ?? "");
   formData.set("utmContent", url.searchParams.get("utm_content") ?? "");
   formData.set("campaignSlug", url.searchParams.get("campaign") ?? "");
+  if (visitorContext) {
+    formData.set("visitorContext", JSON.stringify(visitorContext));
+  }
 }
 
 function getFormEventProps(formData: FormData) {

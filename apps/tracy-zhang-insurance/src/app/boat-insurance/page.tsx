@@ -76,7 +76,7 @@ export default function BoatInsurancePage() {
 
       <PageCTA
         title="Get a boat quote"
-        body="Call, text, or request a quote online. We’ll follow up quickly."
+        body="Call, text, email, or schedule a conversation. We’ll follow up quickly."
       />
     </div>
   );

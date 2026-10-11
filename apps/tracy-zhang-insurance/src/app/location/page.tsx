@@ -31,7 +31,7 @@ export default async function LocationPage() {
   const title = isLocal ? `${market.label} office` : "Two offices. One standard.";
   const subtitle = isLocal
     ? `Call, text, request a quote, or use directions for the ${market.label} office.`
-    : "Call, text, or request a quote online. For in-person help, choose your nearest office and we’ll confirm availability.";
+    : "Call, text, email, or schedule a conversation. For in-person help, choose your nearest office and we’ll confirm availability.";
   const serviceAreaBody = isLocal
     ? `The ${market.label} office supports nearby communities with statewide California insurance help.`
     : "We serve San Marino, La Palma, and nearby communities across Los Angeles County and Orange County.";

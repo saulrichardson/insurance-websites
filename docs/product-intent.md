@@ -9,7 +9,9 @@ workflows, and open product questions.
 
 Build and maintain a coherent Tracy Zhang Insurance web portfolio that can
 support public trust, local SEO, campaign traffic, consented lead capture, and
-future email/SMS operations without fragmenting into scattered brands.
+future email/SMS operations without fragmenting into scattered brands. The
+canonical insurance app should also support visitor contact capture for
+campaign and outreach traffic without depending on a public quote-request form.
 
 The repo should make it easy to:
 
@@ -67,6 +69,9 @@ deployment notes.
 - First-class Simplified Chinese discovery paths that preserve those same site
   roles instead of cloning brands or codebases
 - Real lead persistence before campaign traffic
+- Visitor/session attribution and identity-resolution records for campaign
+  traffic that can produce outbound-ready contacts when a known token or
+  configured provider identifies the visitor
 - Consent and compliance copy treated as source-of-truth artifacts
 - Minimal hidden local assumptions
 - Independent verification per app
@@ -86,6 +91,8 @@ The production minimum is:
 - enough consent, unsubscribe, and source attribution to know who may be
   contacted and why
 - campaign and UTM capture across public websites
+- known-contact token links and a provider hook that can resolve campaign
+  visitors into contact records when available
 - admin visibility into imported leads, assignments, follow-up status, and
   outcomes
 

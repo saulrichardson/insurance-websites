@@ -76,8 +76,8 @@ export function MarketLocationPage({ marketId }: { marketId: MarketId }) {
                   </TrackedAnchor>
                   <TrackedLink
                     className={buttonClasses({ variant: "outline", size: "md" })}
-                    href="/contact#quote"
-                    eventName="quote_click"
+                    href="/contact"
+                    eventName="contact_click"
                     eventProps={{ source: `${market.id}_location_page` }}
                   >
                     Start request
