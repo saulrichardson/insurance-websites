@@ -21,7 +21,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
 
-const businessSite = "https://tracyzhanginsurance.com";
+const businessSite = site.insuranceUrl;
 const quoteHref = `${businessSite}/contact#quote`;
 
 const advisorPrinciples = [

@@ -8,7 +8,7 @@ import { site } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Auto Lead Intake Terms",
-  description: "Submitter terms for Tracy Zhang Insurance auto lead intake.",
+  description: "Submitter terms for Tracy’s Insurance auto lead intake.",
   alternates: { canonical: "/auto-lead-intake/terms" },
   robots: {
     index: false,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const confirmations = [
   "The information submitted is accurate to the submitter's knowledge based on facts provided by the prospect.",
-  "The prospect gave permission to be contacted by Tracy Zhang Insurance about auto insurance.",
+  "The prospect gave permission to be contacted by Tracy’s Insurance about auto insurance.",
   "The prospect has present interest in being contacted about auto insurance.",
   "The submitter did not quote premiums, advise on coverage, compare products, explain policy terms, complete an application, bind coverage, or promise that coverage is available.",
   "The lead may be rejected, marked duplicate or invalid, revoked after review, or require additional follow-up.",
@@ -63,7 +63,7 @@ export default function AutoLeadIntakeTermsPage() {
               </h1>
               <p className="mt-3 text-base leading-7 text-[var(--muted)]">
                 These terms apply when a submitter sends one VIN-based auto lead to
-                Tracy Zhang Insurance for review.
+                Tracy’s Insurance for review.
               </p>
             </div>
 
@@ -91,7 +91,7 @@ export default function AutoLeadIntakeTermsPage() {
               <section className="mt-7 border-t border-[var(--rail-border)] pt-6">
                 <h2 className="text-xl font-semibold text-[var(--ink)]">Source and review record</h2>
                 <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                  Tracy Zhang Insurance may store the submitted facts, campaign parameters,
+                  Tracy’s Insurance may store the submitted facts, campaign parameters,
                   referrer, request metadata, review status, and follow-up history for
                   attribution and lead review.
                 </p>

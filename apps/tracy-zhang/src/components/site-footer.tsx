@@ -10,7 +10,7 @@ import { Container } from "@/components/ui/container";
 import { isZhPath, localizedHref } from "@/i18n/routing";
 import { getFullAddressLine, getOffice, site } from "@/lib/site";
 
-const businessSite = "https://tracyzhanginsurance.com";
+const businessSite = site.insuranceUrl;
 
 export function SiteFooter() {
   const year = new Date().getFullYear();

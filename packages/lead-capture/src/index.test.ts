@@ -19,7 +19,7 @@ describe("lead validation", () => {
         productInterest: "Home Insurance",
         preferredContact: "phone",
         consentAccepted: "true",
-        sourceDomain: "tracyzhanginsurance.com",
+        sourceDomain: "tracysinsurance.com",
         sourcePath: "/home-insurance",
       }),
       new Date("2026-06-06T18:00:00.000Z"),
@@ -29,7 +29,7 @@ describe("lead validation", () => {
     if (result.ok) {
       expect(result.blocked).toBe(false);
       expect(result.lead.productInterest).toBe("Home Insurance");
-      expect(result.lead.consentCopyVersion).toBe("2026-06-06-01");
+      expect(result.lead.consentCopyVersion).toBe("2026-10-18-01");
     }
   });
 
@@ -41,7 +41,7 @@ describe("lead validation", () => {
         productInterest: "Auto Insurance",
         preferredContact: "text",
         consentAccepted: "true",
-        sourceDomain: "tracyzhanginsurance.com",
+        sourceDomain: "tracysinsurance.com",
         sourcePath: "/auto-insurance",
       }),
     );
@@ -61,7 +61,7 @@ describe("lead validation", () => {
         preferredContact: "phone",
         consentAccepted: "true",
         company: "filled",
-        sourceDomain: "tracyzhanginsurance.com",
+        sourceDomain: "tracysinsurance.com",
         sourcePath: "/business-insurance",
       }),
     );
@@ -108,7 +108,7 @@ describe("submitter auto lead validation", () => {
     if (result.ok) {
       expect(result.blocked).toBe(false);
       expect(result.lead.vehicleMake).toBe("Toyota");
-      expect(result.lead.formVersion).toBe("2026-06-09-01");
+      expect(result.lead.formVersion).toBe("2026-10-18-01");
     }
   });
 

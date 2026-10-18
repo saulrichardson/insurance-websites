@@ -1,4 +1,4 @@
-import { getOfficeById, publicContact } from "@insurance-websites/domain";
+import { domains, getOfficeById, publicContact } from "@insurance-websites/domain";
 
 export type OfficeHour =
   | { day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri"; open: string; close: string }
@@ -29,6 +29,7 @@ export type Office = {
 };
 
 export const site = {
+  insuranceUrl: `https://${domains.canonicalInsurance}`,
   brand: {
     name: "Tracy Zhang",
     shortName: "Tracy Zhang",

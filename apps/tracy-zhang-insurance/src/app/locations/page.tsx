@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: isLocal ? `${market.label} Location` : "Locations",
     description: isLocal
       ? `${market.label} office details, service area, and insurance guidance.`
-      : "Local Tracy Zhang Insurance office pages for San Marino, La Palma, and nearby California communities.",
+      : "Local Tracy’s Insurance office pages for San Marino, La Palma, and nearby California communities.",
   });
 }
 

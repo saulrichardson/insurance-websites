@@ -3,9 +3,9 @@ import { describe, expect, it } from "vitest";
 import { getMarketByHost, getOfficeById, isRetiredHost, publicContact } from "./index";
 
 describe("market resolution", () => {
-  it("uses the canonical statewide market for tracyzhanginsurance.com", () => {
-    expect(getMarketByHost("tracyzhanginsurance.com").id).toBe("statewide");
-    expect(getMarketByHost("www.tracyzhanginsurance.com").id).toBe("statewide");
+  it("uses the canonical statewide market for tracysinsurance.com", () => {
+    expect(getMarketByHost("tracysinsurance.com").id).toBe("statewide");
+    expect(getMarketByHost("www.tracysinsurance.com").id).toBe("statewide");
   });
 
   it("uses local markets for local domains", () => {
@@ -25,11 +25,11 @@ describe("market resolution", () => {
   it("marks the misspelled domain as retired", () => {
     expect(isRetiredHost("tracysinsurnace.com")).toBe(true);
     expect(isRetiredHost("www.tracysinsurnace.com")).toBe(true);
-    expect(isRetiredHost("tracyzhanginsurance.com")).toBe(false);
+    expect(isRetiredHost("tracysinsurance.com")).toBe(false);
   });
 
   it("publishes shared public contact actions", () => {
-    expect(publicContact.email).toBe("tzhang@allstate.com");
+    expect(publicContact.email).toBe("hello@tracysinsurance.com");
     expect(publicContact.scheduling.provider).toBe("calendly");
     expect(publicContact.scheduling.url).toBe(
       "https://calendly.com/tracyzhangallstate/new-meeting",

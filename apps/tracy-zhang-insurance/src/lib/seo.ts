@@ -136,33 +136,33 @@ const routeSeoByPath: Record<string, RouteSeo> = {
   },
   "/about": {
     path: "/about",
-    title: "About Tracy Zhang Insurance",
+    title: "About Tracy’s Insurance",
     description:
-      "Learn how Tracy Zhang Insurance helps California households, property owners, drivers, families, and business owners make clearer coverage decisions.",
+      "Learn how Tracy’s Insurance helps California households, property owners, drivers, families, and business owners make clearer coverage decisions.",
   },
   "/team": {
     path: "/team",
-    title: "Tracy Zhang Insurance Team",
+    title: "Tracy’s Insurance Team",
     description:
-      "Meet the Tracy Zhang Insurance team supporting California clients with quotes, policy reviews, certificates, claims context, and multilingual service.",
+      "Meet the Tracy’s Insurance team supporting California clients with quotes, policy reviews, certificates, claims context, and multilingual service.",
   },
   "/contact": {
     path: "/contact",
-    title: "Contact Tracy Zhang Insurance",
+    title: "Contact Tracy’s Insurance",
     description:
-      "Contact Tracy Zhang Insurance for California auto, home, property, business, life, umbrella, FAIR Plan, or policy review help.",
+      "Contact Tracy’s Insurance for California auto, home, property, business, life, umbrella, FAIR Plan, or policy review help.",
   },
   "/location": {
     path: "/location",
-    title: "Tracy Zhang Insurance Offices",
+    title: "Tracy’s Insurance Offices",
     description:
-      "Visit or contact Tracy Zhang Insurance offices in San Marino and La Palma for California insurance guidance, quotes, service, and policy reviews.",
+      "Visit or contact Tracy’s Insurance offices in San Marino and La Palma for California insurance guidance, quotes, service, and policy reviews.",
   },
   "/locations": {
     path: "/locations",
     title: "California Insurance Locations",
     description:
-      "Local Tracy Zhang Insurance pages for San Marino, La Palma, Cerritos, and nearby California communities.",
+      "Local Tracy’s Insurance pages for San Marino, La Palma, Cerritos, and nearby California communities.",
   },
   "/locations/san-marino": {
     path: "/locations/san-marino",
@@ -186,32 +186,32 @@ const routeSeoByPath: Record<string, RouteSeo> = {
     path: "/stories",
     title: "California Insurance Guidance",
     description:
-      "Insurance guidance from Tracy Zhang Insurance on California coverage decisions, FAIR Plan questions, VINs, condo gaps, renewals, and shopping calmly.",
+      "Insurance guidance from Tracy’s Insurance on California coverage decisions, FAIR Plan questions, VINs, condo gaps, renewals, and shopping calmly.",
   },
   "/privacy": {
     path: "/privacy",
     title: "Privacy Policy",
-    description: "Privacy policy for Tracy Zhang Insurance inquiries, forms, website use, and communications.",
+    description: "Privacy policy for Tracy’s Insurance inquiries, forms, website use, and communications.",
   },
   "/terms": {
     path: "/terms",
     title: "Website Terms",
-    description: "Website and insurance inquiry terms for Tracy Zhang Insurance.",
+    description: "Website and insurance inquiry terms for Tracy’s Insurance.",
   },
   "/sms-terms": {
     path: "/sms-terms",
     title: "SMS Terms",
-    description: "SMS terms for Tracy Zhang Insurance text message communications.",
+    description: "SMS terms for Tracy’s Insurance text message communications.",
   },
   "/contact-consent": {
     path: "/contact-consent",
     title: "Contact Preferences",
-    description: "Call, text, or email Tracy Zhang Insurance and choose how the office responds to your insurance question.",
+    description: "Call, text, or email Tracy’s Insurance and choose how the office responds to your insurance question.",
   },
   "/thanks": {
     path: "/thanks",
     title: "Request Received",
-    description: "Thanks. Tracy Zhang Insurance received your request and will follow up soon.",
+    description: "Thanks. Tracy’s Insurance received your request and will follow up soon.",
   },
 };
 

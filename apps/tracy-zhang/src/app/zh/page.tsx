@@ -21,7 +21,7 @@ import { Container } from "@/components/ui/container";
 import { getFullAddressLine, getOffice, site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
 
-const businessSite = "https://tracyzhanginsurance.com";
+const businessSite = site.insuranceUrl;
 const quoteHref = `${businessSite}/zh/contact#quote`;
 const latestGuidance = {
   topic: "CA FAIR Plan",
@@ -289,7 +289,7 @@ export default function ChineseHome() {
                 把问题带来。Tracy 可以帮你把它变成清楚的保险下一步。
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-accent-foreground/74">
-                你可以致电办公室沟通，也可以通过 Tracy Zhang Insurance 的中文咨询表开始。
+                你可以致电办公室沟通，也可以发送邮件，或通过 Tracy’s Insurance 预约中文咨询。
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

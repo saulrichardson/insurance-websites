@@ -13,7 +13,7 @@ export default async function SmsTermsPage() {
       <PageHero
         eyebrow="SMS terms"
         title="Text message terms"
-        subtitle="Terms for text message communications from Tracy Zhang Insurance."
+        subtitle="Terms for text message communications from Tracy’s Insurance."
       />
 
       <Container className="py-16">
@@ -21,7 +21,7 @@ export default async function SmsTermsPage() {
           <section>
             <h2 className="text-lg font-semibold text-slate-900">Program description</h2>
             <p className="mt-2">
-              Tracy Zhang Insurance may send text messages related to insurance
+              Tracy’s Insurance may send text messages related to insurance
               inquiries, quote follow-up, appointment coordination, document
               requests, service updates, and separately consented marketing
               communications.

@@ -1,10 +1,10 @@
-export const CONSENT_COPY_VERSION = "2026-06-06-01";
+export const CONSENT_COPY_VERSION = "2026-10-18-01";
 
 export const consentCopy = {
   contact:
-    "By submitting this request, you authorize Tracy Zhang Insurance to contact you about your insurance inquiry using the contact information provided. Submitting this form does not bind coverage.",
+    "By submitting this request, you authorize Tracy’s Insurance to contact you about your insurance inquiry using the contact information provided. Submitting this form does not bind coverage.",
   sms:
-    "If you choose text messages, you agree to receive texts from Tracy Zhang Insurance about your inquiry. Message and data rates may apply. Reply STOP to opt out and HELP for help.",
+    "If you choose text messages, you agree to receive texts from Tracy’s Insurance about your inquiry. Message and data rates may apply. Reply STOP to opt out and HELP for help.",
   marketing:
     "Optional marketing messages require separate express consent and are not required to submit an insurance request.",
 };
@@ -178,8 +178,8 @@ function getFillTimeMs(startedAt: string | undefined, now: Date) {
   return Number.isFinite(parsed) ? now.getTime() - parsed : -1;
 }
 
-export const AUTO_LEAD_FORM_VERSION = "2026-06-09-01";
-export const AUTO_LEAD_CONSENT_CERTIFICATION_VERSION = "2026-06-09-01";
+export const AUTO_LEAD_FORM_VERSION = "2026-10-18-01";
+export const AUTO_LEAD_CONSENT_CERTIFICATION_VERSION = "2026-10-18-01";
 
 export const autoLeadComplianceWarning =
   "You are submitting factual lead information only. Do not quote premiums, recommend coverage, compare insurance products, explain policy terms, complete applications, bind coverage, or represent that coverage is available or effective unless and until you are properly licensed and authorized.";

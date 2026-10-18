@@ -16,7 +16,7 @@ import {
 } from "@/i18n/routing";
 import { site } from "@/lib/site";
 
-const businessSite = "https://tracyzhanginsurance.com";
+const businessSite = site.insuranceUrl;
 
 const navItems = [
   { href: "/#approach", label: "Profile" },

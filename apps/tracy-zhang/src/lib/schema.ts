@@ -46,7 +46,7 @@ export function getPersonSchema() {
         url: base,
         sameAs: [site.agent.links.allstateProfile],
         worksFor: {
-          "@id": "https://tracyzhanginsurance.com/#agency",
+          "@id": `${site.insuranceUrl}/#agency`,
         },
         workLocation: offices.map((office) => ({ "@id": office["@id"] })),
         potentialAction: {

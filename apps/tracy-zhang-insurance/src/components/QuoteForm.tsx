@@ -124,9 +124,9 @@ const formCopy = {
     ],
     consent: {
       contact:
-        "提交此请求即表示你授权 Tracy Zhang Insurance 使用你提供的联系方式，就你的保险咨询与你联系。提交此表格不会绑定保险。",
+        "提交此请求即表示你授权 Tracy’s Insurance 使用你提供的联系方式，就你的保险咨询与你联系。提交此表格不会绑定保险。",
       sms:
-        "如果你选择短信，你同意接收 Tracy Zhang Insurance 就你的咨询发送的短信。可能产生短信和数据费用。回复 STOP 可退订，回复 HELP 可获得帮助。",
+        "如果你选择短信，你同意接收 Tracy’s Insurance 就你的咨询发送的短信。可能产生短信和数据费用。回复 STOP 可退订，回复 HELP 可获得帮助。",
       marketing:
         "可选营销信息需要单独明确同意；不同意营销信息也可以提交保险咨询。",
     },

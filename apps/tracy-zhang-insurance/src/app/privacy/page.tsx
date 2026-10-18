@@ -13,7 +13,7 @@ export default async function PrivacyPage() {
       <PageHero
         eyebrow="Privacy"
         title="Privacy policy"
-        subtitle="How Tracy Zhang Insurance handles inquiry, quote, contact, and communication information."
+        subtitle="How Tracy’s Insurance handles inquiry, quote, contact, and communication information."
       />
 
       <Container className="py-16">

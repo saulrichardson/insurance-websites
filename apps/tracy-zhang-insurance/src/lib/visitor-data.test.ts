@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { parseVisitorCaptureInput, parseVisitorCaptureJson } from "./visitor-data";
 
 const fallback = {
-  sourceDomain: "tracyzhanginsurance.com",
+  sourceDomain: "tracysinsurance.com",
   path: "/api/visitor-events",
   referrer: "https://example.com/ref",
   userAgent: "test-agent",
@@ -23,7 +23,7 @@ describe("visitor capture parsing", () => {
         sessionId: " s_456 ",
         identityToken: " ct_abc123 ",
         eventName: "quote_form_submit",
-        sourceDomain: " www.tracyzhanginsurance.com ",
+        sourceDomain: " www.tracysinsurance.com ",
         path: "contact?utm_campaign=renewal&ct=raw-token&trk=another-token",
         landingPath: "/?identity_token=raw-token&utm_source=first",
         firstReferrer: "https://google.com/search",
@@ -45,7 +45,7 @@ describe("visitor capture parsing", () => {
       sessionId: "s_456",
       identityToken: "ct_abc123",
       eventName: "quote_form_submit",
-      sourceDomain: "www.tracyzhanginsurance.com",
+      sourceDomain: "www.tracysinsurance.com",
       path: "/contact?utm_campaign=renewal",
       landingPath: "/?utm_source=first",
       firstReferrer: "https://google.com/search",
@@ -79,7 +79,7 @@ describe("visitor capture parsing", () => {
 
     expect(parsed).toMatchObject({
       eventName: "site_visit",
-      sourceDomain: "tracyzhanginsurance.com",
+      sourceDomain: "tracysinsurance.com",
       path: "/api/visitor-events",
       referrer: "https://example.com/ref",
     });

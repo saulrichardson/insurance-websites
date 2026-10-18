@@ -25,11 +25,11 @@ describe("insurance SEO model", () => {
 
   it("emits reciprocal English, Simplified Chinese, and x-default alternates", () => {
     expect(localizedAlternates("/auto-insurance")).toEqual({
-      canonical: "https://tracyzhanginsurance.com/auto-insurance",
+      canonical: "https://tracysinsurance.com/auto-insurance",
       languages: {
-        "en-US": "https://tracyzhanginsurance.com/auto-insurance",
-        "zh-Hans": "https://tracyzhanginsurance.com/zh/auto-insurance",
-        "x-default": "https://tracyzhanginsurance.com/auto-insurance",
+        "en-US": "https://tracysinsurance.com/auto-insurance",
+        "zh-Hans": "https://tracysinsurance.com/zh/auto-insurance",
+        "x-default": "https://tracysinsurance.com/auto-insurance",
       },
     });
 
@@ -45,7 +45,7 @@ describe("insurance SEO model", () => {
     );
 
     expect(metadata.alternates).toEqual({
-      canonical: "https://tracyzhanginsurance.com/thanks",
+      canonical: "https://tracysinsurance.com/thanks",
     });
     expect(metadata.robots).toEqual({ index: false, follow: false });
   });

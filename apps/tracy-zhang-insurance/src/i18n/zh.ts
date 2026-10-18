@@ -50,7 +50,7 @@ export type LocalizedStory = {
 };
 
 export const zhCommon = {
-  siteName: "Tracy Zhang Insurance",
+  siteName: "Tracy’s Insurance",
   languageName: "简体中文",
   quoteLabel: "联系我们",
   callLabel: "致电",
@@ -97,11 +97,11 @@ export const zhMarketContent: Record<
   }
 > = {
   statewide: {
-    eyebrow: "Tracy Zhang Insurance",
+    eyebrow: "Tracy’s Insurance",
     title: "为在加州生活、买房、开车和经营生意的人提供中文保险咨询。",
     subtitle:
       "我们用中文帮助客户理清车险、房屋保险、商业保险、人寿保险、伞险、加州 FAIR Plan 和财产保险问题，并把下一步变得清楚。",
-    metaTitle: "Tracy Zhang Insurance | 加州中文保险咨询",
+    metaTitle: "Tracy’s Insurance | 加州中文保险咨询",
     metaDescription:
       "面向加州华人家庭、房主、车主和企业主的中文保险咨询。办公室位于 San Marino 和 La Palma。",
     proofPoints: ["中文服务", "两个加州本地办公室", "个人和商业保险咨询"],
@@ -115,7 +115,7 @@ export const zhMarketContent: Record<
     title: "San Marino 华语家庭和企业的本地保险咨询。",
     subtitle:
       "从 Huntington Drive 办公室出发，协助 San Marino、Pasadena、South Pasadena、San Gabriel、Arcadia 和附近社区处理房屋、车险、伞险、人寿和商业保险问题。",
-    metaTitle: "San Marino 中文保险 | Tracy Zhang Insurance",
+    metaTitle: "San Marino 中文保险 | Tracy’s Insurance",
     metaDescription:
       "San Marino 中文保险咨询，服务家庭、房主、车主和小企业，办公室位于 Huntington Drive。",
     proofPoints: ["Huntington Drive 办公室", "房屋和家庭保险咨询", "商业证书和责任险协助"],
@@ -129,7 +129,7 @@ export const zhMarketContent: Record<
     title: "La Palma 和 Cerritos 附近华语家庭的保险咨询。",
     subtitle:
       "从 Moody Street 办公室协助处理车险、房屋保险、人寿保险、伞险、商业保险和加州财产保险问题。",
-    metaTitle: "La Palma 中文保险 | Tracy Zhang Insurance",
+    metaTitle: "La Palma 中文保险 | Tracy’s Insurance",
     metaDescription:
       "La Palma、Cerritos 和 Orange County 附近中文保险咨询，服务家庭、小企业和房产相关保险问题。",
     proofPoints: ["Moody Street 办公室", "家庭和小企业保险咨询", "中文服务"],
@@ -143,7 +143,7 @@ export const zhMarketContent: Record<
     title: "服务 Cerritos 家庭和小企业的中文保险咨询。",
     subtitle:
       "由附近 La Palma 办公室协助 Cerritos 客户处理车险、房屋保险、租客保险、伞险、商业保险和证书需求。",
-    metaTitle: "Cerritos 中文保险咨询 | Tracy Zhang Insurance",
+    metaTitle: "Cerritos 中文保险咨询 | Tracy’s Insurance",
     metaDescription:
       "Cerritos 中文保险咨询，协助家庭、房主、车主和小企业处理保险选择和文件需求。",
     proofPoints: ["附近 La Palma 办公室", "家庭保险审查", "小企业证书协助"],

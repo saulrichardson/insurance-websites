@@ -118,7 +118,8 @@ export type MarketProfile = {
 };
 
 export const domains = {
-  canonicalInsurance: "tracyzhanginsurance.com",
+  canonicalInsurance: "tracysinsurance.com",
+  legacyInsurance: "tracyzhanginsurance.com",
   personalAdvisor: "tracyzhang.com",
   campaign: "go.tracyzhanginsurance.com",
   mail: "mail.tracyzhanginsurance.com",
@@ -130,11 +131,11 @@ export const domains = {
 } as const;
 
 export const brand = {
-  name: "Tracy Zhang Insurance",
+  name: "Tracy’s Insurance",
   advisorName: "Tracy Zhang",
   tagline: "California insurance guidance with local offices in San Marino and La Palma.",
   description:
-    "Tracy Zhang Insurance helps Californians make clear coverage decisions for home, auto, life, business, property, and liability needs.",
+    "Tracy’s Insurance helps Californians make clear coverage decisions for home, auto, life, business, property, and liability needs.",
   locale: "en-US",
   licenseLine: "California insurance guidance. Coverage availability and eligibility vary by carrier, product, underwriting, and location.",
   carrierNotes:
@@ -142,7 +143,7 @@ export const brand = {
 };
 
 export const publicContact: PublicContact = {
-  email: "tzhang@allstate.com",
+  email: "hello@tracysinsurance.com",
   scheduling: {
     provider: "calendly",
     url: "https://calendly.com/tracyzhangallstate/new-meeting",
@@ -385,7 +386,7 @@ export const marketProfiles: Record<MarketId, MarketProfile> = {
     domainRole: "canonical",
     label: "California",
     hostnames: [domains.canonicalInsurance, `www.${domains.canonicalInsurance}`, domains.campaign],
-    eyebrow: "Tracy Zhang Insurance",
+    eyebrow: "Tracy’s Insurance",
     heroTitle: "California insurance help, organized around the decision in front of you.",
     heroSubtitle:
       "Clear guidance for home, auto, life, business, property, and liability coverage, with local offices in San Marino and La Palma.",
@@ -424,7 +425,7 @@ export const marketProfiles: Record<MarketId, MarketProfile> = {
       },
     ],
     localSeo: {
-      title: "Tracy Zhang Insurance | California Insurance Guidance",
+      title: "Tracy’s Insurance | California Insurance Guidance",
       description:
         "Insurance help for California households, property owners, drivers, families, and business owners.",
       canonicalPath: "/",
@@ -477,7 +478,7 @@ export const marketProfiles: Record<MarketId, MarketProfile> = {
       },
     ],
     localSeo: {
-      title: "San Marino Insurance | Tracy Zhang Insurance",
+      title: "San Marino Insurance | Tracy’s Insurance",
       description:
         "San Marino insurance guidance for homes, autos, families, property owners, and businesses.",
       canonicalPath: "/locations/san-marino",
@@ -530,7 +531,7 @@ export const marketProfiles: Record<MarketId, MarketProfile> = {
       },
     ],
     localSeo: {
-      title: "La Palma Insurance | Tracy Zhang Insurance",
+      title: "La Palma Insurance | Tracy’s Insurance",
       description:
         "La Palma and Cerritos-area insurance guidance for households, life milestones, small businesses, and property questions.",
       canonicalPath: "/locations/la-palma",
@@ -576,7 +577,7 @@ export const marketProfiles: Record<MarketId, MarketProfile> = {
       },
     ],
     localSeo: {
-      title: "Cerritos Insurance Guidance | Tracy Zhang Insurance",
+      title: "Cerritos Insurance Guidance | Tracy’s Insurance",
       description:
         "Insurance guidance for Cerritos households, property owners, drivers, families, and small businesses.",
       canonicalPath: "/locations/cerritos",

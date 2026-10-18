@@ -11,7 +11,7 @@ import {
 import { stories } from "../../apps/tracy-zhang-insurance/src/content/stories.ts";
 
 const CRAWLER_USER_AGENT =
-  "insurance-websites-seo-contract-check/1.0 (+https://tracyzhanginsurance.com)";
+  "insurance-websites-seo-contract-check/1.0 (+https://tracysinsurance.com)";
 
 const insuranceOrigin = `https://${domains.canonicalInsurance}`;
 const sanMarinoOrigin = `https://${domains.local.sanMarino}`;

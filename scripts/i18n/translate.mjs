@@ -427,7 +427,7 @@ function defaultGlossary() {
     { source: "business insurance", target: "商业保险" },
     { source: "umbrella insurance", target: "伞险" },
     { source: "FAIR Plan", target: "FAIR Plan" },
-    { source: "Tracy Zhang Insurance", target: "Tracy Zhang Insurance" },
+    { source: "Tracy’s Insurance", target: "Tracy’s Insurance" },
     { source: "Allstate", target: "Allstate" },
   ];
 }
