@@ -29,12 +29,13 @@ The repo should make it easy to:
 ## Current Online Presence Direction
 
 The owner approved **Tracy's Insurance** as the main agency brand and
-`tracysinsurance.com` as its intended canonical address on October 18, 2026.
+`tracysinsurance.com` as its canonical address on October 18, 2026.
 Keep `tracyzhang.com` for Tracy's personal advisor identity. Workspace email now
-uses the new domain and primary/alias delivery has been tested. The deployed
-website still uses the old brand and `tracyzhanginsurance.com` canonical host;
-the website migration is the next separate release. A long parallel-brand
-period or historical-data import is not required. See the
+uses the new domain and primary/alias delivery has been tested. Both websites
+now publish the new agency brand, public hello mailbox and canonical links.
+The old agency domain permanently redirects to the new host. See the
+[website migration record](records/2026-10-18-website-brand-domain-migration.md)
+and the
 [email and ownership verification record](records/2026-10-18-email-delivery-and-service-ownership.md).
 
 The owner clarified on October 18, 2026 that public acquisition should use
@@ -80,7 +81,7 @@ deployment notes.
 ## Current Apps
 
 - `apps/tracy-zhang-insurance`: canonical insurance, local acquisition,
-  campaign, lead capture, and admin app for `tracyzhanginsurance.com`,
+  campaign, lead capture, and admin app for `tracysinsurance.com`,
   `sanmarinoinsurance.com`, and `lapalmainsurance.com`.
 - `apps/tracy-zhang`: Tracy Zhang advisor profile, office, and contact site for
   `tracyzhang.com`.

@@ -80,9 +80,11 @@ for the test matrix, limitations and next website release.
 2. Existing service access has been checked under its actual external Gmail
    owner, independently of the Workspace identity. Do not delete the old
    Workspace alias/domain or move service ownership based on the rename alone.
-3. Implement the main website brand and canonical-domain migration, then update
-   public contact details and relevant business profiles together. Keep calls,
-   texts and email prominent; do not add consumer intake forms.
+3. The main website brand, canonical domain and public hello mailbox migration
+   was subsequently deployed; see the
+   [website migration record](2026-10-18-website-brand-domain-migration.md).
+   Calls, texts and email remain prominent without consumer intake forms.
+   External business profiles and social handles are separate remaining work.
 
 ## Evidence and operating guidance
 

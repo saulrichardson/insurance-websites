@@ -122,6 +122,11 @@ No linking, deployment, environment changes or authentication repairs occurred.
 
 ## Next website release
 
+The release planned below was subsequently implemented and deployed on October
+18. See the [website migration record](2026-10-18-website-brand-domain-migration.md)
+for the current public state, Google move request and verification evidence.
+The following describes the handoff state before that release.
+
 Email is operational for the three tested addresses. The public website brand
 and canonical migration have not been implemented or deployed. Current source
 still sets the old canonical domain and brand in `packages/domain/src/index.ts`,

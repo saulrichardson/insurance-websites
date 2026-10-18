@@ -1,17 +1,16 @@
-# Tracy Zhang Insurance Product Intent
+# Tracy’s Insurance Product Intent
 
 This app is the canonical insurance and campaign website for
-`tracyzhanginsurance.com`.
+`tracysinsurance.com`.
 
 ## North Star
 
 Create a polished, campaign-ready insurance website that helps Californians
-move from an unclear coverage need to a concrete next step with Tracy Zhang
-Insurance.
+move from an unclear coverage need to a concrete next step with Tracy’s Insurance.
 
 The app should support:
 
-- statewide insurance positioning for `tracyzhanginsurance.com`
+- statewide insurance positioning for `tracysinsurance.com`
 - tailored local acquisition surfaces for San Marino and La Palma domains
 - product and guidance depth across personal, property, family, business, and
   specialty insurance
@@ -25,7 +24,7 @@ The app should support:
 ## Product Role
 
 This is not a San Marino-only site and not a generic agency template. It is the
-primary insurance identity for Tracy Zhang Insurance.
+primary insurance identity for Tracy’s Insurance.
 
 City domains should tailor the first screen, product emphasis, local proof, and
 SEO framing. They should not fork product facts, contact paths, compliance copy,
@@ -36,7 +35,7 @@ customer-facing surfaces. Header, footer, contact, location, structured data,
 and direct contact actions should resolve to the active city office only.
 
 Chinese-language pages should preserve the same boundaries. They should make
-Tracy Zhang Insurance discoverable to Chinese-speaking visitors through `/zh/`
+Tracy’s Insurance discoverable to Chinese-speaking visitors through `/zh/`
 paths, not through cloned websites or separate brands.
 
 ## Visual Role
@@ -44,7 +43,7 @@ paths, not through cloned websites or separate brands.
 The canonical domain and local domains intentionally share business logic but
 should not look like simple copies.
 
-- `tracyzhanginsurance.com`: statewide coverage command center with broad
+- `tracysinsurance.com`: statewide coverage command center with broad
   insurance categories, decision-path language, guidance, and direct office
   contact paths.
 - `sanmarinoinsurance.com`: local office surface leading with San Marino,
@@ -63,7 +62,7 @@ and local context.
 ### Start Insurance Help
 
 ```text
-visitor lands on tracyzhanginsurance.com or a local domain
+visitor lands on tracysinsurance.com or a local domain
   -> sees market-appropriate coverage merchandising
   -> chooses a product, local page, guide, call, text, email, or schedule path
   -> first-party visit/source context is captured for future attribution
@@ -75,7 +74,7 @@ visitor lands on tracyzhanginsurance.com or a local domain
 ```text
 visitor lands on sanmarinoinsurance.com or lapalmainsurance.com
   -> sees local office and market-specific product grouping
-  -> remains under Tracy Zhang Insurance brand identity
+  -> remains under Tracy’s Insurance brand identity
   -> uses the same lead backend and product routes
 ```
 

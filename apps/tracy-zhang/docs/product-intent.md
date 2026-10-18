@@ -16,11 +16,11 @@ The site should make Tracy easy to evaluate by name:
 - Languages, public review context, and local office proof matter here.
 - Coverage paths should be written around customer moments, not internal site
   structure.
-- Tracy Zhang Insurance remains the place for product depth, quote intake,
+- Tracy’s Insurance remains the place for product depth, quote intake,
   certificates, and business-specific coverage detail.
 - Chinese-speaking visitors can evaluate Tracy by name and language fit through
   a first-class `/zh/` advisor profile that routes product-depth needs to the
-  Chinese Tracy Zhang Insurance pages.
+  Chinese Tracy’s Insurance pages.
 
 ## Who It Serves
 
@@ -47,7 +47,7 @@ visitor lands on tracyzhang.com
 ```text
 visitor has a coverage question
   -> chooses the customer moment that matches their need
-  -> lands on the relevant Tracy Zhang Insurance page or quote intake
+  -> lands on the relevant Tracy’s Insurance page or quote intake
 ```
 
 ### Reach A Local Office
@@ -63,7 +63,7 @@ visitor needs a phone number, appointment, or directions
 ```text
 visitor needs product detail, quote intake, certificates, or campaign content
   -> chooses an explicit advisor-site path
-  -> lands on the relevant Tracy Zhang Insurance surface
+  -> lands on the relevant Tracy’s Insurance surface
 ```
 
 ## Current Source Artifacts
@@ -90,5 +90,4 @@ visitor needs product detail, quote intake, certificates, or campaign content
 The homepage should feel like an advisor dossier, not an insurance product
 catalog. The first viewport should establish Tracy by name with portrait,
 office phone path, review context, languages, and a concise advisor promise. Coverage
-paths should be framed as reasons to call or start help, then route to Tracy
-Zhang Insurance for product depth and quote intake.
+paths should be framed as reasons to call or start help, then route to Tracy’s Insurance for product depth and quote intake.

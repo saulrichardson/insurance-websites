@@ -24,13 +24,13 @@ claims that copying their appearance or buying ads produces results.
 
 | Domain | Role | Recommended treatment |
 | --- | --- | --- |
-| tracysinsurance.com | Approved primary agency address for Tracy's Insurance | Implement the coordinated brand and canonical-host release. Until that release, preserve the working redirect. Use campaign paths and UTMs. |
-| tracyzhanginsurance.com | Current live canonical destination; future redirect | Move the shared product, guidance and regional library to the approved new host, then preserve old deep paths and query parameters with permanent redirects. |
+| tracysinsurance.com | Live primary agency address for Tracy's Insurance | Shared product, guidance and regional library. Use campaign paths and UTMs. |
+| tracyzhanginsurance.com | Legacy domain with permanent redirects | Preserve old deep paths and query parameters with 308 redirects to the new canonical host. |
 | sanmarinoinsurance.com | Real San Marino office | A complete local destination with original office proof, local guidance and direct office contact. Maintain self-canonical local entry pages and link to the shared product library where useful. |
 | lapalmainsurance.com | Real La Palma office | A distinct local composition with La Palma office proof, practical household and small-business journeys, and its own phone number. |
 | alhambra-insurance.com | Alhambra community and campaign address | First develop a genuinely useful Alhambra page in the main site, then point the domain to it. Describe service from the San Marino office; there is no verified Alhambra office. A standalone indexed local surface comes later only if original content and real service value justify it. |
 | tracyzhang.com | Tracy's personal reputation and introduction | Lead with portrait, role, team, languages and a clear explanation of how she helps. Route detailed coverage questions into the main insurance library. |
-| go.tracyzhanginsurance.com | Campaign links | Use specific pages for the promise in the post, email or partner referral. Keep one domain/path/UTM register. The host currently serves the main app; campaign-specific routes are proposed work. |
+| go.tracyzhanginsurance.com | Legacy campaign links | Permanently redirects to the new canonical host, preserving paths and campaign parameters. New campaign links should use tracysinsurance.com. |
 | tracysinsurnace.com | Retired spelling mistake | Keep out of new marketing and visible navigation. No new traffic strategy is assigned to it. |
 
 The live Cloudflare account also contains caliadu.ai, innocenceproject.ai,
@@ -60,13 +60,11 @@ Retain the existing verified business identity and carrier relationship where
 appropriate. This strategic hierarchy does not itself change a legal name,
 carrier-managed listing, public mailbox or current website branding.
 
-The preferred future main agency address is `tracysinsurance.com`.
-`tracyzhang.com` remains the personal advisor address. The existing
-`tracyzhanginsurance.com` site is still the live canonical destination today.
-Once the brand presentation is ready, plan the canonical-domain migration with
-path-preserving permanent redirects, metadata, sitemap, search and tracking
-updates. Keep its established addresses working. Until then, the short-domain
-redirect remains useful and operational.
+The live main agency address is `tracysinsurance.com`.
+`tracyzhang.com` remains the personal advisor address. The October 18 website
+release updated public branding, email, canonical metadata and cross-site links.
+The old main domain and campaign host use path-preserving permanent redirects.
+See the [migration record](records/2026-10-18-website-brand-domain-migration.md).
 
 ### Clean pivot and business accounts
 
@@ -242,9 +240,10 @@ what happens after discovery. The operating view should answer six questions:
 
 GA4 already has the three contact key events registered, 14-month event
 retention, a main Search Console link and cross-domain configuration for the
-four existing content domains. Live contact-event receipt and cross-domain
-journeys still need verification. The new short domain redirects before page
-measurement; no duplicate tracking site is required for it.
+agency domains, now including `tracysinsurance.com`. The existing property and
+measurement ID are retained. The new canonical host serves and measures the
+website directly; the old main and campaign hosts redirect to it. Contact-click
+collection and reporting evidence must be distinguished from a completed inquiry.
 
 Audit event parameters before adding more tags. Use consistent office, market,
 language, service interest and CTA-placement dimensions where a decision needs

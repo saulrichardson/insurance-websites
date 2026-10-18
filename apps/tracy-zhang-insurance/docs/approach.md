@@ -1,9 +1,9 @@
-# Tracy Zhang Insurance Approach
+# Tracy’s Insurance Approach
 
 App: `apps/tracy-zhang-insurance`
 
 This is the canonical insurance, local acquisition, lead capture, and campaign
-website for Tracy Zhang Insurance.
+website for Tracy’s Insurance.
 
 ## Stack
 
@@ -30,9 +30,11 @@ website for Tracy Zhang Insurance.
 
 ## Domains
 
-- `tracyzhanginsurance.com`: canonical statewide insurance site
-- `www.tracyzhanginsurance.com`: same public site
-- `go.tracyzhanginsurance.com`: campaign landing/tracking surface
+- `tracysinsurance.com`: canonical statewide insurance site
+- `www.tracysinsurance.com`: permanent 308 redirect to the apex
+- `tracyzhanginsurance.com`, `www.tracyzhanginsurance.com`, and
+  `go.tracyzhanginsurance.com`: permanent 308 redirects to the new apex,
+  preserving paths and query parameters
 - `sanmarinoinsurance.com`: local San Marino acquisition surface
 - `lapalmainsurance.com`: local La Palma acquisition surface
 
@@ -42,14 +44,14 @@ Current Vercel deployment uses the existing project currently named
 `san-marino-insurance`. That project has production aliases for
 `sanmarinoinsurance.com`, `www.sanmarinoinsurance.com`,
 `lapalmainsurance.com`, `www.lapalmainsurance.com`,
-`tracyzhanginsurance.com`, `www.tracyzhanginsurance.com`, and
-`go.tracyzhanginsurance.com`.
+`tracysinsurance.com`, `www.tracysinsurance.com`, `tracyzhanginsurance.com`,
+`www.tracyzhanginsurance.com`, and `go.tracyzhanginsurance.com`.
 
-`tracyzhanginsurance.com`, `sanmarinoinsurance.com`, and
-`lapalmainsurance.com` are Cloudflare-managed zones. Apex and `www` should
-remain DNS-only `A` records to `76.76.21.21` unless the Vercel project is moved
-to Vercel nameservers. The `go.tracyzhanginsurance.com` campaign host should be
-a DNS-only CNAME to Vercel's assigned target for the alias.
+`tracysinsurance.com`, `sanmarinoinsurance.com`, and
+`lapalmainsurance.com` are Cloudflare-managed zones. The new canonical apex
+and www use DNS-only CNAME records to `8d5807285c8a766b.vercel-dns-017.com`;
+Cloudflare flattens the apex. Existing local domains retain DNS-only A records
+to `76.76.21.21`. The legacy campaign host retains its existing CNAME.
 
 Each of those three domains also has a root Google Search Console verification
 TXT record in Cloudflare. Keep those records unless Search Console ownership is
@@ -171,7 +173,7 @@ dynamically on Vercel.
 ## Configuration
 
 - `NEXT_PUBLIC_SITE_URL`: canonical URL, defaults to
-  `https://tracyzhanginsurance.com`
+  `https://tracysinsurance.com`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID`: optional GA4 measurement ID
 - `DATABASE_URL`: Postgres connection string
 - `RESEND_API_KEY`: Resend email API key
@@ -196,7 +198,9 @@ dynamically on Vercel.
 Production currently has `DATABASE_URL`, `ADMIN_USER`, `ADMIN_PASS`,
 `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `LEADS_TO_EMAIL`, `LEADS_FROM_EMAIL`, and
 `RESEND_API_KEY` configured. Lead email notification is live through Resend
-using `Tracy Zhang Insurance <leads@tracyzhanginsurance.com>`.
+using the existing `Tracy Zhang Insurance <leads@tracyzhanginsurance.com>` sender.
+This internal notification sender is separate from the public Workspace mailbox
+and was not migrated in the website release.
 
 The Resend sending domain `tracyzhanginsurance.com` is verified with DNS records
 in Cloudflare:
@@ -249,7 +253,7 @@ Lead-flow observability:
   `contact_sources`, and `contact_events`. If no endpoint is configured, the
   request is stored as `skipped` with provider `not_configured`.
 - Use
-  `pnpm --filter @insurance-websites/tracy-zhang-insurance identity:create-token -- --name "Jane Example" --email jane@example.com --label july-campaign --base-url https://tracyzhanginsurance.com/`
+  `pnpm --filter @insurance-websites/tracy-zhang-insurance identity:create-token -- --name "Jane Example" --email jane@example.com --label july-campaign --base-url https://tracysinsurance.com/`
   to create a hashed known-contact token and print a campaign URL containing
   the raw token exactly once.
 - `/admin/contact-capture` shows provider status, recent resolution attempts,
@@ -298,10 +302,10 @@ Search discoverability checks after SEO or domain changes:
 
 ```bash
 pnpm seo:check
-curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://tracyzhanginsurance.com/sitemap.xml
+curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://tracysinsurance.com/sitemap.xml
 curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://sanmarinoinsurance.com/sitemap.xml
 curl -A 'Googlebot/2.1 (+http://www.google.com/bot.html)' -sSI https://lapalmainsurance.com/sitemap.xml
-curl -sS https://tracyzhanginsurance.com/robots.txt
+curl -sS https://tracysinsurance.com/robots.txt
 curl -sS https://sanmarinoinsurance.com/robots.txt
 curl -sS https://lapalmainsurance.com/robots.txt
 ```
@@ -309,9 +313,9 @@ curl -sS https://lapalmainsurance.com/robots.txt
 For Chinese discoverability, also verify:
 
 ```bash
-curl -sS https://tracyzhanginsurance.com/zh/
-curl -sS https://tracyzhanginsurance.com/zh/auto-insurance
-curl -sS https://tracyzhanginsurance.com/sitemap.xml | grep 'hreflang="zh-Hans"'
+curl -sS https://tracysinsurance.com/zh/
+curl -sS https://tracysinsurance.com/zh/auto-insurance
+curl -sS https://tracysinsurance.com/sitemap.xml | grep 'hreflang="zh-Hans"'
 curl -sS https://sanmarinoinsurance.com/zh/
 curl -sS https://lapalmainsurance.com/zh/
 ```

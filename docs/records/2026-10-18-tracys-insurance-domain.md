@@ -2,6 +2,14 @@
 
 - date: 2026-10-18
 
+## Subsequent website release
+
+The temporary setup below was superseded later on October 18 by the
+[completed website migration](2026-10-18-website-brand-domain-migration.md).
+The new apex now serves the site directly; the old apex/www/campaign hosts and
+new www host permanently redirect to it. Preserve this record as the initial
+purchase and setup history, not the current routing instructions.
+
 ## Context
 
 The owner bought `tracysinsurance.com` after discussing Tracy's Insurance as a

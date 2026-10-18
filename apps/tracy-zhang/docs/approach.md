@@ -31,7 +31,7 @@ of the web properties.
 - Proof: local offices, office phone path, languages, Allstate review context.
 - Paths: household coverage, life changes, property questions, business
   deadlines, higher liability exposure.
-- Primary CTA: get insurance help through Tracy Zhang Insurance.
+- Primary CTA: get insurance help through Tracy’s Insurance.
 - Secondary CTA: call Tracy directly.
 
 Avoid visible copy that describes the website architecture, internal referral
@@ -45,7 +45,7 @@ The homepage uses a personal advisor dossier pattern:
 - large Tracy-name signal
 - compact portrait/contact panel instead of a hero product collage
 - office phone path and review/language proof in the first screen
-- customer moments that route into Tracy Zhang Insurance rather than local
+- customer moments that route into Tracy’s Insurance rather than local
   product-card duplication
 
 Preserve this separation when improving copy or layout.
@@ -71,12 +71,12 @@ Preserve this separation when improving copy or layout.
 - `/#offices`: offices and office phone paths
 
 Product-depth needs route through explicit homepage, header, and footer links
-to Tracy Zhang Insurance. The app does not carry old product, quote, career, or
+to Tracy’s Insurance. The app does not carry old product, quote, career, or
 location routes and does not preserve app-level redirects for them.
 
 Tracy's advisor site may feature the latest insurance guidance, but canonical
 article bodies and product-depth blog SEO belong on
-`tracyzhanginsurance.com/stories`. Use featured links into those canonical
+`tracysinsurance.com/stories`. Use featured links into those canonical
 stories instead of duplicating full posts on `tracyzhang.com`.
 
 ## Configuration
@@ -108,7 +108,7 @@ not Next's app-folder `favicon.ico` convention. Keep `/icon.png`,
 metadata declaring them. This prevents deploy-hashed favicon links and makes
 the search favicon easier for Google to crawl and retain.
 
-The personal site uses the same approved Tracy Zhang Insurance crest as the
+The personal site uses the same approved Tracy’s Insurance crest as the
 portfolio-wide brand mark in browser icons and compact header/footer marks.
 Do not replace Tracy's portrait with the crest; the portrait remains personal
 proof, while the crest is the identity mark.
@@ -127,7 +127,7 @@ screenshots.
 
 Search discoverability for the Chinese advisor surface should verify
 `https://www.tracyzhang.com/zh`, the sitemap `zh-Hans` alternate, and links
-from the Chinese page into `https://tracyzhanginsurance.com/zh/...`.
+from the Chinese page into `https://tracysinsurance.com/zh/...`.
 `pnpm seo:check` covers those advisor-site contracts in production, including
 canonical URLs, reciprocal language alternates, sitemap membership, and
 `Person`/`ProfilePage`/`WebSite`/office `InsuranceAgency` schema.
@@ -135,12 +135,12 @@ canonical URLs, reciprocal language alternates, sitemap membership, and
 Advisor-site SEO measurement should stay focused on Tracy's profile role:
 brand/name searches, Chinese-language advisor searches, office trust signals,
 and click-throughs into the canonical insurance site. Product-depth query
-optimization belongs on `tracyzhanginsurance.com`; do not expand this site into
+optimization belongs on `tracysinsurance.com`; do not expand this site into
 a duplicate product catalog to chase search traffic.
 
 The advisor schema should describe Tracy by name, language fit, California
 service context, and both real office entities. Keep this site an advisor
-profile; product-depth SEO belongs on `tracyzhanginsurance.com`.
+profile; product-depth SEO belongs on `tracysinsurance.com`.
 
 The header language switcher should remain a normal localized link between `/`
 and `/zh`, preserving query strings and hash fragments. Its visible label shows

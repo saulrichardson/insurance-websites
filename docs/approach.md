@@ -2,16 +2,15 @@
 
 Project: `insurance-websites`
 
-This repository is a source-focused monorepo for Tracy Zhang Insurance public
+This repository is a source-focused monorepo for Tracy’s Insurance public
 websites, local acquisition surfaces, shared insurance data, lead capture, and
 visitor contact capture.
 
-The approved agency identity is now **Tracy's Insurance**. Current application
-source and deployment still use the old brand and canonical host; this document
-describes that live state unless explicitly marked as planned. Workspace uses
+The live agency identity is **Tracy’s Insurance**, with canonical website
+`https://tracysinsurance.com`. Workspace uses
 `tracysinsurance.com`, with tested `saul@`, `hello@` and `careers@` sending and
-receiving. The public website contact value remains `tzhang@allstate.com` until
-the coordinated website release. The carrier account itself is unchanged.
+receiving. Both public websites use `hello@tracysinsurance.com`. The separate
+carrier account `tzhang@allstate.com` itself is unchanged.
 
 Use this file for the repo-level operating model. Use each app's
 `docs/approach.md` for website-specific stack details, routes, env vars, and
@@ -85,7 +84,7 @@ deployment notes.
 
 ## Visual Operating Model
 
-- `tracyzhanginsurance.com` should feel like the statewide insurance command
+- `tracysinsurance.com` should feel like the statewide insurance command
   center: broad product coverage, decision paths, guidance, direct contact
   paths, visitor contact capture, and campaign readiness.
 - `sanmarinoinsurance.com` and future local domains should feel like local
@@ -201,8 +200,10 @@ Defer until needed:
 
 - The repo has one root `AGENTS.md`.
 - Website-specific product intent belongs under `apps/<site>/docs/`.
-- Tracy's Insurance is the approved agency brand. The website brand and
-  canonical-host migration from Tracy Zhang Insurance remains pending.
+- Tracy’s Insurance is the live agency brand. The old agency apex, www and
+  campaign host redirect to `tracysinsurance.com` with 308 status, preserving
+  paths and query parameters. These domain redirects live in Vercel project
+  settings; application code does not duplicate them in middleware.
 - Tracy Zhang personal site is the advisor profile and direct-contact surface.
 - San Marino and La Palma domains are local acquisition surfaces, not separate
   brands.
@@ -285,9 +286,9 @@ Current production deployment notes:
 - `apps/tracy-zhang-insurance` deploys to the Vercel project currently named
   `san-marino-insurance` and is aliased to `sanmarinoinsurance.com`,
   `www.sanmarinoinsurance.com`, `lapalmainsurance.com`,
-  `www.lapalmainsurance.com`, `tracyzhanginsurance.com`, and
-  `www.tracyzhanginsurance.com`. The campaign host
-  `go.tracyzhanginsurance.com` belongs on the same project.
+  `www.lapalmainsurance.com`, `tracysinsurance.com`, and
+  `www.tracysinsurance.com`. The legacy apex, www and campaign host
+  `go.tracyzhanginsurance.com` remain attached as permanent redirects.
 - `apps/tracy-zhang` deploys to the Vercel project `insurance-websites` and is
   aliased to `tracyzhang.com` and `www.tracyzhang.com`.
 - `tracyzhang.com` redirects to `www.tracyzhang.com`; production
@@ -298,9 +299,9 @@ Current production deployment notes:
   the monorepo root. Do not use local prebuilt production output for this app:
   root `.env.local` is local-only and must not become a source of production
   metadata.
-- `tracyzhanginsurance.com` and local insurance domains are managed in
-  Cloudflare where zones exist. Apex and `www` are DNS-only `A` records
-  pointing to Vercel `76.76.21.21`.
+- `tracysinsurance.com` uses DNS-only apex/www CNAME records in Cloudflare to
+  `8d5807285c8a766b.vercel-dns-017.com`, with apex flattening. Existing local
+  insurance domains retain their DNS-only A records to `76.76.21.21`.
 - The canonical Vercel project has production `DATABASE_URL`, `ADMIN_USER`,
   `ADMIN_PASS`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `LEADS_TO_EMAIL`,
   `LEADS_FROM_EMAIL`, and `RESEND_API_KEY` configured. Production lead storage
@@ -308,16 +309,16 @@ Current production deployment notes:
 - The canonical insurance domain publishes the full product/content sitemap.
   Local insurance domains publish host-specific robots/sitemaps and self-
   canonical local homepages; deeper product/content URLs remain canonical under
-  `tracyzhanginsurance.com`.
+  `tracysinsurance.com`.
 - Google Search Console domain properties are verified for
-  `tracyzhanginsurance.com`, `sanmarinoinsurance.com`, and
+  `tracysinsurance.com`, `sanmarinoinsurance.com`, and
   `lapalmainsurance.com` through Cloudflare DNS TXT records. Keep those root
   TXT records in place so ownership remains durable.
-- Sitemaps for `tracyzhanginsurance.com`, `sanmarinoinsurance.com`, and
-  `lapalmainsurance.com` were submitted to Google Search Console on
-  2026-06-07. Google initially reported `Couldn't fetch` in the sitemap table
-  even though direct Googlebot-style requests returned HTTP 200 XML; recheck
-  Search Console after processing lag before making code or DNS changes.
+- The new canonical sitemap was submitted on 2026-10-18. Local-domain sitemaps
+  retain their existing properties. Submission does not establish indexing;
+  inspect Google's processing separately from live HTTP checks.
+- `node --no-warnings scripts/seo/check-domain-migration.mjs` checks the live
+  project-domain redirects, query preservation, brand and public email.
 - The next SEO operating layer is measurement and search operations: recheck
   sitemap processing, inspect queries by page and locale, use URL inspection
   for high-value pages, keep local profile data consistent, and let production
