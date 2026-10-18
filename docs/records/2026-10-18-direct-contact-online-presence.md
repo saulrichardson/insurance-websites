@@ -62,3 +62,19 @@ SEO checks, desktop/mobile browser inspection, and production SEO/crawl checks
 after release. Publish through each app’s documented Vercel project and retain
 the previous deployment IDs for rollback. No database migration or change to
 customer messaging is required for this release.
+
+## Published result
+
+Both releases were published on October 18, 2026 after staged verification.
+Application source is a4b4c94fd9f62e9dae967f53a3566f9d77ca7073. Personal deployment:
+`dpl_A8bjELRYSgMQhMJ82asS5iAV7K5h`. Insurance deployment:
+`dpl_FzbvT63Xc9QPQrMUmyzy3CrRgusu`. All 89 final public URLs returned 200;
+the repeat crawl found zero of the stale-copy/missing-fragment issues. All 59
+production SEO cases passed. Final browser checks confirmed the correct office
+phone/text/email actions, zero discovery forms and no horizontal overflow in
+five mobile/desktop cases. No customer communication was sent.
+
+The changes are in PR 5, stacked on preservation PR 4. Main remains older;
+future releases must include the preserved source and these fixes. Previous
+rollback deployments are `dpl_7eGGgTjDje3ztCRBUtNDMFoZxucp` for the personal app
+and `dpl_8HxpVqqnSVf4PHbtz1ZbRYWHyRGJ` for the insurance app.
