@@ -98,7 +98,8 @@ organization name, alias sender names and signatures have been saved. The
 first primary inbound test was classified as spam and corrected; this test
 does not guarantee universal inbox placement. Existing Analytics, Search
 Console, hosting and DNS access remains under the external Gmail owner.
-User-level recovery inspection awaits Google's requested Admin sign-in. The
+User-level recovery email and phone were verified in the Admin Security tab
+after the owner completed Google's requested sign-in. The
 carrier-issued `tzhang@allstate.com` is a separate account and is not part of retiring the
 custom-domain Workspace identity. The
 [Workspace migration record](records/2026-10-18-workspace-brand-pivot.md)

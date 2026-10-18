@@ -73,9 +73,10 @@ confirmed the expected From names and addresses. See
 [delivery and service ownership evidence](2026-10-18-email-delivery-and-service-ownership.md)
 for the test matrix, limitations and next website release.
 
-1. Complete Google's requested Admin reauthentication, then inspect the user's
-   recovery email/phone and security settings. Organization secondary contact
-   is verified; it is not proof of user-level recovery configuration.
+1. User-level recovery inspection is complete following the owner's Admin
+   reauthentication. The Security tab confirms the external Gmail recovery
+   email and a saved recovery phone. No recovery settings or credentials were
+   changed; an actual recovery flow was not tested.
 2. Existing service access has been checked under its actual external Gmail
    owner, independently of the Workspace identity. Do not delete the old
    Workspace alias/domain or move service ownership based on the rename alone.

@@ -85,11 +85,17 @@ or authentication protection was disabled.
 ## Recovery and service access
 
 The Workspace organization profile lists `saul@tracysinsurance.com` as primary
-admin and the owner's external Gmail as secondary contact. Reloading the older
-user-details tab requested Google password reauthentication. The user was asked
-to complete that sign-in, and the tab was retained for handoff. **User-level
-recovery email/phone and security configuration remain unverified.** A secondary
-organization contact is not evidence that user recovery is configured.
+admin and the owner's external Gmail as secondary contact. After the owner
+completed Google's requested reauthentication, the user's Security tab was
+inspected directly. **User-level recovery is configured:** the recovery email
+is the owner's external Gmail, and a recovery phone is saved. The private
+read-back is retained as `workspace-recovery-verified.txt`; the phone number is
+not copied into this repository. No recovery settings or credentials were
+changed. This verifies the saved configuration, not a completed recovery test.
+
+The same Security tab showed 2-step verification off and not enforced, with no
+passkeys or security keys registered. Those settings were inspected only and
+remain unchanged.
 
 Existing services were checked under their actual independent owner identity:
 
