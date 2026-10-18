@@ -67,6 +67,11 @@ The old Search Console reporting association was replaced with the new domain
 property on the same stream; Google confirmed the link was created. No
 Analytics property, stream or historical data was deleted.
 
+GA4 Realtime also confirmed two `email_click` events from the live migration
+verification session. The event's `page_location` was
+`https://tracysinsurance.com/?utm_source=migration_check&utm_medium=verification`,
+confirming receipt from the new domain. The event remains a key event.
+
 ## Verification
 
 - Both app production builds and linters passed; workspace hygiene passed.
