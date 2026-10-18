@@ -35,9 +35,9 @@ market-specific routing and SEO contracts.
 The static Vercel Build Output deployment is READY on the existing
 san-marino-insurance project, with no production target or domain changes:
 
-https://san-marino-insurance-g5t3hi7ly-saulrichardsons-projects.vercel.app
+https://san-marino-insurance-hhx8psn6w-saulrichardsons-projects.vercel.app
 
-Deployment ID: `dpl_9fAJ6zNu5SAc5BGUWKjkZFCCWkL8`.
+Deployment ID: `dpl_4KAuSYvWogV2n8poSLXXcmqSW6WW`.
 The preview has HTML noindex metadata and an X-Robots-Tag header. Existing
 Vercel preview access policies still apply. Its local equivalent is served at
 http://127.0.0.1:8848/ while the development server is running.
@@ -64,3 +64,7 @@ homepage. After design review, integrate with the production app, prepare
 reviewed Chinese content, verify contact-event receipt and run the existing SEO,
 lint and build checks. Improve the portrait and add approved actual team or
 premises photography when available.
+
+The owner rejected the arrow-shaped T symbol. The header now uses the text
+wordmark alone; the browser icon uses a plain T. Preserve the preference for
+simple typography rather than reintroducing that symbol.
