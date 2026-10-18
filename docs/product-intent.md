@@ -43,6 +43,13 @@ search discovery, reputation, useful content, and measurable direct inquiries.
 The older engagement examples below are background, not instructions to add
 public quote forms or infer consent from a website visit.
 
+The owner also wants modern, bespoke designs inspired by strong existing
+websites, with genuinely different compositions for different places. Reuse
+the current applications and shared behavior while varying imagery, layouts
+and relevant local content. Treat public discoverability and the ability to
+measure qualified conversations as connected goals. The proposed delivery
+plan is in `domain-growth-and-design-strategy.md`.
+
 ## Intended Product Shape
 
 This is a monorepo for customer-facing insurance websites and shared operating

@@ -2,6 +2,9 @@
 
 This directory contains portfolio-level context for `insurance-websites`.
 
+The proposed portfolio growth, local content, design and measurement plan is in
+[`domain-growth-and-design-strategy.md`](domain-growth-and-design-strategy.md).
+
 ## Read Order
 
 1. `../AGENTS.md`
