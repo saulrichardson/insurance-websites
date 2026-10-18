@@ -22,14 +22,18 @@ Vercel manages HTTPS for these domains. No nameserver transfer or new app
 deployment is required.
 
 The temporary redirect supports trying the short marketing address while the
-existing insurance domain remains the website's canonical destination. A later
-brand migration is a separate decision. Preserve deep paths and campaign query
-parameters when changing this configuration.
+existing insurance domain remains the website's canonical destination. The owner
+subsequently approved Tracy's Insurance as the main brand; the website's
+canonical-domain migration is still pending implementation. Preserve deep paths
+and campaign query parameters when changing this configuration.
 
-No new email service was configured for the short domain. Existing Workspace
-and public contact addresses retain their current domains. Purchasing or
-connecting a website domain does not create mailboxes. No public brand names,
-Google Business Profile names or social handles were changed in this step.
+Google Workspace was subsequently migrated to the new domain on October 18.
+The active operator account is `saul@tracysinsurance.com`; `hello@` and
+`careers@` are aliases into that mailbox. See
+[the Workspace migration record](2026-10-18-workspace-brand-pivot.md) for
+configuration, verification and remaining delivery checks. The carrier-issued
+`tzhang@allstate.com` account is separate and unchanged. Public website branding,
+Google Business Profile names and social handles have not yet been migrated.
 
 ## Verification
 

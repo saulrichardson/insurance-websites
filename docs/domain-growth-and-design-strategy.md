@@ -77,29 +77,31 @@ requirement. Keep `tracyzhang.com` for Tracy's personal identity; make
 Tracy's Insurance the agency identity across the new website, email and
 business-account presentation.
 
-Use `tracysinsurance.com` as the new business email and Google account domain.
-First inspect the existing Workspace subscription and administrator access.
-If it is usable and supports the change, add and verify the new domain as a
-secondary domain and make it primary, then rename the relevant existing users.
-This repurposes the subscription without requiring a second paid organization.
-An email-only alias is not the final state when the owner wants the new domain
-to be the sign-in identity. Google documents eligibility and steps for
+The existing Google Workspace subscription now uses `tracysinsurance.com` as
+its primary domain. The existing operator user was renamed to
+`saul@tracysinsurance.com`, retaining the same mailbox and subscription. This
+provides the new sign-in identity without creating a second paid organization.
+Google documents eligibility and steps for
 [changing the primary domain](https://knowledge.workspace.google.com/admin/domains/change-your-primary-domain-for-google-workspace).
 
 Start with named accounts for the people actually operating the business.
-`saul@tracysinsurance.com` is the proposed operator/admin address;
-`tracy@tracysinsurance.com` is a proposed named account for Tracy if needed.
-`hello@` and `careers@` can initially be aliases or groups routed to responsible
-people. They do not each need a separate paid user or shared Google password.
-Confirm current users and license cost before adding seats.
+`saul@tracysinsurance.com` is the active operator/admin address.
+`hello@tracysinsurance.com` and `careers@tracysinsurance.com` are saved aliases
+into that mailbox. They do not have separate sign-ins or paid seats.
+`tracy@tracysinsurance.com` remains a proposed named account if Tracy needs one;
+it has not been created. Confirm the need and license cost before adding seats.
 
-Complete Google verification, Gmail activation, SPF, DKIM and DMARC, then test
-actual inbound and outbound delivery. Set the new display names, signatures,
+Google verification, Gmail activation, SPF, DKIM and DMARC configuration are
+complete. Actual inbound and outbound delivery still need testing, including
+authentication results in received message headers. Set the new display names,
+signatures,
 recovery and business-service access. Separate service access checks from
 preserving unwanted old branding: Analytics, Search Console, hosting and DNS
 still need a working owner after the change. The carrier-issued
 `tzhang@allstate.com` is a separate account and is not part of retiring the
-custom-domain Workspace identity.
+custom-domain Workspace identity. The
+[Workspace migration record](records/2026-10-18-workspace-brand-pivot.md)
+tracks the completed settings and remaining checks.
 
 Old custom-domain branding and public email can be retired once the new
 identity works. Historical data import is optional, not a release dependency.
