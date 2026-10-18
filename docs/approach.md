@@ -96,6 +96,10 @@ deployment notes.
 
 ## Operating Model
 
+The owner authorizes direct commits and pushes to `main` after appropriate
+verification, including merging existing pull requests without a separate
+approval step. This is the default delivery path.
+
 ```text
 website intent
   -> root docs and app-local product docs

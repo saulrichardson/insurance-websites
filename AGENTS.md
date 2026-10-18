@@ -226,6 +226,12 @@ Use this placement guide to simplify the system when rules repeat, behavior is h
 
 ## Verification And Delivery
 
+The owner authorizes agents to commit and push completed, verified changes
+directly to `main` and to merge existing pull requests as needed. Use direct
+pushes to `main` as the default delivery path; do not require a pull request or
+separate merge approval. Keep the normal verification and production smoke
+checks, and preserve concurrent work when integrating changes.
+
 Match verification to the risk and surface area of the change. Run narrow checks first, then broaden when the work touches shared behavior, data, security, deployment, or user-visible workflows.
 
 Use tests, type checks, builds, linters, migrations, browser checks, scripts, logs, sample data, and manual inspection as the project requires. Inspect actual inputs and outputs, especially for transformations, migrations, policy decisions, or user-visible behavior.
