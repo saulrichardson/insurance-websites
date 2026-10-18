@@ -46,7 +46,7 @@ whether it is a legacy tracking line before requesting a correction.
 
 ## Account work remaining
 
-No authenticated Google Business Profile manager, Search Console performance,
+At the public-audit stage, no authenticated Google Business Profile manager, Search Console performance,
 Apple Business Connect, Bing Places, Yelp, or agency social management session
 was available through this task’s connected tools. Public listing inspection
 is not an account-management audit. Verify owners, actual social handles,
@@ -54,6 +54,11 @@ indexing/performance, photos, categories, duplicate listings, and response
 coverage from those accounts. Prepare changes from verified facts before
 publishing them; do not create duplicate profiles or assume corporate accounts
 belong to the agency.
+
+Later on October 18, the owner's regular Chrome session provided authenticated
+Analytics and Search Console access. That review and the saved account changes
+are recorded in `2026-10-18-analytics-search-operations.md`. The earlier isolated
+browser's sign-in screen did not establish that the accounts were inaccessible.
 
 ## Verification and release
 

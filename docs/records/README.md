@@ -66,3 +66,4 @@ Use records for the reasoning that explains how the project got here and what
 future agents should remember.
 
 - `2026-10-18-direct-contact-online-presence.md`: owner direction, public audit, direct contact fixes, and account work remaining.
+- `2026-10-18-analytics-search-operations.md`: authenticated Analytics changes, contact key events, cross-domain settings, Search Console findings, and measurement limits.
