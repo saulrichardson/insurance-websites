@@ -68,6 +68,45 @@ path-preserving permanent redirects, metadata, sitemap, search and tracking
 updates. Keep its established addresses working. Until then, the short-domain
 redirect remains useful and operational.
 
+### Clean pivot and business accounts
+
+The owner explicitly accepts a hard pivot and says there is no valuable
+content or account history in the Tracy Zhang Insurance identity to preserve.
+Do not make a long parallel-brand period or historical-data migration a
+requirement. Keep `tracyzhang.com` for Tracy's personal identity; make
+Tracy's Insurance the agency identity across the new website, email and
+business-account presentation.
+
+Use `tracysinsurance.com` as the new business email and Google account domain.
+First inspect the existing Workspace subscription and administrator access.
+If it is usable and supports the change, add and verify the new domain as a
+secondary domain and make it primary, then rename the relevant existing users.
+This repurposes the subscription without requiring a second paid organization.
+An email-only alias is not the final state when the owner wants the new domain
+to be the sign-in identity. Google documents eligibility and steps for
+[changing the primary domain](https://knowledge.workspace.google.com/admin/domains/change-your-primary-domain-for-google-workspace).
+
+Start with named accounts for the people actually operating the business.
+`saul@tracysinsurance.com` is the proposed operator/admin address;
+`tracy@tracysinsurance.com` is a proposed named account for Tracy if needed.
+`hello@` and `careers@` can initially be aliases or groups routed to responsible
+people. They do not each need a separate paid user or shared Google password.
+Confirm current users and license cost before adding seats.
+
+Complete Google verification, Gmail activation, SPF, DKIM and DMARC, then test
+actual inbound and outbound delivery. Set the new display names, signatures,
+recovery and business-service access. Separate service access checks from
+preserving unwanted old branding: Analytics, Search Console, hosting and DNS
+still need a working owner after the change. The carrier-issued
+`tzhang@allstate.com` is a separate account and is not part of retiring the
+custom-domain Workspace identity.
+
+Old custom-domain branding and public email can be retired once the new
+identity works. Historical data import is optional, not a release dependency.
+Temporary aliases and web redirects may be used where useful; they are not
+requirements to keep the old brand active. No Workspace user, subscription or
+domain registration has been deleted as part of this strategy update.
+
 Build on the two current Next.js applications and shared packages. Reuse the
 contact components, office facts, translations, routing and SEO contracts.
 Develop reusable typography, spacing, accessibility and contact behavior while
