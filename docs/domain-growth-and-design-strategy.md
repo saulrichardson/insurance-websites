@@ -24,7 +24,7 @@ claims that copying their appearance or buying ads produces results.
 
 | Domain | Role | Recommended treatment |
 | --- | --- | --- |
-| tracysinsurance.com | Memorable marketing address for Tracy's Insurance | Keep the working redirect to the current main site during brand development. Use campaign paths and UTMs. A later canonical-domain move needs its own migration plan. |
+| tracysinsurance.com | Recommended primary agency address for Tracy's Insurance | Promote this short address as the brand develops. Keep the working redirect during the transition; a later canonical-domain move needs its own migration plan. Use campaign paths and UTMs. |
 | tracyzhanginsurance.com | Main insurance destination and knowledge library | Maintain the canonical product, guidance and regional content. Refine the brand presentation here first so the short address leads to the same clear identity. |
 | sanmarinoinsurance.com | Real San Marino office | A complete local destination with original office proof, local guidance and direct office contact. Maintain self-canonical local entry pages and link to the shared product library where useful. |
 | lapalmainsurance.com | Real La Palma office | A distinct local composition with La Palma office proof, practical household and small-business journeys, and its own phone number. |
@@ -47,10 +47,26 @@ there is something substantive to say. [Google's search spam policies](https://d
 
 ## Brand and design system
 
-Use **Tracy's Insurance** as the proposed friendly marketing headline with
-**Tracy Zhang & Team** visible nearby. Retain the existing verified business
-identity and carrier relationship in appropriate page and profile contexts.
-Buying a domain does not itself rename the agency or its listings.
+The owner wants to keep both the Tracy Zhang identity and the insurance brand,
+with one clearly primary. The recommended hierarchy is **Tracy's Insurance** as
+the main customer-facing agency brand and **Tracy Zhang & Team** as the people
+behind it. The personal site introduces Tracy and leads into the agency's
+services. Office destinations present Tracy's Insurance in San Marino or
+La Palma, with their own local art direction and facts.
+
+Use the agency identity consistently on future marketing, profiles and email
+presentation, with Tracy's name supporting trust and personal recognition.
+Retain the existing verified business identity and carrier relationship where
+appropriate. This strategic hierarchy does not itself change a legal name,
+carrier-managed listing, public mailbox or current website branding.
+
+The preferred future main agency address is `tracysinsurance.com`.
+`tracyzhang.com` remains the personal advisor address. The existing
+`tracyzhanginsurance.com` site is still the live canonical destination today.
+Once the brand presentation is ready, plan the canonical-domain migration with
+path-preserving permanent redirects, metadata, sitemap, search and tracking
+updates. Keep its established addresses working. Until then, the short-domain
+redirect remains useful and operational.
 
 Build on the two current Next.js applications and shared packages. Reuse the
 contact components, office facts, translations, routing and SEO contracts.
