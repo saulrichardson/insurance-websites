@@ -441,6 +441,19 @@ async function assertPage(results, config, endpointConfig, page) {
   await runCase(results, `${endpointConfig.label} ${page.path}`, async (context) => {
     const fetched = await fetchText(config, endpointConfig, page.path);
     assertHtmlPage(context, fetched);
+    // Public discovery pages must lead to a direct conversation. The unlisted
+    // referral intake is a separate existing workflow and keeps its noindex checks.
+    if (!page.noindex) {
+      context.equal(findTags(fetched.text, "form").length, 0, "public intake form count");
+      const visible = fetched.text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+      for (const stale of ["在线提交信息", "可以使用表格", "first form", "提交此表格", "/#business", "/zh#business"]) {
+        assertExcludes(context, visible, stale);
+      }
+      const hrefs = findTags(fetched.text, "a").map((tag) => tag.href);
+      for (const scheme of ["tel:", "sms:", "mailto:"]) {
+        context.assert(hrefs.some((href) => href?.startsWith(scheme)), `missing direct ${scheme} contact`);
+      }
+    }
     assertCanonical(context, fetched.text, page.canonical, endpointConfig.publicOrigin);
 
     if (page.alternates) assertAlternates(context, fetched.text, page.alternates, endpointConfig.publicOrigin);

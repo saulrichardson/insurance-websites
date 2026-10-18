@@ -205,8 +205,8 @@ const routeSeoByPath: Record<string, RouteSeo> = {
   },
   "/contact-consent": {
     path: "/contact-consent",
-    title: "Contact Consent",
-    description: "Contact consent language used by Tracy Zhang Insurance lead forms.",
+    title: "Contact Preferences",
+    description: "Call, text, or email Tracy Zhang Insurance and choose how the office responds to your insurance question.",
   },
   "/thanks": {
     path: "/thanks",

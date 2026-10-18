@@ -26,6 +26,23 @@ The repo should make it easy to:
 - make the public sites discoverable and usable for Chinese-speaking California
   insurance shoppers who may not search or browse primarily in English
 
+## Current Online Presence Direction
+
+The owner clarified on October 18, 2026 that public acquisition should use
+call, text, and email, with no consumer intake forms. Make these direct actions
+prominent on both apps and preserve the correct office phone on local domains.
+Existing appointment links remain secondary contact options. The unlisted
+referral intake and historical lead records are separate existing workflows;
+this direction does not authorize removing them or changing their data.
+
+The long-term audience includes Asian communities across Southern California,
+including Irvine and San Diego. Develop useful regional content and community
+relationships through the shared insurance app. Publish language-service claims
+only where the office can support them. Prioritize accurate office information,
+search discovery, reputation, useful content, and measurable direct inquiries.
+The older engagement examples below are background, not instructions to add
+public quote forms or infer consent from a website visit.
+
 ## Intended Product Shape
 
 This is a monorepo for customer-facing insurance websites and shared operating

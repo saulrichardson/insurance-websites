@@ -228,7 +228,7 @@ function ZhHome({ market, office }: { market: MarketProfile; office: Office }) {
 
       <PageCTA
         title="想用中文讨论保险？"
-        body="电话、短信或在线提交信息。我们会帮你把保障问题、文件需求和下一步分清楚。"
+        body="电话、短信或电子邮件联系办公室。我们会帮你把保障问题、文件需求和下一步分清楚。"
         office={office}
         quoteHref="/zh/contact"
         quoteLabel={zhCommon.quoteLabel}
@@ -414,7 +414,7 @@ function ZhContactPage({
     <div lang="zh-Hans" className="bg-[var(--background)]">
       <PageHero
         eyebrow="联系我们"
-        title={isLocal ? `联系 ${market.label} 办公室` : "电话、短信或提交中文保险咨询"}
+        title={isLocal ? `联系 ${market.label} 办公室` : "电话、短信或电子邮件咨询"}
         subtitle={isLocal ? marketCopy.localIntro : "告诉我们发生了什么变化、需要保障什么，以及你希望如何联系。我们会把下一步安排到合适办公室。"}
         office={office}
         quoteHref="/zh/contact"
@@ -429,7 +429,7 @@ function ZhContactPage({
               联系方式
             </h2>
             <p className="text-base leading-7 text-slate-600">
-              如有紧急证书、续保期限或贷款证明需求，请致电或短信联系办公室。新报价和保单审查可以使用表格。
+              如有紧急证书、续保期限或贷款证明需求，请致电或短信联系办公室。新报价和保单审查也可通过电话、短信或电子邮件联系办公室。
             </p>
 
             <div className="grid gap-4">
@@ -1171,9 +1171,9 @@ function getPolicyContent(office: Office) {
       subtitle: "使用本网站和提交保险咨询的一般条款。",
       sections: [
         ["一般信息", "本网站提供一般保险信息和咨询路径，不提供法律、税务、财务或具有约束力的保险建议。"],
-        ["不会在线绑定保障", "提交表格、发送信息、留言或使用本网站不会绑定、变更、续保或取消任何保险。保障只有在承保方批准并书面确认后才生效。"],
+        ["不会在线绑定保障", "致电、发送短信、电子邮件或使用本网站不会绑定、变更、续保或取消任何保险。保障只有在承保方批准并书面确认后才生效。"],
         ["可得性", "产品、承保公司、资格、核保和价格会因产品、风险、地点和当前市场条件而变化。"],
-        ["联系", `如有紧急变更或保障问题，请致电 ${office.phoneDisplay}，不要只依赖网站提交。`],
+        ["联系", `如有紧急变更或保障问题，请致电 ${office.phoneDisplay}，请直接联系办公室确认。`],
       ].map(([title, body]) => ({ title, body })),
     },
     sms: {
@@ -1191,11 +1191,11 @@ function getPolicyContent(office: Office) {
     consent: {
       eyebrow: "联系同意",
       title: "联系同意说明",
-      subtitle: "中文咨询表使用的联系和短信同意说明。",
+      subtitle: "通过电话、短信和电子邮件联系办公室的说明。",
       sections: [
-        ["联系同意", "提交此请求即表示你授权 Tracy Zhang Insurance 使用你提供的联系方式，就你的保险咨询与你联系。提交此表格不会绑定保险。"],
-        ["短信同意", "如果你选择短信，你同意接收 Tracy Zhang Insurance 就你的咨询发送的短信。可能产生短信和数据费用。回复 STOP 可退订，回复 HELP 可获得帮助。"],
-        ["营销信息", "可选营销信息需要单独明确同意；不同意营销信息也可以提交保险咨询。"],
+        ["联系同意", "请通过电话、短信或电子邮件联系办公室，并说明你希望如何收到回复。联系办公室不会绑定或变更保险。"],
+        ["短信同意", "如需短信沟通，请向办公室确认相关同意和联系方式。可能产生短信和数据费用。回复 STOP 可退订，回复 HELP 可获得帮助。"],
+        ["营销信息", "可选营销信息需要单独明确同意；不同意营销信息也可以联系办公室咨询保险。"],
       ].map(([title, body]) => ({ title, body })),
     },
   } as const;

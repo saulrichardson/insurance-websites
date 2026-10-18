@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container";
-import { ScheduleButton } from "@/components/ContactActions";
+import { EmailButton, TextButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -47,16 +47,8 @@ export async function PageHero({
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <TrackedLink
-              className={buttonClasses({ variant: "primary", size: "md" })}
-              href={quoteHref}
-              eventName="contact_click"
-              eventProps={{ source: "tracy_zhang_insurance_page_hero", page_title: title }}
-            >
-              {quoteLabel}
-            </TrackedLink>
             <TrackedAnchor
-              className={buttonClasses({ variant: "secondary", size: "md" })}
+              className={buttonClasses({ variant: "primary", size: "md" })}
               href={`tel:${phoneE164}`}
               eventName="phone_click"
               eventProps={{
@@ -67,14 +59,30 @@ export async function PageHero({
             >
               {callLabel ?? defaultCallLabel}
             </TrackedAnchor>
-            <ScheduleButton
+            {marketOffice.smsE164 ? <TextButton
+              phone={marketOffice.smsE164}
               locale={locale}
               source="tracy_zhang_insurance_page_hero"
-              eventProps={{ page_title: title }}
+              eventProps={{ page_title: title, office: marketOffice.id }}
+              variant="secondary"
+              size="md"
+            /> : null}
+            <EmailButton
+              locale={locale}
+              source="tracy_zhang_insurance_page_hero"
+              eventProps={{ page_title: title, office: marketOffice.id }}
               variant="outline"
               size="md"
             />
           </div>
+          <TrackedLink
+            href={quoteHref}
+            className="inline-block text-sm font-medium text-[var(--ink)] underline underline-offset-4"
+            eventName="contact_click"
+            eventProps={{ source: "tracy_zhang_insurance_page_hero", page_title: title }}
+          >
+            {quoteLabel}
+          </TrackedLink>
         </div>
       </Container>
     </section>

@@ -1,9 +1,27 @@
 # Website workflow purpose
 
-The sites make agency/product information understandable and turn a visitor's request into a structured handoff for agency follow-up. They are one entry point to a broader acquisition workflow. A website UI or visitor dashboard is not an implemented agent workflow by itself.
+The sites help people understand the agency, evaluate its expertise, and reach
+the correct office by phone, text, or email. The owner explicitly excluded
+consumer intake forms from the online-presence work on October 18, 2026.
+Keep direct contact easy in English and Chinese, preserve each local office’s
+phone number, and make service claims match actual capabilities.
 
-A visitor chooses a product or submits an inquiry; the intake validates the request, records the relevant attribution/context and persists the lead according to configured storage. An authorized operator or agent can then pick up the request, establish the appropriate next step and record outcomes. Credentials, live lead records and internal action authority are operational concerns outside this public repository.
+The main insurance site owns product guidance and regional content; the personal
+site establishes Tracy’s credibility and routes visitors to relevant help.
+San Marino and La Palma sites provide local office context. Irvine, San Diego,
+and other Southern California communities belong in the expansion strategy,
+without implying offices or language capacity that do not exist.
 
-The captured local branch adds visitor/contact-capture and identity-resolution code as well as page/copy changes. Those must be reviewed for actual behavior and data handling before release. Tests cover defined code contracts; they do not prove production database configuration, consent handling, provider delivery or a working follow-up agent.
+An agent can audit facts and links, prepare content and profile corrections,
+review search performance, and assemble follow-up work. The website supports
+those workflows; page views or an identity-resolution record do not establish
+an implemented follow-up agent, a contacted customer, or permission to market.
 
-Success should be evaluated through useful, correctly routed inquiries and eventual contact/quote outcomes, with source attribution. Page polish, visits and form count alone do not establish acquisition value. The owner's intended system centers on agent-operable workflows and human-directed actions; the website supports that system.
+Measure source, direct-contact intent, actual conversation, assignment, quote,
+and business outcome separately. Phone, text, and email click events establish
+intent only; staff or connected systems must establish completed conversations.
+
+The separate unlisted referral intake and internal lead/admin history remain
+existing workflows. They are not consumer acquisition requirements. Preserve
+historical records and the archived source; do not revive the retired quote
+endpoint or add forms as part of online-presence improvements.

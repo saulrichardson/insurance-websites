@@ -78,7 +78,7 @@ export const zhCommon = {
   serviceArea: "服务区域",
   office: "办公室",
   noCoverageBound:
-    "提交表格不会绑定、变更、续保或取消任何保险。任何保障都需要承保方批准并以书面确认为准。",
+    "致电、发送短信或电子邮件不会绑定、变更、续保或取消任何保险。任何保障都需要承保方批准并以书面确认为准。",
   carrierNotes:
     "我们可以协助查看 Allstate 选项，并在适合时讨论其他市场和加州特殊风险路径。承保公司、产品、资格、核保要求和地区都会影响实际可选方案。",
 } as const;
@@ -186,7 +186,7 @@ const productContent: Record<ProductId, Omit<LocalizedProduct, "id" | "slug" | "
     noteBody:
       "如果你有 declarations page，我们可以帮你看出保障强在哪里、哪里可能有缺口。",
     ctaTitle: "开始车险咨询",
-    ctaBody: "电话、短信或在线提交信息。我们会用中文说明下一步需要什么。",
+    ctaBody: "电话、短信或电子邮件联系办公室。我们会用中文说明下一步需要什么。",
   },
   home: {
     title: "房屋保险",
@@ -273,7 +273,7 @@ const productContent: Record<ProductId, Omit<LocalizedProduct, "id" | "slug" | "
     noteTitle: "适合快速开始",
     noteBody: "租客保险通常信息较简单。你可以先发地址和租约要求，我们会说明下一步。",
     ctaTitle: "开始租客保险咨询",
-    ctaBody: "电话、短信或在线提交信息，我们会帮你快速确认方向。",
+    ctaBody: "电话、短信或电子邮件联系办公室，我们会帮你快速确认方向。",
   },
   life: {
     title: "人寿保险",
@@ -383,7 +383,7 @@ const productContent: Record<ProductId, Omit<LocalizedProduct, "id" | "slug" | "
     noteBody:
       "如果你也有车险或房屋保险，我们可以一起审查整体成本和责任风险。",
     ctaTitle: "开始摩托车保险咨询",
-    ctaBody: "电话、短信或在线提交信息，我们会尽快说明下一步。",
+    ctaBody: "电话、短信或电子邮件联系办公室，我们会尽快说明下一步。",
   },
   atv: {
     title: "ATV 保险",
@@ -410,7 +410,7 @@ const productContent: Record<ProductId, Omit<LocalizedProduct, "id" | "slug" | "
     noteBody:
       "先告诉我们车辆和用途，我们会帮你判断应该走哪条保险路径。",
     ctaTitle: "开始 ATV 保险咨询",
-    ctaBody: "电话、短信或在线提交信息，我们会保持流程简单。",
+    ctaBody: "电话、短信或电子邮件联系办公室，我们会保持流程简单。",
   },
   boat: {
     title: "船只保险",
@@ -438,7 +438,7 @@ const productContent: Record<ProductId, Omit<LocalizedProduct, "id" | "slug" | "
     noteBody:
       "如果资产或责任暴露较高，我们可以一起审查伞险是否适合。",
     ctaTitle: "开始船只保险咨询",
-    ctaBody: "电话、短信或在线提交信息，我们会尽快跟进。",
+    ctaBody: "电话、短信或电子邮件联系办公室，我们会尽快跟进。",
   },
   "fair-plan": {
     title: "加州 FAIR Plan 咨询",

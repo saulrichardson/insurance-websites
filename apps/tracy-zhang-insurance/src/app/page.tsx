@@ -22,7 +22,7 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
-import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
+import { EmailAnchor, EmailButton, ScheduleAnchor, TextButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -99,7 +99,7 @@ const statewideProcess = [
   },
   {
     title: "Keep the next step usable",
-    body: "The coverage question, documents, timing, and follow-up all stay tied to the same conversation so service does not reset after the first form.",
+    body: "The coverage question, documents, timing, and follow-up all stay tied to the same conversation so you do not have to start over with each conversation.",
   },
 ];
 
@@ -224,33 +224,23 @@ function StatewideHome({
                 Palma and one clean path for quotes, documents, and follow-up.
               </p>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <TrackedLink
-                  className={buttonClasses({
-                    variant: "secondary",
-                    size: "lg",
-                    className: "border-white/20 bg-white text-[var(--ink)] hover:bg-white/90",
-                  })}
-                  href="/contact"
-                  eventName="contact_click"
-                  eventProps={{ source: "statewide_hero" }}
-                >
-                  Start insurance help
-                  <ArrowRight className="size-4" aria-hidden />
-                </TrackedLink>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <TrackedAnchor
-                  className={buttonClasses({
-                    variant: "ghost",
-                    size: "lg",
-                    className: "border border-white/20 text-white hover:bg-white/10 hover:text-white",
-                  })}
+                  className={buttonClasses({ variant: "secondary", size: "lg", className: "border-white/20 bg-white text-[var(--ink)] hover:bg-white/90" })}
                   href={`tel:${office.phoneE164}`}
                   eventName="phone_click"
                   eventProps={{ source: "statewide_hero", phone: office.phoneDisplay }}
                 >
                   <Phone className="size-4" aria-hidden />
-                  {office.phoneDisplay}
+                  Call {office.phoneDisplay}
                 </TrackedAnchor>
+                <TrackedAnchor
+                  className={buttonClasses({ variant: "ghost", size: "lg", className: "border border-white/20 text-white hover:bg-white/10 hover:text-white" })}
+                  href={`sms:${office.smsE164}`}
+                  eventName="sms_click"
+                  eventProps={{ source: "statewide_hero", office: office.id, phone: office.smsE164 }}
+                >Text the office</TrackedAnchor>
+                <EmailButton source="statewide_hero" variant="ghost" size="lg" className="border border-white/20 text-white hover:bg-white/10 hover:text-white" />
               </div>
 
               <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
@@ -408,20 +398,7 @@ function LocalMarketHome({
                 ))}
               </div>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <TrackedLink
-                  className={buttonClasses({
-                    variant: "primary",
-                    size: "lg",
-                    className: "bg-[#173f3b] hover:bg-[#0d2c29]",
-                  })}
-                  href="/contact"
-                  eventName="contact_click"
-                  eventProps={{ source: `${market.id}_local_hero` }}
-                >
-                  Start a local request
-                  <ArrowRight className="size-4" aria-hidden />
-                </TrackedLink>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <TrackedAnchor
                   className={buttonClasses({
                     variant: "secondary",
@@ -435,6 +412,8 @@ function LocalMarketHome({
                   <Phone className="size-4" aria-hidden />
                   Call {office.phoneDisplay}
                 </TrackedAnchor>
+                <TextButton phone={office.smsE164} source={`${market.id}_local_hero`} eventProps={{ office: office.id }} size="lg" />
+                <EmailButton source={`${market.id}_local_hero`} eventProps={{ office: office.id }} size="lg" />
               </div>
             </div>
 

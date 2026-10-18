@@ -148,7 +148,7 @@ export function Footer({
                 </TrackedLink>
               </li>
               <li>
-                <Link className="hover:text-[var(--ink)] hover:underline" href={localizedHref("/#business", locale)}>
+                <Link className="hover:text-[var(--ink)] hover:underline" href={localizedHref("/business-insurance", locale)}>
                   {isZh ? "商业保险" : "Business"}
                 </Link>
               </li>

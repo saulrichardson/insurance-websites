@@ -129,32 +129,19 @@ export default function ChineseHome() {
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <ButtonLink
-                  href={quoteHref}
-                  variant="primary"
-                  size="md"
-                  eventName="cross_site_click"
-                  eventProps={{ source: "tracy_zh_hero_quote", destination: quoteHref }}
-                >
-                  获取中文保险帮助
-                  <ArrowRight className="size-4" aria-hidden />
-                </ButtonLink>
-                <ScheduleButton
-                  locale="zh"
-                  source="tracy_zh_hero"
-                  variant="outline"
-                  size="md"
-                  icon
-                />
-                <TrackedAnchor
-                  href={`tel:${site.agent.officePhone.e164}`}
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-accent/25 bg-surface px-5 text-sm font-medium text-accent shadow-sm shadow-black/5 hover:bg-background/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground/60"
-                  eventName="phone_click"
-                  eventProps={{ source: "tracy_zh_hero", phone: site.agent.officePhone.display }}
-                >
+                <ButtonLink href={`tel:${site.agent.officePhone.e164}`} variant="primary" size="md" eventName="phone_click" eventProps={{ source: "tracy_zh_hero", phone: site.agent.officePhone.display }}>
                   <Phone className="size-4" aria-hidden />
                   致电 {site.agent.officePhone.display}
-                </TrackedAnchor>
+                </ButtonLink>
+                <ButtonLink href={`sms:${site.agent.officePhone.e164}`} variant="outline" size="md" eventName="sms_click" eventProps={{ source: "tracy_zh_hero", phone: site.agent.officePhone.e164 }}>
+                  发送短信
+                </ButtonLink>
+                <EmailButton locale="zh" source="tracy_zh_hero" variant="outline" size="md" icon />
+              </div>
+              <div className="mt-4">
+                <ButtonLink href={quoteHref} variant="ghost" size="sm" eventName="cross_site_click" eventProps={{ source: "tracy_zh_hero", destination: quoteHref }}>
+                  了解保险服务 <ArrowRight className="size-4" aria-hidden />
+                </ButtonLink>
               </div>
             </div>
 

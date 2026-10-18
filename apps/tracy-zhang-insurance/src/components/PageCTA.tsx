@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container";
-import { ScheduleButton } from "@/components/ContactActions";
+import { EmailButton, TextButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -8,7 +8,7 @@ import { getRequestMarket } from "@/lib/market";
 
 export async function PageCTA({
   title = "Ready to talk?",
-  body = "Call, text, email, or schedule a conversation. We will respond quickly and help you compare the next step.",
+  body = "Call, text, or email the office. Tell us what changed, and we will help you understand the next step.",
   office,
   quoteHref = "/contact",
   quoteLabel = "Contact us",
@@ -56,20 +56,25 @@ export async function PageCTA({
             >
               {callLabel ?? defaultCallLabel}
             </TrackedAnchor>
-            <ScheduleButton
+            {marketOffice.smsE164 ? <TextButton
+              phone={marketOffice.smsE164}
               locale={locale}
               source="tracy_zhang_insurance_page_cta"
+              eventProps={{ office: marketOffice.id }}
+              variant="secondary"
+              size="lg"
+              className="border border-white/50 bg-transparent text-white hover:bg-white hover:text-[var(--ink)]"
+            /> : null}
+            <EmailButton
+              locale={locale}
+              source="tracy_zhang_insurance_page_cta"
+              eventProps={{ office: marketOffice.id }}
               variant="secondary"
               size="lg"
               className="border border-white/50 bg-transparent text-white hover:bg-white hover:text-[var(--ink)]"
             />
             <TrackedLink
-              className={buttonClasses({
-                variant: "secondary",
-                size: "lg",
-                className:
-                  "bg-transparent text-white hover:bg-white hover:text-[var(--ink)] border border-white/50",
-              })}
+              className="self-center text-sm font-medium text-white underline underline-offset-4"
               href={quoteHref}
               eventName="contact_click"
               eventProps={{ source: "tracy_zhang_insurance_page_cta" }}

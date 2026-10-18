@@ -1,4 +1,4 @@
-import { publicContact } from "@insurance-websites/domain";
+import { getOfficeById, publicContact } from "@insurance-websites/domain";
 
 export type OfficeHour =
   | { day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri"; open: string; close: string }
@@ -45,13 +45,7 @@ export const site = {
     fax: {
       display: "(833) 679-4583",
     },
-    languages: [
-      "English",
-      "Cantonese",
-      "Mandarin",
-      "Taiwanese",
-      "Vietnamese",
-    ],
+    languages: getOfficeById("san-marino").languages,
     rating: {
       score: 4.3,
       outOf: 5,
@@ -117,13 +111,13 @@ export const site = {
         e164: "+15624024375",
       },
       hours: [
-        { day: "Mon", open: "9:00 AM", close: "5:45 PM" },
-        { day: "Tue", open: "9:00 AM", close: "5:45 PM" },
-        { day: "Wed", open: "9:00 AM", close: "5:45 PM" },
+        { day: "Mon", open: "9:00 AM", close: "5:30 PM" },
+        { day: "Tue", open: "9:00 AM", close: "5:30 PM" },
+        { day: "Wed", open: "9:00 AM", close: "5:30 PM" },
         { day: "Thu", open: "9:00 AM", close: "5:30 PM" },
-        { day: "Fri", open: "9:00 AM", close: "5:45 PM" },
-        { day: "Sat", note: "Closed" },
-        { day: "Sun", note: "Closed" },
+        { day: "Fri", open: "9:00 AM", close: "5:30 PM" },
+        { day: "Sat", note: "By appointment" },
+        { day: "Sun", note: "By appointment" },
       ] satisfies OfficeHour[],
       links: {
         mapCid: "https://www.google.com/maps?q=7002+Moody+St,+Ste+102,+La+Palma,+CA+90623",

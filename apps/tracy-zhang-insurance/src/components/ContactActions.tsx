@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, Mail } from "lucide-react";
+import { CalendarDays, Mail, MessageSquare } from "lucide-react";
 import type { ReactNode } from "react";
 
 import {
@@ -24,6 +24,30 @@ type ContactButtonProps = ContactAnchorProps & {
   size?: Parameters<typeof buttonClasses>[0]["size"];
   icon?: boolean;
 };
+
+export function TextButton({
+  phone,
+  locale = "en",
+  source,
+  className,
+  eventProps,
+  children,
+  variant = "outline",
+  size = "md",
+  icon = false,
+}: ContactButtonProps & { phone: string }) {
+  return (
+    <TrackedAnchor
+      href={`sms:${phone}`}
+      className={buttonClasses({ variant, size, className })}
+      eventName="sms_click"
+      eventProps={{ source, ...eventProps, phone }}
+    >
+      {icon ? <MessageSquare className="size-4" aria-hidden /> : null}
+      {children ?? (locale === "zh" ? "发送短信" : "Text the office")}
+    </TrackedAnchor>
+  );
+}
 
 export function ScheduleAnchor({
   locale = "en",

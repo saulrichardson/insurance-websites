@@ -14,7 +14,8 @@ export function getLocalBusinessSchema(options?: {
   const schemaUrl = options?.url ?? site.url;
   const email = site.contact.email.trim();
   const sameAs = [
-    site.social.googleBusinessProfile,
+    selectedOffice.links.allstateAgentPage,
+    selectedOffice.links.googleMaps,
     site.social.facebook,
     site.social.instagram,
     site.social.linkedin,
@@ -36,6 +37,7 @@ export function getLocalBusinessSchema(options?: {
             addressCountry: office.address.addressCountry,
           },
           url: `${schemaUrl}/locations/${office.slug.replace(/-ca$/, "")}`,
+          sameAs: [office.links.allstateAgentPage, office.links.googleMaps],
         }))
       : undefined;
 

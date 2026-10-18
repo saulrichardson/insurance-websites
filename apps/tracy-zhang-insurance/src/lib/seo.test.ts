@@ -63,5 +63,9 @@ describe("insurance SEO model", () => {
     expect(serialized).toContain("7002 Moody St");
     expect(serialized).not.toContain("1012 Huntington Dr");
     expect(serialized).not.toContain("San Marino");
+    expect(serialized).toContain("tracy-cuiying-zhang-la-palma-ca.html");
+    expect(serialized).toContain("4778875041018585831");
+    expect(serialized).not.toContain("tracy-cuiying-zhang-san-marino-ca.html");
+    expect(serialized).not.toContain("10310965996194018044");
   });
 });
