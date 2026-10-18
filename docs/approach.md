@@ -6,6 +6,13 @@ This repository is a source-focused monorepo for Tracy Zhang Insurance public
 websites, local acquisition surfaces, shared insurance data, lead capture, and
 visitor contact capture.
 
+The approved agency identity is now **Tracy's Insurance**. Current application
+source and deployment still use the old brand and canonical host; this document
+describes that live state unless explicitly marked as planned. Workspace uses
+`tracysinsurance.com`, with tested `saul@`, `hello@` and `careers@` sending and
+receiving. The public website contact value remains `tzhang@allstate.com` until
+the coordinated website release. The carrier account itself is unchanged.
+
 Use this file for the repo-level operating model. Use each app's
 `docs/approach.md` for website-specific stack details, routes, env vars, and
 deployment notes.
@@ -194,7 +201,8 @@ Defer until needed:
 
 - The repo has one root `AGENTS.md`.
 - Website-specific product intent belongs under `apps/<site>/docs/`.
-- Tracy Zhang Insurance is the canonical insurance brand.
+- Tracy's Insurance is the approved agency brand. The website brand and
+  canonical-host migration from Tracy Zhang Insurance remains pending.
 - Tracy Zhang personal site is the advisor profile and direct-contact surface.
 - San Marino and La Palma domains are local acquisition surfaces, not separate
   brands.

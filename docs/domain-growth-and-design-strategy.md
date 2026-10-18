@@ -24,8 +24,8 @@ claims that copying their appearance or buying ads produces results.
 
 | Domain | Role | Recommended treatment |
 | --- | --- | --- |
-| tracysinsurance.com | Recommended primary agency address for Tracy's Insurance | Promote this short address as the brand develops. Keep the working redirect during the transition; a later canonical-domain move needs its own migration plan. Use campaign paths and UTMs. |
-| tracyzhanginsurance.com | Main insurance destination and knowledge library | Maintain the canonical product, guidance and regional content. Refine the brand presentation here first so the short address leads to the same clear identity. |
+| tracysinsurance.com | Approved primary agency address for Tracy's Insurance | Implement the coordinated brand and canonical-host release. Until that release, preserve the working redirect. Use campaign paths and UTMs. |
+| tracyzhanginsurance.com | Current live canonical destination; future redirect | Move the shared product, guidance and regional library to the approved new host, then preserve old deep paths and query parameters with permanent redirects. |
 | sanmarinoinsurance.com | Real San Marino office | A complete local destination with original office proof, local guidance and direct office contact. Maintain self-canonical local entry pages and link to the shared product library where useful. |
 | lapalmainsurance.com | Real La Palma office | A distinct local composition with La Palma office proof, practical household and small-business journeys, and its own phone number. |
 | alhambra-insurance.com | Alhambra community and campaign address | First develop a genuinely useful Alhambra page in the main site, then point the domain to it. Describe service from the San Marino office; there is no verified Alhambra office. A standalone indexed local surface comes later only if original content and real service value justify it. |
@@ -92,13 +92,14 @@ into that mailbox. They do not have separate sign-ins or paid seats.
 it has not been created. Confirm the need and license cost before adding seats.
 
 Google verification, Gmail activation, SPF, DKIM and DMARC configuration are
-complete. Actual inbound and outbound delivery still need testing, including
-authentication results in received message headers. Set the new display names,
-signatures,
-recovery and business-service access. Separate service access checks from
-preserving unwanted old branding: Analytics, Search Console, hosting and DNS
-still need a working owner after the change. The carrier-issued
-`tzhang@allstate.com` is a separate account and is not part of retiring the
+complete. All three addresses received owner-controlled tests and sent replies
+with passing SPF, DKIM and DMARC at the external recipient. Workspace's
+organization name, alias sender names and signatures have been saved. The
+first primary inbound test was classified as spam and corrected; this test
+does not guarantee universal inbox placement. Existing Analytics, Search
+Console, hosting and DNS access remains under the external Gmail owner.
+User-level recovery inspection awaits Google's requested Admin sign-in. The
+carrier-issued `tzhang@allstate.com` is a separate account and is not part of retiring the
 custom-domain Workspace identity. The
 [Workspace migration record](records/2026-10-18-workspace-brand-pivot.md)
 tracks the completed settings and remaining checks.
@@ -185,8 +186,10 @@ case is reviewed. Existing customers should have an obvious service route so
 their calls do not get mistaken for new acquisition.
 
 The destination must show the appropriate office number: San Marino
-(626) 300-8338; La Palma (562) 402-4375. Shared email remains the verified
-tzhang@allstate.com until a new public mailbox is actually configured and tested.
+(626) 300-8338; La Palma (562) 402-4375. Shared website email currently remains
+`tzhang@allstate.com`. `hello@tracysinsurance.com` is now configured and tested;
+update the shared public contact value during the coordinated brand release.
+Keep the separate carrier mailbox intact.
 
 ## Local content and discovery
 

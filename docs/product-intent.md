@@ -7,7 +7,7 @@ workflows, and open product questions.
 
 ## North Star
 
-Build and maintain a coherent Tracy Zhang Insurance web portfolio that can
+Build and maintain a coherent Tracy's Insurance web portfolio that can
 support public trust, local SEO, campaign traffic, consented lead capture, and
 future email/SMS operations without fragmenting into scattered brands. The
 canonical insurance app should also support visitor contact capture for
@@ -27,6 +27,15 @@ The repo should make it easy to:
   insurance shoppers who may not search or browse primarily in English
 
 ## Current Online Presence Direction
+
+The owner approved **Tracy's Insurance** as the main agency brand and
+`tracysinsurance.com` as its intended canonical address on October 18, 2026.
+Keep `tracyzhang.com` for Tracy's personal advisor identity. Workspace email now
+uses the new domain and primary/alias delivery has been tested. The deployed
+website still uses the old brand and `tracyzhanginsurance.com` canonical host;
+the website migration is the next separate release. A long parallel-brand
+period or historical-data import is not required. See the
+[email and ownership verification record](records/2026-10-18-email-delivery-and-service-ownership.md).
 
 The owner clarified on October 18, 2026 that public acquisition should use
 call, text, and email, with no consumer intake forms. Make these direct actions
