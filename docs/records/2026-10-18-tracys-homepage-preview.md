@@ -35,9 +35,9 @@ market-specific routing and SEO contracts.
 The static Vercel Build Output deployment is READY on the existing
 san-marino-insurance project, with no production target or domain changes:
 
-https://san-marino-insurance-7crgys6qi-saulrichardsons-projects.vercel.app
+https://san-marino-insurance-e3p6rvk68-saulrichardsons-projects.vercel.app
 
-Deployment ID: `dpl_CzC1cyH91H1iBb7c1pyzbDwBuG2S`.
+Deployment ID: `dpl_GtjNnpmtwb78bSQY4ruG6ij5Dj3G`.
 The preview has HTML noindex metadata and an X-Robots-Tag header. Existing
 Vercel preview access policies still apply. Its local equivalent is served at
 http://127.0.0.1:8848/ while the development server is running.
@@ -77,3 +77,5 @@ San Marino office and La Palma office labels retain the actual locations.
 Huntington Beach Pier at sunset by TeKappa (CC BY-SA 4.0) replaces La Palma
 City Hall as Orange County imagery, with source and license in the page footer.
 The addresses, telephone numbers and office-specific language lists are unchanged.
+
+Use “Los Angeles” without “County” in the public region labels. Orange County retains its full name.
