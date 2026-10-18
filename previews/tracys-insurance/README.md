@@ -6,7 +6,7 @@ application so the design can be reviewed before integration.
 
 ## View
 
-- Hosted preview: https://san-marino-insurance-dg4d20ipq-saulrichardsons-projects.vercel.app
+- Hosted preview: https://san-marino-insurance-7crgys6qi-saulrichardsons-projects.vercel.app
 - Local preview while the development server is running: http://127.0.0.1:8848/
 - To serve this directory again with a static file server, use this directory as
   the document root. No compilation or app environment variables are needed.
@@ -21,7 +21,7 @@ preview access policy may require signing into the owner's account.
 The minimalist composition uses a soft blue full-width first section, large
 Plus Jakarta Sans type and a San Marino community photograph. Coverage is
 organized around everyday situations, followed by Tracy's introduction,
-language support, two real offices and a final contact section. A mobile
+language support, Los Angeles and Orange County, with the real San Marino and La Palma offices and a final contact section. A mobile
 contact bar keeps call, text and email available without opening the menu.
 
 The contact links use the shared domain data in packages/domain/src/index.ts:
@@ -41,8 +41,9 @@ Photographs are local copies of the existing site/study assets:
 
 - San Marino: Hickorypine, The Huntington Chinese Garden, CC BY-SA 4.0.
   https://commons.wikimedia.org/wiki/File:Huntington_Library_Chinese_Garden.jpg
-- La Palma: Mike Greene, La Palma City Hall, CC BY-SA 2.0.
-  https://commons.wikimedia.org/wiki/File:LaPalmaCityHall.jpg
+- Orange County: TeKappa, Huntington Beach Pier at sunset, CC BY-SA 4.0.
+  https://commons.wikimedia.org/wiki/File:Huntington_Beach_Pier_at_sunset.jpg
+  Resized to 1500 pixels wide; displayed with responsive cropping.
 - Tracy Zhang: existing official agency profile portrait, used for this design
   preview. Replace with an approved higher-resolution portrait for final launch.
 

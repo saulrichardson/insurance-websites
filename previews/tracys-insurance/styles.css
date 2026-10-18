@@ -15,3 +15,6 @@
 @media(max-width:360px){:root{--gutter:18px}.wordmark{font-size:19px}.header{gap:10px}.nav-call{font-size:9px;gap:7px}.hero-actions{gap:15px}.hero-actions .button{padding:13px 12px;font-size:10px}.hero-actions .text-link{font-size:10px;gap:5px}.hero h1{font-size:47px}.office-actions{gap:17px}.portrait-mat{padding-left:40px;padding-right:40px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.motion-ready .reveal{opacity:1;transform:none}}
 @media(max-width:600px){.header .nav-call{display:none}.hero h1{letter-spacing:-.06em}.menu-toggle{margin-left:auto}}
+
+.office-location{font-size:12px;color:var(--muted);letter-spacing:0;margin-top:5px}
+#la-palma .office-photo img{object-position:center 58%}
