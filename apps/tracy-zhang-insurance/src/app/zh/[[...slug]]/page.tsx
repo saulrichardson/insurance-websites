@@ -1,3 +1,4 @@
+import { TracysHome } from "@/components/TracysHome";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
@@ -10,7 +11,7 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
-import { EmailAnchor, EmailButton, ScheduleAnchor, ScheduleButton } from "@/components/ContactActions";
+import { EmailAnchor, EmailButton, } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { StoryHero } from "@/components/StoryHero";
@@ -102,7 +103,7 @@ export default async function ChinesePage({ params }: PageProps) {
   const story = getStoryForPath(path);
   let page: ReactNode;
 
-  if (path === "/") page = <ZhHome market={market} office={office} />;
+  if (path === "/") page = market.domainRole === "canonical" ? <TracysHome locale="zh" /> : <ZhHome market={market} office={office} />;
   else if (path === "/products") page = <ZhProductsPage />;
   else if (product) page = <ZhProductPage product={product} />;
   else if (path === "/contact") page = <ZhContactPage market={market} office={office} />;
@@ -492,12 +493,7 @@ function ZhContactPage({
                       <div>{formatZhHours(item.hours.mondayFriday)}</div>
                       <div>{formatZhHours(item.hours.saturday)}</div>
                       <div>{formatZhHours(item.hours.sunday)}</div>
-                      <ScheduleAnchor
-                        locale="zh"
-                        source="tracy_zhang_insurance_zh_contact_page"
-                        eventProps={{ office: item.slug }}
-                        className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                      />
+
                     </div>
                   </div>
                 </Card>
@@ -564,12 +560,7 @@ function ZhContactPage({
                 >
                   发送邮件 {site.contact.email}
                 </EmailAnchor>
-                <ScheduleAnchor
-                  locale="zh"
-                  source="tracy_zhang_insurance_zh_contact_direct"
-                  eventProps={{ office: office.slug }}
-                  className={buttonClasses({ variant: "outline", size: "md" })}
-                />
+
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">
                 {zhCommon.noCoverageBound}
@@ -676,12 +667,7 @@ function ZhLocationPage({ path }: { path: string }) {
               >
                 发送邮件 {site.contact.email}
               </EmailAnchor>
-              <ScheduleAnchor
-                locale="zh"
-                source="tracy_zhang_insurance_zh_location_page"
-                eventProps={{ office: office.slug }}
-                className="font-medium text-slate-950 hover:underline"
-              />
+
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {market.serviceArea.map((area) => (
@@ -825,7 +811,7 @@ function ZhStoriesPage() {
 
   return (
     <div lang="zh-Hans" className="bg-[var(--background)]">
-      <section className="border-b border-[var(--rail-border)] bg-[#fbfaf4]">
+      <section className="border-b border-[var(--rail-border)] bg-[var(--background)]">
         <Container className="py-14 sm:py-18 lg:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,0.78fr)] lg:items-end">
             <div>
@@ -859,7 +845,7 @@ function ZhStoriesPage() {
                   source: "tracy_zhang_insurance_zh_stories_featured",
                   story: featuredStory.slug,
                 }}
-                className="group block rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fbfaf4]"
+                className="group block rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 <StoryVisual
                   image={featuredStory.image}
@@ -1055,7 +1041,7 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
           <div>
             <StoryProse sections={story.sections} />
 
-            <div className="mt-14 rounded-lg border border-[#102625]/20 bg-[#102625] p-6 text-white shadow-[var(--shadow-lg)] sm:p-8">
+            <div className="mt-14 rounded-lg border border-[var(--ink-strong)]/20 bg-[var(--ink-strong)] p-6 text-white shadow-[var(--shadow-lg)] sm:p-8">
               <div className="text-sm font-semibold text-white">
                 想讨论你的情况？
               </div>
@@ -1092,14 +1078,7 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
               >
                 {zhCommon.quoteLabel}
               </TrackedLink>
-              <ScheduleButton
-                locale="zh"
-                source="tracy_zhang_insurance_zh_story_cta"
-                eventProps={{ story: story.slug }}
-                variant="secondary"
-                size="md"
-                className="border-white/25 bg-white/10 text-white hover:bg-white hover:text-[var(--ink)]"
-              />
+
               <EmailButton
                 locale="zh"
                 source="tracy_zhang_insurance_zh_story_cta"
@@ -1132,7 +1111,7 @@ function ZhStoryPage({ story, office }: { story: LocalizedStory; office: Office 
                     story: story.slug,
                     product: product.id,
                   }}
-                  className="rounded-lg border border-[var(--rail-border)] bg-white p-4 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fbfaf4]"
+                  className="rounded-lg border border-[var(--rail-border)] bg-white p-4 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--background)]"
                 >
                   <div className="font-semibold text-[var(--ink)]">
                     {product.title}

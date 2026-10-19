@@ -82,7 +82,7 @@ export default function AutoInsurancePage() {
 
       <PageCTA
         title="Get an auto quote"
-        body="Call, text, email, or schedule a conversation. We’ll ask only what we need to quote accurately, then present options you can compare."
+        body="Call, text, or email our team. We’ll ask only what we need to quote accurately, then present options you can compare."
       />
     </div>
   );

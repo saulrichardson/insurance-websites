@@ -473,7 +473,7 @@ function productById(id) {
 }
 
 function buildInsurancePageContracts() {
-  const contactIncludes = [publicContact.email, publicContact.scheduling.url];
+  const contactIncludes = [publicContact.email, "tel:", "sms:"];
   const contracts = [
     {
       path: "/",
@@ -572,7 +572,7 @@ function buildInsurancePageContracts() {
 function buildLocalHomeContracts(origin, activeOfficeId, inactiveOfficeId) {
   const activeOffice = getOfficeById(activeOfficeId);
   const inactiveOffice = getOfficeById(inactiveOfficeId);
-  const contactIncludes = [publicContact.email, publicContact.scheduling.url];
+  const contactIncludes = [publicContact.email, "tel:", "sms:"];
 
   return [
     {

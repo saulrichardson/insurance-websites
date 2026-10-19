@@ -2,7 +2,6 @@ import { Container } from "@/components/Container";
 import { EmailButton, TextButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
-import { site } from "@/config/site";
 import { getOfficeById, type Office } from "@insurance-websites/domain";
 import { getRequestMarket } from "@/lib/market";
 
@@ -23,66 +22,58 @@ export async function PageHero({
   quoteLabel?: string;
   callLabel?: string;
 }) {
-  const marketOffice = office ?? getOfficeById((await getRequestMarket()).primaryOfficeId);
-  const phoneDisplay = marketOffice.phoneDisplay ?? site.phoneDisplay;
-  const phoneE164 = marketOffice.phoneE164 ?? site.phoneE164;
+  const contact =
+    office ?? getOfficeById((await getRequestMarket()).primaryOfficeId);
   const locale = quoteHref.startsWith("/zh") ? "zh" : "en";
-  const defaultCallLabel = quoteHref.startsWith("/zh")
-    ? `致电 ${phoneDisplay}`
-    : `Call ${phoneDisplay}`;
-
   return (
-    <section className="border-b border-[var(--rail-border)] bg-[var(--background)]">
-      <Container className="py-16 sm:py-20">
-        <div className="max-w-3xl space-y-6">
-          <div className="flex items-center gap-3 text-xs font-semibold uppercase text-[var(--brand-ink)]">
-            <span className="inline-block size-2 rounded-[2px] bg-[var(--brand)]" />
-            {eyebrow}
+    <section className="page-hero">
+      <Container>
+        <div className="page-hero-grid">
+          <div>
+            <p className="page-eyebrow">{eyebrow}</p>
+            <h1>{title}</h1>
           </div>
-          <h1 className="text-pretty font-[var(--font-serif)] text-5xl font-normal leading-[1.02] text-[var(--ink)] sm:text-6xl">
-            {title}
-          </h1>
-          <p className="text-pretty text-base leading-7 text-[var(--muted)] sm:text-lg">
-            {subtitle}
-          </p>
-
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <TrackedAnchor
-              className={buttonClasses({ variant: "primary", size: "md" })}
-              href={`tel:${phoneE164}`}
-              eventName="phone_click"
-              eventProps={{
-                source: "tracy_zhang_insurance_page_hero",
-                page_title: title,
-                phone: phoneDisplay,
-              }}
+          <div className="page-hero-copy">
+            <p>{subtitle}</p>
+            <div className="direct-actions">
+              <TrackedAnchor
+                className={buttonClasses({ size: "lg" })}
+                href={`tel:${contact.phoneE164}`}
+                eventName="phone_click"
+                eventProps={{
+                  source: "page_hero",
+                  office: contact.id,
+                  page_title: title,
+                  phone: contact.phoneDisplay,
+                }}
+              >
+                {callLabel ??
+                  `${locale === "zh" ? "致电" : "Call"} ${contact.phoneDisplay}`}{" "}
+                <span aria-hidden>↗</span>
+              </TrackedAnchor>
+              <TextButton
+                phone={contact.smsE164}
+                locale={locale}
+                source="page_hero"
+                eventProps={{ office: contact.id, page_title: title }}
+                variant="ghost"
+              />
+              <EmailButton
+                locale={locale}
+                source="page_hero"
+                eventProps={{ office: contact.id, page_title: title }}
+                variant="ghost"
+              />
+            </div>
+            <TrackedLink
+              className="page-contact-link"
+              href={quoteHref}
+              eventName="contact_click"
+              eventProps={{ source: "page_hero" }}
             >
-              {callLabel ?? defaultCallLabel}
-            </TrackedAnchor>
-            {marketOffice.smsE164 ? <TextButton
-              phone={marketOffice.smsE164}
-              locale={locale}
-              source="tracy_zhang_insurance_page_hero"
-              eventProps={{ page_title: title, office: marketOffice.id }}
-              variant="secondary"
-              size="md"
-            /> : null}
-            <EmailButton
-              locale={locale}
-              source="tracy_zhang_insurance_page_hero"
-              eventProps={{ page_title: title, office: marketOffice.id }}
-              variant="outline"
-              size="md"
-            />
+              {quoteLabel} <span aria-hidden>↗</span>
+            </TrackedLink>
           </div>
-          <TrackedLink
-            href={quoteHref}
-            className="inline-block text-sm font-medium text-[var(--ink)] underline underline-offset-4"
-            eventName="contact_click"
-            eventProps={{ source: "tracy_zhang_insurance_page_hero", page_title: title }}
-          >
-            {quoteLabel}
-          </TrackedLink>
         </div>
       </Container>
     </section>

@@ -381,9 +381,10 @@ antique-gold design after reviewing the standalone preview. Keep the text-only
 wordmark without a period. Regional headings are Los Angeles and Orange County,
 with the real San Marino and La Palma office labels and shared contact facts.
 
-`SiteFrame` selects the homepage's own header, main and footer only for `/`
-on the canonical market. All other pages, Chinese routes and local-domain
-homepages retain the existing application frame. The layout continues to emit
+`SiteFrame` selects the homepage's own header, main and footer for `/` and
+`/zh` on the canonical market. Other public pages and local-domain homepages
+use the shared editorial frame, with the same palette, wordmark, contact
+controls and mobile behavior. The layout continues to emit
 shared structured data, site telemetry and visitor attribution. The homepage
 uses the shared marketing-event function for phone, text and email clicks and
 reads office facts and the public email from the shared domain package.
@@ -392,3 +393,23 @@ Production assets are in `public/homepage-assets/`. Image source and license
 credits are included in the footer. The raw approved preview remains under
 `previews/tracys-insurance/`; it is a design record rather than the production
 entry point. Do not deploy that static directory over the full Next.js app.
+
+## Shared public design and Chinese copy
+
+`SiteChrome.css` defines the shared header, footer, editorial page heroes, warm
+closing calls to action and fixed mobile contact bar. Root design tokens match
+the approved homepage. The existing serif token resolves to the agency sans
+font so older content components keep the same typography without duplicating
+style rules. Chinese headlines use more generous line heights and neutral
+letter spacing.
+
+The canonical Chinese homepage reuses `TracysHome` with `locale="zh"`. Its
+stored copy is in `src/i18n/homepage.ts`; add translations there when changing
+homepage text. Route links use the existing localization helpers. Language
+switches preserve query parameters and hash fragments. Story image alt text
+and captions also have stored Chinese copy; missing descriptions fail clearly.
+
+Public acquisition uses call, text and email. Scheduling widgets and external
+appointment form links are not shown on these pages. Unlisted referral and
+admin workflows remain separate. The mobile contact bar resolves the telephone
+number from the active market, including the Chinese local-domain pages.

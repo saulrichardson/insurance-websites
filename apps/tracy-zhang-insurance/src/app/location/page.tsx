@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container";
-import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
+import { EmailAnchor, } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
@@ -31,10 +31,10 @@ export default async function LocationPage() {
   const title = isLocal ? `${market.label} office` : "Two offices. One standard.";
   const subtitle = isLocal
     ? `Call, text, request a quote, or use directions for the ${market.label} office.`
-    : "Call, text, email, or schedule a conversation. For in-person help, choose your nearest office and we’ll confirm availability.";
+    : "Let’s talk about what matters to you a conversation. For in-person help, choose your nearest office and we’ll confirm availability.";
   const serviceAreaBody = isLocal
     ? `The ${market.label} office supports nearby communities with statewide California insurance help.`
-    : "We serve San Marino, La Palma, and nearby communities across Los Angeles County and Orange County.";
+    : "We serve San Marino, La Palma, and nearby communities across Los Angeles and Orange County.";
 
   return (
     <div className="bg-[var(--background)]">
@@ -114,21 +114,8 @@ export default async function LocationPage() {
                         >
                           Email {site.contact.email}
                         </EmailAnchor>
-                        <ScheduleAnchor
-                          source="tracy_zhang_insurance_location_page"
-                          eventProps={{ office: item.slug }}
-                          className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                        />
-                        {item.links?.appointment ? (
-                          <a
-                            className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                            href={item.links.appointment}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Request an appointment →
-                          </a>
-                        ) : null}
+
+
                       </div>
 
                       <div className="grid gap-1">

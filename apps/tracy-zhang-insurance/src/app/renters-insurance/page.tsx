@@ -75,7 +75,7 @@ export default function RentersInsurancePage() {
 
       <PageCTA
         title="Get a renters quote"
-        body="Call, text, email, or schedule a conversation. We’ll keep it simple."
+        body="Call, text, or email our team. We’ll keep it simple."
       />
     </div>
   );

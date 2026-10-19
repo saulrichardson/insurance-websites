@@ -8,7 +8,7 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
-import { EmailButton, ScheduleButton } from "@/components/ContactActions";
+import { EmailButton, } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
@@ -82,12 +82,7 @@ export function MarketLocationPage({ marketId }: { marketId: MarketId }) {
                   >
                     Start request
                   </TrackedLink>
-                  <ScheduleButton
-                    source={`${market.id}_location_page`}
-                    eventProps={{ office: office.slug }}
-                    variant="secondary"
-                    size="md"
-                  />
+
                   <EmailButton
                     source={`${market.id}_location_page`}
                     eventProps={{ office: office.slug }}

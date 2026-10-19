@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { homepageCopy } from "@/i18n/homepage";
+import { localizedHref, type Locale } from "@/i18n/routing";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import {
   getOfficeById,
@@ -11,7 +14,9 @@ import { trackMarketingEvent } from "@/components/marketing-events";
 import "./TracysHome.css";
 const sanMarino = getOfficeById("san-marino");
 const laPalma = getOfficeById("la-palma");
-export function TracysHome() {
+export function TracysHome({ locale = "en" }: { locale?: Locale }) {
+  const copy = (text: string) => homepageCopy(locale, text);
+  const href = (path: string) => localizedHref(path, locale);
   const root = useRef<HTMLDivElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -90,31 +95,41 @@ export function TracysHome() {
     });
   }
   return (
-    <div className="tracys-home" ref={root} onClick={trackContact}>
+    <div
+      className="tracys-home"
+      lang={locale === "zh" ? "zh-Hans" : "en"}
+      ref={root}
+      onClick={trackContact}
+    >
       <header className="header" id="top">
-        <a className="wordmark" href="#top" aria-label="Tracy’s Insurance home">
+        <a
+          className="wordmark"
+          href="#top"
+          aria-label={copy("Tracy’s Insurance home")}
+        >
           <span>
             Tracy’s<span className="wordmark-small"> Insurance</span>
           </span>
         </a>
-        <nav className="desktop-nav" aria-label="Main navigation">
-          <a href="#coverage">What we cover</a>
-          <a href="#team">Our team</a>
-          <a href="#offices">Our offices</a>
-          <Link href="/zh" hrefLang="zh-Hans">
-            中文
-          </Link>
+        <nav className="desktop-nav" aria-label={copy("Main navigation")}>
+          <a href="#coverage">{copy("What we cover")}</a>
+          <a href="#team">{copy("Our team")}</a>
+          <a href="#offices">{copy("Our offices")}</a>
+          <LanguageSwitch source="tracys_home_language" />
         </nav>
         <a className="nav-call" href={`tel:${sanMarino.phoneE164}`}>
-          Let’s talk <span aria-hidden="true">↗</span>
+          {copy("Let’s talk")} <span aria-hidden="true">↗</span>
         </a>
+        <div className="home-mobile-language">
+          <LanguageSwitch source="tracys_home_mobile_header" />
+        </div>
         <button
           ref={menuButton}
           onClick={() => setMenuOpen((open) => !open)}
           className="menu-toggle"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
-          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-label={copy(menuOpen ? "Close navigation" : "Open navigation")}
         >
           <span></span>
           <span></span>
@@ -122,63 +137,61 @@ export function TracysHome() {
         <nav
           id="mobile-nav"
           className="mobile-nav"
-          aria-label="Mobile navigation"
+          aria-label={copy("Mobile navigation")}
           hidden={!menuOpen}
           onClick={() => setMenuOpen(false)}
         >
           <a href="#coverage">
-            What we cover <span>↗</span>
+            {copy("What we cover")} <span>↗</span>
           </a>
           <a href="#team">
-            Our team <span>↗</span>
+            {copy("Our team")} <span>↗</span>
           </a>
           <a href="#offices">
-            Our offices <span>↗</span>
+            {copy("Our offices")} <span>↗</span>
           </a>
           <a href="#contact">
-            Get in touch <span>↗</span>
+            {copy("Get in touch")} <span>↗</span>
           </a>
-          <Link href="/zh" hrefLang="zh-Hans">
-            中文 <span>↗</span>
-          </Link>
+          <LanguageSwitch source="tracys_home_mobile_language" />
         </nav>
       </header>
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
             <p className="eyebrow hero-enter">
-              TRACY ZHANG & TEAM · SOUTHERN CALIFORNIA
+              {copy("TRACY ZHANG & TEAM · SOUTHERN CALIFORNIA")}{" "}
             </p>
             <h1 className="hero-enter" id="hero-title">
-              For the life
-              <br />
-              you’re <span>building.</span>
+              {copy("For the life")} <br />
+              {copy("you’re")} <span>{copy("building.")}</span>
             </h1>
             <p className="hero-description hero-enter">
-              Your first car. Your family’s home. Whatever comes next.
-              <br className="desktop-break" /> Let’s find a way forward,
-              together.
+              {copy("Your first car. Your family’s home. Whatever comes next.")}{" "}
+              <br className="desktop-break" />{" "}
+              {copy("Let’s find a way forward, together.")}{" "}
             </p>
             <div className="hero-actions hero-enter">
               <a className="button primary" href={`tel:${sanMarino.phoneE164}`}>
                 <svg aria-hidden="true">
                   <use href="#icon-phone" />
                 </svg>
-                Call our team <span>↗</span>
+                {copy("Call our team")} <span>↗</span>
               </a>
               <a className="text-link" href={`sms:${sanMarino.smsE164}`}>
-                Text us <span>↗</span>
+                {copy("Text us")} <span>↗</span>
               </a>
               <a className="text-link" href={`mailto:${publicContact.email}`}>
-                Email us <span>↗</span>
+                {copy("Email us")} <span>↗</span>
               </a>
             </div>
             <div className="hero-location hero-enter">
               <span className="location-mark" aria-hidden="true"></span>
               <p>
-                Rooted in <a href="#san-marino">Los Angeles</a> &{" "}
-                <a href="#la-palma">Orange County</a>.<br />
-                <span>Here for you across California.</span>
+                {copy("Rooted in")}{" "}
+                <a href="#san-marino">{copy("Los Angeles")}</a> &{" "}
+                <a href="#la-palma">{copy("Orange County")}</a>.<br />
+                <span>{copy("Here for you across California.")}</span>
               </p>
             </div>
           </div>
@@ -187,27 +200,28 @@ export function TracysHome() {
               src="/homepage-assets/san-marino.jpg"
               width="1200"
               height="800"
-              alt="Green trees and a lakeside pavilion at The Huntington’s Chinese Garden in San Marino"
+              alt={copy(
+                "Green trees and a lakeside pavilion at The Huntington’s Chinese Garden in San Marino",
+              )}
               priority
             />
             <div className="image-caption">
-              <span>OUR CORNER OF CALIFORNIA</span>
+              <span>{copy("OUR CORNER OF CALIFORNIA")}</span>
               <span>
-                San Marino, CA <span aria-hidden="true">↗</span>
+                {copy("San Marino, CA")} <span aria-hidden="true">↗</span>
               </span>
             </div>
             <div className="image-label" aria-hidden="true">
-              A little closer
-              <br />
-              to home.
+              {copy("A little closer")} <br />
+              {copy("to home.")}{" "}
             </div>
           </div>
           <a
             className="hero-scroll"
             href="#coverage"
-            aria-label="Explore what we cover"
+            aria-label={copy("Explore what we cover")}
           >
-            <span>GOOD GUIDANCE STARTS HERE</span>
+            <span>{copy("GOOD GUIDANCE STARTS HERE")}</span>
             <span aria-hidden="true">↓</span>
           </a>
         </section>
@@ -218,20 +232,19 @@ export function TracysHome() {
         >
           <div className="section-heading reveal">
             <p className="eyebrow">
-              COVERAGE FOR YOUR EVERYDAY. AND YOUR NEXT CHAPTER.
+              {copy("COVERAGE FOR YOUR EVERYDAY. AND YOUR NEXT CHAPTER.")}{" "}
             </p>
             <div className="heading-row">
               <h2 id="coverage-title">
-                Life changes.
-                <br />
-                Let’s keep you covered.
+                {copy("Life changes.")} <br />
+                {copy("Let’s keep you covered.")}{" "}
               </h2>
               <p>
-                A new driver, a move, a renewal that looks different.
+                {copy("A new driver, a move, a renewal that looks different.")}{" "}
                 <br />
-                Start with what’s on your mind. We’ll help you
-                <br className="desktop-break" /> understand your options and
-                your next step.
+                {copy("Start with what’s on your mind. We’ll help you")}{" "}
+                <br className="desktop-break" />{" "}
+                {copy("understand your options and your next step.")}{" "}
               </p>
             </div>
           </div>
@@ -243,21 +256,23 @@ export function TracysHome() {
                   <svg aria-hidden="true">
                     <use href="#icon-car" />
                   </svg>
-                  On the road
+                  {copy("On the road")}{" "}
                 </span>
-                <span className="coverage-tags">Auto · Motorcycle · Boat</span>
+                <span className="coverage-tags">
+                  {copy("Auto · Motorcycle · Boat")}
+                </span>
                 <span className="expand" aria-hidden="true">
                   +
                 </span>
               </summary>
               <div className="coverage-content">
                 <p>
-                  A new car, a teen driver or a policy coming up for renewal.
-                  Talk through limits, deductibles and what fits the way you
-                  drive.
+                  {copy(
+                    "A new car, a teen driver or a policy coming up for renewal. Talk through limits, deductibles and what fits the way you drive.",
+                  )}{" "}
                 </p>
-                <Link href="/auto-insurance" className="text-link">
-                  Explore auto insurance <span>↗</span>
+                <Link href={href("/auto-insurance")} className="text-link">
+                  {copy("Explore auto insurance")} <span>↗</span>
                 </Link>
               </div>
             </details>
@@ -268,21 +283,23 @@ export function TracysHome() {
                   <svg aria-hidden="true">
                     <use href="#icon-home" />
                   </svg>
-                  At home
+                  {copy("At home")}{" "}
                 </span>
-                <span className="coverage-tags">Home · Condo · Renters</span>
+                <span className="coverage-tags">
+                  {copy("Home · Condo · Renters")}
+                </span>
                 <span className="expand" aria-hidden="true">
                   +
                 </span>
               </summary>
               <div className="coverage-content">
                 <p>
-                  Buying, renting or reviewing a changing renewal? Get help
-                  understanding property coverage and the questions worth asking
-                  about your home.
+                  {copy(
+                    "Buying, renting or reviewing a changing renewal? Get help understanding property coverage and the questions worth asking about your home.",
+                  )}{" "}
                 </p>
-                <Link href="/home-insurance" className="text-link">
-                  Explore home insurance <span>↗</span>
+                <Link href={href("/home-insurance")} className="text-link">
+                  {copy("Explore home insurance")} <span>↗</span>
                 </Link>
               </div>
             </details>
@@ -293,21 +310,21 @@ export function TracysHome() {
                   <svg aria-hidden="true">
                     <use href="#icon-family" />
                   </svg>
-                  For your people
+                  {copy("For your people")}{" "}
                 </span>
-                <span className="coverage-tags">Life · Umbrella</span>
+                <span className="coverage-tags">{copy("Life · Umbrella")}</span>
                 <span className="expand" aria-hidden="true">
                   +
                 </span>
               </summary>
               <div className="coverage-content">
                 <p>
-                  New responsibilities can bring new questions. Let’s talk about
-                  protecting the people who depend on you and reviewing your
-                  liability coverage.
+                  {copy(
+                    "New responsibilities can bring new questions. Let’s talk about protecting the people who depend on you and reviewing your liability coverage.",
+                  )}{" "}
                 </p>
-                <Link href="/life-insurance" className="text-link">
-                  Explore life insurance <span>↗</span>
+                <Link href={href("/life-insurance")} className="text-link">
+                  {copy("Explore life insurance")} <span>↗</span>
                 </Link>
               </div>
             </details>
@@ -318,10 +335,10 @@ export function TracysHome() {
                   <svg aria-hidden="true">
                     <use href="#icon-business" />
                   </svg>
-                  For your business
+                  {copy("For your business")}{" "}
                 </span>
                 <span className="coverage-tags">
-                  Property · Liability · Commercial auto
+                  {copy("Property · Liability · Commercial auto")}{" "}
                 </span>
                 <span className="expand" aria-hidden="true">
                   +
@@ -329,12 +346,12 @@ export function TracysHome() {
               </summary>
               <div className="coverage-content">
                 <p>
-                  From a certificate request to a new location, get help
-                  reviewing the coverage questions behind your next business
-                  decision.
+                  {copy(
+                    "From a certificate request to a new location, get help reviewing the coverage questions behind your next business decision.",
+                  )}{" "}
                 </p>
-                <Link href="/business-insurance" className="text-link">
-                  Explore business insurance <span>↗</span>
+                <Link href={href("/business-insurance")} className="text-link">
+                  {copy("Explore business insurance")} <span>↗</span>
                 </Link>
               </div>
             </details>
@@ -351,35 +368,38 @@ export function TracysHome() {
                 src="/homepage-assets/tracy.jpg"
                 width="350"
                 height="360"
-                alt="Tracy Zhang, the advisor behind Tracy’s Insurance"
+                alt={copy("Tracy Zhang, the advisor behind Tracy’s Insurance")}
                 loading="lazy"
               />
             </div>
             <div className="portrait-caption">
               <span>Tracy Zhang</span>
-              <span>Your local insurance advisor</span>
+              <span>{copy("Your local insurance advisor")}</span>
             </div>
           </div>
           <div className="team-copy reveal">
-            <p className="eyebrow">A NAME. A FACE. A LOCAL TEAM.</p>
+            <p className="eyebrow">{copy("A NAME. A FACE. A LOCAL TEAM.")}</p>
             <h2 id="team-title">
-              Real people.
-              <br />
-              Right here.
+              {copy("Real people.")} <br />
+              {copy("Right here.")}{" "}
             </h2>
             <p className="team-lead">
-              Insurance feels a little simpler when you know who to call.
+              {copy(
+                "Insurance feels a little simpler when you know who to call.",
+              )}{" "}
             </p>
             <p>
-              We’re Tracy Zhang and team. With offices in San Marino and La
-              Palma, we help our neighbors talk through coverage, make sense of
-              changes and take the next step.
+              {copy(
+                "We’re Tracy Zhang and team. With offices in San Marino and La Palma, we help our neighbors talk through coverage, make sense of changes and take the next step.",
+              )}{" "}
             </p>
             <p>
-              Ask your questions. Tell us what matters. We’ll meet you there.
+              {copy(
+                "Ask your questions. Tell us what matters. We’ll meet you there.",
+              )}{" "}
             </p>
             <a className="text-link" href="https://www.tracyzhang.com/">
-              Get to know Tracy <span>↗</span>
+              {copy("Get to know Tracy")} <span>↗</span>
             </a>
           </div>
         </section>
@@ -388,21 +408,22 @@ export function TracysHome() {
           aria-labelledby="language-title"
         >
           <div className="reveal">
-            <p className="eyebrow">LET’S SPEAK YOUR LANGUAGE</p>
+            <p className="eyebrow">{copy("LET’S SPEAK YOUR LANGUAGE")}</p>
             <h2 id="language-title">
-              A good conversation
-              <br />
-              starts with understanding.
+              {copy("A good conversation")} <br />
+              {copy("starts with understanding.")}{" "}
             </h2>
           </div>
           <div className="language-copy reveal">
             <p>
-              Tell us the language you’re most comfortable with.
+              {copy("Tell us the language you’re most comfortable with.")}{" "}
               <br />
-              We’ll connect you with the right person on our team.
+              {copy(
+                "We’ll connect you with the right person on our team.",
+              )}{" "}
             </p>
-            <ul aria-label="Languages available across our offices">
-              <li>English</li>
+            <ul aria-label={copy("Languages available across our offices")}>
+              <li>{copy("English")}</li>
               <li>
                 普通话 <span>Mandarin</span>
               </li>
@@ -413,14 +434,16 @@ export function TracysHome() {
                 台語 <span>Taiwanese</span>
               </li>
               <li>
-                Español <span>Spanish</span>
+                Español <span>{copy("Spanish")}</span>
               </li>
               <li>
-                Tiếng Việt <span>Vietnamese</span>
+                Tiếng Việt <span>{copy("Vietnamese")}</span>
               </li>
             </ul>
             <p className="fine">
-              Language availability varies by office. See office details below.
+              {copy(
+                "Language availability varies by office. See office details below.",
+              )}{" "}
             </p>
           </div>
         </section>
@@ -430,28 +453,28 @@ export function TracysHome() {
           aria-labelledby="offices-title"
         >
           <div className="section-heading reveal">
-            <p className="eyebrow">LOS ANGELES & ORANGE COUNTY</p>
+            <p className="eyebrow">{copy("LOS ANGELES & ORANGE COUNTY")}</p>
             <div className="heading-row">
               <h2 id="offices-title">
-                Around the corner.
-                <br />
-                On your side.
+                {copy("Around the corner.")} <br />
+                {copy("On your side.")}{" "}
               </h2>
               <p>
-                Come by, give us a call or send a message.
-                <br />
-                Choose the office that’s closest to you.
+                {copy("Come by, give us a call or send a message.")} <br />
+                {copy("Choose the office that’s closest to you.")}{" "}
               </p>
             </div>
           </div>
           <div className="office-grid">
             <OfficePanel
+              locale={locale}
               office={sanMarino}
               region="Los Angeles"
               image="san-marino.jpg"
               photo="The Huntington’s Chinese Garden, San Marino"
             />
             <OfficePanel
+              locale={locale}
               office={laPalma}
               region="Orange County"
               image="orange-county-beach.jpg"
@@ -465,34 +488,34 @@ export function TracysHome() {
           aria-labelledby="contact-title"
         >
           <div className="contact-top reveal">
-            <p className="eyebrow">YOUR NEXT STEP IS A CONVERSATION</p>
+            <p className="eyebrow">
+              {copy("YOUR NEXT STEP IS A CONVERSATION")}
+            </p>
             <span aria-hidden="true" className="contact-arrow">
               ↗
             </span>
           </div>
           <h2 className="reveal" id="contact-title">
-            Let’s talk about
-            <br />
-            what matters <span>to you.</span>
+            {copy("Let’s talk about")} <br />
+            {copy("what matters")} <span>{copy("to you.")}</span>
           </h2>
           <div className="contact-bottom reveal">
             <p>
-              A question, a change, a new chapter.
-              <br />
-              We’re here to talk it through.
+              {copy("A question, a change, a new chapter.")} <br />
+              {copy("We’re here to talk it through.")}{" "}
             </p>
             <div className="contact-actions">
               <a className="button light" href={`tel:${sanMarino.phoneE164}`}>
                 <svg aria-hidden="true">
                   <use href="#icon-phone" />
                 </svg>
-                Call {sanMarino.phoneDisplay} <span>↗</span>
+                {copy("Call")} {sanMarino.phoneDisplay} <span>↗</span>
               </a>
               <a href={`sms:${sanMarino.smsE164}`} className="text-link">
-                Text us <span>↗</span>
+                {copy("Text us")} <span>↗</span>
               </a>
               <a href={`mailto:${publicContact.email}`} className="text-link">
-                Email us <span>↗</span>
+                {copy("Email us")} <span>↗</span>
               </a>
             </div>
           </div>
@@ -503,37 +526,34 @@ export function TracysHome() {
           <a className="wordmark" href="#top">
             Tracy’s Insurance
           </a>
-          <p>Local roots. California life.</p>
+          <p>{copy("Local roots. California life.")}</p>
           <a href={`mailto:${publicContact.email}`}>
             {publicContact.email} <span>↗</span>
           </a>
         </div>
         <div className="footer-bottom">
           <p>© 2026 Tracy’s Insurance · Tracy Zhang & Team</p>
-          <nav aria-label="Site and legal links">
-            <Link href="/products">Coverage</Link>
-            <Link href="/stories">Guidance</Link>
-            <Link href="/contact">Contact</Link>
-            <Link href="/zh" hrefLang="zh-Hans">
-              中文
-            </Link>
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/terms">Terms</Link>
-            <Link href="/sms-terms">SMS terms</Link>
+          <nav aria-label={copy("Site and legal links")}>
+            <Link href={href("/products")}>{copy("Coverage")}</Link>
+            <Link href={href("/stories")}>{copy("Guidance")}</Link>
+            <Link href={href("/contact")}>{copy("Contact")}</Link>
+            <LanguageSwitch source="tracys_home_language" />
+            <Link href={href("/privacy")}>{copy("Privacy")}</Link>
+            <Link href={href("/terms")}>{copy("Terms")}</Link>
+            <Link href={href("/sms-terms")}>{copy("SMS terms")}</Link>
           </nav>
         </div>
         <p className="legal-copy">
-          Coverage availability, eligibility and terms vary by carrier, product,
-          underwriting and location. Contacting our team does not bind or change
-          coverage. Tracy’s Insurance is the agency’s marketing identity;
-          carrier and policy details are provided during your coverage review.
+          {copy(
+            "Coverage availability, eligibility and terms vary by carrier, product, underwriting and location. Contacting our team does not bind or change coverage. Tracy’s Insurance is the agency’s marketing identity; carrier and policy details are provided during your coverage review.",
+          )}{" "}
         </p>
         <details className="credits">
-          <summary>Photography credits</summary>
+          <summary>{copy("Photography credits")}</summary>
           <p>
             San Marino: Hickorypine,{" "}
             <a href="https://commons.wikimedia.org/wiki/File:Huntington_Library_Chinese_Garden.jpg">
-              The Huntington Chinese Garden
+              {copy("The Huntington Chinese Garden")}{" "}
             </a>
             ,{" "}
             <a href="https://creativecommons.org/licenses/by-sa/4.0/">
@@ -541,7 +561,7 @@ export function TracysHome() {
             </a>
             . Orange County: TeKappa,{" "}
             <a href="https://commons.wikimedia.org/wiki/File:Huntington_Beach_Pier_at_sunset.jpg">
-              Huntington Beach Pier at sunset
+              {copy("Huntington Beach Pier at sunset")}{" "}
             </a>
             ,{" "}
             <a href="https://creativecommons.org/licenses/by-sa/4.0/">
@@ -553,24 +573,24 @@ export function TracysHome() {
           </p>
         </details>
       </footer>
-      <nav className="mobile-contact" aria-label="Quick contact">
+      <nav className="mobile-contact" aria-label={copy("Quick contact")}>
         <a href={`tel:${sanMarino.phoneE164}`}>
           <svg aria-hidden="true">
             <use href="#icon-phone" />
           </svg>
-          Call
+          {copy("Call")}{" "}
         </a>
         <a href={`sms:${sanMarino.smsE164}`}>
           <svg aria-hidden="true">
             <use href="#icon-message" />
           </svg>
-          Text
+          {copy("Text")}{" "}
         </a>
         <a href={`mailto:${publicContact.email}`}>
           <svg aria-hidden="true">
             <use href="#icon-mail" />
           </svg>
-          Email
+          {copy("Email")}{" "}
         </a>
       </nav>
       <svg className="icon-library" aria-hidden="true">
@@ -607,16 +627,19 @@ export function TracysHome() {
   );
 }
 function OfficePanel({
+  locale,
   office,
   region,
   image,
   photo,
 }: {
+  locale: Locale;
   office: Office;
   region: string;
   image: string;
   photo: string;
 }) {
+  const copy = (text: string) => homepageCopy(locale, text);
   return (
     <article className="office reveal" id={office.id}>
       <div className="office-photo">
@@ -624,15 +647,17 @@ function OfficePanel({
           src={"/homepage-assets/" + image}
           width={1500}
           height={998}
-          alt={photo}
+          alt={copy(photo)}
           loading="lazy"
         />
-        <span>{region.toUpperCase()}</span>
+        <span>{copy(region).toUpperCase()}</span>
       </div>
       <div className="office-title">
         <div>
-          <h3>{region}</h3>
-          <p className="office-location">{office.label} office</p>
+          <h3>{copy(region)}</h3>
+          <p className="office-location">
+            {copy(office.label)} {copy("office")}
+          </p>
         </div>
         <a
           className="map-link"
@@ -651,17 +676,19 @@ function OfficePanel({
         {office.address.postalCode}
       </address>
       <p className="office-hours">
-        {office.hours.mondayFriday}
+        {copy(office.hours.mondayFriday)}
         <br />
-        Weekends by appointment
+        {copy("Weekends by appointment")}{" "}
       </p>
-      <p className="office-languages">{office.languages.join(" · ")}</p>
+      <p className="office-languages">
+        {office.languages.map(copy).join(" · ")}
+      </p>
       <div className="office-actions">
         <a href={"tel:" + office.phoneE164}>
           {office.phoneDisplay} <span>↗</span>
         </a>
         <a href={"sms:" + office.smsE164}>
-          Text <span>↗</span>
+          {copy("Text")} <span>↗</span>
         </a>
         <a
           href={
@@ -671,11 +698,12 @@ function OfficePanel({
             encodeURIComponent(office.label + " insurance inquiry")
           }
         >
-          Email <span>↗</span>
+          {copy("Email")} <span>↗</span>
         </a>
       </div>
       <p className="photo-note">
-        {photo}. Office in {office.label}.
+        {copy(photo)}
+        {copy(". Office in")} {copy(office.label)}.
       </p>
     </article>
   );

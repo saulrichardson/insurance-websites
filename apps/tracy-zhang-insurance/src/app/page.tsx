@@ -22,7 +22,7 @@ import {
 } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
-import { EmailAnchor, EmailButton, ScheduleAnchor, TextButton } from "@/components/ContactActions";
+import { EmailAnchor, EmailButton, TextButton } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
 import { site } from "@/config/site";
@@ -151,21 +151,21 @@ function LocalMarketHome({
   const moments = localMoments[market.id] ?? localMoments["la-palma"] ?? [];
 
   return (
-    <div className="bg-[#f4f6f0] text-[var(--ink)]">
-      <section className="overflow-hidden border-b border-[#284036]/15 bg-[#f4f6f0]">
+    <div className="bg-[var(--surface-muted)] text-[var(--ink)]">
+      <section className="overflow-hidden border-b border-[var(--ink)]/15 bg-[var(--surface-muted)]">
         <Container className="py-12 sm:py-16 lg:py-18">
           <div className="grid gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:items-start">
             <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-[#284036]/15 bg-white px-4 py-2 text-xs font-semibold uppercase text-[#52645b] shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
+              <div className="inline-flex items-center gap-3 rounded-full border border-[var(--ink)]/15 bg-white px-4 py-2 text-xs font-semibold uppercase text-[var(--muted)] shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
                 <span className="size-2 rounded-full bg-[var(--brand)]" />
                 {market.label} local office
               </div>
 
-              <h1 className="mt-8 max-w-3xl text-balance font-[var(--font-serif)] text-4xl leading-[0.98] text-[#173f3b] sm:text-5xl lg:text-[4.1rem] xl:text-[4.35rem]">
+              <h1 className="mt-8 max-w-3xl text-balance font-[var(--font-serif)] text-4xl leading-[0.98] text-[var(--ink)] sm:text-5xl lg:text-[4.1rem] xl:text-[4.35rem]">
                 {market.heroTitle}
               </h1>
 
-              <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-[#52645b] sm:text-xl">
+              <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-[var(--muted)] sm:text-xl">
                 {market.heroSubtitle}
               </p>
 
@@ -173,7 +173,7 @@ function LocalMarketHome({
                 {market.proofPoints.map((item) => (
                   <div
                     key={item}
-                    className="border-l-2 border-[var(--brand)] bg-white px-4 py-3 text-sm text-[#52645b] shadow-[0_1px_2px_rgba(15,23,42,0.06)]"
+                    className="border-l-2 border-[var(--brand)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-[0_1px_2px_rgba(15,23,42,0.06)]"
                   >
                     {item}
                   </div>
@@ -185,7 +185,7 @@ function LocalMarketHome({
                   className={buttonClasses({
                     variant: "secondary",
                     size: "lg",
-                    className: "rounded-lg bg-white text-[#173f3b]",
+                    className: "rounded-lg bg-white text-[var(--ink)]",
                   })}
                   href={`tel:${office.phoneE164}`}
                   eventName="phone_click"
@@ -216,10 +216,10 @@ function LocalMarketHome({
               <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
                 Local coverage paths
               </div>
-              <h2 className="mt-4 font-[var(--font-serif)] text-4xl leading-tight text-[#173f3b] sm:text-5xl">
+              <h2 className="mt-4 font-[var(--font-serif)] text-4xl leading-tight text-[var(--ink)] sm:text-5xl">
                 Start with the reason you are calling.
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-7 text-[#52645b]">
+              <p className="mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">
                 Home purchase, renewal change, new driver, lender request,
                 lease, certificate, or business deadline: the local office helps
                 sort the path before the quote conversation gets noisy.
@@ -232,15 +232,15 @@ function LocalMarketHome({
                 return (
                   <div
                     key={moment.title}
-                    className="min-h-[230px] border border-[#284036]/15 bg-[#f4f6f0] p-5 shadow-[0_10px_30px_rgba(23,63,59,0.08)]"
+                    className="min-h-[230px] border border-[var(--ink)]/15 bg-[var(--surface-muted)] p-5 shadow-[0_10px_30px_rgba(23,63,59,0.08)]"
                   >
-                    <span className="grid size-11 place-items-center border border-[#284036]/15 bg-white text-[var(--brand)]">
+                    <span className="grid size-11 place-items-center border border-[var(--ink)]/15 bg-white text-[var(--brand)]">
                       <Icon className="size-5" aria-hidden />
                     </span>
-                    <h3 className="mt-6 text-xl font-semibold text-[#173f3b]">
+                    <h3 className="mt-6 text-xl font-semibold text-[var(--ink)]">
                       {moment.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-[#52645b]">
+                    <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
                       {moment.body}
                     </p>
                   </div>
@@ -262,7 +262,7 @@ function LocalMarketHome({
         </Container>
       </section>
 
-      <section className="border-y border-[#284036]/15 bg-[#173f3b] text-white">
+      <section className="border-y border-[var(--ink)]/15 bg-[var(--ink)] text-white">
         <Container className="py-14 sm:py-16">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
@@ -309,7 +309,7 @@ function LatestCoverageNote({
   const source = `${market.id}_home_latest_note`;
 
   return (
-    <section className={local ? "bg-[#f4f6f0]" : "bg-[var(--surface)]"}>
+    <section className={local ? "bg-[var(--surface-muted)]" : "bg-[var(--surface)]"}>
       <Container className="relative z-10 -mt-7 pb-10 sm:-mt-8 sm:pb-12">
         <TrackedLink
           href={`/stories/${story.slug}`}
@@ -321,7 +321,7 @@ function LatestCoverageNote({
           className={cn(
             "group block overflow-hidden border bg-white shadow-[0_24px_70px_rgba(15,23,42,0.10)] outline-none transition focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2",
             local
-              ? "border-[#284036]/15 focus-visible:ring-offset-[#f4f6f0]"
+              ? "border-[var(--ink)]/15 focus-visible:ring-offset-[var(--surface-muted)]"
               : "border-[var(--rail-border)] focus-visible:ring-offset-[var(--surface)]",
           )}
         >
@@ -329,7 +329,7 @@ function LatestCoverageNote({
             <div
               className={cn(
                 "flex flex-row items-center justify-between gap-4 border-b p-4 lg:flex-col lg:items-start lg:border-b-0 lg:border-r lg:p-5",
-                local ? "border-[#284036]/12 bg-[#f9faf5]" : "border-[var(--rail-border)] bg-[#fffdf8]",
+                local ? "border-[var(--ink)]/12 bg-[#f9faf5]" : "border-[var(--rail-border)] bg-[#fffdf8]",
               )}
             >
               <div>
@@ -373,7 +373,7 @@ function LatestCoverageNote({
             <div
               className={cn(
                 "flex items-center justify-between gap-4 p-5 text-sm font-semibold text-[var(--ink)] lg:flex-col lg:items-start lg:justify-end lg:border-l",
-                local ? "border-[#284036]/12" : "border-[var(--rail-border)]",
+                local ? "border-[var(--ink)]/12" : "border-[var(--rail-border)]",
               )}
             >
               <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[var(--brand-ink)]">
@@ -395,7 +395,7 @@ function LocalLandmarkPanel({ market }: { market: MarketProfile }) {
   if (!market.localImage) return null;
 
   return (
-    <figure className="group relative min-h-[300px] overflow-hidden border border-[#284036]/15 bg-[#173f3b] shadow-[0_24px_70px_rgba(23,63,59,0.16)]">
+    <figure className="group relative min-h-[300px] overflow-hidden border border-[var(--ink)]/15 bg-[var(--ink)] shadow-[0_24px_70px_rgba(23,63,59,0.16)]">
       <Image
         src={market.localImage.src}
         alt={market.localImage.alt}
@@ -424,16 +424,16 @@ function LocalOfficeBoard({
 }) {
   return (
     <div className="grid gap-4">
-      <div className="border border-[#284036]/15 bg-white p-5 shadow-[0_24px_70px_rgba(23,63,59,0.16)] sm:p-6">
+      <div className="border border-[var(--ink)]/15 bg-white p-5 shadow-[0_24px_70px_rgba(23,63,59,0.16)] sm:p-6">
         <div className="flex items-start justify-between gap-5">
           <div>
-            <div className="text-xs font-semibold uppercase text-[#52645b]">
+            <div className="text-xs font-semibold uppercase text-[var(--muted)]">
               Local office
             </div>
-            <h2 className="mt-3 font-[var(--font-serif)] text-4xl leading-tight text-[#173f3b]">
+            <h2 className="mt-3 font-[var(--font-serif)] text-4xl leading-tight text-[var(--ink)]">
               {office.label}
             </h2>
-            <div className="mt-4 text-sm leading-6 text-[#52645b]">
+            <div className="mt-4 text-sm leading-6 text-[var(--muted)]">
               <div>{office.address.streetAddress}</div>
               <div>
                 {office.address.addressLocality}, {office.address.addressRegion}{" "}
@@ -441,31 +441,31 @@ function LocalOfficeBoard({
               </div>
             </div>
           </div>
-          <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#e7efe7] text-[#173f3b]">
+          <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#e7efe7] text-[var(--ink)]">
             <MapPin className="size-5" aria-hidden />
           </span>
         </div>
 
-        <div className="mt-7 grid gap-3 border-y border-[#284036]/12 py-5 sm:grid-cols-2">
+        <div className="mt-7 grid gap-3 border-y border-[var(--ink)]/12 py-5 sm:grid-cols-2">
           <div>
-            <div className="text-xs font-semibold uppercase text-[#52645b]">
+            <div className="text-xs font-semibold uppercase text-[var(--muted)]">
               Hours
             </div>
-            <div className="mt-2 text-sm leading-6 text-[#173f3b]">
+            <div className="mt-2 text-sm leading-6 text-[var(--ink)]">
               <div>{office.hours.mondayFriday}</div>
               <div>{office.hours.saturday}</div>
               <div>{office.hours.sunday}</div>
             </div>
           </div>
           <div>
-            <div className="text-xs font-semibold uppercase text-[#52645b]">
+            <div className="text-xs font-semibold uppercase text-[var(--muted)]">
               Languages
             </div>
             <div className="mt-2 flex flex-wrap gap-2">
               {office.languages.slice(0, 5).map((language) => (
                 <span
                   key={language}
-                  className="rounded-full border border-[#284036]/15 bg-[#f4f6f0] px-3 py-1 text-xs text-[#52645b]"
+                  className="rounded-full border border-[var(--ink)]/15 bg-[var(--surface-muted)] px-3 py-1 text-xs text-[var(--muted)]"
                 >
                   {language}
                 </span>
@@ -479,7 +479,7 @@ function LocalOfficeBoard({
             href={office.links.googleMaps}
             eventName="directions_click"
             eventProps={{ source: `${market.id}_office_board`, office: office.slug }}
-            className="inline-flex h-11 items-center justify-center gap-2 border border-[#284036]/20 px-5 text-sm font-semibold text-[#173f3b] hover:bg-[#f4f6f0]"
+            className="inline-flex h-11 items-center justify-center gap-2 border border-[var(--ink)]/20 px-5 text-sm font-semibold text-[var(--ink)] hover:bg-[var(--surface-muted)]"
           >
             Directions
             <ArrowRight className="size-4" aria-hidden />
@@ -496,7 +496,7 @@ function LocalOfficeBoard({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 border border-[#284036]/15 bg-[#173f3b] text-white">
+      <div className="grid grid-cols-3 border border-[var(--ink)]/15 bg-[var(--ink)] text-white">
         {market.merchandising.slice(0, 3).map((group, index) => (
           <TrackedLink
             key={group.title}
@@ -534,15 +534,15 @@ function LocalMerchandisingGroup({
   const groupProducts = getProducts(group.productIds);
 
   return (
-    <div className="grid gap-5 border border-[#284036]/15 bg-[#f4f6f0] p-5 shadow-[0_10px_30px_rgba(23,63,59,0.07)] md:grid-cols-[0.34fr_0.66fr]">
+    <div className="grid gap-5 border border-[var(--ink)]/15 bg-[var(--surface-muted)] p-5 shadow-[0_10px_30px_rgba(23,63,59,0.07)] md:grid-cols-[0.34fr_0.66fr]">
       <div>
         <div className="font-[var(--font-mono)] text-xs text-[var(--brand)]">
           {String(index + 1).padStart(2, "0")}
         </div>
-        <h3 className="mt-3 text-2xl font-semibold text-[#173f3b]">
+        <h3 className="mt-3 text-2xl font-semibold text-[var(--ink)]">
           {group.title}
         </h3>
-        <p className="mt-3 text-sm leading-6 text-[#52645b]">{group.intro}</p>
+        <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{group.intro}</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -556,12 +556,12 @@ function LocalMerchandisingGroup({
               product: product.title,
               destination: product.href,
             }}
-            className="group border border-[#284036]/12 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(23,63,59,0.12)]"
+            className="group border border-[var(--ink)]/12 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(23,63,59,0.12)]"
           >
-            <div className="text-sm font-semibold text-[#173f3b]">
+            <div className="text-sm font-semibold text-[var(--ink)]">
               {product.shortTitle}
             </div>
-            <p className="mt-2 text-xs leading-5 text-[#52645b]">
+            <p className="mt-2 text-xs leading-5 text-[var(--muted)]">
               {product.description}
             </p>
             <div className="mt-4 text-xs font-semibold text-[var(--brand-ink)]">
@@ -587,7 +587,7 @@ function GuidanceSection({
   local?: boolean;
 }) {
   return (
-    <section id="guidance" className={local ? "bg-[#f4f6f0]" : "bg-[var(--background)]"}>
+    <section id="guidance" className={local ? "bg-[var(--surface-muted)]" : "bg-[var(--background)]"}>
       <Container className="py-16 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
           <div>
@@ -664,7 +664,7 @@ function ContactSection({
   tone: "statewide" | "local";
 }) {
   return (
-    <section className={tone === "local" ? "bg-[#173f3b] text-white" : "bg-[var(--ink)] text-white"}>
+    <section className={tone === "local" ? "bg-[var(--ink)] text-white" : "bg-[var(--ink)] text-white"}>
       <Container className="py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
@@ -672,7 +672,7 @@ function ContactSection({
               Direct office contact
             </div>
             <h2 className="mt-4 font-[var(--font-serif)] text-4xl leading-tight sm:text-5xl">
-              Call, text, email, or schedule when the timing matters.
+              Call, text, or email when the timing matters.
             </h2>
             <p className="mt-5 text-base leading-7 text-white/70">
               New driver, new home, business contract, renewal, life change, or
@@ -747,11 +747,7 @@ function ContactSection({
               >
                 Email {site.contact.email}
               </EmailAnchor>
-              <ScheduleAnchor
-                source={`${market.id}_contact_section`}
-                eventProps={{ office: office.slug }}
-                className={buttonClasses({ variant: "outline", size: "md" })}
-              />
+
             </div>
           </div>
         </div>

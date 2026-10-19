@@ -77,7 +77,7 @@ export default function MotorcycleInsurancePage() {
 
       <PageCTA
         title="Get a motorcycle quote"
-        body="Call, text, email, or schedule a conversation. We’ll respond quickly with next steps."
+        body="Call, text, or email our team. We’ll respond quickly with next steps."
       />
     </div>
   );

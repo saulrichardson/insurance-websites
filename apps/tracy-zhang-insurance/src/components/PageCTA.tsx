@@ -1,17 +1,15 @@
 import { Container } from "@/components/Container";
 import { EmailButton, TextButton } from "@/components/ContactActions";
-import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
+import { TrackedAnchor } from "@/components/marketing-events";
 import { buttonClasses } from "@/components/ui/button";
-import { site } from "@/config/site";
 import { getOfficeById, type Office } from "@insurance-websites/domain";
 import { getRequestMarket } from "@/lib/market";
 
 export async function PageCTA({
-  title = "Ready to talk?",
-  body = "Call, text, or email the office. Tell us what changed, and we will help you understand the next step.",
+  title = "Let’s talk about what matters to you.",
+  body = "A question, a change, a new chapter. We’re here to talk it through.",
   office,
   quoteHref = "/contact",
-  quoteLabel = "Contact us",
   callLabel,
 }: {
   title?: string;
@@ -21,66 +19,50 @@ export async function PageCTA({
   quoteLabel?: string;
   callLabel?: string;
 }) {
-  const marketOffice = office ?? getOfficeById((await getRequestMarket()).primaryOfficeId);
-  const phoneDisplay = marketOffice.phoneDisplay ?? site.phoneDisplay;
-  const phoneE164 = marketOffice.phoneE164 ?? site.phoneE164;
+  const contact =
+    office ?? getOfficeById((await getRequestMarket()).primaryOfficeId);
   const locale = quoteHref.startsWith("/zh") ? "zh" : "en";
-  const defaultCallLabel = quoteHref.startsWith("/zh")
-    ? `致电 ${phoneDisplay}`
-    : `Call ${phoneDisplay}`;
-
   return (
-    <section className="border-t border-[var(--rail-border)] bg-[var(--ink)]">
-      <Container className="py-16">
-        <div className="grid items-center gap-8 lg:grid-cols-2">
+    <section className="page-cta">
+      <Container>
+        <p className="page-eyebrow">
+          {locale === "zh"
+            ? "下一步，从聊一聊开始"
+            : "YOUR NEXT STEP IS A CONVERSATION"}
+        </p>
+        <div className="page-cta-grid">
           <div>
-            <h2 className="text-2xl font-semibold text-white sm:text-3xl">
-              {title}
-            </h2>
-            <p className="mt-3 text-base leading-7 text-white/70">{body}</p>
+            <h2>{title}</h2>
+            <p>{body}</p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
+          <div className="direct-actions">
             <TrackedAnchor
-              className={buttonClasses({
-                variant: "secondary",
-                size: "lg",
-                className:
-                  "bg-white text-[var(--ink)] hover:bg-[var(--surface)] border border-white/10",
-              })}
-              href={`tel:${phoneE164}`}
+              className={buttonClasses({ size: "lg" })}
+              href={`tel:${contact.phoneE164}`}
               eventName="phone_click"
               eventProps={{
-                source: "tracy_zhang_insurance_page_cta",
-                phone: phoneDisplay,
+                source: "page_cta",
+                office: contact.id,
+                phone: contact.phoneDisplay,
               }}
             >
-              {callLabel ?? defaultCallLabel}
+              {callLabel ??
+                `${locale === "zh" ? "致电" : "Call"} ${contact.phoneDisplay}`}{" "}
+              <span aria-hidden>↗</span>
             </TrackedAnchor>
-            {marketOffice.smsE164 ? <TextButton
-              phone={marketOffice.smsE164}
+            <TextButton
+              phone={contact.smsE164}
               locale={locale}
-              source="tracy_zhang_insurance_page_cta"
-              eventProps={{ office: marketOffice.id }}
-              variant="secondary"
-              size="lg"
-              className="border border-white/50 bg-transparent text-white hover:bg-white hover:text-[var(--ink)]"
-            /> : null}
+              source="page_cta"
+              eventProps={{ office: contact.id }}
+              variant="ghost"
+            />
             <EmailButton
               locale={locale}
-              source="tracy_zhang_insurance_page_cta"
-              eventProps={{ office: marketOffice.id }}
-              variant="secondary"
-              size="lg"
-              className="border border-white/50 bg-transparent text-white hover:bg-white hover:text-[var(--ink)]"
+              source="page_cta"
+              eventProps={{ office: contact.id }}
+              variant="ghost"
             />
-            <TrackedLink
-              className="self-center text-sm font-medium text-white underline underline-offset-4"
-              href={quoteHref}
-              eventName="contact_click"
-              eventProps={{ source: "tracy_zhang_insurance_page_cta" }}
-            >
-              {quoteLabel}
-            </TrackedLink>
           </div>
         </div>
       </Container>

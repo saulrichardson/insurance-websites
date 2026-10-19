@@ -197,7 +197,7 @@ export default function ProductsPage() {
 
       <PageCTA
         title="Get started"
-        body="Call, text, email, or schedule a conversation. We’ll respond quickly and help you compare options."
+        body="Call, text, or email our team. We’ll respond quickly and help you compare options."
       />
     </div>
   );

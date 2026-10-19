@@ -25,7 +25,7 @@ export default function StoriesPage() {
 
   return (
     <div className="bg-[var(--background)]">
-      <section className="border-b border-[var(--rail-border)] bg-[#fbfaf4]">
+      <section className="border-b border-[var(--rail-border)] bg-[var(--background)]">
         <Container className="py-14 sm:py-18 lg:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,0.78fr)] lg:items-end">
             <div>
@@ -61,7 +61,7 @@ export default function StoriesPage() {
                   source: "tracy_zhang_insurance_stories_featured",
                   story: featuredStory.slug,
                 }}
-                className="group block rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fbfaf4]"
+                className="group block rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 <StoryVisual
                   image={featuredStory.image}
@@ -162,7 +162,7 @@ export default function StoriesPage() {
 
       <PageCTA
         title="Want the simple version?"
-        body="Call, text, email, or schedule a conversation. We’ll ask only what we need, then bring options you can compare."
+        body="Call, text, or email our team. We’ll ask only what we need, then bring options you can compare."
       />
     </div>
   );

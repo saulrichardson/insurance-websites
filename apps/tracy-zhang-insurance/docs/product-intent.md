@@ -136,3 +136,14 @@ available.
 - Do not send SMS campaigns until A2P 10DLC and consent requirements are ready.
 - Do not treat submitted auto leads as eligible until internal review accepts
   the lead under the then-current intake and quality procedures.
+
+## Approved visual continuity
+
+The owner wants the approved main homepage design carried through the public
+website, including Chinese pages. Use warm ivory, muted cinnabar, dark text and
+small antique-gold accents, a text-only Tracy’s Insurance wordmark without a
+period, and spacious editorial typography. Product, guidance, contact, office
+and legal content should feel part of the same agency while retaining the
+right information structure for each purpose. Chinese pages need native copy,
+readable line spacing and working localized navigation. Public conversion uses
+call, text and email without consumer intake forms.

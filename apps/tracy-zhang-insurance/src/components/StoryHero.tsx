@@ -27,7 +27,7 @@ export function StoryHero({
   backLabel?: string;
 }) {
   return (
-    <section className="border-b border-[var(--rail-border)] bg-[#fbfaf4]">
+    <section className="border-b border-[var(--rail-border)] bg-[var(--background)]">
       <Container className="py-12 sm:py-16 lg:py-18">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.98fr)_minmax(320px,0.72fr)] lg:items-end">
           <div>

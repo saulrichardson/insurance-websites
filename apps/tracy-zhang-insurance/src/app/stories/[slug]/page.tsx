@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { products } from "@insurance-websites/domain";
 
 import { Container } from "@/components/Container";
-import { EmailButton, ScheduleButton } from "@/components/ContactActions";
+import { EmailButton, } from "@/components/ContactActions";
 import { TrackedAnchor, TrackedLink } from "@/components/marketing-events";
 import { PageCTA } from "@/components/PageCTA";
 import { StoryHero } from "@/components/StoryHero";
@@ -216,7 +216,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
           <div>
             <StoryProse sections={story.sections} />
 
-            <div className="mt-14 rounded-lg border border-[#102625]/20 bg-[#102625] p-6 text-white shadow-[var(--shadow-lg)] sm:p-8">
+            <div className="mt-14 rounded-lg border border-[var(--ink-strong)]/20 bg-[var(--ink-strong)] p-6 text-white shadow-[var(--shadow-lg)] sm:p-8">
               <div className="text-sm font-semibold text-white">
                 Want help with your situation?
               </div>
@@ -257,13 +257,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
                 >
                   Contact the office
                 </TrackedLink>
-                <ScheduleButton
-                  source="tracy_zhang_insurance_story_cta"
-                  eventProps={{ story: story.slug }}
-                  variant="secondary"
-                  size="md"
-                  className="border-white/25 bg-white/10 text-white hover:bg-white hover:text-[var(--ink)]"
-                />
+
                 <EmailButton
                   source="tracy_zhang_insurance_story_cta"
                   eventProps={{ story: story.slug }}
@@ -332,7 +326,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
                       story: story.slug,
                       product: product.id,
                     }}
-                    className="rounded-lg border border-[var(--rail-border)] bg-white p-4 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fbfaf4]"
+                    className="rounded-lg border border-[var(--rail-border)] bg-white p-4 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--background)]"
                   >
                     <div className="font-semibold text-[var(--ink)]">
                       {product.title}

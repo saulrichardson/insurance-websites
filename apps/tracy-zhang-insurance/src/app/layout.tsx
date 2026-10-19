@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import "@/components/SiteChrome.css";
 
 import { SiteFrame } from "@/components/SiteFrame";
 import { SiteTelemetry } from "@/components/SiteTelemetry";
@@ -43,15 +44,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
-      {
-        url: "/favicon.ico",
-        type: "image/x-icon",
-        sizes: "16x16 32x32 48x48 64x64 128x128 256x256",
-      },
+      { url: "/homepage-assets/mark.svg", type: "image/svg+xml" },
     ],
     apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
-    shortcut: "/favicon.ico",
+    shortcut: "/homepage-assets/mark.svg",
   },
   alternates: {
     canonical: "/",

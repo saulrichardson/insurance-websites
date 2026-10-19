@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container";
-import { EmailAnchor, ScheduleAnchor } from "@/components/ContactActions";
+import { EmailAnchor, } from "@/components/ContactActions";
 import { PageCTA } from "@/components/PageCTA";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/Card";
@@ -18,7 +18,7 @@ export default async function ContactPage() {
   const isLocal = market.domainRole === "local";
   const visibleOffices = isLocal ? [office] : site.offices;
   const serviceArea = isLocal ? market.serviceArea : site.serviceArea;
-  const title = isLocal ? `Contact the ${market.label} office` : "Call, text, email, or schedule";
+  const title = isLocal ? `Contact the ${market.label} office` : "Let’s talk about what matters to you";
   const subtitle = isLocal
     ? `Tell us what changed, what you need covered, and how you prefer to be reached. The ${market.label} office will help shape the next step.`
     : "Tell us what changed, what you need covered, and how you prefer to be reached. We will route the next step to the right office.";
@@ -124,21 +124,8 @@ export default async function ContactPage() {
                           {item.hours.note}
                         </div>
                       ) : null}
-                      <ScheduleAnchor
-                        source="tracy_zhang_insurance_contact_page"
-                        eventProps={{ office: item.slug }}
-                        className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                      />
-                      {item.links?.appointment ? (
-                        <a
-                          className="mt-2 inline-flex font-medium text-slate-950 hover:underline"
-                          href={item.links.appointment}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Request an appointment →
-                        </a>
-                      ) : null}
+
+
                     </div>
                   </div>
 
@@ -227,11 +214,7 @@ export default async function ContactPage() {
                 >
                   Email {site.contact.email}
                 </EmailAnchor>
-                <ScheduleAnchor
-                  source="tracy_zhang_insurance_contact_direct"
-                  eventProps={{ office: office.slug }}
-                  className={buttonClasses({ variant: "outline", size: "md" })}
-                />
+
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">
                 Coverage is not bound until details are confirmed by the office

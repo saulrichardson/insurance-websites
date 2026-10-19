@@ -26,7 +26,7 @@ export function StoryVisual({
           className,
         )}
       >
-        <div className="relative aspect-[16/10] min-h-[210px] sm:min-h-[260px]">
+        <div className="relative aspect-[16/10] min-h-0 sm:min-h-[260px]">
           <Image
             src={image.src}
             alt={image.alt}
@@ -56,7 +56,7 @@ export function StoryVisual({
   return (
     <div
       className={cn(
-        "relative min-h-[300px] overflow-hidden rounded-lg border border-[#082628]/20 bg-[#102625] text-white shadow-[var(--shadow-lg)]",
+        "relative min-h-[300px] overflow-hidden rounded-lg border border-[var(--ink-strong)]/20 bg-[var(--ink-strong)] text-white shadow-[var(--shadow-lg)]",
         className,
       )}
       role="img"
@@ -66,7 +66,7 @@ export function StoryVisual({
         className="absolute inset-0 opacity-95"
         style={{
           background:
-            "linear-gradient(135deg, #102625 0%, #173f47 46%, #d8664f 100%)",
+            "linear-gradient(135deg, #352c28 0%, #594137 50%, #9b352d 100%)",
         }}
       />
       <div className="absolute inset-0 opacity-[0.16] rail-grid" />

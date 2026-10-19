@@ -86,7 +86,7 @@ export const site: SiteConfig = {
     "San Gabriel",
     "Arcadia",
     "Alhambra",
-    "Los Angeles County",
+    "Los Angeles",
     "Orange County",
   ],
   offerings: products.map((product) => ({

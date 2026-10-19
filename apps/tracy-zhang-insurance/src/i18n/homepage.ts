@@ -1,0 +1,136 @@
+import type { Locale } from "./routing";
+
+const zh: Record<string, string> = {
+  "What we cover": "保险保障",
+  "Our team": "我们的团队",
+  "Our offices": "办公室",
+  "Let’s talk": "聊一聊",
+  "Get in touch": "联系我们",
+  "TRACY ZHANG & TEAM · SOUTHERN CALIFORNIA": "TRACY ZHANG 及团队 · 南加州",
+  "For the life": "用心生活，",
+  "you’re": "让保障",
+  "building.": "一路相伴。",
+  "Your first car. Your family’s home. Whatever comes next.":
+    "第一辆车、温暖的家，以及人生的每一个新阶段。",
+  "Let’s find a way forward, together.": "我们陪您理清选择，安心迈出下一步。",
+  "Call our team": "致电团队",
+  "Text us": "发短信",
+  "Email us": "发邮件",
+  "Rooted in": "扎根",
+  "Los Angeles": "洛杉矶",
+  "Orange County": "橙县",
+  "Here for you across California.": "为加州客户提供保险咨询。",
+  "OUR CORNER OF CALIFORNIA": "我们熟悉的南加州",
+  "San Marino, CA": "加州圣马力诺",
+  "A little closer": "熟悉的社区，",
+  "to home.": "贴心的陪伴。",
+  "GOOD GUIDANCE STARTS HERE": "从一次清楚的沟通开始",
+  "COVERAGE FOR YOUR EVERYDAY. AND YOUR NEXT CHAPTER.":
+    "照顾当下，也为下一站做好准备",
+  "Life changes.": "生活在变，",
+  "Let’s keep you covered.": "保障也值得重新看看。",
+  "A new driver, a move, a renewal that looks different.":
+    "家里多了一位驾驶员、准备搬家，或续保条件有了变化。",
+  "Start with what’s on your mind. We’ll help you":
+    "从您关心的问题开始，我们帮您",
+  "understand your options and your next step.": "了解可选方案，理清下一步。",
+  "On the road": "出行保障",
+  "Auto · Motorcycle · Boat": "汽车 · 摩托车 · 船艇",
+  "A new car, a teen driver or a policy coming up for renewal. Talk through limits, deductibles and what fits the way you drive.":
+    "买新车、孩子开始开车，或保单即将续保？一起了解保额、自付额，以及适合您用车情况的保障。",
+  "Explore auto insurance": "了解汽车保险",
+  "At home": "家的保障",
+  "Home · Condo · Renters": "房屋 · 公寓 · 租客",
+  "Buying, renting or reviewing a changing renewal? Get help understanding property coverage and the questions worth asking about your home.":
+    "买房、租房，或续保条件发生变化？我们帮您了解财产保障，以及与您的住所相关的重要问题。",
+  "Explore home insurance": "了解房屋保险",
+  "For your people": "关爱家人",
+  "Life · Umbrella": "人寿 · 伞险",
+  "New responsibilities can bring new questions. Let’s talk about protecting the people who depend on you and reviewing your liability coverage.":
+    "人生多了一份责任，也会有新的保障需求。一起聊聊家人的保障，以及个人责任险是否需要调整。",
+  "Explore life insurance": "了解人寿保险",
+  "For your business": "经营保障",
+  "Property · Liability · Commercial auto": "财产 · 责任 · 商业汽车",
+  "From a certificate request to a new location, get help reviewing the coverage questions behind your next business decision.":
+    "从保险证明到新店开业，我们帮您理清经营决策背后的保障问题。",
+  "Explore business insurance": "了解商业保险",
+  "Your local insurance advisor": "您身边的保险顾问",
+  "A NAME. A FACE. A LOCAL TEAM.": "认识顾问，也认识您的本地团队",
+  "Real people.": "熟悉的人，",
+  "Right here.": "就在身边。",
+  "Insurance feels a little simpler when you know who to call.":
+    "知道有谁可以联系，保险问题就更容易说清楚。",
+  "We’re Tracy Zhang and team. With offices in San Marino and La Palma, we help our neighbors talk through coverage, make sense of changes and take the next step.":
+    "我们是 Tracy Zhang 及团队，在圣马力诺和拉帕尔马设有办公室。我们陪社区里的客户了解保障、应对变化，并安排下一步。",
+  "Ask your questions. Tell us what matters. We’ll meet you there.":
+    "有问题，尽管问。告诉我们您在意什么，我们一起商量。",
+  "Get to know Tracy": "认识 Tracy",
+  "LET’S SPEAK YOUR LANGUAGE": "用您习惯的语言沟通",
+  "A good conversation": "沟通顺畅，",
+  "starts with understanding.": "才更容易理解。",
+  "Tell us the language you’re most comfortable with.":
+    "告诉我们您最习惯使用哪种语言。",
+  "We’ll connect you with the right person on our team.":
+    "我们会帮您联系团队中合适的同事。",
+  English: "英语",
+  Mandarin: "普通话",
+  Cantonese: "粤语",
+  Taiwanese: "台语",
+  Spanish: "西班牙语",
+  Vietnamese: "越南语",
+  "Language availability varies by office. See office details below.":
+    "各办公室提供的语言服务不同，请参阅下方详情。",
+  "LOS ANGELES & ORANGE COUNTY": "洛杉矶与橙县",
+  "Around the corner.": "离您更近，",
+  "On your side.": "为您着想。",
+  "Come by, give us a call or send a message.":
+    "欢迎到访、致电，或给我们留言。",
+  "Choose the office that’s closest to you.": "选择离您方便的办公室。",
+  "YOUR NEXT STEP IS A CONVERSATION": "下一步，从聊一聊开始",
+  "Let’s talk about": "您在意的事，",
+  "what matters": "我们愿意",
+  "to you.": "认真听。",
+  "A question, a change, a new chapter.": "一个问题、一次变化、人生的新篇章。",
+  "We’re here to talk it through.": "我们愿意陪您一起理清。",
+  Call: "致电",
+  Text: "短信",
+  Email: "邮件",
+  "Local roots. California life.": "扎根社区，陪伴加州生活。",
+  Coverage: "保险产品",
+  Guidance: "保险指南",
+  Contact: "联系我们",
+  Privacy: "隐私政策",
+  Terms: "使用条款",
+  "SMS terms": "短信条款",
+  "Coverage availability, eligibility and terms vary by carrier, product, underwriting and location. Contacting our team does not bind or change coverage. Tracy’s Insurance is the agency’s marketing identity; carrier and policy details are provided during your coverage review.":
+    "保障是否可提供、投保资格及条款，取决于保险公司、产品、核保条件和地区。联系团队不会使保障自动生效或变更。Tracy’s Insurance 为本机构的推广名称，保险公司及保单详情将在咨询时说明。",
+  "Photography credits": "图片来源",
+  "The Huntington Chinese Garden": "亨廷顿中国园",
+  "Huntington Beach Pier at sunset": "日落时的亨廷顿海滩码头",
+  office: "办公室",
+  "Weekends by appointment": "周末可预约",
+  ". Office in": "。办公室位于",
+  "Mon-Fri: 9:00am-6:00pm": "周一至周五：上午9点至下午6点",
+  "Mon-Fri: 9:00am-5:30pm": "周一至周五：上午9点至下午5点半",
+  "San Marino": "圣马力诺",
+  "La Palma": "拉帕尔马",
+  "Green trees and a lakeside pavilion at The Huntington’s Chinese Garden in San Marino":
+    "圣马力诺亨廷顿中国园的绿树与湖畔亭阁",
+  "Tracy Zhang, the advisor behind Tracy’s Insurance":
+    "Tracy’s Insurance 保险顾问 Tracy Zhang",
+  "The Huntington’s Chinese Garden, San Marino": "圣马力诺亨廷顿中国园",
+  "Huntington Beach Pier, Orange County": "橙县亨廷顿海滩码头",
+  "Main navigation": "主导航",
+  "Mobile navigation": "手机导航",
+  "Quick contact": "快捷联系",
+  "Site and legal links": "网站与条款",
+  "Open navigation": "打开导航",
+  "Close navigation": "关闭导航",
+  "Explore what we cover": "了解我们的保险服务",
+  "Languages available across our offices": "各办公室提供的语言服务",
+  "Tracy’s Insurance home": "Tracy’s Insurance 首页",
+};
+
+export function homepageCopy(locale: Locale, text: string): string {
+  return locale === "zh" ? (zh[text] ?? text) : text;
+}

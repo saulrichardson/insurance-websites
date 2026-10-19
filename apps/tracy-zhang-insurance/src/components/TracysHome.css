@@ -1634,3 +1634,81 @@
 .tracys-home .office-languages {
   max-width: 480px;
 }
+
+/* Chinese uses the same composition with language-specific line lengths. */
+.tracys-home[lang="zh-Hans"] h1,
+.tracys-home[lang="zh-Hans"] h2,
+.tracys-home[lang="zh-Hans"] h3 {
+  letter-spacing: 0;
+  line-height: 1.4;
+  font-family: TracysHome, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.tracys-home[lang="zh-Hans"] .hero h1 {
+  font-size: clamp(48px, 5.7vw, 84px);
+}
+.tracys-home[lang="zh-Hans"] .hero h1 span {
+  display: block;
+}
+.tracys-home[lang="zh-Hans"] .heading-row h2,
+.tracys-home[lang="zh-Hans"] .team h2 {
+  font-size: clamp(33px, 3.6vw, 54px);
+}
+.tracys-home[lang="zh-Hans"] .contact h2 {
+  font-size: clamp(40px, 5.7vw, 82px);
+}
+.tracys-home[lang="zh-Hans"] p {
+  line-height: 1.95;
+}
+.tracys-home[lang="zh-Hans"] .hero-copy {
+  padding-top: 55px;
+  padding-bottom: 65px;
+}
+.tracys-home .language-link {
+  font-size: 11px;
+  min-height: 44px;
+  min-width: 36px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  .tracys-home[lang="zh-Hans"] .hero h1 {
+    font-size: 44px;
+    line-height: 1.35;
+  }
+  .tracys-home[lang="zh-Hans"] .hero-copy {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .tracys-home[lang="zh-Hans"] .hero-description {
+    font-size: 13px;
+  }
+  .tracys-home[lang="zh-Hans"] .contact h2 {
+    font-size: 41px;
+  }
+  .tracys-home[lang="zh-Hans"] .hero-actions {
+    gap: 20px;
+  }
+  .tracys-home[lang="zh-Hans"] .coverage-name {
+    font-size: 20px;
+  }
+  .tracys-home[lang="zh-Hans"] .contact-actions .button {
+    font-size: 13px;
+  }
+}
+
+.tracys-home .home-mobile-language {
+  display: none;
+}
+@media (max-width: 600px) {
+  .tracys-home .home-mobile-language {
+    display: block;
+    margin-left: auto;
+  }
+  .tracys-home .menu-toggle {
+    margin-left: 0;
+  }
+  .tracys-home .header {
+    gap: 12px;
+  }
+}

@@ -728,6 +728,20 @@ function requireZhStoryContent(story: { slug: string }) {
   return localized;
 }
 
+const zhStoryImages: Record<string, Pick<StoryImage, "alt" | "caption">> = {
+  "/story-images/cheapest-insurance-hero.webp": {
+    alt: "保险咨询桌上的房屋模型、车钥匙、保单文件和雨伞。",
+    caption: "续保时看得到价格，需要保障时才体会到价值。",
+  },
+};
+
+function localizeStoryImage(image: StoryImage | undefined): StoryImage | undefined {
+  if (!image) return undefined;
+  const copy = zhStoryImages[image.src];
+  if (!copy) throw new Error("Missing Chinese image description for " + image.src);
+  return { ...image, ...copy };
+}
+
 export const zhStories: LocalizedStory[] = stories.map((story) => {
   const localized = requireZhStoryContent(story);
   return {
@@ -735,7 +749,7 @@ export const zhStories: LocalizedStory[] = stories.map((story) => {
     slug: story.slug,
     dateISO: story.dateISO,
     relatedProductIds: story.relatedProductIds,
-    image: story.image,
+    image: localizeStoryImage(story.image),
   };
 });
 

@@ -80,7 +80,7 @@ export default function CondoInsurancePage() {
 
       <PageCTA
         title="Get a condo quote"
-        body="Call, text, email, or schedule a conversation. We’ll make the HOA coordination simple."
+        body="Call, text, or email our team. We’ll make the HOA coordination simple."
       />
     </div>
   );

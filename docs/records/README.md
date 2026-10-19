@@ -74,3 +74,5 @@ future agents should remember.
 - `2026-10-18-website-brand-domain-migration.md`: live agency branding and public email, deployed canonical-domain migration, permanent redirects, Google move request, Analytics updates, verification and rollback.
 - `2026-10-18-tracys-homepage-preview.md`: working main-brand homepage preview, responsive checks, deployment and integration boundaries.
 - `2026-10-18-approved-homepage-launch.md`: approved design integrated into the main Next.js homepage, responsive checks, contact tracking, production deployment and rollback reference.
+
+- `2026-10-18-site-wide-design.md`: shared English/Chinese agency design, direct contact, mobile audits, local-office routing and deployment.
