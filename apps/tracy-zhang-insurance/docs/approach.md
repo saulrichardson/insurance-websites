@@ -372,3 +372,23 @@ Do not use the nested-app `vercel build --prebuilt` flow for this app right
 now. It has failed on Vercel's pnpm workspace tracing/output packaging path.
 The public app also intentionally avoids Next middleware/proxy; the admin gate
 belongs in server-side page/action code.
+
+## Main homepage design
+
+The English canonical homepage uses `src/components/TracysHome.tsx` and its
+scoped `TracysHome.css`. The owner approved the warm ivory, muted cinnabar and
+antique-gold design after reviewing the standalone preview. Keep the text-only
+wordmark without a period. Regional headings are Los Angeles and Orange County,
+with the real San Marino and La Palma office labels and shared contact facts.
+
+`SiteFrame` selects the homepage's own header, main and footer only for `/`
+on the canonical market. All other pages, Chinese routes and local-domain
+homepages retain the existing application frame. The layout continues to emit
+shared structured data, site telemetry and visitor attribution. The homepage
+uses the shared marketing-event function for phone, text and email clicks and
+reads office facts and the public email from the shared domain package.
+
+Production assets are in `public/homepage-assets/`. Image source and license
+credits are included in the footer. The raw approved preview remains under
+`previews/tracys-insurance/`; it is a design record rather than the production
+entry point. Do not deploy that static directory over the full Next.js app.

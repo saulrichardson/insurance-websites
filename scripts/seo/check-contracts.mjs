@@ -480,8 +480,8 @@ function buildInsurancePageContracts() {
       canonical: expectedUrl(insuranceOrigin, "/"),
       alternates: buildLocalizedAlternates(insuranceOrigin, "/"),
       schemaTypes: ["InsuranceAgency", "WebSite"],
-      internalPaths: ["/products", "/contact", "/stories"],
-      includes: contactIncludes,
+      internalPaths: ["/products", "/contact", "/stories", "/zh"],
+      includes: [publicContact.email, "Los Angeles", "Orange County"],
     },
     {
       path: "/zh",

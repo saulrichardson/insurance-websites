@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { RouteTransition } from "@insurance-websites/ui/route-transition";
+import { SiteFrame } from "@/components/SiteFrame";
 import { SiteTelemetry } from "@/components/SiteTelemetry";
 import { VisitorCapture } from "@/components/VisitorCapture";
 import { site, siteUrl } from "@/config/site";
@@ -100,11 +98,7 @@ export default async function RootLayout({
         >
           Skip to content
         </a>
-        <Header market={market} office={office} />
-        <main id="main">
-          <RouteTransition>{children}</RouteTransition>
-        </main>
-        <Footer market={market} office={office} />
+        <SiteFrame market={market} office={office}>{children}</SiteFrame>
 
         <script
           type="application/ld+json"

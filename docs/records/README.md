@@ -73,3 +73,4 @@ future agents should remember.
 - `2026-10-18-email-delivery-and-service-ownership.md`: native Chrome verification, saved sender/signature settings, three passing delivery tests, service owners, verified recovery configuration, and the subsequent website release scope.
 - `2026-10-18-website-brand-domain-migration.md`: live agency branding and public email, deployed canonical-domain migration, permanent redirects, Google move request, Analytics updates, verification and rollback.
 - `2026-10-18-tracys-homepage-preview.md`: working main-brand homepage preview, responsive checks, deployment and integration boundaries.
+- `2026-10-18-approved-homepage-launch.md`: approved design integrated into the main Next.js homepage, responsive checks, contact tracking, production deployment and rollback reference.

@@ -1,3 +1,4 @@
+import { TracysHome } from "@/components/TracysHome";
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
@@ -10,7 +11,6 @@ import {
   MapPin,
   Phone,
   ShieldCheck,
-  Sparkles,
   Store,
 } from "lucide-react";
 import {
@@ -40,6 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
+    ...(market.domainRole === "canonical" ? { icons: { icon: "/homepage-assets/mark.svg", shortcut: "/homepage-assets/mark.svg" } } : {}),
     alternates: localizedAlternates("/", url),
     openGraph: {
       type: "website",
@@ -56,52 +57,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
-const statewideLanes = [
-  {
-    title: "Household",
-    note: "Drivers, homes, renters, condos, and umbrella limits reviewed together.",
-    href: "/products#household",
-    icon: HomeIcon,
-    productIds: ["auto", "home", "condo", "renters", "umbrella"] satisfies ProductId[],
-  },
-  {
-    title: "Property",
-    note: "California renewal pressure, lender requests, FAIR Plan questions, and gaps.",
-    href: "/california-property-insurance",
-    icon: Building2,
-    productIds: ["home", "condo", "fair-plan", "california-property"] satisfies ProductId[],
-  },
-  {
-    title: "Family",
-    note: "Life milestones, liability exposure, young drivers, and long-term planning.",
-    href: "/life-insurance",
-    icon: ShieldCheck,
-    productIds: ["life", "umbrella", "auto", "home"] satisfies ProductId[],
-  },
-  {
-    title: "Business",
-    note: "Certificates, contracts, property, commercial auto, and specialty placement.",
-    href: "/business-insurance",
-    icon: Store,
-    productIds: ["business", "auto", "umbrella"] satisfies ProductId[],
-  },
-];
-
-const statewideProcess = [
-  {
-    title: "Name the event",
-    body: "A renewal, driver, home purchase, lease, contract, certificate, lender request, or family decision gives the review its shape.",
-  },
-  {
-    title: "Compare the tradeoffs",
-    body: "Limits, deductibles, exclusions, bundle effects, carrier appetite, and timing are reviewed before the quote path is treated as clear.",
-  },
-  {
-    title: "Keep the next step usable",
-    body: "The coverage question, documents, timing, and follow-up all stay tied to the same conversation so you do not have to start over with each conversation.",
-  },
-];
 
 const localMoments: Partial<
   Record<
@@ -181,180 +136,7 @@ export default async function Home() {
     );
   }
 
-  return (
-    <StatewideHome
-      market={market}
-      office={office}
-      featuredStories={featuredStories}
-    />
-  );
-}
-
-function StatewideHome({
-  market,
-  office,
-  featuredStories,
-}: {
-  market: MarketProfile;
-  office: ReturnType<typeof getOfficeById>;
-  featuredStories: Story[];
-}) {
-  return (
-    <div className="bg-[var(--background)] text-[var(--ink)]">
-      <section className="overflow-hidden bg-[var(--ink)] text-white">
-        <Container className="relative py-10 sm:py-12 lg:py-14">
-          <div className="absolute inset-y-0 right-[-18%] hidden w-[56%] border-x border-white/8 bg-[linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:34px_34px] lg:block" />
-
-          <div className="relative grid gap-10 lg:grid-cols-[0.84fr_1.16fr] lg:items-center">
-            <div>
-              <div className="inline-flex items-center gap-3 border border-white/15 bg-white/6 px-3 py-2 text-xs font-semibold uppercase text-white/70">
-                <span className="size-2 bg-[var(--brand)]" />
-                {market.eyebrow}
-                <span className="h-3 w-px bg-white/20" />
-                Statewide coverage desk
-              </div>
-
-              <h1 className="mt-6 max-w-3xl text-balance font-[var(--font-serif)] text-4xl leading-[0.98] text-white sm:text-5xl lg:text-[4rem] xl:text-[4.45rem]">
-                California insurance for what changed.
-              </h1>
-
-              <p className="mt-5 max-w-xl text-pretty text-base leading-7 text-white/72 sm:text-lg">
-                Guidance across home, auto, life, business, property, and
-                liability coverage, with local offices in San Marino and La
-                Palma and one clean path for quotes, documents, and follow-up.
-              </p>
-
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <TrackedAnchor
-                  className={buttonClasses({ variant: "secondary", size: "lg", className: "border-white/20 bg-white text-[var(--ink)] hover:bg-white/90" })}
-                  href={`tel:${office.phoneE164}`}
-                  eventName="phone_click"
-                  eventProps={{ source: "statewide_hero", phone: office.phoneDisplay }}
-                >
-                  <Phone className="size-4" aria-hidden />
-                  Call {office.phoneDisplay}
-                </TrackedAnchor>
-                <TrackedAnchor
-                  className={buttonClasses({ variant: "ghost", size: "lg", className: "border border-white/20 text-white hover:bg-white/10 hover:text-white" })}
-                  href={`sms:${office.smsE164}`}
-                  eventName="sms_click"
-                  eventProps={{ source: "statewide_hero", office: office.id, phone: office.smsE164 }}
-                >Text the office</TrackedAnchor>
-                <EmailButton source="statewide_hero" variant="ghost" size="lg" className="border border-white/20 text-white hover:bg-white/10 hover:text-white" />
-              </div>
-
-              <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
-                {[
-                  ["2", "local offices"],
-                  [`${site.languages.length}`, "supported languages"],
-                  ["580+", "public reviews"],
-                ].map(([value, label]) => (
-                  <div key={label} className="border border-white/12 bg-white/6 p-4">
-                    <div className="font-[var(--font-serif)] text-3xl leading-none text-white">
-                      {value}
-                    </div>
-                    <div className="mt-2 text-xs uppercase text-white/55">
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <StatewideCoverageLedger market={market} />
-          </div>
-        </Container>
-      </section>
-
-      <LatestCoverageNote market={market} story={stories[0]} />
-
-      <section id="coverage" className="bg-[var(--surface)]">
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
-            <div className="max-w-xl">
-              <div className="text-xs font-semibold uppercase text-[var(--brand-ink)]">
-                Coverage portfolio
-              </div>
-              <h2 className="mt-4 font-[var(--font-serif)] text-4xl leading-tight text-[var(--ink)] sm:text-5xl">
-                A broad insurance front door, not a single-product pitch.
-              </h2>
-              <p className="mt-5 text-base leading-7 text-[var(--muted)]">
-                Visitors arrive with life events, property pressure, business
-                deadlines, and renewal questions. The site presents coverage by
-                the reason someone is calling, then lets them move into the
-                product details only when those details matter.
-              </p>
-            </div>
-
-            <div className="grid gap-4">
-              {statewideLanes.map((lane, index) => (
-                <StatewideLane key={lane.title} lane={lane} index={index} />
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section
-        id="business"
-        className="border-y border-[var(--rail-border)] bg-[var(--background)]"
-      >
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
-            <div className="flex min-h-[420px] flex-col justify-between overflow-hidden bg-[#173f3b] p-7 text-white shadow-[var(--shadow-lg)] sm:p-9">
-              <div>
-                <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase text-white/60">
-                  <Sparkles className="size-4 text-[var(--gold)]" aria-hidden />
-                  Decision path
-                </div>
-                <h2 className="mt-5 font-[var(--font-serif)] text-4xl leading-tight sm:text-5xl">
-                  The quote starts after the situation is understood.
-                </h2>
-                <p className="mt-5 max-w-xl text-base leading-7 text-white/73">
-                  A useful quote starts with the details that actually change
-                  coverage: what happened, what needs protection, which
-                  documents matter, and what needs follow-up.
-                </p>
-              </div>
-
-              <div className="mt-12 grid grid-cols-3 gap-2 border-t border-white/15 pt-6">
-                {["Need", "Tradeoff", "Next step"].map((label, index) => (
-                  <div key={label}>
-                    <div className="font-[var(--font-mono)] text-xs text-[var(--gold)]">
-                      0{index + 1}
-                    </div>
-                    <div className="mt-2 text-sm text-white/72">{label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid content-start gap-3">
-              {statewideProcess.map((track, index) => (
-                <div
-                  key={track.title}
-                  className="grid gap-5 border border-[var(--rail-border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-sm)] sm:grid-cols-[0.62fr_1fr]"
-                >
-                  <div>
-                    <div className="font-[var(--font-mono)] text-xs text-[var(--brand)]">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-                    <h3 className="mt-3 text-xl font-semibold text-[var(--ink)]">
-                      {track.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm leading-6 text-[var(--muted)]">{track.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <GuidanceSection market={market} stories={featuredStories} />
-      <ContactSection market={market} office={office} tone="statewide" />
-    </div>
-  );
+  return <TracysHome />;
 }
 
 function LocalMarketHome({
@@ -630,139 +412,6 @@ function LocalLandmarkPanel({ market }: { market: MarketProfile }) {
         </div>
       </figcaption>
     </figure>
-  );
-}
-
-function StatewideCoverageLedger({ market }: { market: MarketProfile }) {
-  const productIds = pickBoardProducts(market);
-  const boardProducts = getProducts(productIds);
-
-  return (
-    <div className="relative overflow-hidden border border-white/14 bg-white/[0.055] shadow-[0_34px_100px_rgba(0,0,0,0.24)]">
-      <div className="flex items-start justify-between gap-5 border-b border-white/12 p-5 sm:p-6">
-        <div>
-          <div className="text-xs font-semibold uppercase text-white/48">
-            Coverage desk
-          </div>
-          <div className="mt-2 max-w-md text-2xl font-semibold leading-tight text-white">
-            Start with the change. Leave with the next move.
-          </div>
-        </div>
-        <ShieldCheck className="size-6 shrink-0 text-[var(--gold)]" aria-hidden />
-      </div>
-
-      <div>
-        {boardProducts.map((product, index) => (
-          <TrackedLink
-            key={product.id}
-            href={product.href}
-            eventName="product_click"
-            eventProps={{
-              source: "statewide_coverage_ledger",
-              product: product.title,
-              destination: product.href,
-            }}
-            className="group grid gap-4 border-b border-white/10 px-5 py-5 transition last:border-b-0 hover:bg-white/[0.06] sm:grid-cols-[56px_0.36fr_1fr_auto] sm:items-center sm:px-6"
-          >
-            <div className="font-[var(--font-mono)] text-xs text-[var(--brand)]">
-              {String(index + 1).padStart(2, "0")}
-            </div>
-            <h3 className="text-xl font-semibold text-white">
-              {product.shortTitle}
-            </h3>
-            <p className="text-sm leading-6 text-white/62">
-              {product.customerMoments.slice(0, 2).join(" / ")}
-            </p>
-            <ArrowRight
-              className="hidden size-4 text-white/36 transition group-hover:translate-x-0.5 group-hover:text-white sm:block"
-              aria-hidden
-            />
-          </TrackedLink>
-        ))}
-      </div>
-
-      <div className="grid border-t border-white/12 bg-white/[0.045] sm:grid-cols-3">
-        {[
-          ["Quote path", "when pricing is the next step"],
-          ["Document help", "when a form or certificate is needed"],
-          ["Policy review", "when the current fit is unclear"],
-        ].map(([label, body]) => (
-          <div
-            key={label}
-            className="border-b border-white/10 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
-          >
-            <div className="text-sm font-semibold text-white">{label}</div>
-            <div className="mt-2 text-xs leading-5 text-white/52">{body}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function StatewideLane({
-  lane,
-  index,
-}: {
-  lane: (typeof statewideLanes)[number];
-  index: number;
-}) {
-  const Icon = lane.icon;
-  const laneProducts = getProducts(lane.productIds);
-
-  return (
-    <div className="grid gap-5 border border-[var(--rail-border)] bg-[var(--background)] p-5 shadow-[var(--shadow-sm)] md:grid-cols-[0.38fr_0.62fr]">
-      <div>
-        <div className="flex items-center gap-3">
-          <span className="grid size-10 place-items-center bg-[var(--ink)] text-white">
-            <Icon className="size-5" aria-hidden />
-          </span>
-          <span className="font-[var(--font-mono)] text-xs text-[var(--brand)]">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
-        <h3 className="mt-5 text-2xl font-semibold text-[var(--ink)]">
-          {lane.title}
-        </h3>
-        <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{lane.note}</p>
-        <TrackedLink
-          href={lane.href}
-          eventName="product_click"
-          eventProps={{
-            source: "statewide_lane",
-            group: lane.title,
-            destination: lane.href,
-          }}
-          className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-ink)] underline underline-offset-4"
-        >
-          Open path
-          <ArrowRight className="size-4" aria-hidden />
-        </TrackedLink>
-      </div>
-
-      <div className="grid gap-3 sm:grid-cols-2">
-        {laneProducts.map((product) => (
-          <TrackedLink
-            key={product.id}
-            href={product.href}
-            eventName="product_click"
-            eventProps={{
-              source: "statewide_lane_product",
-              group: lane.title,
-              product: product.title,
-            }}
-            className="group border border-[var(--rail-border)] bg-[var(--surface)] p-4 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
-          >
-            <div className="text-sm font-semibold text-[var(--ink)]">
-              {product.shortTitle}
-            </div>
-            <p className="mt-2 text-xs leading-5 text-[var(--muted)]">
-              {product.customerMoments.join(" / ")}
-            </p>
-          </TrackedLink>
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -1141,15 +790,4 @@ function getProducts(productIds: ProductId[]): Product[] {
   return productIds
     .map((id) => products.find((product) => product.id === id))
     .filter((product): product is Product => Boolean(product));
-}
-
-function pickBoardProducts(market: MarketProfile): ProductId[] {
-  const seen = new Set<ProductId>();
-  for (const group of market.merchandising) {
-    for (const productId of group.productIds) {
-      seen.add(productId);
-      if (seen.size === 4) return Array.from(seen);
-    }
-  }
-  return ["auto", "home", "life", "business"];
 }
