@@ -35,9 +35,9 @@ market-specific routing and SEO contracts.
 The static Vercel Build Output deployment is READY on the existing
 san-marino-insurance project, with no production target or domain changes:
 
-https://san-marino-insurance-e3p6rvk68-saulrichardsons-projects.vercel.app
+https://san-marino-insurance-4c6edtb92-saulrichardsons-projects.vercel.app
 
-Deployment ID: `dpl_GtjNnpmtwb78bSQY4ruG6ij5Dj3G`.
+Deployment ID: `dpl_4EsKUSXqpjBegwAMTb7qoQFBsUbD`.
 The preview has HTML noindex metadata and an X-Robots-Tag header. Existing
 Vercel preview access policies still apply. Its local equivalent is served at
 http://127.0.0.1:8848/ while the development server is running.
@@ -79,3 +79,7 @@ City Hall as Orange County imagery, with source and license in the page footer.
 The addresses, telephone numbers and office-specific language lists are unchanged.
 
 Use “Los Angeles” without “County” in the public region labels. Orange County retains its full name.
+
+The owner rejected the saturated blue closing contact section. It now uses
+a warm ivory surface, dark text and a charcoal-green call button. Keep the
+closing section quiet rather than returning to a large bright blue block.

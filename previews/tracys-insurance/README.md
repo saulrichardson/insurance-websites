@@ -6,7 +6,7 @@ application so the design can be reviewed before integration.
 
 ## View
 
-- Hosted preview: https://san-marino-insurance-e3p6rvk68-saulrichardsons-projects.vercel.app
+- Hosted preview: https://san-marino-insurance-4c6edtb92-saulrichardsons-projects.vercel.app
 - Local preview while the development server is running: http://127.0.0.1:8848/
 - To serve this directory again with a static file server, use this directory as
   the document root. No compilation or app environment variables are needed.
