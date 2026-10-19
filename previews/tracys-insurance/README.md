@@ -6,7 +6,7 @@ application so the design can be reviewed before integration.
 
 ## View
 
-- Hosted preview: https://san-marino-insurance-4c6edtb92-saulrichardsons-projects.vercel.app
+- Hosted preview: https://san-marino-insurance-khl9diklv-saulrichardsons-projects.vercel.app
 - Local preview while the development server is running: http://127.0.0.1:8848/
 - To serve this directory again with a static file server, use this directory as
   the document root. No compilation or app environment variables are needed.
@@ -18,7 +18,7 @@ preview access policy may require signing into the owner's account.
 
 ## Design
 
-The minimalist composition uses a soft blue full-width first section, large
+The minimalist composition uses a warm ivory full-width first section, large
 Plus Jakarta Sans type and a San Marino community photograph. Coverage is
 organized around everyday situations, followed by Tracy's introduction,
 language support, Los Angeles and Orange County, with the real San Marino and La Palma offices and a final contact section. A mobile

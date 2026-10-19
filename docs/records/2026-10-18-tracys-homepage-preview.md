@@ -11,7 +11,7 @@ contact. Consumer intake forms are excluded.
 ## Design and implementation
 
 The preview lives at `previews/tracys-insurance/` and uses the main-brand
-minimalist direction from the earlier domain design study: a soft blue canvas,
+minimalist direction from the earlier domain design study: a warm ivory canvas,
 large typography, real local imagery, limited navigation and clear contact
 choices. It introduces the agency through everyday coverage questions, Tracy's
 portrait, supported languages and the two actual offices. San Marino's garden
@@ -35,9 +35,9 @@ market-specific routing and SEO contracts.
 The static Vercel Build Output deployment is READY on the existing
 san-marino-insurance project, with no production target or domain changes:
 
-https://san-marino-insurance-4c6edtb92-saulrichardsons-projects.vercel.app
+https://san-marino-insurance-khl9diklv-saulrichardsons-projects.vercel.app
 
-Deployment ID: `dpl_4EsKUSXqpjBegwAMTb7qoQFBsUbD`.
+Deployment ID: `dpl_5S1UQyEJSnAXfmRVusEmXSsbsBFG`.
 The preview has HTML noindex metadata and an X-Robots-Tag header. Existing
 Vercel preview access policies still apply. Its local equivalent is served at
 http://127.0.0.1:8848/ while the development server is running.
@@ -83,3 +83,9 @@ Use “Los Angeles” without “County” in the public region labels. Orange C
 The owner rejected the saturated blue closing contact section. It now uses
 a warm ivory surface, dark text and a charcoal-green call button. Keep the
 closing section quiet rather than returning to a large bright blue block.
+
+The owner requested more Chinese-inspired colors. The current palette uses
+muted cinnabar red for calls to action and key text, warm porcelain and ivory
+surfaces, dark brown text and restrained antique-gold details. The mobile
+contact bar and browser icon use the same red. Keep the modern composition
+and avoid adding decorative motifs without a separate design request.
