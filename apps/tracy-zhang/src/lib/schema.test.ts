@@ -11,7 +11,10 @@ describe("personal advisor structured data", () => {
 
     expect(profilePage).toBeDefined();
     expect(person).toBeDefined();
-    expect(profilePage?.mainEntity).toEqual({ "@id": person?.["@id"] });
-    expect(profilePage?.about).toEqual({ "@id": person?.["@id"] });
+    expect(profilePage).toMatchObject({
+      "@type": "ProfilePage",
+      mainEntity: { "@id": person?.["@id"] },
+      about: { "@id": person?.["@id"] },
+    });
   });
 });
