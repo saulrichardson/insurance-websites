@@ -8,6 +8,10 @@ now use Next.js 16.4.3 and React 19.3.1, with matching shared UI peer versions.
 Vitest 5.0.5, Vite 8.3.5, the PostCSS 8.5.23 override, and a regenerated pnpm
 lockfile remove the remaining audit findings.
 
+The deployment staging script also carries the root development dependencies
+into the staged app. Next's TypeScript build includes test sources, which need
+Vitest's declarations; the staging package must reproduce that build environment.
+
 The advisor structured-data test uses a shape assertion so its runtime checks
 also type-check against the heterogeneous JSON-LD graph. It still verifies the
 ProfilePage's mainEntity and about links to the person.

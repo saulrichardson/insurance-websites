@@ -67,6 +67,11 @@ function copyRootDeploymentSettings() {
   const targetPackagePath = join(targetRoot, "package.json");
   const targetPackage = JSON.parse(readFileSync(targetPackagePath, "utf8"));
 
+  targetPackage.devDependencies = {
+    ...rootPackage.devDependencies,
+    ...targetPackage.devDependencies,
+  };
+
   if (rootPackage.pnpm) {
     targetPackage.pnpm = rootPackage.pnpm;
   }
